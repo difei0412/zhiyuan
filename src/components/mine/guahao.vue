@@ -1,96 +1,100 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'预约挂号'"></myHeader>
+        <myHeader :title="'住院者看护'"></myHeader>
       <div class="aui-tab" id="tab">
-    <div class="aui-tab-item aui-active" v-if="myindex==0" @click="selectmenu(0)">普通挂号</div>
-    <div class="aui-tab-item " v-if="myindex!=0" @click="selectmenu(0)">普通挂号</div> 
-     <div class="aui-tab-item aui-active" v-if="myindex==1" @click="selectmenu(1)">知名专家</div>
-    <div class="aui-tab-item " v-if="myindex!=1" @click="selectmenu(1)">知名专家</div> 
-      <div class="aui-tab-item aui-active" v-if="myindex==2" @click="selectmenu(2)">知名专家</div>
-    <div class="aui-tab-item " v-if="myindex!=2" @click="selectmenu(2)">知名专家</div> 
+    <div class="aui-tab-item aui-active" v-if="myindex==0" @click="selectmenu(0)">确认医护权</div>
+    <div class="aui-tab-item " v-if="myindex!=0" @click="selectmenu(0)">确认医护权</div> 
+     <div class="aui-tab-item aui-active" v-if="myindex==1" @click="selectmenu(1)">医护</div>
+    <div class="aui-tab-item " v-if="myindex!=1" @click="selectmenu(1)">医护</div> 
 </div>
    <div  v-if="myindex==0">
     <div class="aui-searchbar" id="search" style="background:#fff;">
-    <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
-        <i class="aui-iconfont aui-icon-search"></i>
-        <form action="javascript:search();">
-            <input type="search" placeholder="按病种\科室" id="search-input">
-        </form>
+        <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
+            <i class="aui-iconfont aui-icon-search"></i>
+            <form action="javascript:search();">
+                <input type="search" placeholder="病房号" id="search-input">
+            </form>
+        </div>
+       
     </div>
-   
-</div>
  <div class="aui-searchbar" id="search" style="background:#fff;">
     <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
         <i class="aui-iconfont aui-icon-search"></i>
         <form action="javascript:search();">
-            <input type="search" placeholder="按住院时间排序" id="search-input">
+            <input type="search" placeholder="住院时间" id="search-input">
         </form>
     </div>
-   
+</div>
+<div class="aui-searchbar" id="search" style="background:#fff;">
+    <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
+        <i class="aui-iconfont aui-icon-search"></i>
+        <form action="javascript:search();">
+            <input type="search" placeholder="病房号" id="search-input">
+        </form>
+    </div>
 </div>
 <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-media-list">
            
             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
+                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            病房号：90000001
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            住院时间：2018-05-10 下午12:30
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">确认医护权</div>
                         </div>
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            病房号：90000001
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            住院时间：2018-05-10 下午12:30
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">确认医护权</div>
                         </div>
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            病房号：90000001
                         </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            住院时间：2018-05-10 下午12:30
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">确认医护权</div>
                         </div>
                     </div>
                 </div>
@@ -99,88 +103,28 @@
         </ul>
     </div>
    </div>
-   <div  v-if="myindex==1">
-    <div class="aui-searchbar" id="search" style="background:#fff;">
-    <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
-        <i class="aui-iconfont aui-icon-search"></i>
-        <form action="javascript:search();">
-            <input type="search" placeholder="病种" id="search-input">
-        </form>
-    </div>
-   
-</div>
- <div class="aui-searchbar" id="search" style="background:#fff;">
-    <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
-        <i class="aui-iconfont aui-icon-search"></i>
-        <form action="javascript:search();">
-            <input type="search" placeholder="专家名称" id="search-input">
-        </form>
-    </div>
-   
-</div>
-<div class="aui-content aui-margin-b-15">
+<div  v-if="myindex==1">
+    <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
+           <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                            <div class="aui-list-item-right" style="color:blue"><div class="aui-btn aui-btn-danger">查看摄像</div></div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            病房号：90000001
                         </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            住院时间：2018-05-10 下午12:30
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">填写住院日志</div>
                         </div>
                     </div>
                 </div>
@@ -189,97 +133,7 @@
         </ul>
     </div>
    </div>
-   <div  v-if="myindex==2">
-    <div class="aui-searchbar" id="search" style="background:#fff;">
-    <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
-        <i class="aui-iconfont aui-icon-search"></i>
-        <form action="javascript:search();">
-            <input type="search" placeholder="按病种\科室" id="search-input">
-        </form>
-    </div>
-   
-</div>
- <div class="aui-searchbar" id="search" style="background:#fff;">
-    <div class="aui-searchbar-input aui-border-radius" tapmode  style="border:1px solid #ddd;width:90%;">
-        <i class="aui-iconfont aui-icon-search"></i>
-        <form action="javascript:search();">
-            <input type="search" placeholder="按住院时间排序" id="search-input">
-        </form>
-    </div>
-   
-</div>
-   </div>
-   <div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-media-list">
-           
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">本周三、四有号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                    </div>
-                </div>
-            </li>
-           
-        </ul>
-    </div>
-    </div>
+ </div>
 
 </template>
 
@@ -410,5 +264,23 @@
     background:#fff;
     width:50px;
     margin-left:10px
+}
+.order-status {
+  width:100%;
+  text-align: right;
+  color:rgb(255, 152, 0);
+  font-size:14px;
+}
+.aui-list-item-inner.aui-list-item-arrow {
+  padding-right: 0rem;
+  margin-right: 0rem;
+}
+.yuding-time {
+  font-size:12px !important;
+  color:#666;
+  margin:0.15rem 0;
+}
+.aui-list .aui-list-item-right, .aui-list-item-title-row em {
+    top:0.4rem;
 }
 </style>

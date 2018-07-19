@@ -5,7 +5,7 @@
 				<img src="../../../static/image/fanhui@3x.png" alt="" style="height: 1.25rem;" />
 			</div>
 			<div style="flex: 1;">
-				<input class="my-search H-position-center-all" ref="input" type="search" name="" value="" placeholder="搜你想搜的">
+				<input class="my-search H-position-center-all search-input" ref="input" type="search" name="" value="" placeholder="搜索症状/疾病/药品/医生/科室">
 			</div>
 			<div class="aui-pull-right aui-btn" @click="search">
 				搜索
@@ -321,5 +321,8 @@
 	}
 	input::-webkit-input-placeholder {
 		color: #a2a8ae;
+	}
+	.search-input {
+		width:12.5rem;
 	}
 </style>

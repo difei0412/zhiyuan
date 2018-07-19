@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'名医风采'"></myHeader>
+        <myHeader :title="'线上诊室'"></myHeader>
         <ul class="aui-list aui-media-list">
            
             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
@@ -10,83 +10,83 @@
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
+                            <div class="order-status">待完成</div>
                         </div>
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                           <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
                         </div>
-                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">待完成</div>
                         </div>
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                           <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
                         </div>
-                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">待完成</div>
                         </div>
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                           <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
                         </div>
-                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">待完成</div>
                         </div>
                     </div>
                 </div>
@@ -140,6 +140,21 @@ import Calendar from '../vue-calendar-component/index';
 </script>
 
 <style scoped>
+    .order-status {
+      width:100%;
+      text-align: right;
+      color:rgb(255, 152, 0);
+      font-size:14px;
+    }
+    .aui-list-item-inner.aui-list-item-arrow {
+      padding-right: 0rem;
+      margin-right: 0rem;
+    }
+    .yuding-time {
+      font-size:12px;
+      color:#666;
+      margin:0.15rem 0;
+    }
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;

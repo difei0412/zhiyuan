@@ -27,7 +27,7 @@
             </li>
            
         </ul>
-     <Calendar ref="Calendar" :markDateMore="arr"  v-on:isToday="clickToday" agoDayHide=1530115200 v-on:choseDay="clickDay" v-on:changeMonth="changeDate" style="margin-top:0px"></Calendar>
+     <Calendar ref="Calendar" :markDateMore="arr"  v-on:isToday="clickToday" agoDayHide=1530115200 v-on:choseDay="clickDay" v-on:changeMonth="changeDate" style="margin-top:1rem;background:#fff"></Calendar>
      <div>
       <div class="aui-grid" >
         <div class="myred"></div><span style="margin-top:5px;position:relative;float:left;margin-left:10px">号满</span>

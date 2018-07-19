@@ -1,68 +1,185 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'线上诊室'"></myHeader>
-        <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        
+        <myHeader :title="'门诊患者跟踪'"></myHeader>
+      <div class="aui-tab" id="tab">
+    <div class="aui-tab-item aui-active" v-if="myindex==0" @click="selectmenu(0)">门诊患者在线</div>
+    <div class="aui-tab-item " v-if="myindex!=0" @click="selectmenu(0)">门诊患者在线</div> 
+     <div class="aui-tab-item aui-active" v-if="myindex==1" @click="selectmenu(1)">患者打卡</div>
+    <div class="aui-tab-item " v-if="myindex!=1" @click="selectmenu(1)">患者打卡</div> 
+</div>
+<div  v-if="myindex==0">
+  <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-media-list">
+           
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
-                    <div class="aui-list-item-input">
-                        <textarea placeholder="请详细描述您的病情，性别，以及精神睡眠的整体情况！" class="textareacls" ></textarea>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">查看详情</div>
+                        </div>
                     </div>
                 </div>
-               <div> 
-                <div class="aui-col-xs-3" style="height:80px;width:80px;background:#ddd;text-align:center;line-height:80px;margin-left:11px;margin-top:15px">
-                <i class="aui-iconfont aui-icon-plus" style="font-size:30px;color:#666"></i>
-                
-            </div>
-              <span style="float:right;font-size:12px;float:right;margin-right:11px;margin-top:38px">你上传的附件仅对解答问题的医生可见
-可上传9张</span>
-            </div>
-            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed"  @click="opennext()">下一步</button>
+            </li>
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">查看详情</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">查看详情</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">查看详情</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+           
+        </ul>
     </div>
-  
+   </div>
+<div  v-if="myindex==1">
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-media-list">
+           
+           <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            病房号：90000001
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            住院时间：2018-05-10 下午12:30
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">打卡记录</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                 <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            病房号：90000001
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            住院时间：2018-05-10 下午12:30
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">打卡记录</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+           
+        </ul>
+    </div>
+   </div>
+ </div>
+
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
     export default {
         name: 'geqian',
         data() {
             return {
-               arr2: ['2018-7-3'],
-                      arr: [
-                {
-                  date: '2018-07-04',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/5',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/6',
-                  className: 'mark2'
-                }
-              ]     
+               myindex:0,
             }
         },
         methods: {
-        
-         
-         opennext(){
-                this.$router.push({path:'/zhenshilist'})
-         }
-   
-   
+          //获取用户信息函数
+          selectmenu:function(index){
+            this.myindex=index
+          },
+           openzhifu:function(){
+            this.$router.push({path:'/zhifu'})
+           }
+
         },
         activated() {
           
         },
-       created() {
+         created() {
    
    
   },
         components: {
-                Calendar
+             
               }
     }
 </script>
@@ -164,13 +281,19 @@ import Calendar from '../vue-calendar-component/index';
     width:50px;
     margin-left:10px
 }
-.textareacls{
-  width:90%;
-  position:relative;
-  float:left;
-  margin-left:5%;
-  margin-top:20px;
-  height:95px;
-
+.order-status {
+  width:100%;
+  text-align: right;
+  color:rgb(255, 152, 0);
+  font-size:14px;
+}
+.aui-list-item-inner.aui-list-item-arrow {
+  padding-right: 0rem;
+  margin-right: 0rem;
+}
+.yuding-time {
+  font-size:12px !important;
+  color:#666;
+  margin:0.15rem 0;
 }
 </style>

@@ -4,8 +4,8 @@
       
       <img src="static/image/sousuo@3x.png" class="search" @click="goToSearch">
     </header>
-    <header class="aui-bar aui-bar-nav" v-if="menuindex == 1">问诊</header>
-    <header class="aui-bar aui-bar-nav" v-if="menuindex == 2">我的</header>
+    <header class="aui-bar aui-bar-nav" v-if="menuindex == 1">病患沟通</header>
+    <header class="aui-bar aui-bar-nav" v-if="menuindex == 2">个人中心</header>
 
     <keep-alive>
       <content1 ref="content1" v-if="menuindex==0"></content1>
@@ -18,19 +18,19 @@
         <center>
           <i class="aui-iconfont aui-icon-home"></i>
         </center>
-        <div class="aui-bar-tab-label">首页</div>
+        <div class="aui-bar-tab-label">诊疗中心</div>
       </div>
       <div class="aui-bar-tab-item" @click="openmenu(1)">
         <center>
         <i class="aui-iconfont aui-icon-comment"></i>
         </center>
-        <div class="aui-bar-tab-label">问诊</div>
+        <div class="aui-bar-tab-label">病患沟通</div>
       </div>
       <div class="aui-bar-tab-item" @click="openmenu(2)">
         <center>
           <i class="aui-iconfont aui-icon-my"></i>
         </center>
-        <div class="aui-bar-tab-label">我的</div>
+        <div class="aui-bar-tab-label">个人中心</div>
       </div>
     </footer>
   </div>

@@ -18,170 +18,156 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-    <secton class="aui-grid">
+    <section class="aui-grid">
     <div class="row aui-text-center">
     <div class="aui-col-xs-3" @click="openRouter()">
             <i class="aui-iconfont aui-icon-display"></i>
-            <p>名医风采</p>
+            <p>线上诊室</p>
         </div>
         <div class="aui-col-xs-3" @click="openRouter1()">
             <i class="aui-iconfont aui-icon-date"></i>
-            <p>预约挂号</p>
+            <p>住院患者监护</p>
         </div>
          <div class="aui-col-xs-3" @click="openRouter2()">
             <i class="aui-iconfont aui-icon-cert"></i>
-            <p>线上诊室</p>
+            <p>门诊患者跟踪</p>
         </div>
          <div class="aui-col-xs-3" @click="openRouter3()">
             <i class="aui-iconfont aui-icon-video"></i>
-            <p>患者看护</p>
+            <p>住院日志</p>
         </div>
     </div>
 
-    </secton>
-    <div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-media-list">
-            <li class="aui-list-header">
-                 名医讲堂
-            </li>
-           
-           
-            <li class="aui-list-item"  @click="opennews()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-title">怎么治疗失眠</div>
-                        <div class="aui-list-item-text">
-                            你看看怎么治就怎么治吧
-                        </div>
-                          <div class="aui-list-item-text">
-                            888人阅读
-                        </div>
-                    </div>
-                    <div class="aui-list-item-media">
-                        <img src="static/image/myim1.jpeg">
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item" @click="opennews()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-title">怎么治疗失眠</div>
-                        <div class="aui-list-item-text">
-                            你看看怎么治就怎么治吧
-                        </div>
-                          <div class="aui-list-item-text">
-                            888人阅读
-                        </div>
-                    </div>
-                    <div class="aui-list-item-media">
-                        <img src="static/image/myim1.jpeg">
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-     <div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-media-list">
-            <li class="aui-list-header">
-                知名专家
-            </li>
-          
-           
-           
-        </ul>
-         <ul class="aui-list aui-media-list">
-           
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
-                        </div>
-                           <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
-                        </div>
-                           <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
-                        </div>
-                           <div class="aui-list-item-text" style="margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            擅长精神分裂症的治疗
-                        </div>
-                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <button class="l1">神经病</button>  <button class="l1">神经病</button>  <button class="l1">神经病</button>
-                        </div>
-                    </div>
-                </div>
-            </li>
-           
-        </ul>
-    </div>
+    </section>
+    
+    <!-- 最新帖子和精华帖 << start >> -->
+    <div class="aui-content aui-margin-b-10" @click="opentiezi">
+          <ul class="aui-list aui-media-list">
+              <li class="aui-list-header">
+                 <div class="recent-btn">
+                      <p>最新帖子</p>
+                  </div>
+                 <div class="jinghua-btn">
+                      <p>精华帖</p>
+                 </div>
+              </li>
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+
+              <li class="aui-list-item aui-list-item-arrow"></li>
+            
+          </ul>
+
+      </div>
+      <!-- 最新帖子和精华帖 << end >> -->
+
   </div>
 </template>
 
@@ -195,7 +181,7 @@
   import Vue from 'vue'
 
   export default {
-    name: 'content',
+    name: 'content1',
     data() {
       return {
         mylist : [],
@@ -205,6 +191,9 @@
       }
     },
     methods:{
+      opentiezi(){
+        this.$router.pushRoute({name:'tiezi'})
+      },
        openRouter:function(){
              this.$router.push({path:'/mingyilist'})
        },
@@ -390,5 +379,38 @@
     background:#fff;
     width:60px;
     margin-left:10px
+}
+.recent-btn p {
+  font-size:14px;
+  color:#333;
+}
+.jinghua-btn p {
+  font-size:14px;
+  color:#28B8A1;
+}
+.aui-list-item-media {
+  width:2rem !important;
+  height:2rem !important;
+  border-radius: 1rem;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+.aui-list-item-media img {
+  min-height: 2rem;
+  min-width: 2rem;
+}
+.doctor {
+  height:2.2rem;
+  line-height: 2.2rem;
+  padding-left:0.7rem;
+}
+.doctor .aui-list-item-title {
+  color:#666;
+}
+.doctor-box {
+  padding-top:0rem;
+}
+.doctor-answer {
+  margin-top:0.5rem;
 }
 </style>
