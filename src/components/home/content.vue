@@ -41,17 +41,17 @@
     </section>
     
     <!-- 最新帖子和精华帖 << start >> -->
-    <div class="aui-content aui-margin-b-10" @click="opentiezi">
+    <div class="aui-content aui-margin-b-10">
           <ul class="aui-list aui-media-list">
               <li class="aui-list-header">
                  <div class="recent-btn">
                       <p>最新帖子</p>
                   </div>
                  <div class="jinghua-btn">
-                      <p>精华帖</p>
+                      <p @click="openjinghua">精华帖</p>
                  </div>
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -78,7 +78,7 @@
                   </div>
                  
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -106,7 +106,7 @@
                  
               </li>
 
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -133,7 +133,7 @@
                   </div>
                  
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -191,6 +191,9 @@
       }
     },
     methods:{
+      openjinghua() {
+        this.$router.pushRoute({name:'jinghuatie'})
+      },
       opentiezi(){
         this.$router.pushRoute({name:'tiezi'})
       },

@@ -57,6 +57,7 @@ import 'vue-event-calendar/dist/style.css' //1.1.10之后的版本，css被放�
 import vueEventCalendar from 'vue-event-calendar'
 import yuyueinfo from './components/mine/yuyueinfo' // 病人预约详细信息
 import vuePicturePreview from 'vue-picture-preview' // 图片预览
+import jinghuatie from './components/mine/jinghuatie' // 图片预览
 
 Vue.use(vuePicturePreview)
 Vue.use(vueEventCalendar, {locale: 'en'})
@@ -279,6 +280,11 @@ let router = new VueRouter({
 			name: 'yuyueinfo',
 			path: '/yuyueinfo',
 			component: yuyueinfo
+		},
+		{
+			name: 'jinghuatie',
+			path: '/jinghuatie',
+			component: jinghuatie
 		},
 		 
 	]
