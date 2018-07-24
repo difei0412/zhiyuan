@@ -1,283 +1,208 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'预约记录'"></myHeader>
-      <div class="aui-tab" id="tab">
-    <div class="aui-tab-item aui-active" v-if="myindex==0" @click="selectmenu(0)">普通挂号</div>
-    <div class="aui-tab-item " v-if="myindex!=0" @click="selectmenu(0)">普通挂号</div> 
-     <div class="aui-tab-item aui-active" v-if="myindex==1" @click="selectmenu(1)">知名专家</div>
-    <div class="aui-tab-item " v-if="myindex!=1" @click="selectmenu(1)">知名专家</div> 
-      <div class="aui-tab-item aui-active" v-if="myindex==2" @click="selectmenu(2)">知名专家</div>
-    <div class="aui-tab-item " v-if="myindex!=2" @click="selectmenu(2)">在线问诊</div> 
-</div>
-   <div  v-if="myindex==0">
-   
-<div class="aui-content aui-margin-b-15">
+        <myHeader :title="'挂号信息'"></myHeader>
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu1()">
+            <li class="aui-list-item aui-list-item-middle">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <button class="l1">已支付</button>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">完成</div>
+                        </div>
                     </div>
                 </div>
             </li>
-              <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <button class="l1">未支付</button>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">完成</div>
+                        </div>
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu1()">
+            <li class="aui-list-item aui-list-item-middle">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <button class="l1">已支付</button>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">完成</div>
+                        </div>
                     </div>
                 </div>
             </li>
-              <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">完成</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                        <button class="l1">未支付</button>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">完成</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">完成</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">完成</div>
+                        </div>
                     </div>
                 </div>
             </li>
            
         </ul>
+        <div class="price-total">
+          <span>费用合计：￥2000</span>
+        </div>
     </div>
-   </div>
-   <div  v-if="myindex==1">
-   
-<div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-media-list">
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu1()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">已支付</button>
-                    </div>
-                </div>
-            </li>
-              <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">未支付</button>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu1()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">已支付</button>
-                    </div>
-                </div>
-            </li>
-              <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">未支付</button>
-                    </div>
-                </div>
-            </li>
-           
-        </ul>
-    </div>
-   </div>
-   <div  v-if="myindex==2">
-   
-   </div>
-   <div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-media-list">
-           
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu1()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">已支付</button>
-                    </div>
-                </div>
-            </li>
-              <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">未支付</button>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu1()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">已支付</button>
-                    </div>
-                </div>
-            </li>
-              <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">林洪大夫</div>
-                             <div class="aui-list-item-right" style="color:blue">2018-12-31号下午三点的号</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                           排号 120
-                        </div>
-                        <button class="l1">未支付</button>
-                    </div>
-                </div>
-            </li>
-           
-        </ul>
-    </div>
-    </div>
-
+  
 </template>
 
 <script>
+import Calendar from '../vue-calendar-component/index';
     export default {
         name: 'geqian',
         data() {
             return {
-               myindex:0,
+               arr2: ['2018-7-3'],
+                      arr: [
+                {
+                  date: '2018-07-04',
+                  className: 'mark1'
+                },
+                {
+                  date: '2018/7/5',
+                  className: 'mark1'
+                },
+                {
+                  date: '2018/7/6',
+                  className: 'mark2'
+                }
+              ]     
             }
         },
         methods: {
-          //获取用户信息函数
-          selectmenu:function(index){
-            this.myindex=index
-          },
-           openzhifu:function(){
-            this.$router.push({path:'/zhifu'})
-           },
-            openzhifu1:function(){
-            this.$router.push({path:'/erweima'})
-           }
-
+          openzhifu:function(){
+            this.$router.push({path:'/yuyueinfo'})
+          }
+          
         },
         activated() {
           
         },
-         created() {
+       created() {
    
    
   },
         components: {
-             
+                Calendar
               }
     }
 </script>
 
-<style >
+<style scoped>
+    .order-status {
+      width:100%;
+      text-align: right;
+      color:rgb(255, 152, 0);
+      font-size:14px;
+    }
+    .aui-list-item-inner.aui-list-item-arrow {
+      padding-right: 0rem;
+      margin-right: 0rem;
+    }
+    .yuding-time {
+      font-size:12px;
+      color:#666;
+      margin:0.3rem 0;
+    }
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;
@@ -365,6 +290,16 @@
      border-radius:15px
 
 }
+
+.textareacls{
+  width:90%;
+  position:relative;
+  float:left;
+  margin-left:5%;
+  margin-top:20px;
+  height:95px;
+
+}
 .l1{
     color:#27B5B1;
     border:1px solid #27B5B1;
@@ -373,5 +308,15 @@
     background:#fff;
     width:60px;
     margin-left:10px
+}
+.price-total {
+  clear:both;
+  font-size:14px;
+  color:#f60;
+  height:2rem;
+  line-height: 2rem;
+  text-align: right;
+  padding:0.5rem 0.7rem;
+  margin-bottom: 1rem;
 }
 </style>
