@@ -1,8 +1,10 @@
 <template>
-  <div style="height: 100%;">
+  <div style="height: 100%;" id="app">
     <header class="aui-bar aui-bar-nav" style="z-index:999999" v-if="menuindex == 0">
-      
-      <img src="static/image/sousuo@3x.png" class="search" @click="goToSearch">
+      <div style="position:relative;">
+        <div>诊疗中心</div>
+        <div style="position:absolute;right:1rem;top:0rem;"><i class="aui-iconfont aui-icon-info"></i></div>
+      </div>
     </header>
     <header class="aui-bar aui-bar-nav" v-if="menuindex == 1">病患沟通</header>
     <header class="aui-bar aui-bar-nav" v-if="menuindex == 2">个人中心</header>
@@ -106,6 +108,7 @@
     margin-left: 0px;
     width: 100%;
     top: 0px;
+    z-index: 99999;
   }
   .aui-bar-tab .aui-active {
     color: #28B8A1;

@@ -1,23 +1,32 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'医患发帖'"></myHeader>
-        <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        
-                    </div>
+        <myHeader :title="'线上论坛'"></myHeader>
+        <div class="aui-content aui-margin-b-15">
+          <ul class="aui-list aui-form-list">
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-input">
+                          <input type="text" placeholder="请您输入帖子标题">
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                <div class="aui-list-item-inner">
                     <div class="aui-list-item-input">
-                        <textarea placeholder="请详细描述您的病情，性别，以及精神睡眠的整体情况！" class="textareacls" ></textarea>
+                        <textarea placeholder="请您输入帖子内容！" class="textareacls" ></textarea>
                     </div>
                 </div>
-               <div> 
+              </li>
+            </ul>
+          </div>
+          <div> 
                 <div class="aui-col-xs-3" style="height:80px;width:80px;background:#ddd;text-align:center;line-height:80px;margin-left:11px;margin-top:15px">
                 <i class="aui-iconfont aui-icon-plus" style="font-size:30px;color:#666"></i>
                 
             </div>
-              <span style="float:right;font-size:12px;float:right;margin-right:11px;margin-top:38px">你上传的附件仅对解答问题的医生可见
-可上传9张</span>
+              <span style="float:left;font-size:12px;margin-left:0.5rem;margin-top:44px">您的帖子可以上传图片和视频</span>
             </div>
-            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed"  @click="opennext()">发布</button>
+            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="opennext()">发布</button>
     </div>
   
 </template>
@@ -172,5 +181,8 @@ import Calendar from '../vue-calendar-component/index';
   margin-top:20px;
   height:95px;
 
+}
+.aui-list-item-input input,.aui-list-item-input textarea{
+  font-size:14px;
 }
 </style>

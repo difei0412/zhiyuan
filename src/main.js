@@ -55,6 +55,10 @@ import aboutUs from './components/mine/aboutUs' //关于我们
 import geqian from './components/mine/geqian' //修改个性签名
 import 'vue-event-calendar/dist/style.css' //1.1.10之后的版本，css被放在了单独的文件中，方便替换
 import vueEventCalendar from 'vue-event-calendar'
+import yuyueinfo from './components/mine/yuyueinfo' // 病人预约详细信息
+import vuePicturePreview from 'vue-picture-preview' // 图片预览
+
+Vue.use(vuePicturePreview)
 Vue.use(vueEventCalendar, {locale: 'en'})
 
 Vue.use(VueRouter)
@@ -270,6 +274,11 @@ let router = new VueRouter({
 			name: 'xiayibu',
 			path: '/xiayibu',
 			component: xiayibu
+		},
+		 {
+			name: 'yuyueinfo',
+			path: '/yuyueinfo',
+			component: yuyueinfo
 		},
 		 
 	]

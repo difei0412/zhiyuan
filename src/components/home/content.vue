@@ -413,4 +413,7 @@
 .doctor-answer {
   margin-top:0.5rem;
 }
+.aui-label {
+  top:-0.4rem;
+}
 </style>

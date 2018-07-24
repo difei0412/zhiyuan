@@ -1,173 +1,52 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'名医风采'"></myHeader>
-        <ul class="aui-list aui-media-list" style=" background-color: #28B8A1;">
+        <myHeader :title="'线上诊室'"></myHeader>
+        <ul class="aui-list aui-media-list">
           
-            <li class="aui-list-item aui-list-item-middle">
+            <li class="aui-list-item aui-list-item-middle"  @click="openinfo()">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-img-round ">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text">
-                            <div class="aui-list-item-title aui-font-size-14" style="color:#ffffff;margin-left:11px">林洪生大夫</div>
-                            <div class="aui-list-item-right"><button class="button1">关注</button></div>
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
                         </div>
-                        <div class="aui-list-item-text" style="color:#ffffff;margin-left:11px">
-                            身心科专家
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
-                        <div class="aui-list-item-text" style="color:#ffffff;margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            诊疗时间：30分钟
                         </div>
-                        <div class="aui-list-item-text" style="color:#f8f8f8;margin-left:11px">
-                            个人简介：为了患者更健康奋斗终身
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">待完成</div>
                         </div>
                     </div>
                 </div>
             </li>
            
         </ul>
-        <div class="aui-grid" style="border-bottom:1px solid #ddd">
-            <div class="aui-row">
-                <div class="aui-col-xs-4" style="border-right:1px solid #ddd">
-                    <i class="aui-iconfont " style="font-size:18px">11年</i>
-                    <div class="aui-grid-label">从业经验</div>
-                </div>
-                <div class="aui-col-xs-4" style="border-right:1px solid #ddd">
-                    <i class="aui-iconfont " style="font-size:18px">2000次</i>
-                    <div class="aui-grid-label">回答次数</div>
-                </div>
-                  <div class="aui-col-xs-4" style="border-right:1px solid #ddd;color:#FF9800">
-                    <i class="aui-iconfont " style="font-size:18px">4.9分</i>
-                    <div class="aui-grid-label"><i class="aui-iconfont aui-icon-star"  style="font-size:12px"></i><i class="aui-iconfont aui-icon-star" style="font-size:12px"></i><i class="aui-iconfont aui-icon-star" style="font-size:12px"></i><i class="aui-iconfont aui-icon-star" style="font-size:12px"></i><i class="aui-iconfont aui-icon-star" style="font-size:12px"></i></div>
-                </div>
-                
+        <section class="aui-content" style="border-top:1px solid #ccc">
+          <div class="aui-card-list">
+            <div class="aui-card-list-header">
+                设置计时器
             </div>
-        </div>
-
-        <div class="row" >
-        <div style="border:1px solid #000;height:25px;width:25px;text-align:center;border-radius:25px;float:left;margin-left:11px;top:20px;position:relative">
-                <i class="aui-iconfont aui-icon-correct" style="color:#000;font-size:12px;margin-top:-5px"></i>
-               
-            </div>  <span style="margin-top:20px;postion:relative;float:left;margin-left:12px">医师认证</span>
-         </div>   
-           <div class="aui-grid" >
-              <span style="float:left;margin-left:12px;margin-top:10px">擅长疾病</span>
-            <div class="aui-row" style="margin-top:30px">
-           <button class="l1">神经病</button><button class="l1">神经病</button><button class="l1">神经病</button><button class="l1">神经病</button><button class="l1">神经病</button><button class="l1">神经病</button>
-                
+            <div class="aui-card-list-content-padded ">
+                  <div class="aui-row aui-row-padded">
+                      <div class="aui-col-xs-12">
+                           <span class="font-djs">设定倒计时</span><div class="aui-label aui-label-success">12:08:23  <i class="aui-iconfont aui-icon-calendar"></i></div>
+                      </div>
+                  </div>
             </div>
+              <div class="aui-card-list-footer">
+                <div class="aui-col-xs-12">
+                  <div class="aui-btn aui-btn-success">完成</div>
+                  <div class="aui-btn">取消</div>
+                </div>
+              </div>
         </div>
-
-      <Calendar ref="Calendar" :markDateMore="arr"  v-on:isToday="clickToday" agoDayHide=1530115200 v-on:choseDay="clickDay" v-on:changeMonth="changeDate" style="margin-top:60px"></Calendar>
-      <div>
-      <div class="aui-grid" >
-        <div class="myred"></div><span style="margin-top:5px;position:relative;float:left;margin-left:10px">号满</span>
-         <div class="myblue"></div><span style="margin-top:5px;position:relative;float:left;margin-left:10px">可以预约</span>
-      </div>  
-      </div> 
-      <div class="aui-content aui-margin-b-15">
-      <ul class="aui-list aui-media-list">
-        
-        <li class="aui-list-item">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/demo1.jpeg" style="width:2rem" class="aui-img-round">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text"  style="margin-left:-30px">
-                            <div class="aui-list-item-title">患者问</div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:-30px">
-                            我女儿今年20岁，因为高考落榜想自杀，睡不着觉，这怎么办？
-                        </div>
-                        <div class="aui-info aui-margin-t-5" style="padding:0">
-                            <div class="aui-info-item" style="margin-left:-30px">
-                                <img src="static/image/1.jpg" style="width:1rem" class="aui-img-round"><span class="aui-margin-l-5">林洪生大夫</span>
-                                </div>
-                            <div class="aui-info-item">2015-07-14 10:31</div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </li>
-             <li class="aui-list-item">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/demo1.jpeg" style="width:2rem" class="aui-img-round">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text"  style="margin-left:-30px">
-                            <div class="aui-list-item-title">患者问</div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:-30px">
-                            我女儿今年20岁，因为高考落榜想自杀，睡不着觉，这怎么办？
-                        </div>
-                        <div class="aui-info aui-margin-t-5" style="padding:0">
-                            <div class="aui-info-item" style="margin-left:-30px">
-                                <img src="static/image/1.jpg" style="width:1rem" class="aui-img-round"><span class="aui-margin-l-5">林洪生大夫</span>
-                                </div>
-                            <div class="aui-info-item">2015-07-14 10:31</div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </li>
-             <li class="aui-list-item">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/demo1.jpeg" style="width:2rem" class="aui-img-round">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text"  style="margin-left:-30px">
-                            <div class="aui-list-item-title">患者问</div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text" style="margin-left:-30px">
-                            我女儿今年20岁，因为高考落榜想自杀，睡不着觉，这怎么办？
-                        </div>
-                        <div class="aui-info aui-margin-t-5" style="padding:0">
-                            <div class="aui-info-item" style="margin-left:-30px">
-                                <img src="static/image/1.jpg" style="width:1rem" class="aui-img-round"><span class="aui-margin-l-5">林洪生大夫</span>
-                                </div>
-                            <div class="aui-info-item">2015-07-14 10:31</div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </li>
-         </ul>   
-         </div>
-         <div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-media-list">
-            <li class="aui-list-header"  style="background:#fff;boorder-bottom:1px solid #ddd">
-                所在医院科室介绍
-            </li>
-            <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                     <i class="aui-iconfont aui-icon-edit" style="font-size:25px"></i>
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:0px">
-                            <div class="aui-list-item-title aui-font-size-14">知源精神卫生诊疗中心</div>
-                           
-                        </div>
-                        <div class="aui-list-item-text">
-                            身心科  联系电话：022-28124671
-                        </div>
-                    </div>
-                </div>
-            </li>
-            
-        </ul>
-    </div>
-    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1" @click="openim">在线提问</div>
+      </section>
     </div>
 </template>
 
@@ -195,6 +74,9 @@ import Calendar from '../vue-calendar-component/index';
             }
         },
         methods: {
+          openinfo() {
+            this.$router.push({path:'/yuyueinfo'})
+          },
           //获取用户信息函数
            openim:function(){
           this.$router.push({path:'/im'})
@@ -356,5 +238,45 @@ import Calendar from '../vue-calendar-component/index';
     background:#fff;
     width:50px;
     margin-left:10px
+}
+.order-status {
+      width:100%;
+      text-align: right;
+      color:rgb(255, 152, 0);
+      font-size:14px;
+    }
+    .aui-list-item-inner.aui-list-item-arrow {
+      padding-right: 0rem;
+      margin-right: 0rem;
+    }
+    .yuding-time {
+      font-size:12px;
+      color:#666;
+      margin:0.15rem 0;
+    }
+.aui-label-success {
+  margin-left:0.5rem;
+}
+.aui-card-list {
+  border:1px solid #eee;
+  margin:0.5rem 0.3rem;
+  border-radius:0.5rem;
+}
+.aui-card-list-content-padded {
+  border-top:1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.aui-card-list-header {
+  font-size: 14px;
+  color:#666;
+}
+.font-djs {
+  color:#666;
+}
+.aui-btn {
+  float:right;
+}
+.aui-btn-success {
+  margin-left:0.3rem;
 }
 </style>

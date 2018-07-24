@@ -40,7 +40,7 @@
 				<div class="other_img my-middle" style="margin-left:11px">
 					<i class="aui-iconfont aui-icon-image" style="font-size:22px"></i>
 				</div>
-				<span>预约信息</span>
+				<span>挂号记录</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -50,7 +50,7 @@
 				<div class="other_img my-middle" style="margin-left:11px">
 					<i class="aui-iconfont aui-icon-video" style="font-size:22px"></i>
 				</div>
-				<span>打卡记录</span>
+				<span>患者评价查看</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -59,7 +59,16 @@
 				<div class="other_img my-middle" style="margin-left:11px">
 					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
 				</div>
-				<span>帮助中心</span>
+				<span>线上反馈清单</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+			<div class="other_list" @click="openRouter('aboutUs')">
+				<div class="other_img my-middle" style="margin-left:11px">
+					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
+				</div>
+				<span>打赏记录</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>

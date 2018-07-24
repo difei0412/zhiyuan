@@ -2,7 +2,7 @@
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'住院日志'"></myHeader>
 
-        <Calendar ref="Calendar" :markDateMore="arr"  v-on:isToday="clickToday" agoDayHide=1530115200 v-on:choseDay="clickDay" v-on:changeMonth="changeDate" style="margin-top:1rem;"></Calendar>
+        <Calendar ref="Calendar" style="margin-top:1rem;"></Calendar>
 
         <ul class="aui-list aui-media-list">
            

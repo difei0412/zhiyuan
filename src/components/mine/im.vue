@@ -1,76 +1,77 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'与林洪生大夫实时问答'"></myHeader>
-       <section class="aui-chat">
-    <div class="aui-chat-header">2016年7月13日</div>
-    <div class="aui-chat-item aui-chat-left">
-        <div class="aui-chat-media">
-            <img src="static/image/jpgjpg" />
-        </div>
-        <div class="aui-chat-inner">
-            <div class="aui-chat-name">AUI <span class="aui-label aui-label-warning">2.0</span></div>
-            <div class="aui-chat-content">
-                <div class="aui-chat-arrow"></div>
-                Hello AUI 2.0!
+        <myHeader :title="'与刘国旗患者聊天'"></myHeader>
+        
+        <section class="aui-chat">
+            <div class="aui-chat-header">2016年7月13日</div>
+            <div class="aui-chat-item aui-chat-left">
+                <div class="aui-chat-media">
+                    <img src="static/image/12.jpg" />
+                </div>
+                <div class="aui-chat-inner">
+                    <div class="aui-chat-name">AUI <span class="aui-label aui-label-warning">2.0</span></div>
+                    <div class="aui-chat-content">
+                        <div class="aui-chat-arrow"></div>
+                        Hello AUI 2.0!
+                    </div>
+                    <div class="aui-chat-status aui-chat-status-refresh">
+                        <i class="aui-iconfont aui-icon-correct aui-text-success"></i>
+                    </div>
+                </div>
             </div>
-            <div class="aui-chat-status aui-chat-status-refresh">
-                <i class="aui-iconfont aui-icon-correct aui-text-success"></i>
+            <div class="aui-chat-item aui-chat-right">
+                <div class="aui-chat-media">
+                    <img src="static/image/demo1.jpeg" />
+                </div>
+                <div class="aui-chat-inner">
+                    <div class="aui-chat-name">流浪男</div>
+                    <div class="aui-chat-content">
+                        <div class="aui-chat-arrow"></div>
+                        你好！
+                    </div>
+                    <div class="aui-chat-status">
+                        <i class="aui-iconfont aui-icon-info aui-text-danger"></i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="aui-chat-item aui-chat-right">
-        <div class="aui-chat-media">
-            <img src="static/image/12.jpg" />
-        </div>
-        <div class="aui-chat-inner">
-            <div class="aui-chat-name">流浪男</div>
-            <div class="aui-chat-content">
-                <div class="aui-chat-arrow"></div>
-                你好！
+            <div class="aui-chat-item aui-chat-left">
+                <div class="aui-chat-media">
+                    <img src="static/image/12.jpg" />
+                </div>
+                <div class="aui-chat-inner">
+                    <div class="aui-chat-name">AUI <span class="aui-label aui-label-warning">2.0</span></div>
+                    <div class="aui-chat-content">
+                        <div class="aui-chat-arrow"></div>
+                        <img src="static/image/bingfang.jpeg" />
+                    </div>
+                </div>
             </div>
-            <div class="aui-chat-status">
-                <i class="aui-iconfont aui-icon-info aui-text-danger"></i>
+            <div class="aui-chat-item aui-chat-right">
+                <div class="aui-chat-media">
+                    <img src="static/image/demo1.jpeg" />
+                </div>
+                <div class="aui-chat-inner">
+                    <div class="aui-chat-name">流浪男</div>
+                    <div class="aui-chat-content">
+                        <div class="aui-chat-arrow"></div>
+                        以前拍摄的牛背山星空
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="aui-chat-item aui-chat-left">
-        <div class="aui-chat-media">
-            <img src="static/image/12.jpg" />
-        </div>
-        <div class="aui-chat-inner">
-            <div class="aui-chat-name">AUI <span class="aui-label aui-label-warning">2.0</span></div>
-            <div class="aui-chat-content">
-                <div class="aui-chat-arrow"></div>
-                <img src="static/image/12.jpg" />
+            <div class="aui-chat-item aui-chat-left">
+                <div class="aui-chat-media">
+                    <img src="static/image/12.jpg" />
+                </div>
+                <div class="aui-chat-inner">
+                    <div class="aui-chat-name">AUI <span class="aui-label aui-label-warning">2.0</span></div>
+                    <div class="aui-chat-content">
+                        <div class="aui-chat-arrow"></div>
+                        <img src="static/image/bingfang.jpeg" />
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="aui-chat-item aui-chat-right">
-        <div class="aui-chat-media">
-            <img src="static/image/12.jpg" />
-        </div>
-        <div class="aui-chat-inner">
-            <div class="aui-chat-name">流浪男</div>
-            <div class="aui-chat-content">
-                <div class="aui-chat-arrow"></div>
-                以前拍摄的牛背山星空
-            </div>
-        </div>
-    </div>
-    <div class="aui-chat-item aui-chat-left">
-        <div class="aui-chat-media">
-            <img src="static/image/12.jpg" />
-        </div>
-        <div class="aui-chat-inner">
-            <div class="aui-chat-name">AUI <span class="aui-label aui-label-warning">2.0</span></div>
-            <div class="aui-chat-content">
-                <div class="aui-chat-arrow"></div>
-                <img src="static/image/12.jpg" />
-            </div>
-        </div>
-    </div>
 
-</section>
+        </section>
 
     </div>
   
@@ -224,5 +225,17 @@ import Calendar from '../vue-calendar-component/index';
     background:#fff;
     width:60px;
     margin-left:10px
+}
+.aui-chat .aui-chat-right .aui-chat-content {
+  background: rgb(158,234,106);
+}
+.aui-chat .aui-chat-right .aui-chat-arrow {
+  background: rgb(158,234,106);
+}
+.aui-chat .aui-chat-media {
+  height:2rem !important;
+}
+.aui-chat .aui-chat-media img {
+  height:100%;
 }
 </style>

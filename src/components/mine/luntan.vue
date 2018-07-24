@@ -1,171 +1,164 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'医患论坛'"></myHeader>
+        <div>
+          <div class="aui-bar"></div>
+          <header class="aui-bar aui-bar-nav">
+            <div class="aui-pull-left" @click="closewin">
+              <img src="static/image/fanhui@3x.png">
+            </div>
+            <div class="aui-title">论坛</div>
+            <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
+          </header>
+        </div>
      <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-media-list">
             <li class="aui-list-header">
                最新帖子
-               <div class="aui-col-xs-3">
-                <i class="aui-iconfont aui-icon-refresh" style="margin-left:15px"></i>
-                <p>换一批</p>
-            </div>
+               <div>
+                  <i class="aui-iconfont aui-icon-refresh" style="margin-right:5px"></i>
+                  <span>换一批</span>
+              </div>
             </li>
-            <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                       
-                        <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+            <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
                             患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                        </div>
-                        <div class="aui-list-item-text aui-ellipsis-2">
-                          您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item" @click="opentiezi()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/sofa@3x.png" class="aui-img-round" style="max-width:70px">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text">
-                            <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text">
-                            XXXXXXXXXXXX治疗
-                        </div>
-                    </div>
-                </div>
-               
-            </li>
-             <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                       
-                        <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
                             患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                        </div>
-                        <div class="aui-list-item-text aui-ellipsis-2">
-                          您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item" @click="opentiezi()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/sofa@3x.png" class="aui-img-round" style="max-width:70px">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text">
-                            <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text">
-                            XXXXXXXXXXXX治疗
-                        </div>
-                    </div>
-                </div>
-               
-            </li>
-           <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                       
-                        <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
                             患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                        </div>
-                        <div class="aui-list-item-text aui-ellipsis-2">
-                          您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/sofa@3x.png" class="aui-img-round" style="max-width:70px">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text">
-                            <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text">
-                            XXXXXXXXXXXX治疗
-                        </div>
-                    </div>
-                </div>
-               
-            </li>
-           <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                       
-                        <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
                             患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                        </div>
-                        <div class="aui-list-item-text aui-ellipsis-2">
-                          您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/sofa@3x.png" class="aui-img-round" style="max-width:70px">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text">
-                            <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text">
-                            XXXXXXXXXXXX治疗
-                        </div>
-                    </div>
-                </div>
-               
-            </li>
-           <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                       
-                        <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                         
+                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
                             患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                        </div>
-                        <div class="aui-list-item-text aui-ellipsis-2">
-                          您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media">
-                        <img src="static/image/sofa@3x.png" class="aui-img-round" style="max-width:70px">
-                    </div>
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-text">
-                            <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                            <div class="aui-list-item-right">08:00</div>
-                        </div>
-                        <div class="aui-list-item-text">
-                            XXXXXXXXXXXX治疗
-                        </div>
-                    </div>
-                </div>
-               
-            </li>
+                          </div>
+                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
+                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item doctor-box">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-media">
+                          <img src="static/image/sofa@3x.png" class="aui-img-round">
+                      </div>
+                      <div class="aui-list-item-inner">
+                          <div class="aui-list-item-text doctor">
+                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
+                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </li>
           
           
         </ul>
 
     </div>
-     <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed"  @click="openfatie()">发帖</button>
     </div>
 
 </section>
@@ -175,7 +168,6 @@
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
     export default {
         name: 'geqian',
         data() {
@@ -206,6 +198,10 @@ import Calendar from '../vue-calendar-component/index';
           },
           opentiezi(){
           this.$router.push({path:'/tiezi'})
+          },
+          closewin:function() {
+            var _this = this;
+            _this.$router.backRoute();
           }
           
         },
@@ -216,9 +212,6 @@ import Calendar from '../vue-calendar-component/index';
    
    
   },
-        components: {
-                Calendar
-              }
     }
 </script>
 
@@ -329,4 +322,52 @@ import Calendar from '../vue-calendar-component/index';
     width:60px;
     margin-left:10px
 }
+
+.aui-list-item-media {
+  width:2rem !important;
+  height:2rem !important;
+  border-radius: 1rem;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+.aui-list-item-media img {
+  min-height: 2rem;
+  min-width: 2rem;
+}
+.doctor {
+  height:2.2rem;
+  line-height: 2.2rem;
+  padding-left:0.7rem;
+}
+.doctor .aui-list-item-title {
+  color:#666;
+}
+.doctor-box {
+  padding-top:0rem;
+}
+.doctor-answer {
+  margin-top:0.5rem;
+}
+.aui-label {
+  top:-0.4rem;
+}
+ .aui-pull-left img {
+    margin-top: 0.5rem;
+    height: 1.25rem;
+  }
+  .aui-bar-nav {
+    background-color: #28B8A1;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index:99999999999
+  }
+  .fatie-btn {
+    position:absolute;
+    right:0.7rem;
+    top:0;
+  }
+  .fatie-btn a {
+    font-size:14px;
+  }
 </style>

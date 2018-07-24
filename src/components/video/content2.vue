@@ -146,7 +146,7 @@
   import Vue from 'vue'
 
   export default {
-    name: 'content',
+    name: 'content2',
     data () {
       return {
         userId: "",
@@ -157,6 +157,12 @@
       }
     },
     methods: {
+      openRouter() {
+        this.$router.pushRoute({name:'luntan'})
+      },
+      openRouter1() {
+        this.$router.pushRoute({name:'imlist'})
+      },
       opentiezi(){
         this.$router.pushRoute({name:'tiezi'})
       },
@@ -282,12 +288,12 @@
       },
       scrollTitle(index, time) {
         this.$nextTick(() => {
-          var navItem = $('.head');
-          var Left = $('.head').scrollLeft();
-          var Len = (navItem.width()) / 2;
-          var navSpan = $('.head li').eq(index).offset().left;
-          navItem.animate({ 'scrollLeft': navSpan + Left - Len + 35}, time, function() {
-          });
+          // var navItem = $('.head');
+          // var Left = $('.head').scrollLeft();
+          // var Len = (navItem.width()) / 2;
+          // var navSpan = $('.head li').eq(index).offset().left;
+          // navItem.animate({ 'scrollLeft': navSpan + Left - Len + 35}, time, function() {
+          // });
         })
       },
       initdata:function() {
@@ -592,5 +598,8 @@
 }
 .doctor-answer {
   margin-top:0.5rem;
+}
+.aui-label {
+  top:-0.4rem;
 }
 </style>
