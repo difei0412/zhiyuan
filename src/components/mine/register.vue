@@ -27,7 +27,7 @@
 								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" width="18">
 							</div>
 							<div class="aui-list-item-input">
-								<input type="text" placeholder="请输入验证码">
+								<input type="text" placeholder="请输入验证码" v-model= 'code'>
 							</div>
 						</div>
 					</li>
@@ -63,8 +63,9 @@
 </template>
 
 <script>
-
+var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 import md5 from '../public/md5'
+import $ from '../public/jquery.js'
 import { Toast } from 'mint-ui';
 export default {
 	name: 'register',
@@ -83,28 +84,59 @@ export default {
 			//打开注册协议
 			register_btn1(){
 				
+				var that = this
 
-
-				if (this.mobile == '') {
+				if (that.mobile == '') {
 					Toast('请输入手机号！');
 					return
 				}
-				if (this.password=='') {
+				if (!myreg.test(that.mobile)) {
+					Toast('请输入正确的手机号！');
+					return ;
+				} 
+				if (that.code=='') {
+					Toast('请输入验证码！');
+					return
+				}
+				if (that.password=='') {
 					Toast('请输入密码！');
 					return
 				}
-				if (this.passwordZ == '') {
-					
+				if (that.passwordZ == '') {
+					Toast('请再次输入密码！');
+					return
 				}else{
-					if (this.password == this.passwordZ) {
-						var prams = {
+					if (that.password == that.passwordZ) {
+						var url1 = 'verycode?filter={"where":{"mobile":"' + that.mobile + '","code":"'+that.code+'"}}';
+						console.log(url1)
+						var params = {
 							data:{
-								'mobile':this.mobile,
-								'password':this.password,
+								"mobile":that.mobile,
+								"password":that.password
 							}
-						}	
+							
+						};
+						that.ajax({url:url1,method:'GET',
+							success:function(data){
+								console.log(data)
+								if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
+									var url2 = 'expert';
+									that.ajax({url:url2,method:'post',params,success:function(data){
+										
+									}
+
+									})
+								}else{
+									Toast("验证码无效，请重新输入！")
+								}
+
+
+							}
+						})
+
 					}else{
-						alert('密码不一致，请重新输入！')
+						Toast('密码不一致，请重新输入！');
+
 					}
 				}
 				
@@ -131,21 +163,61 @@ export default {
 			//获取验证码之前先检测账号是否已注册
 			getCodeBefore() {
 				var that = this;
+				
 
-				//查表是否存在此账号
-				/*var url1 = 'f_user/count?filter={"where":{"User_name":' + that.mobile + '}}';
-				that.ajax({url:url1,method:'GET',
-					success:function(data){
-						if(data.count!==0) {
-							that.$MessageBox.alert('该账号已注册');
-							return
-						}else {
-							that.getCode();
+				if (that.mobile == '') {
+					Toast('请输入手机号！');
+					return
+				}else{
+					if (!myreg.test(that.mobile)) {
+						Toast('请输入正确的手机号！');
+						return ;
+					} 
+					//查表是否存在此账号
+					var url1 = 'expert?filter={"where":{"mobile":' + that.mobile + '}}';
+					that.ajax({url:url1,method:'GET',
+						success:function(data){
+							// console.log(data)
+							if(data != 0&&data != []&&data != '') {
+								that.$MessageBox.alert('该账号已注册');
+								return
+							}else {
+								that.getCode();
+								var url = 'http://zhiyuan.btisl.com/sendmessage?mobile='+that.mobile
+
+								$.ajax({
+									url: url,
+									type: 'get',
+									dataType: 'json',
+											// data: {mobile: that.mobile},
+										})
+								.done(function(data) {
+									console.log(data);
+									if (data.code == '0000') {
+										Toast(data.msg)
+									}else if(data.code == '0001'){
+										Toast(data.msg)
+									}
+
+								})
+								.fail(function() {
+									console.log("error");
+								})
+								.always(function() {
+									console.log("complete");
+								});
+							}
+
 						}
-					}
-				})*/
-				that.getCode();
-			},
+					})
+
+
+				}
+
+
+
+			// that.getCode();
+		},
 			//获取验证码
 			getCode() {
 				var that = this;

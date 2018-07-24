@@ -11,8 +11,8 @@ export default {
 			}
 
 			var now = new Date().getTime();
-			var appid = 'A6062247577920';
-			var apptoken = '3ECCF31B-5B2A-93C6-FDB8-1DBD18C86C9D';
+			var appid = 'A6086660823294';
+			var apptoken = '18B51F5A-5D9B-143E-30FB-FAF804B457EF';
 			var appKey = sha.hex_sha1(appid + "UZ" + apptoken + "UZ" + now) + "." + now;
 			var appendUrl = "https://d.apicloud.com/mcm/api/" + url;
 
