@@ -122,7 +122,7 @@ export default {
 								if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
 									var url2 = 'expert';
 									that.ajax({url:url2,method:'post',params,success:function(data){
-										
+										alert("aa")
 									}
 
 									})
