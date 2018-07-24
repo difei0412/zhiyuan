@@ -7,31 +7,40 @@
          <img src="static/image/logo.png" />
            <center><span class="app-name">知源医生端</span></center>
       </div>
-      <div class="iptBox aui-list aui-form-list">
-        <div class="aui-list-item">
-          <div class="aui-list-item-inner">
-            <div class="aui-list-item-label-icon">
-              <img src="../../../static/image/mobileatByFoot.png" alt="" width="18" />
-            </div>
-            <div class="aui-list-item-input">
-              <input type="tel" v-model="loginuser" placeholder="手机号">
-            </div>
-          </div>
-        </div>
-        <div class="aui-list-item">
-          <div class="aui-list-item-inner">
-            <div class="aui-list-item-label-icon">
-              <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
-            </div>
-            <div class="aui-list-item-input">
-              <input type="password" v-model="password" placeholder="请输入密码">
-            </div>
-          </div>
-        </div>
-        <div style="font-size:0.7rem;text-align:right;line-height:2.1rem;"><span @click="openForgetPsw">忘记密码？</span></div>
-        <div class="aui-btn aui-btn-danger aui-btn-block" @click="btn_login">登 录</div>
-        <div class="aui-btn aui-btn-block aui-btn-outlined" style="margin-top:15px;color:#a2a8ae;border-color:#a2a8ae;" @click="openRegister">注 册</div>
+      <div class="aui-content aui-margin-b-15 aui-margin-t-15">
+          <ul class="aui-list aui-form-list">
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label-icon">
+                          <img data-v-6d71e44c="" src="/static/img/mobileatByFoot.ffcc54a.png" alt="" width="18">
+                      </div>
+                      <div class="aui-list-item-input">
+                          <input type="text" placeholder="请输入手机号">
+                      </div>
+                    </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label-icon">
+                         <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
+                      </div>
+                      <div class="aui-list-item-input">
+                          <input type="password" placeholder="请输入密码">
+                      </div>
+                  </div>
+              </li>
+              <li class="submit-box">
+                <div class="aui-btn aui-btn-danger aui-btn-block" @click="btn_login">登 录</div>
+                 <div class="aui-btn aui-btn-block aui-btn-outlined" style="margin-top:15px;color:#a2a8ae;border-color:#a2a8ae;" @click="openRegister">注 册</div>
+              </li>
+                 <li>
+                  <div class="forget-pass"><span @click="openForgetPsw">找回密码？</span></div>
+              </li>
+
+        </ul>
       </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -117,5 +126,48 @@
   .aui-btn-danger {
     background-color: #28B8A1 !important;
     margin-top: 0.6rem;
+  }
+  .app-name {
+    color:rgb(233,98,80);
+    /*color:#27B5B1;*/
+    font-weight: bold;
+    font-family: "微软雅黑";
+    letter-spacing: 0.1rem;
+    font-size: 14px;
+
+  }
+  .aui-content {
+    margin-top:2rem !important;
+  }
+  .aui-list-item {
+    border-bottom: 1px solid #eee;
+    padding:0.3rem 0.6rem;
+  }
+  .submit-box {
+    padding:1rem 0.8rem 0.5rem;
+  }
+  .submit-box a{
+    color:#f22a2a;
+  }
+  .aui-font-size-14 {
+    padding-top:2rem;
+    text-align: center;
+  }
+
+  .aui-btn-danger,.aui-btn-outlined {
+    margin-top: 1rem;
+    height:2rem;
+    line-height: 2rem;
+    font-size: 14px;
+  }
+  .aui-btn-outlined {
+    border: 1px solid #ccc !important;
+  }
+  .forget-pass {
+    font-size:12px;
+    text-align:right;
+    line-height:2.1rem;
+    margin-right: 1rem;
+    color:#f60;
   }
 </style>

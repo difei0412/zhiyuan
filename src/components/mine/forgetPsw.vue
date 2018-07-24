@@ -1,40 +1,55 @@
 <template>
 	<div style="background-color: white; min-height: 100%;">
-    	<myHeader :title="'修改密码'"></myHeader>
+    	<myHeader :title="'找回密码'"></myHeader>
 
     	<div>
-    		<div class="iptBox aui-list aui-form-list">
-    			<div class="aui-list-item">
-    				<div class="aui-list-item-inner">
-    					<div class="aui-list-item-label-icon">
-    						<img src="../../../static/image/mobileatByFoot.png" alt="" width="18" />
-    					</div>
-    					<div class="aui-list-item-input" style="padding-right:0;">
-    						<input type="tel" v-model="mobile" placeholder="手机号">
-    					</div>
-    					<div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-if="isshowCount"><span>{{time}}</span>s后重新获取</div>
+    		<div class="aui-content aui-margin-b-15 aui-margin-t-15">
+			    <ul class="aui-list aui-form-list">
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                    <img data-v-6d71e44c="" src="/static/img/mobileatByFoot.ffcc54a.png" alt="" width="18">
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="text" placeholder="请输入手机号">
+			                </div>
+			                <div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-if="isshowCount"><span>{{time}}</span>s后重新获取</div>
     					<div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-else @click="getCodeBefore(1)">{{codeMsg}}</div>
-    				</div>
-    			</div>
-    			<div class="aui-list-item">
-    				<div class="aui-list-item-inner">
-    					<div class="aui-list-item-input" style="padding-right:0;">
-    						<input type="tel" v-model="code" placeholder="请输入验证码">
-    					</div>
-    				</div>
-    			</div>
-    			<div class="aui-list-item">
-    				<div class="aui-list-item-inner">
-    					<div class="aui-list-item-label-icon">
-    						<img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
-    					</div>
-    					<div class="aui-list-item-input">
-    						<input type="password" placeholder="请输入密码" v-model="password">
-    					</div>
-    				</div>
-    			</div>
-    			<div class="aui-btn  aui-btn-block" @click="getCodeBefore(2)">修改密码</div>
-    		</div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                    <img data-v-6d71e44c="" src="/static/img/mobileatByFoot.ffcc54a.png" alt="" width="18">
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="text" placeholder="请输入验证码">
+			                </div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                    <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="password" placeholder="请输入新密码">
+			                </div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                   <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="password" placeholder="请输入确认密码">
+			                </div>
+			            </div>
+			        </li>
+				</ul>
+				<div class="aui-btn aui-btn-danger aui-btn-block" @click="getCodeBefore(2)">找回密码</div>
+			</div>
     	</div>
     </div>
 </template>
@@ -249,5 +264,17 @@
 	}
 	.aui-list .aui-list-item-inner {
 		margin-right: 0;
+	}
+	 .aui-list-item {
+	    border-bottom: 1px solid #eee;
+	    padding:0.3rem 0.6rem;
+	}
+	.aui-btn-danger {
+	    background-color: #28B8A1 !important;
+	    margin:5rem 1rem 0;
+	    height:2rem;
+	    line-height: 2rem;
+	    font-size: 14px;
+	    width:auto;
 	}
 </style>
