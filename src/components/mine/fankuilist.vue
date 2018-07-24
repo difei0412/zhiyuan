@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'线上诊室'"></myHeader>
+        <myHeader :title="'反馈清单'"></myHeader>
         <ul class="aui-list aui-media-list">
            
             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
@@ -11,21 +11,20 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                             <div class="aui-list-item-right" style="color:#27B5B1">付款：￥19.00</div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                             预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            诊疗时间：30分钟
+                            反馈内容：心里不好受想自杀倾向...
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">待完成</div>
+                            <div class="order-status">查看详情</div>
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -33,21 +32,20 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                             <div class="aui-list-item-right" style="color:#27B5B1">付款：￥19.00</div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                             预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            诊疗时间：30分钟
+                            反馈内容：心里不好受想自杀倾向...
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">待完成</div>
+                            <div class="order-status">查看详情</div>
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -55,21 +53,20 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                             <div class="aui-list-item-right" style="color:#27B5B1">付款：￥19.00</div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                             预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            诊疗时间：30分钟
+                            反馈内容：心里不好受想自杀倾向...
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">待完成</div>
+                            <div class="order-status">查看详情</div>
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -77,20 +74,41 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                             <div class="aui-list-item-right" style="color:#27B5B1">付款：￥19.00</div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                             预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            诊疗时间：30分钟
+                            反馈内容：心里不好受想自杀倾向...
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">待完成</div>
+                            <div class="order-status">查看详情</div>
                         </div>
                     </div>
                 </div>
             </li>
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            预约：2018-06-19 17：00 - 17：30 线上诊疗
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            反馈内容：心里不好受想自杀倾向...
+                        </div>
+                         <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="order-status">查看详情</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
            
         </ul>
     </div>
@@ -122,7 +140,7 @@ import Calendar from '../vue-calendar-component/index';
         },
         methods: {
           openzhifu:function(){
-            this.$router.push({path:'/yuyueinfo'})
+            this.$router.push({path:'/fankuidetail'})
           }
           
         },

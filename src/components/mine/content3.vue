@@ -55,7 +55,7 @@
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<div class="other_list" @click="openRouter('aboutUs')">
+			<div class="other_list" @click="openfankuilist()">
 				<div class="other_img my-middle" style="margin-left:11px">
 					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
 				</div>
@@ -92,6 +92,9 @@
 			}
 		},
 		methods: {
+			openfankuilist(){
+              this.$router.pushRoute({name:"fankuilist"});
+		    },
 		    openyuyue(){
               this.$router.pushRoute({name:"yuyue"});
 		    },

@@ -1,6 +1,6 @@
 <template>
 	<div style="background-color: #eee; min-height: 100%;">
-		<myHeader :title="'个人信息'"></myHeader>
+		<myHeader :title="'医生信息'"></myHeader>
 
 		<div>
 			<form action="http://d.apicloud.com/mcm/api/file" id="imagform0" method="post" enctyp="multipart/form-data">
@@ -18,61 +18,65 @@
         <input type="hidden" height="50px" width="90px" id="filename">
 			</form>
 			<div class="list" @click="openNickname">
-				<span class="title flex">昵称</span>
-				<span class="title color">{{userInfo.Name}}</span>
+				<span class="title flex">医生姓名</span>
+				<span class="title color">{{userInfo.Name?userInfo.Name:'未设置'}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<div class="list" @click="sexVisible = true">
-				<span class="title flex">性别</span>
-				<span class="title color">{{userInfo.sex?userInfo.sex:'未设置'}}</span>
+			<div class="list" @click="openIDCard" style="margin-bottom:0;border-bottom:1px solid #eee;">
+				<span class="title flex">身份证号</span>
+				<span class="title color">{{userInfo.IDCard}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<mt-actionsheet :actions="sexActions" v-model="sexVisible"></mt-actionsheet><!-- 性别选择器 -->
+			<div class="list" @click="openAge">
+				<span class="title flex">年龄</span>
+				<span class="title color">{{userInfo.age}}</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+			<div class="list" @click="xueliVisible = true">
+				<span class="title flex">学历</span>
+				<span class="title color">{{userInfo.xueli?userInfo.xueli:'未设置'}}</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+			<mt-actionsheet :actions="xueliActions" v-model="xueliVisible"></mt-actionsheet><!-- 学历选择器 -->
+			<div class="list" @click="hospitalVisible = true">
+				<span class="title flex">就职医院</span>
+				<span class="title color">{{userInfo.hospital?userInfo.hospital:'未设置'}}</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+			<mt-actionsheet :actions="hospitalActions" v-model="hospitalVisible"></mt-actionsheet><!-- 就值医院选择器 -->
+			<div class="list" @click="zhijiVisible = true">
+				<span class="title flex">职级</span>
+				<span class="title color">{{userInfo.zhiji?userInfo.zhiji:'未设置'}}</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+			<mt-actionsheet :actions="zhijiActions" v-model="zhijiVisible"></mt-actionsheet><!-- 职级选择器 -->
 			<div class="list" @click="openSign">
-				<span class="title">个性签名</span>
-				<span class="title color flex text-show-row-1">{{userInfo.Qm?userInfo.Qm:'未设置'}}</span>
+				<span class="title">成就简介</span>
+				<span class="title color flex text-show-row-1">{{userInfo.chengjiu?userInfo.chengjiu:'未设置'}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<div class="list">
-				<span class="title flex">手机</span>
-				<span class="title color" style="margin-right: 0.7rem;">{{userInfo.User_name?userInfo.User_name:'未设置'}}</span>
-			</div>
-			<div class="list" @click="openBirthday">
-				<span class="title flex">生日</span>
-				<span class="title color">{{userInfo.birthday?userInfo.birthday:'未设置'}}</span>
+			<div class="list" @click="openSign2">
+				<span class="title">资质认证</span>
+				<span class="title color flex text-show-row-1">{{userInfo.zizhi?userInfo.zizhi:'未设置'}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<mt-datetime-picker ref="datePicker" type="date" v-model="datePickerValue" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" :startDate="new Date('1900-01-01')" :endDate="new Date()" @confirm="chooseDate"></mt-datetime-picker><!-- 日期选择器 -->
-			<div class="list" @click="openEmail">
-				<span class="title flex">邮箱</span>
-				<span class="title color">{{userInfo.email?userInfo.email:'未设置'}}</span>
-				<div class="my-middle">
-					<img class="right" src="static/image/in@3x.png">
-				</div>
-			</div>
-			<div class="list" @click="openAreaPicker">
-				<span class="title flex">地区</span>
-				<span class="title color">{{userInfo.address?userInfo.address:'未设置'}}</span>
-				<div class="my-middle">
-					<img class="right" src="static/image/in@3x.png">
-				</div>
-			</div>
-			<!-- 地区选择器 -->
-			<mt-popup v-model="areaVisible" position="bottom" class="mint-popup-area">
-				<div class="picker-toolbar">
-					<span class="mint-datetime-action mint-datetime-cancel" @click="canclearea">取消</span>
-					<span class="mint-datetime-action mint-datetime-confirm" @click="selectarea">确定</span>
-				</div>
-				<mt-picker :slots="areaSlots" @change="onAreaChange" valueKey="name" :visible-item-count="5"></mt-picker>
-			</mt-popup>
+
 		</div>
 	</div>
 </template>
@@ -87,39 +91,49 @@ export default {
 		return {
 			userId:'',
 			userInfo:'',
-			sexActions:[{
-				name:'男',
+			xueliActions:[{
+				name:'大专',
 				method:this.updateSex1
 			},
 			{
-				name:'女',
+				name:'本科',
+				method:this.updateSex2
+			},
+			{
+				name:'硕士',
+				method:this.updateSex2
+			},
+			{
+				name:'博士',
 				method:this.updateSex2
 			}],
-			sexVisible:false,
-			datePickerValue:'',
-			//选择地区相关
-			areaVisible:false,
-			areaSlots:[
-				{
-					flex: 1,
-					values: areaJson.address,
-					className: 'slot1',
-					textAlign: 'center'
-				}, {
-					flex: 1,
-					values: ['石家庄市','唐山市','秦皇岛市','邯郸市','邢台市','保定市','张家口市','承德市','沧州市','廊坊市','衡水市'],
-					className: 'slot3',
-					textAlign: 'center'
-				},  {
-					flex: 1,
-					values: ['海港区','山海关区','北戴河区','青龙满族自治县','昌黎县','抚宁县','卢龙县'],
-					className: 'slot4',
-					textAlign: 'center'
-				}
-			],
-			pro:'',
-			city:'',
-			area:''
+			hospitalActions:[{
+				name:'知源精神病医院',
+				method:this.updateSex1
+			},
+			{
+				name:'人民医院',
+				method:this.updateSex2
+			}],
+			zhijiActions:[{
+				name:'主任医师',
+				method:this.updateSex1
+			},
+			{
+				name:'副主任医师',
+				method:this.updateSex2
+			},
+			{
+				name:'主治医师',
+				method:this.updateSex2
+			},
+			{
+				name:'住院医师',
+				method:this.updateSex2
+			}],
+			xueliVisible:false,
+			hospitalVisible:false,
+			zhijiVisible:false,
 		}
 	},
 	methods: {
@@ -181,22 +195,50 @@ export default {
 		//打开昵称输入框
 		openNickname() {
 			var that = this;
-			that.$MessageBox.prompt('请输入昵称').then(function(response){
+			that.$MessageBox.prompt('请输入姓名').then(function(response){
 				if(!response.value) {
-					that.$MessageBox.alert("请输入昵称");
+					that.$MessageBox.alert("请输入姓名");
 					return
 				}
 				if(response.value.length>7) {
-					that.$MessageBox.alert("请输入最长7位昵称");
+					that.$MessageBox.alert("请输入最长7位姓名");
 					return
 				}
 				that.updateInfo("Name",response.value)
 			}).catch(function(error){
 			});
 		},
-		//打开个性签名输入框
+		// 打开身份证输入框
+		openIDCard() {
+			var that = this;
+			that.$MessageBox.prompt('请输入身份证号').then(function(response){
+				if(!response.value) {
+					that.$MessageBox.alert("请输入身份证号");
+					return
+				}
+				that.updateInfo("IDcard",response.value)
+			}).catch(function(error){
+			});
+		},
+		// 打开年龄输入框
+		openAge() {
+			var that = this;
+			that.$MessageBox.prompt('请输入年龄').then(function(response){
+				if(!response.value) {
+					that.$MessageBox.alert("请输入年龄");
+					return
+				}
+				that.updateInfo("age",response.value)
+			}).catch(function(error){
+			});
+		},
+		//打开成就简介输入框
 		openSign() {
 			this.$router.pushRoute({path:'/geqian'})
+		},
+		//打开资质认证上传
+		openSign2() {
+			this.$router.pushRoute({path:'/zizhi'})
 		},
 		//打开日期选择器
 		openBirthday() {

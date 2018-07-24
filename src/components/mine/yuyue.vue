@@ -319,4 +319,7 @@ import Calendar from '../vue-calendar-component/index';
   padding:0.5rem 0.7rem;
   margin-bottom: 1rem;
 }
+.aui-list .aui-list-item-right, .aui-list-item-title-row em {
+  top:0;
+}
 </style>
