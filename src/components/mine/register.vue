@@ -5,7 +5,7 @@
 		<div>
 			<div class="logo">
 				<img src="static/image/logo.png" />
-				<center><span class="app-name">知源医生端</span></center>
+				<center><span class="app-name">知源医生端1</span></center>
 			</div>
 			<div class="aui-content aui-margin-b-15 aui-margin-t-15">
 				<ul class="aui-list aui-form-list">
@@ -90,7 +90,8 @@ export default {
 					return
 				}
 				if (this.password=='') {
-					
+					Toast('请输入密码！');
+					return
 				}
 				if (this.passwordZ == '') {
 					
