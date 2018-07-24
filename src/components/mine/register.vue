@@ -1,76 +1,79 @@
 <template>
 	<div style="background-color: white; min-height: 100%;">
-    	<myHeader :title="'注册'"></myHeader>
+		<myHeader :title="'注册'"></myHeader>
 
-    	<div>
-    		<div class="logo">
-    			 <img src="static/image/logo.png" />
-       			 <center><span class="app-name">知源医生端</span></center>
-    		</div>
-    		<div class="aui-content aui-margin-b-15 aui-margin-t-15">
-			    <ul class="aui-list aui-form-list">
-			        <li class="aui-list-item">
-			            <div class="aui-list-item-inner">
-			                <div class="aui-list-item-label-icon">
-			                    <img data-v-6d71e44c="" src="/static/img/mobileatByFoot.ffcc54a.png" alt="" width="18">
-			                </div>
-			                <div class="aui-list-item-input">
-			                    <input type="text" placeholder="请输入手机号">
-			                </div>
-			                <div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-if="isshowCount"><span>{{time}}</span>s后重新获取</div>
-    					<div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-else @click="getCodeBefore">{{codeMsg}}</div>
-			            </div>
-			        </li>
-			        <li class="aui-list-item">
-			            <div class="aui-list-item-inner">
-			                <div class="aui-list-item-label-icon">
-			                    <img data-v-6d71e44c="" src="/static/img/mobileatByFoot.ffcc54a.png" alt="" width="18">
-			                </div>
-			                <div class="aui-list-item-input">
-			                    <input type="text" placeholder="请输入验证码">
-			                </div>
-			            </div>
-			        </li>
-			        <li class="aui-list-item">
-			            <div class="aui-list-item-inner">
-			                <div class="aui-list-item-label-icon">
-			                    <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
-			                </div>
-			                <div class="aui-list-item-input">
-			                    <input type="password" placeholder="请输入确认密码">
-			                </div>
-			            </div>
-			        </li>
-			        <li class="aui-list-item">
-			            <div class="aui-list-item-inner">
-			                <div class="aui-list-item-label-icon">
-			                   <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
-			                </div>
-			                <div class="aui-list-item-input">
-			                    <input type="password" placeholder="请输入密码">
-			                </div>
-			            </div>
-			        </li>
-			        <li class="submit-box">
-			        	<div class="aui-font-size-14 aui-margin-10">用户注册即代表同意“<a @click="openRegisterProtocol">用户协议和隐私条款</a>”</div>
-    					<div class="aui-btn aui-btn-danger aui-btn-block" @click="register_btn1">注 册</div>
-			        </li>
+		<div>
+			<div class="logo">
+				<img src="static/image/logo.png" />
+				<center><span class="app-name">知源医生端</span></center>
+			</div>
+			<div class="aui-content aui-margin-b-15 aui-margin-t-15">
+				<ul class="aui-list aui-form-list">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label-icon">
+								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" width="18">
+							</div>
+							<div class="aui-list-item-input">
+								<input type="text" placeholder="请输入手机号" v-model = "mobile">
+							</div>
+							<div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-if="isshowCount"><span>{{time}}</span>s后重新获取</div>
+							<div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-else @click="getCodeBefore">{{codeMsg}}</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label-icon">
+								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" width="18">
+							</div>
+							<div class="aui-list-item-input">
+								<input type="text" placeholder="请输入验证码">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label-icon">
+								<img src="/static/image/pswatByFoot.png" alt="" width="18" />
+							</div>
+							<div class="aui-list-item-input">
+								<input type="password" placeholder="请输入密码" v-model='password'>
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label-icon">
+								<img src="/static/image/pswatByFoot.png" alt="" width="18" />
+							</div>
+							<div class="aui-list-item-input">
+								<input type="password" placeholder="请输入确认密码" v-model='passwordZ'>
+							</div>
+						</div>
+					</li>
+
+					<li class="submit-box">
+						<div class="aui-font-size-14 aui-margin-10">用户注册即代表同意“<a @click="openRegisterProtocol">用户协议和隐私条款</a>”</div>
+						<div class="aui-btn aui-btn-danger aui-btn-block" @click="register_btn1">注 册</div>
+					</li>
 				</ul>
 			</div>
-    	</div>
-    </div>
+		</div>
+	</div>
 </template>
 
 <script>
-	import md5 from '../public/md5'
-	
-	export default {
-		name: 'register',
-		data() {
-			return {
+
+import md5 from '../public/md5'
+import { Toast } from 'mint-ui';
+export default {
+	name: 'register',
+	data() {
+		return {
 				mobile:'',//手机号
 				code:'',//验证码
 				password:'',//密码
+				passwordZ:'',//密码
 				isshowCount:false,//是否显示
 				codeMsg:'获取验证码',//获取验证码按钮文本
 				time:60//获取验证码倒计时
@@ -79,7 +82,33 @@
 		methods: {
 			//打开注册协议
 			register_btn1(){
-               this.$router.pushRoute({name:"xiayibu"});
+				
+
+
+				if (this.mobile == '') {
+					Toast('请输入手机号！');
+					return
+				}
+				if (this.password=='') {
+					
+				}
+				if (this.passwordZ == '') {
+					
+				}else{
+					if (this.password == this.passwordZ) {
+						var prams = {
+							data:{
+								'mobile':this.mobile,
+								'password':this.password,
+							}
+						}	
+					}else{
+						alert('密码不一致，请重新输入！')
+					}
+				}
+				
+				
+				// this.$router.pushRoute({name:"xiayibu"});
 			},
 			openRegisterProtocol() {
 				this.$router.pushRoute({name:"registerProtocol"});
@@ -306,9 +335,9 @@
 			this.password = '';
 		}
 	}
-</script>
+	</script>
 
-<style scoped>
+	<style scoped>
 	.logo {
 		width: 4.5rem;
 		margin: 1.8rem auto 0;
@@ -357,4 +386,4 @@
 		padding-top:2rem;
 		text-align: center;
 	}
-</style>
+	</style>

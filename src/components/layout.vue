@@ -7,6 +7,7 @@
 <script>
   import '../../static/css/aui.css';
 
+
   export default {
     name: 'layout',
     data() {
