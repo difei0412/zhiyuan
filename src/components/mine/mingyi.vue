@@ -11,7 +11,7 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">付款：￥19.00</div>
+                             <div class="aui-list-item-right" style="color:#27B5B1">付款：￥19.00</div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                             预约：2018-06-19 17：00 - 17：30 线上诊疗
