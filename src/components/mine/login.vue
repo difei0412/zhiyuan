@@ -4,8 +4,8 @@
 
     <div>
       <div class="logo">
-        <img src="static/image/logo.jpg" />
-        <center><span style="color:#3F51B5;margin-top:10px;font-size:17px">知源病人端</span></center>
+         <img src="static/image/logo.png" />
+           <center><span class="app-name">知源医生端</span></center>
       </div>
       <div class="iptBox aui-list aui-form-list">
         <div class="aui-list-item">

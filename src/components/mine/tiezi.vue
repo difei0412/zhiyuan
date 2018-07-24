@@ -18,11 +18,11 @@
       </div>
 
        <div class="aui-content">
-        <div class="aui-col-xs-6">
+        <!-- <div class="aui-col-xs-6">
             <span><i class="aui-iconfont aui-icon-laud"></i><span class="zan-num">(12)</span></span>
             <span><i class="aui-iconfont aui-icon-laud zan-icon2"></i><span class="zan-num">(12)</span></span>
-        </div>
-        <div class="aui-col-xs-6">
+        </div> -->
+        <div class="aui-col-xs-12">
            <i class="aui-iconfont aui-pull-right aui-icon-weibo"></i>
            <i class="aui-iconfont aui-pull-right aui-icon-wechat-circle"></i>
            <i class="aui-iconfont aui-pull-right aui-icon-wechat"></i>
@@ -53,12 +53,9 @@
                     <div class="aui-info aui-padded-l-10 aui-padded-r-10">
                         <div class="aui-info-item">
                             <img src="static/image/demo1.jpeg" class="aui-img-round" />
-                            <div>
-                              <div class="user-nick">杨诺依</div>
-                              <div class="user-date">2018年04月12日 12:12</div>
-                            </div>
+                            <div class="user-nick">杨诺依</div>
                         </div>
-                        <div class="aui-info-item"> <span class="user-zan-num">12<i class="aui-iconfont aui-icon-laud"></i></span></div>
+                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
                     </div>
                     <div class="aui-list-item-text aui-ellipsis-2">
                         这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
@@ -66,18 +63,15 @@
                 </div>
             </div>
         </li>
-         <li class="aui-list-item aui-list-item-arrow">
+        <li class="aui-list-item aui-list-item-arrow">
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-info aui-padded-l-10 aui-padded-r-10">
                         <div class="aui-info-item">
                             <img src="static/image/demo1.jpeg" class="aui-img-round" />
-                            <div>
-                              <div class="user-nick">杨诺依</div>
-                              <div class="user-date">2018年04月12日 12:12</div>
-                            </div>
+                            <div class="user-nick">杨诺依</div>
                         </div>
-                        <div class="aui-info-item"> <span class="user-zan-num">12<i class="aui-iconfont aui-icon-laud"></i></span></div>
+                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
                     </div>
                     <div class="aui-list-item-text aui-ellipsis-2">
                         这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
@@ -85,18 +79,15 @@
                 </div>
             </div>
         </li>
-         <li class="aui-list-item aui-list-item-arrow">
+        <li class="aui-list-item aui-list-item-arrow">
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-info aui-padded-l-10 aui-padded-r-10">
                         <div class="aui-info-item">
                             <img src="static/image/demo1.jpeg" class="aui-img-round" />
-                            <div>
-                              <div class="user-nick">杨诺依</div>
-                              <div class="user-date">2018年04月12日 12:12</div>
-                            </div>
+                            <div class="user-nick">杨诺依</div>
                         </div>
-                        <div class="aui-info-item"> <span class="user-zan-num">12<i class="aui-iconfont aui-icon-laud"></i></span></div>
+                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
                     </div>
                     <div class="aui-list-item-text aui-ellipsis-2">
                         这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
@@ -104,6 +95,23 @@
                 </div>
             </div>
         </li>
+        <li class="aui-list-item aui-list-item-arrow">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-info aui-padded-l-10 aui-padded-r-10">
+                        <div class="aui-info-item">
+                            <img src="static/image/demo1.jpeg" class="aui-img-round" />
+                            <div class="user-nick">杨诺依</div>
+                        </div>
+                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2">
+                        这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+                    </div>
+                </div>
+            </div>
+        </li>
+        
    </ul>
   </div>  
   
@@ -335,17 +343,8 @@ span.zan-num {
   height:2rem;
 }
 .user-nick {
-  width:10rem;
   color:#333;
-  position: absolute;
-  left:0.5rem;
-  top:-1rem;
-}
-.user-date {
-  width:10rem;
-  position: absolute;
-  left:0.5rem;
-  top:0;
+  margin-left:0.5rem;
 }
 .aui-info-item {
   text-indent: 0;
@@ -354,10 +353,8 @@ span.zan-num {
   margin-left: 0.3rem
 }
 .user-zan-num {
-  height:1rem;
-  line-height: 1rem;
   margin-right: 1rem;
-   margin-left: 1.5rem;
+  font-size: 12px;
 }
 .aui-list-item-text {
   text-indent: 0rem;

@@ -19,7 +19,7 @@
                   <span>换一批</span>
               </div>
             </li>
-            <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+            <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -46,7 +46,7 @@
                   </div>
                  
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -73,7 +73,7 @@
                   </div>
                  
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -100,7 +100,7 @@
                   </div>
                  
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          
@@ -127,7 +127,7 @@
                   </div>
                  
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                          

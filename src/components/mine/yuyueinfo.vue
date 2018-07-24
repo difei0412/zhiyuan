@@ -28,7 +28,7 @@
                 </div>
             </div>
 		</section>
-		<p><div class="aui-btn aui-btn-danger aui-btn-block">接受预约</div></p>
+		<p><div class="aui-btn aui-btn-danger aui-btn-block" @click="closewin">确认</div></p>
 		<lg-preview></lg-preview>
     </div>
 </template>
@@ -48,6 +48,10 @@
 			}
 		},
 		methods: {
+			closewin:function() {
+	            var _this = this;
+	            _this.$router.backRoute();
+	        },
 			//打开注册协议
 			register_btn1(){
                this.$router.pushRoute({name:"xiayibu"});

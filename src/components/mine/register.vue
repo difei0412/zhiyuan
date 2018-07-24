@@ -4,42 +4,59 @@
 
     	<div>
     		<div class="logo">
-    			 <img src="static/image/logo.jpg" />
-        <center><span style="color:#3F51B5;margin-top:10px;font-size:17px">知源病人端</span></center>
+    			 <img src="static/image/logo.png" />
+       			 <center><span class="app-name">知源医生端</span></center>
     		</div>
-    		<div class="iptBox aui-list aui-form-list">
-    			<div class="aui-list-item">
-    				<div class="aui-list-item-inner">
-    					<div class="aui-list-item-label-icon">
-    						<img src="../../../static/image/mobileatByFoot.png" alt="" width="18" />
-    					</div>
-    					<div class="aui-list-item-input" style="padding-right:0;">
-    						<input type="tel" v-model="mobile" placeholder="手机号">
-    					</div>
-    					<div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-if="isshowCount"><span>{{time}}</span>s后重新获取</div>
+    		<div class="aui-content aui-margin-b-15 aui-margin-t-15">
+			    <ul class="aui-list aui-form-list">
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                    <img data-v-6d71e44c="" src="/static/img/mobileatByFoot.ffcc54a.png" alt="" width="18">
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="text" placeholder="请输入手机号">
+			                </div>
+			                <div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-if="isshowCount"><span>{{time}}</span>s后重新获取</div>
     					<div class="aui-font-size-12" style="color:#f22a2a;padding-right:0;width:160px;text-align:center;border-left:1px solid #fafafa;" v-else @click="getCodeBefore">{{codeMsg}}</div>
-    				</div>
-    			</div>
-    			<div class="aui-list-item">
-    				<div class="aui-list-item-inner">
-    					<div class="aui-list-item-input" style="padding-right:0;">
-    						<input type="tel" v-model="code" placeholder="请输入验证码">
-    					</div>
-    				</div>
-    			</div>
-    			<div class="aui-list-item">
-    				<div class="aui-list-item-inner">
-    					<div class="aui-list-item-label-icon">
-    						<img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
-    					</div>
-    					<div class="aui-list-item-input">
-    						<input type="password" v-model="password" placeholder="请输入密码">
-    					</div>
-    				</div>
-    			</div>
-    			<div class="aui-btn aui-btn-danger aui-btn-block" @click="register_btn1">注 册</div>
-    			<div class="aui-font-size-14 aui-margin-10" style="text-align:center;">用户注册即代表同意“<a style="color:#f22a2a;" @click="openRegisterProtocol">用户协议和隐私条款</a>”</div>
-    		</div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                    <img data-v-6d71e44c="" src="/static/img/mobileatByFoot.ffcc54a.png" alt="" width="18">
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="text" placeholder="请输入验证码">
+			                </div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                    <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="password" placeholder="请输入确认密码">
+			                </div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-label-icon">
+			                   <img src="../../../static/image/pswatByFoot.png" alt="" width="18" />
+			                </div>
+			                <div class="aui-list-item-input">
+			                    <input type="password" placeholder="请输入密码">
+			                </div>
+			            </div>
+			        </li>
+			        <li class="submit-box">
+			        	<div class="aui-font-size-14 aui-margin-10">用户注册即代表同意“<a @click="openRegisterProtocol">用户协议和隐私条款</a>”</div>
+    					<div class="aui-btn aui-btn-danger aui-btn-block" @click="register_btn1">注 册</div>
+			        </li>
+				</ul>
+			</div>
     	</div>
     </div>
 </template>
@@ -86,7 +103,7 @@
 				var that = this;
 
 				//查表是否存在此账号
-				var url1 = 'f_user/count?filter={"where":{"User_name":' + that.mobile + '}}';
+				/*var url1 = 'f_user/count?filter={"where":{"User_name":' + that.mobile + '}}';
 				that.ajax({url:url1,method:'GET',
 					success:function(data){
 						if(data.count!==0) {
@@ -96,28 +113,29 @@
 							that.getCode();
 						}
 					}
-				})
+				})*/
+				that.getCode();
 			},
 			//获取验证码
 			getCode() {
 				var that = this;
-				if(!/^1[34578]\d{9}$/.test(that.mobile)) {
-					this.$MessageBox.alert('请输入正确的手机号');
-					return
-				}
+				// if(!/^1[34578]\d{9}$/.test(that.mobile)) {
+				// 	this.$MessageBox.alert('请输入正确的手机号');
+				// 	return
+				// }
 				that.isshowCount = true;
 				that.countDown();
-				var sign = "jsjy" + that.mobile + "cgyc";
-				sign = md5(sign);
-				sign = sign.toUpperCase();
-				var url = 'http://101.200.169.185/getTtSMSCode?mobile=' + that.mobile + '&sign=' + sign;
-				that.$http.get(url).then(function(response){
-					if(response.data.code=="200"){
-						that.checkIfCode(response.data.smsCode);
-					}
-				}).catch(function(error){
+				// var sign = "jsjy" + that.mobile + "cgyc";
+				// sign = md5(sign);
+				// sign = sign.toUpperCase();
+				// var url = 'http://101.200.169.185/getTtSMSCode?mobile=' + that.mobile + '&sign=' + sign;
+				// that.$http.get(url).then(function(response){
+				// 	if(response.data.code=="200"){
+				// 		that.checkIfCode(response.data.smsCode);
+				// 	}
+				// }).catch(function(error){
 
-				})
+				// })
 			},
 			//数据库检查是否存在此手机号所收验证码
 			checkIfCode(code) {
@@ -292,7 +310,7 @@
 
 <style scoped>
 	.logo {
-		width: 4rem;
+		width: 4.5rem;
 		margin: 1.8rem auto 0;
 	}
 	.iptBox {
@@ -301,9 +319,42 @@
 	}
 	.aui-btn-danger {
 		background-color: #27B5B1 !important;
-		margin-top: 1.5rem;
+		margin-top: 1rem;
+		height:2rem;
+		line-height: 2rem;
+		font-size: 14px;
 	}
 	.aui-list .aui-list-item-inner {
 		margin-right: 0;
+	}
+	.app-name {
+		color:rgb(233,98,80);
+		/*color:#27B5B1;*/
+		font-weight: bold;
+		font-family: "微软雅黑";
+		letter-spacing: 0.1rem;
+		font-size: 14px;
+
+	}
+	.aui-content {
+		margin-top:2rem !important;
+	}
+	.aui-list-item {
+		border-bottom: 1px solid #eee;
+		padding:0.3rem 0.6rem;
+	}
+	.aui-list-item-input input{
+		font-size: 14px !important;
+		color:#333;
+	}
+	.submit-box {
+		padding:1rem 0.8rem 0.5rem;
+	}
+	.submit-box a{
+		color:#f22a2a;
+	}
+	.aui-font-size-14 {
+		padding-top:2rem;
+		text-align: center;
 	}
 </style>
