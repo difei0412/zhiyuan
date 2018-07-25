@@ -23,7 +23,7 @@
 								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" width="18">
 							</div>
 							<div class="aui-list-item-input">
-								<input type="text" placeholder="请输入验证码">
+								<input type="text" placeholder="请输入验证码" v-model="code">
 							</div>
 						</div>
 					</li>
@@ -33,7 +33,7 @@
 								<img src="/static/image/pswatByFoot.png" alt="" width="18" />
 							</div>
 							<div class="aui-list-item-input">
-								<input type="password" placeholder="请输入新密码">
+								<input type="password" placeholder="请输入新密码" v-model="password">
 							</div>
 						</div>
 					</li>
@@ -43,12 +43,12 @@
 								<img src="/static/image/pswatByFoot.png" alt="" width="18" />
 							</div>
 							<div class="aui-list-item-input">
-								<input type="password" placeholder="请输入确认密码">
+								<input type="password" placeholder="请输入确认密码" v-model="passwordZ">
 							</div>
 						</div>
 					</li>
 				</ul>
-				<div class="aui-btn aui-btn-danger aui-btn-block" @click="zhmm()">找回密码</div>
+				<div class="aui-btn aui-btn-danger aui-btn-block" @click="register_btn1()">找回密码</div>
 			</div>
 		</div>
 	</div>
@@ -66,7 +66,9 @@ export default {
 			userId:"",
 				mobile:'',//手机号
 				code:'',//验证码
+				codeid:'',//验证码id
 				password:'',//密码
+				passwordZ:'',//确认密码
 				isshowCount:false,//是否显示
 				codeMsg:'获取验证码',//获取验证码按钮文本
 				time:60//获取验证码倒计时
@@ -180,7 +182,93 @@ export default {
 			// that.getCode();
 		},
 
+// 找回密码
+register_btn1(){
 
+	var that = this
+
+	if (that.mobile == '') {
+		Toast('请输入手机号！');
+		return
+	}
+	if (!myreg.test(that.mobile)) {
+		Toast('请输入正确的手机号！');
+		return ;
+	} 
+	if (that.code=='') {
+		Toast('请输入验证码！');
+		return
+	}
+	if (that.password=='') {
+		Toast('请输入密码！');
+		return
+	}
+	if (that.passwordZ == '') {
+		Toast('请再次输入密码！');
+		return
+	}else{
+		if (that.password == that.passwordZ) {
+			var url1 = 'verycode?filter={"where":{"mobile":"' + that.mobile + '","code":"'+that.code+'"}}';
+			console.log(url1)
+			
+			that.ajax({url:url1,method:'GET',
+				success:function(data){
+					console.log(data)
+					
+					
+					if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
+						that.codeid = data[0].id
+						var params = {
+							data:{		
+								password:that.password,
+								_method: "PUT"
+							}
+
+						};
+						var url2 = 'expert/'+that.userId;
+						// console.log(url3)
+						that.ajax({url:url2,method:'post',params,success:function(data){
+							var params = {
+								data:{
+									status: "1",
+									_method: "PUT"
+								}
+							}
+							var url3 = 'verycode/'+that.codeid;
+							console.log(url3)
+							that.ajax({url:url3,method:'post',params,success:function(data){
+								if (data) {
+									Toast("密码修改成功！")
+									that.$router.pushRoute({name:"login"});
+								}else{
+									Toast("密码修改失败！")
+								}
+							}})
+
+						}
+
+					})
+					}else{
+						Toast("验证码无效，请重新输入！")
+					}
+
+
+				}
+			})
+
+
+
+
+
+		}else{
+			Toast('密码不一致，请重新输入！');
+
+		}
+	}
+
+
+				// this.$router.pushRoute({name:"xiayibu"});
+			},
 
 
 
