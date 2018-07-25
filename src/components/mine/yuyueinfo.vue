@@ -1,7 +1,7 @@
 <template>
 	<div style="background-color: white; min-height: 105%;">
     	<myHeader :title="'预约信息'"></myHeader>
-
+    	<lg-preview></lg-preview>
     	<section class="aui-content-padded">
     		<p><div class="aui-label">预约时间：2018-06-19 17：00 - 17：30 线上诊疗</div></p>
     		<p><div class="aui-label">诊&ensp;室&ensp;号：900001</div></p>
@@ -29,7 +29,6 @@
             </div>
 		</section>
 		<p><div class="aui-btn aui-btn-danger aui-btn-block" @click="closewin">确认</div></p>
-		<lg-preview></lg-preview>
     </div>
 </template>
 
