@@ -15,17 +15,17 @@
                           <img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" width="18">
                       </div>
                       <div class="aui-list-item-input">
-                          <input type="text" placeholder="请输入手机号">
+                          <input type="text" placeholder="请输入手机号" v-model="loginuser">
                       </div>
                     </div>
               </li>
               <li class="aui-list-item">
                   <div class="aui-list-item-inner">
                       <div class="aui-list-item-label-icon">
-                         <img src="static/image/pswatByFoot.png" alt="" width="18" />
+                         <img src="/static/image/pswatByFoot.png" alt="" width="18" />
                       </div>
                       <div class="aui-list-item-input">
-                          <input type="password" placeholder="请输入密码">
+                          <input type="password" placeholder="请输入密码" v-model = 'password'>
                       </div>
                   </div>
               </li>
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { Toast } from 'mint-ui';
+var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 	export default {
 		name: 'login',
 		data() {
@@ -62,10 +64,10 @@
         this.$router.pushRoute({name:'forgetPsw'});
       },
       btn_login:function() {
-        if(!/^1[34578]\d{9}$/.test(this.loginuser)) {
-          this.$MessageBox.alert('请输入正确的手机号');
-          return
-        }
+        if (!myreg.test(this.loginuser)) {
+          Toast('请输入正确的手机号！');
+          return ;
+        } 
         if(!this.password) {
           this.$MessageBox.alert('请输入密码');
           return
@@ -76,24 +78,25 @@
         var that = this;
 
 				//查询账号是否存在
-				var url1 = 'f_user/count?filter={"where":{"User_name":' + that.loginuser + '}}';
+				var url1 = 'expert/count?filter={"where":{"mobile":' + that.loginuser + '}}';
 				var method = 'get';
 				that.ajax({url:url1,method,
 					success:function(data) {
             //账号存在进入登录接口（查）
+            console.log(data)
             if (data.count!==0) {
-              var url2 = "f_user?filter[where][User_name]=" + that.loginuser;
+              var url2 = "expert?filter[where][mobile]=" + that.loginuser;
               url2 += '&filter[where][password]=' + that.password;
-              url2 += '&filter[where][info]=1';
+              // url2 += '&filter[where][info]=1';
               url2 += '&filter[fields][password]=false'
               that.ajax({url:url2, method,
                success:function(data) {
                 if (JSON.stringify(data) == '[]') {
                   that.$MessageBox.alert('账号或者密码错误');
                 } else {
-                  window.localStorage.setItem('userMobile',data[0].User_name);
+                  window.localStorage.setItem('userMobile',data[0].mobile);
                   window.localStorage.setItem('userId',data[0].id);
-                  that.$router.backRoute();
+                  that.$router.pushRoute({name:"index"});
                 }
               }
             });
