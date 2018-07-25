@@ -1,70 +1,118 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'打卡记录'"></myHeader>
-        
-    <div class="aui-content aui-content-padded" >
-       <li class="aui-list-header">
-              患者用药记录
+        <myHeader :title="'患者评价'"></myHeader>
+        <ul class="aui-list aui-media-list">
+           
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            留言内容：您好吗？
+                        </div>
+                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
+                            评价分数：5
+                        </div>
+                    </div>
+                </div>
             </li>
-             <ul class="aui-list aui-select-list">
-       
-        <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  9点患者服用安定片  2片</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-         <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  9点患者服用安定片  2片</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-        <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  9点患者服用安定片  2片</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-        </ul>
-   
-    </div>
-      <div class="aui-content aui-content-padded" >
-       <li class="aui-list-header">
-              患者情绪记录
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            留言内容：您好吗？
+                        </div>
+                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
+                            评价分数：5
+                        </div>
+                    </div>
+                </div>
             </li>
-             <ul class="aui-list aui-select-list">
-       
-        <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  9情绪不稳定有自杀倾向</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-         <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  9情绪不稳定有自杀倾向</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-        <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  9情绪不稳定有自杀倾向</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-        </ul>
-   
-    </div>
-    <div class="aui-content aui-content-padded" >
-       <li class="aui-list-header">
-              睡眠记录
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            留言内容：您好吗？
+                        </div>
+                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
+                            评价分数：5
+                        </div>
+                    </div>
+                </div>
             </li>
-             <ul class="aui-list aui-select-list">
-       
-        <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  夜间睡眠很好</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-         <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  夜间睡眠很好</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
-        <li class="aui-list-item">
-         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:15px">2018:5.1  夜间睡眠很好</span>
-         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
-        </li>
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            留言内容：您好吗？
+                        </div>
+                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
+                            评价分数：5
+                        </div>
+                    </div>
+                </div>
+            </li>
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            留言内容：您好吗？
+                        </div>
+                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
+                            评价分数：5
+                        </div>
+                    </div>
+                </div>
+            </li>
+             <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 3rem;">
+                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-text" style="margin-left:11px">
+                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
+                        </div>
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+                            留言内容：您好吗？
+                        </div>
+                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
+                            评价分数：5
+                        </div>
+                    </div>
+                </div>
+            </li>
+           
         </ul>
-   
-    </div>
     </div>
   
 </template>
@@ -93,32 +141,40 @@ import Calendar from '../vue-calendar-component/index';
             }
         },
         methods: {
-        
-         
-         opennext(){
-              
-         },
-         openform1(){
-             this.$router.push({path:'/fankui'})
-         }
-   
-   
+          openzhifu:function(){
+            this.$router.push({path:'/yuyueinfo'})
+          }
+          
         },
-       mounted () {
-     console.log('挂载好了')
-     
-
-   },
-    created:function() {
-                      
-    },
+        activated() {
+          
+        },
+       created() {
+   
+   
+  },
         components: {
                 Calendar
               }
     }
 </script>
 
-<style >
+<style scoped>
+    .order-status {
+      width:100%;
+      text-align: right;
+      color:rgb(255, 152, 0);
+      font-size:14px;
+    }
+    .aui-list-item-inner.aui-list-item-arrow {
+      padding-right: 0rem;
+      margin-right: 0rem;
+    }
+    .yuding-time {
+      font-size:12px;
+      color:#666;
+      margin:0.4rem 0;
+    }
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;
@@ -206,15 +262,7 @@ import Calendar from '../vue-calendar-component/index';
      border-radius:15px
 
 }
-.l1{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
-    border-radius:8px;
-    font-size:12px;
-    background:#fff;
-    width:50px;
-    margin-left:10px
-}
+
 .textareacls{
   width:90%;
   position:relative;
@@ -223,5 +271,18 @@ import Calendar from '../vue-calendar-component/index';
   margin-top:20px;
   height:95px;
 
+}
+.l1{
+    color:#27B5B1;
+    border:1px solid #27B5B1;
+    border-radius:8px;
+    font-size:12px;
+    background:#fff;
+    width:60px;
+    margin-left:10px
+}
+.pingjia-num {
+  color:rgb(229,28,35);
+  margin-bottom: 0;
 }
 </style>

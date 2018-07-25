@@ -1,11 +1,11 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'修改签名'"></myHeader>
+        <myHeader :title="'成就简介'"></myHeader>
 
         <div>
-            <textarea v-model="geqian" class="text " maxlength="30" placeholder="请输入您的个性签名"></textarea>
+            <textarea v-model="geqian" class="text " placeholder="请输入您的成就简介"></textarea>
             <div class="exitBg my-middle">
-                <div class="exit" @click="submit">修改</div>
+              <div class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" @click="submit">确 定</div>
             </div>
         </div>
     </div>
@@ -77,6 +77,7 @@
     }
     .exitBg {
         height: 5rem;
+        padding: 0 0.5rem;
     }
     .exit {
         height: 2rem;
@@ -88,5 +89,8 @@
         width: 7.5rem;
         margin: 0 auto;
         text-align: center;
+    }
+    .aui-btn-success {
+      background: #28B8A1;
     }
 </style>

@@ -115,7 +115,7 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                            <div class="aui-list-item-right" style="color:blue"><div class="aui-btn aui-btn-danger">查看摄像</div></div>
+                            <div class="aui-list-item-right" style="color:#27B5B1"><div class="aui-btn aui-btn-danger">查看摄像</div></div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                             病房号：90000001

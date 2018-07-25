@@ -17,7 +17,7 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                             <div class="aui-list-item-right" style="color:#27B5B1">￥19.00</div>
                         </div>
                         <div class="aui-list-item-text" style="margin-left:11px">
                             沈阳知源精神卫生诊疗中心
@@ -39,7 +39,7 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                             <div class="aui-list-item-right" style="color:#27B5B1">￥19.00</div>
                         </div>
                            <div class="aui-list-item-text" style="margin-left:11px">
                             沈阳知源精神卫生诊疗中心
@@ -61,7 +61,7 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                             <div class="aui-list-item-right" style="color:#27B5B1">￥19.00</div>
                         </div>
                            <div class="aui-list-item-text" style="margin-left:11px">
                             沈阳知源精神卫生诊疗中心
@@ -83,7 +83,7 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">身心科专家   林洪生</div>
-                             <div class="aui-list-item-right" style="color:blue">￥19.00</div>
+                             <div class="aui-list-item-right" style="color:#27B5B1">￥19.00</div>
                         </div>
                            <div class="aui-list-item-text" style="margin-left:11px">
                             沈阳知源精神卫生诊疗中心
