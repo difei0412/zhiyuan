@@ -1,20 +1,49 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'资质认证'"></myHeader>
+          <div class="aui-list-item-inner">
+              <div class="aui-row aui-row-padded">
+                  <div class="aui-col-xs-4 pic-box">
+                      <img v-preview="'static/image/12.jpg'" :src="'static/image/12.jpg'" preview-title-enable="false" preview-nav-enable="false"/>
+                      <span @click="delpic()">删除</span>
+                  </div>
+                  <div class="aui-col-xs-4 pic-box">
+                      <img v-preview="'static/image/bingfang.jpeg'" :src="'static/image/bingfang.jpeg'" preview-title-enable="false" preview-nav-enable="false"/>
+                      <span @click="delpic()">删除</span>
+                  </div>
+                  <div class="aui-col-xs-4 pic-box">
+                      <img v-preview="'static/image/12.jpg'" :src="'static/image/12.jpg'" preview-title-enable="false" preview-nav-enable="false"/>
+                      <span @click="delpic()">删除</span>
+                  </div>
+                  <div class="aui-col-xs-4 pic-box">
+                      <img v-preview="'static/image/12.jpg'" :src="'static/image/12.jpg'" preview-title-enable="false" preview-nav-enable="false"/>
+                      <span @click="delpic()">删除</span>
+                  </div>
+                  <div class="aui-col-xs-4 pic-box">
+                      <img v-preview="'static/image/12.jpg'" :src="'static/image/12.jpg'" preview-title-enable="false" preview-nav-enable="false"/>
+                      <span @click="delpic()">删除</span>
+                  </div>
+                  <div class="aui-col-xs-4 pic-box">
+                      <img v-preview="'static/image/12.jpg'" :src="'static/image/12.jpg'" preview-title-enable="false" preview-nav-enable="false"/>
+                      <span @click="delpic()">删除</span>
+                  </div>
+              </div>
+          </div>
           <div> 
                 <div class="aui-col-xs-3" style="height:80px;width:80px;background:#ddd;text-align:center;line-height:80px;margin-left:11px;margin-top:15px">
-                <i class="aui-iconfont aui-icon-plus" style="font-size:30px;color:#666"></i>
-                
-            </div>
+                 <i class="aui-iconfont aui-icon-plus" style="font-size:30px;color:#666"></i>
+                </div>
               <span style="float:left;font-size:12px;margin-left:0.5rem;margin-top:44px">医生的资格证学历证以及身份证可上传9张</span>
-            </div>
-            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="opennext()">发布</button>
+          </div>
+            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="opennext()">确认提交</button>
+            <lg-preview></lg-preview>
     </div>
   
 </template>
 
 <script>
 import Calendar from '../vue-calendar-component/index';
+import $ from '../public/jquery';
     export default {
         name: 'geqian',
         data() {
@@ -37,13 +66,14 @@ import Calendar from '../vue-calendar-component/index';
             }
         },
         methods: {
-        
-         
-         opennext(){
-                
-         }
-   
-   
+          // 删除图片
+          delpic(obj) {
+            var el = event.currentTarget;
+            $(el).parent().remove();
+          },
+           opennext(){
+                  
+           }
         },
         activated() {
           
@@ -51,7 +81,7 @@ import Calendar from '../vue-calendar-component/index';
        created() {
    
    
-  },
+        },
         components: {
                 Calendar
               }
@@ -167,4 +197,41 @@ import Calendar from '../vue-calendar-component/index';
 .aui-list-item-input input,.aui-list-item-input textarea{
   font-size:14px;
 }
+.aui-row-padded {
+  padding:0 0.5rem;
+}
+.pic-box {
+  margin:0.1rem 0rem;
+  position: relative;
+}
+.pic-box:nth-child(1){
+  margin:0.5rem 0 0.1rem;
+}
+.pic-box:nth-child(2){
+  margin:0.5rem 0 0.1rem;
+}
+.pic-box:nth-child(3){
+  margin:0.5rem 0 0.1rem;
+}
+.pic-box img{
+  width:100%;
+  height:5.5rem;
+  margin:0;
+  padding:0;
+}
+.pic-box span {
+  position: absolute;
+  left:0;
+  bottom:0;
+  font-size:12px;
+  width:-webkit-fill-available;
+  width:fill-available;
+  height:1.2rem;
+  background: rgba(0,0,0,0.5);
+  color:#fff;
+  margin:0.125rem !important;
+  text-align: center;
+  line-height: 1.2rem;
+}
+
 </style>
