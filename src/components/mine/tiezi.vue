@@ -11,7 +11,7 @@
             </li>
           </ul>
           <div style="margin-top:0.5rem;">
-              <img src="static/image/1.jpg" class="aui-list-img-sm" style="height:2.5rem;float:left;">
+              <img src="static/image/2.jpg" class="aui-list-img-sm" style="height:2.5rem;float:left;">
               <div style="color:#28B8A1;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem">主管医师：赵宁</div>
               <div style="clear:both"></div>
           </div>
