@@ -61,6 +61,7 @@ import jinghuatie from './components/mine/jinghuatie' // 精华帖
 import fankuilist from './components/mine/fankuilist' // 反馈清单
 import fankuidetail from './components/mine/fankuidetail' // 反馈详情
 import zizhi from './components/mine/zizhi' // 资质认证
+import tongzhi from './components/mine/tongzhi' // 消息通知
 
 Vue.use(vuePicturePreview)
 Vue.use(vueEventCalendar, {locale: 'en'})
@@ -303,6 +304,11 @@ let router = new VueRouter({
 			name: 'zizhi',
 			path: '/zizhi',
 			component: zizhi
+		},
+		{
+			name: 'tongzhi',
+			path: '/tongzhi',
+			component: tongzhi
 		},
 	]
 })
