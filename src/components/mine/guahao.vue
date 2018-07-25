@@ -107,7 +107,7 @@
     <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-media-list">
            
-           <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+           <li class="aui-list-item aui-list-item-middle">
                  <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -115,7 +115,7 @@
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                            <div class="aui-list-item-right" style="color:#27B5B1"><div class="aui-btn aui-btn-danger">查看摄像</div></div>
+                            <div class="aui-list-item-right" style="color:#27B5B1"><div class="aui-btn aui-btn-danger" @click="openShipin()">查看摄像</div></div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                             病房号：90000001
@@ -124,7 +124,7 @@
                             住院时间：2018-05-10 下午12:30
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">填写住院日志</div>
+                            <div class="order-status" @click="openRizhi()">填写住院日志</div>
                         </div>
                     </div>
                 </div>
@@ -152,8 +152,13 @@
           },
            openzhifu:function(){
             this.$router.push({path:'/zhifu'})
+           },
+           openShipin(){
+            this.$router.push({path:'/jianhu_detail'})
+           },
+           openRizhi() {
+            
            }
-
         },
         activated() {
           

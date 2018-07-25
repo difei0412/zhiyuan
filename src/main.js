@@ -113,7 +113,7 @@ let router = new VueRouter({
 		},
 		{
 			name: 'videoDetaile',
-			path: '/videoDetaile/:id',
+			path: '/videoDetaile',
 			component: videoDetaile
 		},
 		{

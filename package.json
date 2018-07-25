@@ -17,7 +17,8 @@
     "vue-event-calendar": "^1.5.2",
     "vue-picture-preview": "^1.2.0",
     "vue-qart": "^2.1.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-datepicker": "^2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

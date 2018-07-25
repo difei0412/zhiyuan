@@ -2,7 +2,7 @@
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'住院日志'"></myHeader>
 
-        <Calendar ref="Calendar" style="margin-top:1rem;"></Calendar>
+<!--         <Calendar ref="Calendar" style="margin-top:1rem;"></Calendar> -->
 
         <ul class="aui-list aui-media-list">
            
@@ -121,7 +121,7 @@ import Calendar from '../vue-calendar-component/index2';
         },
         methods: {
           openzhifu:function(){
-           this.$router.push({path:'/mingyi'})
+           this.$router.push({path:'/rizhiedit'})
           }
           
         },

@@ -122,7 +122,7 @@ import Calendar from '../vue-calendar-component/index';
     }
 </script>
 
-<style >
+<style scoped>
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;
