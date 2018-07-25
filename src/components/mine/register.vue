@@ -77,7 +77,8 @@ export default {
 				passwordZ:'',//密码
 				isshowCount:false,//是否显示
 				codeMsg:'获取验证码',//获取验证码按钮文本
-				time:60//获取验证码倒计时
+				time:60,//获取验证码倒计时
+				codeid:""
 			}
 		},
 		methods: {
@@ -107,32 +108,67 @@ export default {
 					return
 				}else{
 					if (that.password == that.passwordZ) {
-						var url1 = 'verycode?filter={"where":{"mobile":"' + that.mobile + '","code":"'+that.code+'"}}';
-						console.log(url1)
-						var params = {
-							data:{
-								"mobile":that.mobile,
-								"password":that.password
-							}
-							
-						};
-						that.ajax({url:url1,method:'GET',
+						var url = 'expert?filter={"where":{"mobile":' + that.mobile + '}}';
+						that.ajax({url:url,method:'GET',
 							success:function(data){
 								console.log(data)
 								if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
-									var url2 = 'expert';
-									that.ajax({url:url2,method:'post',params,success:function(data){
-										alert("aa")
-									}
-
-									})
+									Toast("该账号已注册！")
 								}else{
-									Toast("验证码无效，请重新输入！")
+									var url1 = 'verycode?filter={"where":{"mobile":"' + that.mobile + '","code":"'+that.code+'"}}';
+									console.log(url1)
+									var params = {
+										data:{
+											"mobile":that.mobile,
+											"password":that.password,
+											"status":'0'
+										}
+
+									};
+									that.ajax({url:url1,method:'GET',
+										success:function(data){
+											
+											that.codeid = data[0].id
+											console.log(that.codeid)
+											if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
+												var url2 = 'expert';
+												that.ajax({url:url2,method:'post',params,success:function(data){
+													var params = {
+														data:{
+															status: "1",
+															_method: "PUT"
+														}
+													}
+													var url3 = 'verycode/'+that.codeid;
+													console.log(url3)
+													that.ajax({url:url3,method:'post',params,success:function(data){
+														if (data) {
+															Toast("注册成功！")
+															that.$router.pushRoute({name:"login"});
+														}else{
+															Toast("注册失败！")
+														}
+													}})
+													
+												}
+
+											})
+											}else{
+												Toast("验证码无效，请重新输入！")
+											}
+
+
+										}
+									})
 								}
 
 
 							}
 						})
+
+
+
+						
 
 					}else{
 						Toast('密码不一致，请重新输入！');
@@ -192,11 +228,11 @@ export default {
 											// data: {mobile: that.mobile},
 										})
 								.done(function(data) {
-									console.log(data);
-									if (data.code == '0000') {
-										Toast(data.msg)
-									}else if(data.code == '0001'){
-										Toast(data.msg)
+									console.log(data[0].code);
+									if (data[0].code == '0000') {
+										Toast(data[0].msg)
+									}else if(data[0].code == '0001'){
+										Toast(data[0].msg)
 									}
 
 								})
