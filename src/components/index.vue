@@ -9,11 +9,13 @@
     <header class="aui-bar aui-bar-nav" v-if="menuindex == 1">病患沟通</header>
     <header class="aui-bar aui-bar-nav" v-if="menuindex == 2">个人中心</header>
 
-    <keep-alive>
-      <content1 ref="content1" v-if="menuindex==0"></content1>
-      <content2 ref="content2" v-if="menuindex==1"></content2>
-      <content3 v-if="menuindex==2"></content3>
-    </keep-alive>
+    <transition :name="transitionName">
+      <keep-alive>
+        <content1 ref="content1" v-if="menuindex==0"></content1>
+        <content2 ref="content2" v-if="menuindex==1"></content2>
+        <content3 v-if="menuindex==2"></content3>
+      </keep-alive>
+    </transition>
 
     <footer class="aui-bar aui-bar-tab">
       <div class="aui-bar-tab-item aui-active" @click="openmenu(0)">
@@ -48,7 +50,8 @@
     name: 'index',
     data() {
       return {
-        menuindex: 0
+        menuindex: 0,
+        transitionName: ''
       }
     },
     components: {
@@ -69,6 +72,11 @@
           
         } else if (that.menuindex == 1) {
           that.$refs.content2.childMethod()
+        }
+        if(that.menuindex > index){
+          that.transitionName = 'slide-right'
+        } else{
+          this.transitionName = 'slide-left'
         }
         that.menuindex = index
 
@@ -167,4 +175,31 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
   }
+
+  /* 首页切换动画 */
+  .slide-left-enter-active, .slide-left-leave-active, .slide-right-enter-active, .slide-right-leave-active {
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .slide-left-enter, .slide-right-leave-active {
+    z-index: 30;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+  .slide-right-enter {
+    opacity: 0;
+  }
+  .slide-right-enter, .slide-left-leave-active {
+    -webkit-transform: translateX(-40%);
+    transform: translateX(-40%);
+  }
+  .slide-left-enter-to, .slide-right-leave-to {
+    position: fixed;
+  }
+  /* 首页切换动画 */
 </style>

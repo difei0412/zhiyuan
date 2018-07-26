@@ -140,7 +140,7 @@ import Calendar from '../vue-calendar-component/index';
         },
         methods: {
           openzhifu:function(){
-            this.$router.push({path:'/fankuidetail'})
+            this.$router.pushRoute({path:'/fankuidetail'})
           }
           
         },

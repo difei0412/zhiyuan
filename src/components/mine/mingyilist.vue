@@ -122,7 +122,7 @@ import Calendar from '../vue-calendar-component/index';
         },
         methods: {
           openzhifu:function(){
-            this.$router.push({path:'/yuyueinfo'})
+            this.$router.pushRoute({path:'/yuyueinfo'})
           }
           
         },

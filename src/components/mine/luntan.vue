@@ -191,13 +191,13 @@
         },
         methods: {
           openfatie(){
-           this.$router.push({path:'/fatie'})
+           this.$router.pushRoute({path:'/fatie'})
           },
           openzhifu:function(){
-           this.$router.push({path:'/mingyi'})
+           this.$router.pushRoute({path:'/mingyi'})
           },
           opentiezi(){
-          this.$router.push({path:'/tiezi'})
+          this.$router.pushRoute({path:'/tiezi'})
           },
           closewin:function() {
             var _this = this;
