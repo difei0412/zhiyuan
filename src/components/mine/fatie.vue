@@ -76,7 +76,7 @@ import Calendar from '../vue-calendar-component/index';
     }
 </script>
 
-<style >
+<style scoped>
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;
@@ -177,7 +177,7 @@ import Calendar from '../vue-calendar-component/index';
   width:90%;
   position:relative;
   float:left;
-  margin-left:5%;
+  margin-left:0;
   margin-top:20px;
   height:95px;
 

@@ -333,7 +333,7 @@
   margin-top:0.5rem;
 }
 .aui-label {
-  top:-0.4rem;
+  top:-0.1rem;
 }
  .aui-pull-left img {
     margin-top: 0.5rem;
