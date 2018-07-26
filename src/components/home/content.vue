@@ -198,22 +198,22 @@
         this.$router.pushRoute({name:'tiezi'})
       },
        openRouter:function(){
-             this.$router.push({path:'/mingyilist'})
+             this.$router.pushRoute({path:'/mingyilist'})
        },
         openRouter1:function(){
-             this.$router.push({path:'/guahao'})
+             this.$router.pushRoute({path:'/guahao'})
        },
          openRouter2:function(){
-             this.$router.push({path:'/zhenshi'})
+             this.$router.pushRoute({path:'/zhenshi'})
        },
        openzhifu:function(){
-           this.$router.push({path:'/mingyi'})
+           this.$router.pushRoute({path:'/mingyi'})
        },
           openRouter3:function(){
-             this.$router.push({path:'/jianhu'})
+             this.$router.pushRoute({path:'/jianhu'})
        },
        opennews(){
-         this.$router.push({path:'/newsdetail'})
+         this.$router.pushRoute({path:'/newsdetail'})
        }
     },
      mounted () {

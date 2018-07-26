@@ -75,14 +75,18 @@ Vue.component('myHeader', myHeader)
 
 // back push replace
 VueRouter.prototype.backRoute = function() {
+　　this.isBack = '1'
 　　this.back()
 }
 VueRouter.prototype.pushRoute = function(obj) {
+　　this.isBack = '2'
 　　this.push(obj)
 }
 VueRouter.prototype.replaceRoute = function(obj) {
+　　this.isBack = '0'
 　　this.replace(obj)
 }
+
 
 Vue.prototype.$http = axios
 Vue.prototype.$Toast = Toast
