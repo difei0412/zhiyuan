@@ -11,7 +11,7 @@
   <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu2()">
                  <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu2()">
                  <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu2()">
                  <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </li>
-             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+             <li class="aui-list-item aui-list-item-middle"  @click="openzhifu2()">
                  <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -167,7 +167,10 @@
             this.myindex=index
           },
            openzhifu:function(){
-            this.$router.push({path:'/zhifu'})
+            this.$router.pushRoute({path:'/zhifu'})
+           },
+           openzhifu2:function(){
+            this.$router.pushRoute({path:'/zhifu1'})
            }
 
         },

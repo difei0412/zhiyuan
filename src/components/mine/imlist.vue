@@ -3,7 +3,7 @@
         <myHeader :title="'患者沟通'"></myHeader>
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu2('?uid=5b57f3466a27367358f16aeb&token=aplLoMUdf6uW88X23OFLIrDTuZQGF9BEDUGAmIPb1p9tNUAP8djGk42/GlX7DITw72x3VZnD8OwUm6ptkLRqcwwMcqtJkKqoMHKAU5vPpKKPCjOm17Ag5Q==')">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </li>
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu2('?uid=5b57d6866a27367358f1568c&token=7RqiVEycoMbKlz0Xe3WUsbDTuZQGF9BEDUGAmIPb1p9tNUAP8djGk+/3og9UJS56JCI6d/5KrHK1aduq93kkJgwMcqtJkKqofxP6k+6yw8E5aSn08zZvVQ==')">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -120,6 +120,9 @@ import Calendar from '../vue-calendar-component/index';
         methods: {
           openzhifu:function(){
            this.$router.pushRoute({path:'/im'})
+          },
+          openzhifu2(param) {
+            this.$router.pushRoute({path:'/im'+param})
           }
           
         },

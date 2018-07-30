@@ -1,88 +1,112 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'挂号支付'"></myHeader>
-         <ul class="aui-list aui-media-list" >
-          
-            <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-img-round ">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text">
-                            <div class="aui-list-item-title aui-font-size-14" style="color:#000;margin-left:11px">林洪生大夫</div>
-                           
-                        </div>
-                        <div class="aui-list-item-text" style="color:#000;margin-left:11px">
-                            身心科专家
-                        </div>
-                        <div class="aui-list-item-text" style="color:#000;margin-left:11px">
-                            沈阳知源精神卫生诊疗中心
-                        </div>
-                        <div class="aui-list-item-text" style="color:#000;margin-left:11px">
-                            个人简介：为了患者更健康奋斗终身
-                        </div>
-                    </div>
-                </div>
+        <myHeader :title="'打卡记录'"></myHeader>
+        
+    <div class="aui-content aui-content-padded" >
+       <li class="aui-list-header">
+              患者用药记录
             </li>
-           
+             <ul class="aui-list aui-select-list">
+       
+        <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  9点患者服用安定片  2片</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+         <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  9点患者服用安定片  2片</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+        <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  9点患者服用安定片  2片</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
         </ul>
-     <Calendar ref="Calendar" :markDateMore="arr"  v-on:isToday="clickToday" agoDayHide=1530115200 v-on:choseDay="clickDay" v-on:changeMonth="changeDate" style="margin-top:0px"></Calendar>
-     <div>
-      <div class="aui-grid" >
-        <div class="myred"></div><span style="margin-top:5px;position:relative;float:left;margin-left:10px">号满</span>
-         <div class="myblue"></div><span style="margin-top:5px;position:relative;float:left;margin-left:10px">可以预约</span>
-      </div>  
-      </div> 
-      <div style="color:#fb4747;margin-left:11px" >您选择是2018年6月22日下午龙洪生大夫的号</div>
-      <div class="aui-card-list">
-            <div class="aui-card-list-header">
-                <div><span class="aui-text-danger"> 请选择支付方式</span></div>
-               
-            </div>
-            <div class="aui-card-list-content">
-                <ul class="aui-list aui-media-list">
-                    <li class="aui-list-item aui-list-item-middle">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-media" style="width: 3rem;">
-                                <img src="static/image/zhifubao.jpeg" >
-                            </div>
-                            <div class="aui-list-item-inner aui-list-item-arrow">
-                                <div class="aui-list-item-text" style="margin-left:11px">
-                                    <div class="aui-list-item-title aui-font-size-14">支付宝</div>
-                                   
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </li>
-                    <li class="aui-list-item aui-list-item-middle">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-media" style="width: 3rem;">
-                                <img src="static/image/weixin.jpg" >
-                            </div>
-                            <div class="aui-list-item-text" style="margin-left:11px;color:#000">
-                                微信支付
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            
-        </div>
-        <div class="aui-card-list">
-            <div class="aui-card-list-header">
-                <div><span class="" style="color:#000"> 挂号费用合计：</span></div>
-               
-            </div>
-            <li class="aui-list-item aui-list-item-middle">
-             <input type="text" value="120元" style="text-align:center;border-bottom:1px solid #666;color:red">           
-           </li>
-            
-        </div>
-         <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: red">完成挂号</div>
+   
     </div>
-
+      <div class="aui-content aui-content-padded" >
+       <li class="aui-list-header">
+              患者情绪记录
+            </li>
+             <ul class="aui-list aui-select-list">
+       
+        <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  9情绪不稳定有自杀倾向</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+         <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  9情绪不稳定有自杀倾向</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+        <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  9情绪不稳定有自杀倾向</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+        </ul>
+   
+    </div>
+    <div class="aui-content aui-content-padded" >
+       <li class="aui-list-header">
+              睡眠记录
+            </li>
+             <ul class="aui-list aui-select-list">
+       
+        <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  夜间睡眠很好</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+         <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  夜间睡眠很好</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+        <li class="aui-list-item">
+         <i class="aui-iconfont aui-icon-display" style="font-size:22px"></i><span style="float:left;margin-left:30px;position:absolute;top:1rem;color:#666">2018:5.1  夜间睡眠很好</span>
+         <i class="aui-iconfont aui-icon-camera" style="font-size:18px"></i>
+        </li>
+        </ul>
+   
+    </div>
+    <div class="aui-content aui-margin-b-15">
+          <ul class="aui-list aui-form-list">
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          用药建议
+                      </div>
+                      <div class="aui-list-item-input">
+                          <input type="text" placeholder="请输入用药建议">
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          睡眠建议
+                      </div>
+                      <div class="aui-list-item-input">
+                          <input type="text" placeholder="请输入睡眠建议">
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          其他建议
+                      </div>
+                      <div class="aui-list-item-input">
+                          <input type="text" placeholder="请输入其他建议">
+                      </div>
+                  </div>
+              </li>
+            </ul>
+        </div>
+        <div>
+            <textarea class="text " placeholder="反馈内容"></textarea>
+            <div class="exitBg my-middle">
+              <div class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">确 定</div>
+            </div>
+        </div>
+    </div>
+  
 </template>
 
 <script>
@@ -110,62 +134,24 @@ import Calendar from '../vue-calendar-component/index';
         },
         methods: {
         
-           //获取用户信息函数
-           clickDay(data) {
-         // alert(data)
-    },
-    changeDate(data) {
-      function format(date, index) {
-      date = new Date(date);
-      return `${date.getFullYear()}-${date.getMonth() + 1}-${index}`;
-    }
-    this.arr = [
-      {
-        date: format(new Date(), 1),
-        className: 'mark1'
-      },
-      {
-        date: format(new Date(), 2),
-        className: 'mark1'
-      },
-      {
-        date: format(new Date(), 13),
-        className: 'mark2'
-      }
-    ];
-//  alert(JSON.stringify(this.arr))
-    this.arr2 = [format(new Date(), 23)]
-    },
-    clickToday(data) {
-      console.log(data); //跳到了本月
-    }
-        },
-        activated() {
-          
-        },
-       created() {
-    function format(date, index) {
-      date = new Date(date);
-      return `${date.getFullYear()}-${date.getMonth() + 1}-${index}`;
-    }
-    this.arr = [
-      {
-        date: format(new Date(), 1),
-        className: 'mark1'
-      },
-      {
-        date: format(new Date(), 2),
-        className: 'mark1'
-      },
-      {
-        date: format(new Date(), 13),
-        className: 'mark2'
-      }
-    ];
-//  alert(JSON.stringify(this.arr))
-    this.arr2 = [format(new Date(), 23)]
+         
+         opennext(){
+              
+         },
+         openform1(){
+             this.$router.push({path:'/fankui'})
+         }
    
-  },
+   
+        },
+       mounted () {
+     console.log('挂载好了')
+     
+
+   },
+    created:function() {
+                      
+    },
         components: {
                 Calendar
               }
@@ -190,20 +176,6 @@ import Calendar from '../vue-calendar-component/index';
         color: #0f0f0f;
         background-color: rgb(250, 250, 250);
         letter-spacing: 0.1rem;
-    }
-    .exitBg {
-        height: 5rem;
-    }
-    .exit {
-        height: 2rem;
-        line-height: 2rem;
-        border-radius: 1rem;
-        font-size: 0.85rem;
-        color: #f22a2a;
-        background-color: rgb(240, 240, 240);
-        width: 7.5rem;
-        margin: 0 auto;
-        text-align: center;
     }
   h3 {
   text-align: center;
@@ -269,4 +241,36 @@ import Calendar from '../vue-calendar-component/index';
     width:50px;
     margin-left:10px
 }
+.textareacls{
+  width:90%;
+  position:relative;
+  float:left;
+  margin-left:5%;
+  margin-top:20px;
+  height:95px;
+
+}
+.aui-btn-success {
+    background: #28B8A1;
+    width:fill-available;
+    width:-webkit-fill-available;
+  }
+  .aui-list-item {
+    border-bottom: 1px solid #eee !important;
+    font-size:14px;
+  }
+  .aui-list-item-label{
+    color:#28B8A1 !important;
+  }
+  .aui-list-item-input input {
+    font-size:14px;
+  }
+  .exitBg {
+      height: 5rem;
+      padding: 0 0.5rem;
+  }
+  .aui-list-header {
+    font-size:14px;
+    color:#28B8A1;
+  }
 </style>
