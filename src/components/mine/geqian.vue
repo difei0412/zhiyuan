@@ -24,28 +24,30 @@
       		getUserInfo() {
       			var that = this;
       			var userId = window.localStorage.getItem('userId');
-      			var url = "f_user/" + userId;
+      			var url = "expert/" + userId;
       			var method = "GET";
       			that.ajax({url,method,
       				success:function(data){
-      					that.geqian = data.Qm?data.Qm:'';
+      					that.geqian = data.timelist?data.timelist:'';
       				}
       			})
       		},
           submit() {
             var that = this;
             var userId = window.localStorage.getItem('userId');
-      			var url = "f_user/" + userId;
+      			var url = "expert/" + userId;
       			var method = "POST";
       			var params = {
       				"data":{
-      					"Qm":that.geqian,
+      					"timelist":that.geqian,
       					"_method":"PUT"
       				}
       			}
       			that.ajax({url,method,params,
       				success:function(data){
+
       					that.$MessageBox.alert("修改成功！");
+                that.$router.pushRoute({path:'/userinfo'})
       				}
       			})
           }
