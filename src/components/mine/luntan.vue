@@ -1,223 +1,208 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <div>
-          <div class="aui-bar"></div>
-          <header class="aui-bar aui-bar-nav">
-            <div class="aui-pull-left" @click="closewin">
-              <img src="static/image/fanhui@3x.png">
-            </div>
-            <div class="aui-title">论坛</div>
-            <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
-          </header>
-        </div>
-    <section class="aui-refresh-content">
-     <div class="aui-content aui-margin-b-15">
-        <ul class="aui-list aui-media-list">
-            <!-- <li class="aui-list-header">
-               最新帖子
-               <div>
-                  <i class="aui-iconfont aui-icon-refresh" style="margin-right:5px"></i>
-                  <span>换一批</span>
-              </div>
-            </li> -->
-            <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
+      <div>
+        <div class="aui-bar"></div>
+        <header class="aui-bar aui-bar-nav">
+          <div class="aui-pull-left" @click="closewin">
+            <img src="static/image/fanhui@3x.png">
+          </div>
+          <div class="aui-title">论坛</div>
+          <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
+        </header>
+      </div>
+      <scroller :on-refresh="refresh" :on-infinite="infinite" style="top:2.5rem;" ref="myscroller">
+        <div class="aui-content aui-margin-b-15">
+              <ul class="aui-list aui-media-list">
+                  <div v-if="tieziArr" v-for="item in tieziArr">
+                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
+                        <div class="aui-media-list-item-inner">
+                            <div class="aui-list-item-inner">
+                               
+                                <div class="aui-list-item-text aui-ellipsis-2" style="color:#000" v-text="item.ttopic">
+                                  
+                                </div>
+                                <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="item.tcontents+'...'">
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item doctor-box">
+                        <div class="aui-media-list-item-inner">
+                            <div class="aui-list-item-media">
+                                <img src="static/image/sofa@3x.png" class="aui-img-round">
+                            </div>
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-text doctor">
+                                    <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                                    <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                   </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-          
-          
-        </ul>
-
-    </div>
-  </section>
-    </div>
-
-</section>
-
+                
+              </ul>
+          </div>
+      </scroller>
     </div>
   
 </template>
 
 <script>
+    import $ from '../public/jquery'
+    import Vue from 'vue'
+    import VueScroller from 'vue-scroller'
+    Vue.use(VueScroller)
     export default {
         name: 'geqian',
         data() {
             return {
-               arr2: ['2018-7-3'],
-                      arr: [
-                {
-                  date: '2018-07-04',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/5',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/6',
-                  className: 'mark2'
-                }
-              ]     
+               tieziArr: [],
+               currentPage: 1,
+               pageSize:4,
+               isLoadFinish:false, //是否加载完全部数据
+               //isLoading: false, // 是否加载中，防止一直加载
             }
         },
         methods: {
           openfatie(){
-           this.$router.pushRoute({path:'/fatie'})
+            if(window.localStorage.getItem('userId')){
+              this.$router.pushRoute({path:'/fatie2'})
+            }else{
+              this.$router.pushRoute({path:'/login'})
+            }
           },
           openzhifu:function(){
            this.$router.pushRoute({path:'/mingyi'})
           },
-          opentiezi(){
-          this.$router.pushRoute({path:'/tiezi'})
+          opentiezi(id){
+          this.$router.pushRoute({path:'/tiezi/'+id})
           },
           closewin:function() {
             var _this = this;
             _this.$router.backRoute();
-          }
-          
+          },
+          // 查询数据
+          showList() {
+              var that = this;
+              var start = (that.currentPage-1)*that.pageSize;
+              var uid = window.localStorage.getItem('userId');
+              var filter = {
+                "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true},
+                "order": "createdAt DESC",
+                "where": {
+                  "tflag":0,
+                  "tType":1,
+                  "tuid": uid
+                },
+                "skip":start,
+                "limit":that.pageSize,
+                "include":"tuidPointer",
+                "includefilter":{"expert":{"fields":['id','name','holder']}}
+              };
+              that.ajax({
+                url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
+                method: "get",
+                success: function(data) {
+                  if(data.length<that.pageSize){
+                    if(data.length>0){
+                      for(var i=0;i<data.length;i++){
+                        data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                        that.tieziArr.push(data[i]);
+                      }
+                    }
+                    that.isLoadFinish = true;
+                  } else {
+                    for(var i=0;i<data.length;i++){
+                      that.tieziArr.push(data[i]);
+                    }
+                  }
+                  sessionStorage.removeItem("doctor_to_binren");
+                  console.log(that.currentPage);
+                  var tempDic = {};
+                  tempDic['data'] = that.tieziArr;
+                  tempDic['page'] = that.currentPage;
+                  sessionStorage.setItem("doctor_to_binren", JSON.stringify(tempDic));
+                }
+              });
+           },
+           // 上拉加载更多
+           infinite(done) {
+            var that = this;
+             setTimeout(function(){
+                  if(!that.isLoadFinish){
+                    that.currentPage++;
+                    that.showList();
+                  }
+                  if(that.isLoadFinish){
+                    done(true);
+                    return;
+                  } else {
+                    done();
+                  }
+                  
+              }, 500)
+            },
+            // 下拉刷新
+            refresh(done) {
+                var that = this;
+                setTimeout(function(){
+                    that.currentPage = 1;
+                    that.tieziArr = [];
+                    that.isLoadFinish = false;
+                    that.showList();
+                    done();
+                }, 500);
+            },
         },
         activated() {
           
         },
-       created() {
-   
-   
-  },
+       mounted() {
+          var that = this;
+          if(sessionStorage.getItem("doctor_to_binren")!=null){
+            var tmp = JSON.parse(sessionStorage.getItem("doctor_to_binren"));
+            this.tieziArr = tmp['data'];
+            this.currentPage = tmp['page'];
+            this.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            setTimeout(function () {
+              that.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            },0)//同步转异步操作tTime
+          }else{
+            this.showList();
+          }
+       },
+       beforeRouteLeave(to,from,next){//记录离开时的位置
+          var tempSession = sessionStorage.getItem("doctor_to_binren");
+          if (tempSession) {
+            var tempDic = JSON.parse(tempSession);
+            tempDic['position'] = this.$refs.myscroller.getPosition().top;
+            tempDic['page'] = this.currentPage;
+            sessionStorage.setItem("doctor_to_binren", JSON.stringify(tempDic));
+          }
+          next()
+        },
+        beforeRouteEnter(to,from,next){
+          if(!sessionStorage.getItem("doctor_to_binren")){//当前页面刷新不需要切换位置
+            next(vm => {
+              vm.showList();
+            });
+          }else{
+            next(vm => {
+              var tmp = JSON.parse(sessionStorage.getItem("doctor_to_binren"));
+              vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+              setTimeout(function () {
+                vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+              },20)//同步转异步操作tTime
+            })
+          }
+       }
     }
 </script>
 
 <style scoped>
+    @import '/static/css/aui-pull-refresh.css';
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;

@@ -15,123 +15,44 @@
 
           </section>
     </div>
-     <div class="aui-content aui-margin-b-15" @click="opentiezi">
+     <div class="aui-content aui-margin-b-15">
           <ul class="aui-list aui-media-list">
               <li class="aui-list-header">
                  最新帖子
                  <div>
                   <i class="aui-iconfont aui-icon-refresh" style="margin-right:5px"></i>
-                  <span>换一批</span>
+                  <span @click="nextPageData">换一批</span>
               </div>
               </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
-              <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                         
-                          <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                            患者问：医生您好！我在初中时因为过马路时被小轿车撞到脚部导致骨折，近两年腿部经常感...
-                          </div>
-                          <div class="aui-list-item-text aui-ellipsis-2 doctor-answer">
-                            医师：您好！很荣幸帮助你！根据您的描述，您可能是因为初中时的车祸导致了骨质问题，你最好先去医院进行拍...
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item doctor-box">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-media">
-                          <img src="static/image/sofa@3x.png" class="aui-img-round">
-                      </div>
-                      <div class="aui-list-item-inner">
-                          <div class="aui-list-item-text doctor">
-                              <div class="aui-list-item-title">XXXXX  主治医师  </div>
-                              <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
-                          </div>
-                      </div>
-                  </div>
-                 
-              </li>
+              
+              <div v-if="tieziArr" v-for="item in tieziArr">
+                <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
+                    <div class="aui-media-list-item-inner">
+                        <div class="aui-list-item-inner">
+                           
+                            <div class="aui-list-item-text aui-ellipsis-2" style="color:#000" v-text="item.ttopic">
+                              
+                            </div>
+                            <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="item.tcontents+'...'">
+                              
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item doctor-box">
+                    <div class="aui-media-list-item-inner">
+                        <div class="aui-list-item-media">
+                            <img src="static/image/sofa@3x.png" class="aui-img-round">
+                        </div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-text doctor">
+                                <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                                <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+              </div>
               
               <li class="aui-list-item"></li>
             
@@ -153,18 +74,27 @@
         mylist : [],
         myIndex : -1,
         supportDic: {},
-        sessionName: 'scrollForVideo'
+        sessionName: 'scrollForVideo',
+        tieziArr: [],
+        currentPage: 1,
+        pageSize:4,
+        isLoadFinish:false, //是否加载完全部数据
+        toast: null
       }
     },
     methods: {
       openRouter() {
-        this.$router.pushRoute({name:'luntan'})
+        if(window.localStorage.getItem('userId')){
+          this.$router.pushRoute({name:'luntan'})
+        }else{
+          this.$router.pushRoute({name:'login'})
+        }
       },
       openRouter1() {
         this.$router.pushRoute({name:'imlist'})
       },
-      opentiezi(){
-        this.$router.pushRoute({name:'tiezi'})
+      opentiezi(id){
+        this.$router.pushRoute({path:'/tiezi/'+id})
       },
       openwenda(){
       this.$router.pushRoute({name:'imlist'})
@@ -297,95 +227,95 @@
         })
       },
       initdata:function() {
-        var that = this;
-        var filter = 'filter[where][status]=0'
-        filter += '&filter[where][to]=noindex'
-        filter += '&filter[skip]=0'
-        filter += '&filter[limit]=5000'
-        var url = "news_info?" + filter;
-        var method = "GET";
-        that.ajax({url, method,
-          success:function(data) {
-            // 添加推荐
-            var tempDic = {
-              "Info_name" : "推荐",
-              "id" : "-1"
-            }
-            data.unshift(tempDic);
+        // var that = this;
+        // var filter = 'filter[where][status]=0'
+        // filter += '&filter[where][to]=noindex'
+        // filter += '&filter[skip]=0'
+        // filter += '&filter[limit]=5000'
+        // var url = "news_info?" + filter;
+        // var method = "GET";
+        // that.ajax({url, method,
+        //   success:function(data) {
+        //     // 添加推荐
+        //     var tempDic = {
+        //       "Info_name" : "推荐",
+        //       "id" : "-1"
+        //     }
+        //     data.unshift(tempDic);
 
-            for (var i = 0; i < data.length; i++) {
-              that.mylist.push(data[i]);
-            }
+        //     for (var i = 0; i < data.length; i++) {
+        //       that.mylist.push(data[i]);
+        //     }
 
-            that.openChild(0, false);
-          }
-        });
+        //     that.openChild(0, false);
+        //   }
+        // });
       },
       isSupport() {
-        var that = this;
+        // var that = this;
 
-        that.supportDic = JSON.parse(window.localStorage.getItem('supportDic'));
-        if (!that.userId) {
-          return;
-        }
+        // that.supportDic = JSON.parse(window.localStorage.getItem('supportDic'));
+        // if (!that.userId) {
+        //   return;
+        // }
 
-        var filter = 'filter[skip]=0'
-        filter += '&filter[limit]=5000'
-        var url = "support?" + filter;
-        var method = "GET";
-        that.ajax({url, method,
-          success:function(data) {
-            var dic = that.supportDic.login;
-            dic.news = {};
-            dic.pinglun = {};
-            for (var i = 0; i < data.length; i++) {
-              var tempDic = data[i];
-              dic[tempDic.type][tempDic.record_id] = tempDic.user_id;
-            }
-            that.supportDic.login = dic;
-            window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic))
-          }
-        });
+        // var filter = 'filter[skip]=0'
+        // filter += '&filter[limit]=5000'
+        // var url = "support?" + filter;
+        // var method = "GET";
+        // that.ajax({url, method,
+        //   success:function(data) {
+        //     var dic = that.supportDic.login;
+        //     dic.news = {};
+        //     dic.pinglun = {};
+        //     for (var i = 0; i < data.length; i++) {
+        //       var tempDic = data[i];
+        //       dic[tempDic.type][tempDic.record_id] = tempDic.user_id;
+        //     }
+        //     that.supportDic.login = dic;
+        //     window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic))
+        //   }
+        // });
       },
       supportClick(id, index) {
-        var that = this;
+        // var that = this;
 
-        if (!that.userId) {
-          if (that.supportDic.noLogin["news"][id] == '1') {
-            that.$MessageBox.alert('您已经赞过了！');
-            return;
-          }
-          that.supportDic.noLogin["news"][id] = '1';
-          that.supportDic = Object.assign({}, that.supportDic);
-          window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic));
-          that.$MessageBox.alert('点赞成功');
-          that.addSupportNum(id, index);
-          return;
-        }
-        if (that.supportDic.login["news"][id] == that.userId) {
-          that.$MessageBox.alert('您已经赞过了！');
-          return;
-        }
+        // if (!that.userId) {
+        //   if (that.supportDic.noLogin["news"][id] == '1') {
+        //     that.$MessageBox.alert('您已经赞过了！');
+        //     return;
+        //   }
+        //   that.supportDic.noLogin["news"][id] = '1';
+        //   that.supportDic = Object.assign({}, that.supportDic);
+        //   window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic));
+        //   that.$MessageBox.alert('点赞成功');
+        //   that.addSupportNum(id, index);
+        //   return;
+        // }
+        // if (that.supportDic.login["news"][id] == that.userId) {
+        //   that.$MessageBox.alert('您已经赞过了！');
+        //   return;
+        // }
 
-        var url = "support/";
-        var method = "POST";
-        var params = {
-          "data" : {
-            "_method" : "PUT",
-            "user_id" : that.userId,
-            "record_id" : id,
-            "type" : 'news'
-          }
-        }
-        that.ajax({url, method, params,
-          success:function(data) {
-            that.supportDic.login["news"][id] = that.userId;
-            that.supportDic = Object.assign({}, that.supportDic);
-            window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic));
-            that.$MessageBox.alert('点赞成功');
-            that.addSupportNum(id, index);
-          }
-        });
+        // var url = "support/";
+        // var method = "POST";
+        // var params = {
+        //   "data" : {
+        //     "_method" : "PUT",
+        //     "user_id" : that.userId,
+        //     "record_id" : id,
+        //     "type" : 'news'
+        //   }
+        // }
+        // that.ajax({url, method, params,
+        //   success:function(data) {
+        //     that.supportDic.login["news"][id] = that.userId;
+        //     that.supportDic = Object.assign({}, that.supportDic);
+        //     window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic));
+        //     that.$MessageBox.alert('点赞成功');
+        //     that.addSupportNum(id, index);
+        //   }
+        // });
       },
       addSupportNum(id, index) {
         var that = this;
@@ -425,7 +355,81 @@
         if (this.mylist.length > 0) {
           this.addScrollPlace(this.sessionName, this.mylist[temp].id);
         }
-      }
+      },
+      // 查询数据
+      showList() {
+          var that = this;
+          var start = (that.currentPage-1)*that.pageSize;
+          var filter = {
+            "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true},
+            "order": "createdAt DESC",
+            "where": {
+              "tflag":0,
+              "tType":{"inq":[0,1,2]}
+            },
+            "skip":start,
+            "limit":that.pageSize,
+            "include":"tuidPointer",
+            "includefilter":{"expert":{"fields":['id','name','holder']}}
+          };
+          that.ajax({
+            url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
+            method: "get",
+            success: function(data) {
+              if(data.length<1 && (that.currentPage == 1)){
+                return;
+              } else if(data.length<1) {
+                that.currentPage=1;
+                that.showList();
+                return;
+              }
+              that.tieziArr=[];
+              if(data.length<that.pageSize){
+                if(data.length>0){
+                  for(var i=0;i<data.length;i++){
+                    data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                    that.tieziArr.push(data[i]);
+                  }
+                }
+                that.isLoadFinish = true;
+              } else {
+                for(var i=0;i<data.length;i++){
+                  that.tieziArr.push(data[i]);
+                }
+              }
+              // sessionStorage.removeItem("all_tiezi_data");
+              // var tempDic = {};
+              // tempDic['data'] = that.tieziArr;
+              // tempDic['page'] = that.currentPage;
+              // sessionStorage.setItem("all_tiezi_data", JSON.stringify(tempDic));
+            }
+          });
+       },
+       nextPageData() {
+        var that = this;
+         this.currentPage++;
+         that.toast.loading({
+             title:"加载中",
+             duration:2000
+         },function(ret){
+             setTimeout(function(){
+              that.showList();
+              that.toast.hide();
+           }, 500);
+         });
+       }
+    },
+    mounted(){
+      this.toast = new auiToast();
+      var that = this;
+      this.showList();
+      // if(sessionStorage.getItem("all_tiezi_data")!=null){
+      //   var tmp = JSON.parse(sessionStorage.getItem("all_tiezi_data"));
+      //   this.tieziArr = tmp['data'];
+      //   this.currentPage = tmp['page'];
+      // }else{
+      //   this.showList();
+      // }
     },
     activated() {
       if (this.myIndex != -1) {
@@ -439,7 +443,7 @@
     created:function() {
       this.addSession(this.sessionName);
       this.initdata()
-    }
+    },
   }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'名医交流'"></myHeader>
+        <myHeader :title="'线上论坛'"></myHeader>
         <div class="aui-content aui-margin-b-15">
           <ul class="aui-list aui-form-list">
               <li class="aui-list-item box-title">
@@ -60,7 +60,7 @@ import Calendar from '../vue-calendar-component/index';
             }
             var params = {
               "data":{
-                "tType":0,
+                "tType":1,
                 "treplycount":0,
                 "ttopic":this.ttopic,
                 "tcontents":this.content,

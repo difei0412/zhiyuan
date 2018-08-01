@@ -2,17 +2,17 @@
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'帖子详情'"></myHeader>
        <div class="aui-content aui-content-padded" >
-         <h3 class="aui-list-header">这里是帖子标题</h3>
+         <h3 class="aui-list-header" v-text="showData.ttopic"></h3>
          <ul class="aui-list aui-select-list">
             <li class="aui-list-item">
                 <div class="aui-content aui-content-padded ">
-                   <div class="aui-content">医森好！去年10月开始失眠一直到现在，也许中间断断续续睡过，基本上作息时间是晚上11点半前关灯睡，然后要么一整晚脑子很活跃身体一动不动到天亮睁开眼就是没睡过的感觉，要么整晚做梦到早上六点准时醒，也是累。但是第二天精神也不差，就是眼袋严重，后来意识到问题严重性就尝试开始运动，每天晚上八点左右开始做跳操+五公里跑步并且在晚上10点半前睡觉，已经坚持两周、开头两天确实睡的不错，后来又继续失眠了，本人是比较容易上火的体质，之前还想去看中医调理，结果朋友都劝我说是我心理问题不需要看中医，需要看精神科，说起来我其实是很敏感的人，别人说的话很容易刺激到我，晚上睡前如果想到什么事情就一发不可收拾开始天马行空，?求助～到底是身病还是心理病？该怎么克服？</div>
+                   <div class="aui-content" v-html="showData.tcontents"></div>
                 </div>
             </li>
           </ul>
           <div style="margin-top:0.5rem;">
-              <img src="static/image/2.jpg" class="aui-list-img-sm" style="height:2.5rem;float:left;">
-              <div style="color:#28B8A1;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem">主管医师：赵宁</div>
+              <img :src="showData.tx" class="aui-list-img-sm" style="height:2.5rem;float:left;">
+              <div style="color:#28B8A1;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.holder+'：'+showData.name"></div>
               <div style="clear:both"></div>
           </div>
       </div>
@@ -122,52 +122,57 @@
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
     export default {
         name: 'geqian',
         data() {
             return {
-               arr2: ['2018-7-3'],
-                      arr: [
-                {
-                  date: '2018-07-04',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/5',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/6',
-                  className: 'mark2'
-                }
-              ]     
+               id: '',
+               showData: {} 
             }
         },
         methods: {
-        
-         
-         opennext(){
-              
-         },
-         zhifu(){
-           this.$router.push({path:'/zhifu2'})
-         }
-   
-   
-        },
-       mounted () {
-     console.log('挂载好了')
-    
-
-
-   },
-    created:function() {
-                 
-    },
-        components: {
-                Calendar
+          // 帖子数据
+          findData(id){
+            var that = this;
+            that.ajax({
+              url:'tiezi/'+id,
+              method:"get",
+              success: function(data){
+                if(JSON.stringify(data)!='{}'){
+                  that.showData = data;
+                  that.ajax({
+                    url:'expert/'+data.tuid,
+                    method:"get",
+                    success:function(data2){
+                      that.showData.tx = data2.tx;
+                      that.showData.name = data2.name;
+                      that.showData.holder = data2.holder;
+                    }
+                  })
+                }
               }
+            });
+          },
+          // 评论
+          pinglunData() {
+
+          }
+        },
+         mounted () {
+            var id = this.$route.params.id;
+            this.findData(id);
+         },
+        created:function() {
+        },
+        deactivated(){
+          this.$destroy(true);
+        },
+        // beforeRouteEnter(to,from,next){
+        //   next(vm => {
+        //     var id = vm.$route.params.id;
+        //     vm.findData(id);
+        //   });
+        // },
     }
 </script>
 

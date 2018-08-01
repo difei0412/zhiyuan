@@ -6,6 +6,10 @@ import myAjax from './components/public/VueAjax'
 import fun from './components/public/fun'
 import 'mint-ui/lib/style.css'
 import { Toast,MessageBox,Indicator } from 'mint-ui'
+// 富文编辑器
+import "font-awesome.css/css/font-awesome.css"
+import initRichText from './common/initHTMLEditor';  
+initRichText();
 
 import index from './components/index'
 import layout from './components/layout'
@@ -38,6 +42,7 @@ import  imlist   from './components/mine/imlist'   //即时通讯大夫列表
 import  im from './components/mine/im'   //即时通讯路由
 import  luntan from  './components/mine/luntan'   //论坛
 import  fatie from  './components/mine/fatie'   //发帖
+import  fatie2 from  './components/mine/fatie2'   //发帖
 import  tiezi from  './components/mine/tiezi'   //发帖
 import  yuyue from  './components/mine/yuyue'   //
 import  erweima from  './components/mine/erweima'   //
@@ -259,10 +264,14 @@ let router = new VueRouter({
 			name: 'fatie',
 			path: '/fatie',
 			component: fatie
+		},{
+			name: 'fatie2',
+			path: '/fatie2',
+			component: fatie2
 		},
 		{
 			name: 'tiezi',
-			path: '/tiezi',
+			path: '/tiezi/:id',
 			component: tiezi
 		},
 		 {

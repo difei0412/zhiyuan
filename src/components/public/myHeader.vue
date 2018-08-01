@@ -39,6 +39,6 @@
     position: fixed;
     top: 0px;
     width: 100%;
-    z-index:99999999999
+    z-index:1500
   }
 </style>

@@ -52,7 +52,7 @@
                  </div>
               </li>
               <div v-if="tieziArr" v-for="item in tieziArr">
-                <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi">
+                <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
                     <div class="aui-media-list-item-inner">
                         <div class="aui-list-item-inner">
                            
@@ -72,8 +72,8 @@
                         </div>
                         <div class="aui-list-item-inner">
                             <div class="aui-list-item-text doctor">
-                                <div class="aui-list-item-title" v-text="item.tuid.username+' '+item.tuid.holder"> </div>
-                                <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                                <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                                <div class="aui-list-item-right"><div class="aui-label" v-text="item.tType==3?'官方发帖':'优质问答'"></div></div>
                             </div>
                         </div>
                     </div>
@@ -115,8 +115,8 @@
       openjinghua() {
         this.$router.pushRoute({name:'jinghuatie'})
       },
-      opentiezi(){
-        this.$router.pushRoute({name:'tiezi'})
+      opentiezi(tid){
+        this.$router.pushRoute({path:'/tiezi/'+tid})
       },
        openRouter:function(){
              this.$router.pushRoute({path:'/mingyilist'})
@@ -138,22 +138,50 @@
           var filter = {
             "order": "createdAt DESC",
             "where": {
-              "tflag":0
+              "tflag":0,
+              "tType":0
             },
             "limit":4,
             "include":"tuidPointer",
-            "includePointer":{"expert":{"fields":['id','username','holder']}}
+            "includeFilter":{"expert":{"fields":['id','name','holder']}}
           };
           that.ajax({
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
             method: "get",
             success: function(data) {
-              that.tieziArr = data;
+              for(var i=0;i<data.length;i++){
+                data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                that.tieziArr.push(data[i]);
+              }
+            }
+          });
+       }, 
+       showList2() {
+          var that = this;
+          var filter = {
+            "order": "createdAt DESC",
+            "where": {
+              "tflag":0,
+              "tType":3 // 官方后台发帖
+            },
+            "limit":2,
+            "include":"tuidPointer",
+            "includeFilter":{"expert":{"fields":['id','name','holder']}}
+          };
+          that.ajax({
+            url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
+            method: "get",
+            success: function(data) {
+              for(var i=0;i<data.length;i++){
+                data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                that.tieziArr.push(data[i]);
+              }
             }
           });
        }
     },
      mounted () {
+      this.showList2();
       this.showList();
       var swiper = new Swiper('.swiper-container', {
                                             autoplay:2500,

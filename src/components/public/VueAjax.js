@@ -20,6 +20,7 @@ export default {
 				"url" : appendUrl,
 				"method" : method,
 				"cache" : false,
+				"async": false,
 				"headers" : {
 					"X-APICloud-AppId" : appid,
 					"X-APICloud-AppKey" : appKey

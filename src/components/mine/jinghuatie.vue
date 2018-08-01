@@ -10,19 +10,18 @@
           <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
         </header>
       </div>
-      <keep-alive>
       <scroller :on-refresh="refresh" :on-infinite="infinite" style="top:2.5rem;" ref="myscroller">
         <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
                   <div v-if="tieziArr" v-for="item in tieziArr">
-                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi">
+                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
                         <div class="aui-media-list-item-inner">
                             <div class="aui-list-item-inner">
                                
                                 <div class="aui-list-item-text aui-ellipsis-2" style="color:#000" v-text="item.ttopic">
                                   
                                 </div>
-                                <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="item.tcontents.substr(0,45)+'...'">
+                                <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="item.tcontents+'...'">
                                   
                                 </div>
                             </div>
@@ -35,7 +34,7 @@
                             </div>
                             <div class="aui-list-item-inner">
                                 <div class="aui-list-item-text doctor">
-                                    <div class="aui-list-item-title" v-text="item.tuid.username+' '+item.tuid.holder"> </div>
+                                    <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
                                     <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
                                 </div>
                             </div>
@@ -46,7 +45,6 @@
               </ul>
           </div>
       </scroller>
-      </keep-alive>
     </div>
   
 </template>
@@ -69,13 +67,17 @@
         },
         methods: {
           openfatie(){
-           this.$router.pushRoute({path:'/fatie'})
+            if(window.localStorage.getItem('userId')){
+              this.$router.pushRoute({path:'/fatie'})
+            }else{
+              this.$router.pushRoute({path:'/login'})
+            }
           },
           openzhifu:function(){
            this.$router.pushRoute({path:'/mingyi'})
           },
-          opentiezi(){
-          this.$router.pushRoute({path:'/tiezi'})
+          opentiezi(id){
+            this.$router.pushRoute({path:'/tiezi/'+id})
           },
           closewin:function() {
             var _this = this;
@@ -86,6 +88,7 @@
               var that = this;
               var start = (that.currentPage-1)*that.pageSize;
               var filter = {
+                "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true},
                 "order": "createdAt DESC",
                 "where": {
                   "tflag":0,
@@ -94,7 +97,7 @@
                 "skip":start,
                 "limit":that.pageSize,
                 "include":"tuidPointer",
-                "includePointer":{"expert":{"fields":['id','username','holder']}}
+                "includefilter":{"expert":{"fields":['id','name','holder']}}
               };
               that.ajax({
                 url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
@@ -103,6 +106,7 @@
                   if(data.length<that.pageSize){
                     if(data.length>0){
                       for(var i=0;i<data.length;i++){
+                        data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
                         that.tieziArr.push(data[i]);
                       }
                     }
@@ -112,6 +116,12 @@
                       that.tieziArr.push(data[i]);
                     }
                   }
+                  sessionStorage.removeItem("doctor_tiezi");
+                  console.log(that.currentPage);
+                  var tempDic = {};
+                  tempDic['data'] = that.tieziArr;
+                  tempDic['page'] = that.currentPage;
+                  sessionStorage.setItem("doctor_tiezi", JSON.stringify(tempDic));
                 }
               });
            },
@@ -143,44 +153,47 @@
                     done();
                 }, 500);
             },
-            scrollToPostition(name) {
-              // 滚动到指定位置
-              Vue.nextTick(function() {
-                var tempSession = sessionStorage.getItem(name);
-                if (tempSession) {
-                  var tempDic = JSON.parse(tempSession);
-                  if (tempDic['position'] || tempDic['position'] == 0) {
-                    $(document).scrollTop(tempDic['position']);
-                  }
-                }
-              })
-            },
-            addScrollPlace(name) {
-              var that = this;
-              // 缓存滚动位置
-              Vue.nextTick(function() {
-                var tempSession = sessionStorage.getItem(name);
-                if (tempSession) {
-                  var tempDic = JSON.parse(tempSession);
-                  tempDic['position'] = $(document).scrollTop();
-                  tempDic['page'] = that.currentPage;
-                  sessionStorage.setItem(name, JSON.stringify(tempDic));
-                }
-              })
-            },
-          
         },
         activated() {
           
         },
        mounted() {
+          var that = this;
           if(sessionStorage.getItem("doctor_tiezi")!=null){
             var tmp = JSON.parse(sessionStorage.getItem("doctor_tiezi"));
             this.tieziArr = tmp['data'];
-            this.currentPage = tmp['currentPage'];
-            this.scrollToPostition("doctor_tiezi");
+            this.currentPage = tmp['page'];
+            this.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            setTimeout(function () {
+              that.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            },0)//同步转异步操作tTime
           }else{
             this.showList();
+          }
+       },
+       beforeRouteLeave(to,from,next){//记录离开时的位置
+          var tempSession = sessionStorage.getItem("doctor_tiezi");
+          if (tempSession) {
+            var tempDic = JSON.parse(tempSession);
+            tempDic['position'] = this.$refs.myscroller.getPosition().top;
+            tempDic['page'] = this.currentPage;
+            sessionStorage.setItem("doctor_tiezi", JSON.stringify(tempDic));
+          }
+          next()
+        },
+        beforeRouteEnter(to,from,next){
+          if(!sessionStorage.getItem("doctor_tiezi")){//当前页面刷新不需要切换位置
+            next(vm => {
+              vm.showList();
+            });
+          }else{
+            next(vm => {
+              var tmp = JSON.parse(sessionStorage.getItem("doctor_tiezi"));
+              vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+              setTimeout(function () {
+                vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+              },20)//同步转异步操作tTime
+            })
           }
        }
     }
