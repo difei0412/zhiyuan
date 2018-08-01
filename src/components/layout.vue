@@ -1,9 +1,9 @@
 <template style="background: #ffffff;">
-  <transition :name="transitionName">
-    <keep-alive>
-      <router-view style="min-height: 100%;"></router-view>
-    </keep-alive>
-  </transition>
+    <transition :name="transitionName">
+      <keep-alive>
+        <router-view style="min-height: 100%;"></router-view>
+      </keep-alive>
+    </transition>
 </template>
 
 <script>

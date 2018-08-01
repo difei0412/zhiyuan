@@ -10,15 +10,16 @@
             <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
           </header>
         </div>
+    <section class="aui-refresh-content">
      <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-media-list">
-            <li class="aui-list-header">
+            <!-- <li class="aui-list-header">
                最新帖子
                <div>
                   <i class="aui-iconfont aui-icon-refresh" style="margin-right:5px"></i>
                   <span>换一批</span>
               </div>
-            </li>
+            </li> -->
             <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi()">
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
@@ -159,6 +160,7 @@
         </ul>
 
     </div>
+  </section>
     </div>
 
 </section>

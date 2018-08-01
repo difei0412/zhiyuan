@@ -293,7 +293,8 @@ let router = new VueRouter({
 		{
 			name: 'jinghuatie',
 			path: '/jinghuatie',
-			component: jinghuatie
+			component: jinghuatie,
+			meta: { keepAlive: true },//当前的.vue文件需要缓存
 		},
 		{
 			name: 'fankuilist',
