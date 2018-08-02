@@ -69,6 +69,10 @@ import zizhi from './components/mine/zizhi' // 资质认证
 import tongzhi from './components/mine/tongzhi' // 消息通知
 import rizhiedit from './components/mine/rizhiedit' // 日志编辑
 
+// vueg
+import vueg from 'vueg'
+import 'vueg/css/transition-min.css'
+
 Vue.use(vuePicturePreview)
 Vue.use(vueEventCalendar, {locale: 'en'})
 
@@ -79,18 +83,18 @@ Vue.use(fun)
 Vue.component('myHeader', myHeader)
 
 // back push replace
-VueRouter.prototype.backRoute = function() {
-　　this.isBack = '1'
-　　this.back()
-}
-VueRouter.prototype.pushRoute = function(obj) {
-　　this.isBack = '2'
-　　this.push(obj)
-}
-VueRouter.prototype.replaceRoute = function(obj) {
-　　this.isBack = '0'
-　　this.replace(obj)
-}
+// VueRouter.prototype.back = function() {
+// 　　this.isBack = '1'
+// 　　this.back()
+// }
+// VueRouter.prototype.push = function(obj) {
+// 　　this.isBack = '2'
+// 　　this.push(obj)
+// }
+// VueRouter.prototype.replaceRoute = function(obj) {
+// 　　this.isBack = '0'
+// 　　this.replace(obj)
+// }
 
 
 Vue.prototype.$http = axios
@@ -332,6 +336,8 @@ let router = new VueRouter({
 		},
 	]
 })
+
+Vue.use(vueg,router);
 
 new Vue({
   el: '#app',

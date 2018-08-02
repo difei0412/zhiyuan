@@ -23,7 +23,7 @@
     methods: {
       closewin:function() {
         var _this = this;
-        _this.$router.backRoute();
+        _this.$router.back();
       }
     }
   }

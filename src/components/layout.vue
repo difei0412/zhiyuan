@@ -1,9 +1,9 @@
 <template style="background: #ffffff;">
-    <transition :name="transitionName">
+    <!-- <transition :name="transitionName"> -->
       <keep-alive>
-        <router-view style="min-height: 100%;"></router-view>
+        <router-view style="min-height: 100%;" v-transition="true"></router-view>
       </keep-alive>
-    </transition>
+    <!-- </transition> -->
 </template>
 
 <script>
@@ -17,43 +17,43 @@
       }
     },
     methods: {
-      keyback() {
-        var that = this
-        try {
-          that.api = api
-          if (that.$route.path == '/') { // 安卓退出
-            that.api.sendEvent({
-              name: 'changerouter',
-            });
-          } else { //安卓返回
-            that.api.sendEvent({
-              name: 'changerouter1',
-            });
-            that.api.addEventListener({
-              name: 'keyback1'
-            }, function(ret, err) {
-              that.$router.backRoute();
-            });
-          }
-        }
-        catch(error) {
-        }
-      },
+      // keyback() {
+      //   var that = this
+      //   try {
+      //     that.api = api
+      //     if (that.$route.path == '/') { // 安卓退出
+      //       that.api.sendEvent({
+      //         name: 'changerouter',
+      //       });
+      //     } else { //安卓返回
+      //       that.api.sendEvent({
+      //         name: 'changerouter1',
+      //       });
+      //       that.api.addEventListener({
+      //         name: 'keyback1'
+      //       }, function(ret, err) {
+      //         that.$router.back();
+      //       });
+      //     }
+      //   }
+      //   catch(error) {
+      //   }
+      // },
     },
     watch: {
       // 如果路由有变化，会再次执行该方法
-      '$route'(to, from) {
-        var isBack = this.$router.isBack  // 监听路由变化时的状态为前进还是后退
-        if (isBack == "1") {
-          this.transitionName = 'slide-right'
-        } else if (isBack == "2") {
-          this.transitionName = 'slide-left'
-        } else if (isBack == "0") {
-          this.transitionName = ''
-        }
-        this.$router.isBack = "0"
-        this.keyback();
-      }
+      // '$route'(to, from) {
+      //   var isBack = this.$router.isBack  // 监听路由变化时的状态为前进还是后退
+      //   if (isBack == "1") {
+      //     this.transitionName = 'slide-right'
+      //   } else if (isBack == "2") {
+      //     this.transitionName = 'slide-left'
+      //   } else if (isBack == "0") {
+      //     this.transitionName = ''
+      //   }
+      //   this.$router.isBack = "0"
+      //   this.keyback();
+      // }
     }
   }
 </script>
@@ -81,8 +81,8 @@
     opacity: 0;
   }
   .slide-right-enter, .slide-left-leave-active {
-    -webkit-transform: translateX(-40%);
-    transform: translateX(-40%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
   }
   .slide-left-enter-to, .slide-right-leave-to {
     position: fixed;

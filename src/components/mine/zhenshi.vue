@@ -116,7 +116,7 @@ export default {
 
           },
           openzhifu:function(){
-            this.$router.pushRoute({path:'/zhifu'})
+            this.$router.push({path:'/zhifu'})
           },
           openzhifu2:function(id,startdate,enddate,crnumber){
             var JZTime = startdate+'-'+enddate
@@ -124,7 +124,7 @@ export default {
             sessionStorage.setItem("hz_id", id);
             sessionStorage.setItem("JZTime", JZTime);
             sessionStorage.setItem("crnumber", crnumber);
-            this.$router.pushRoute({path:'/zhifu1'})
+            this.$router.push({path:'/zhifu1'})
           },
            // 首次加载获取用户信息
           //  getMy_user(){

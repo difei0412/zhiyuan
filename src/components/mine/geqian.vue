@@ -47,7 +47,7 @@
       				success:function(data){
 
       					that.$MessageBox.alert("修改成功！");
-                that.$router.pushRoute({path:'/userinfo'})
+                that.$router.push({path:'/userinfo'})
       				}
       			})
           }

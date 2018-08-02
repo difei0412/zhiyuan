@@ -69,13 +69,13 @@
         methods: {
           openfatie(){
             if(window.localStorage.getItem('userId')){
-              this.$router.pushRoute({path:'/fatie'})
+              this.$router.push({path:'/fatie'})
             }else{
-              this.$router.pushRoute({path:'/login'})
+              this.$router.push({path:'/login'})
             }
           },
           openzhifu:function(){
-           this.$router.pushRoute({path:'/mingyi'})
+           this.$router.push({path:'/mingyi'})
           },
           opentiezi(id){
             var that = this;
@@ -85,12 +85,12 @@
              },function(ret){
              });
             setTimeout(function(){
-              that.$router.pushRoute({path:'/tiezi/'+id})
+              that.$router.push({path:'/tiezi/'+id})
             }, 100);
           },
           closewin:function() {
             var _this = this;
-            _this.$router.backRoute();
+            _this.$router.back();
           },
           // 查询数据
           showList() {

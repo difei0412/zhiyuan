@@ -157,7 +157,7 @@
             var that = this;
             var id = window.localStorage.getItem('userId');
             if(!id){
-              this.$router.pushRoute({path:'/login'});
+              this.$router.push({path:'/login'});
               return;
             }
             if(that.trim(that.content) == ''){

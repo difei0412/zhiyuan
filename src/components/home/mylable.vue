@@ -172,7 +172,7 @@
           success:function(data) {
             // 结束加载
             that.$Indicator.close();
-            that.$router.backRoute();
+            that.$router.back();
           },
           error:function(errorData) {
             // 结束加载

@@ -119,10 +119,10 @@ import Calendar from '../vue-calendar-component/index';
         },
         methods: {
           openzhifu:function(){
-           this.$router.pushRoute({path:'/im'})
+           this.$router.push({path:'/im'})
           },
           openzhifu2(param) {
-            this.$router.pushRoute({path:'/im'+param})
+            this.$router.push({path:'/im'+param})
           }
           
         },

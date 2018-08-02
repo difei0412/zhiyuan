@@ -114,7 +114,7 @@
     },
     methods:{
       openjinghua() {
-        this.$router.pushRoute({name:'jinghuatie'})
+        this.$router.push({name:'jinghuatie'})
       },
       opentiezi(tid){
         var that = this;
@@ -124,23 +124,23 @@
          },function(ret){
          });
         setTimeout(function(){
-          that.$router.pushRoute({path:'/tiezi/'+tid})
+          that.$router.push({path:'/tiezi/'+tid})
         }, 100);
       },
        openRouter:function(){
-             this.$router.pushRoute({path:'/mingyilist'})
+             this.$router.push({path:'/mingyilist'})
        },
         openRouter1:function(){
-             this.$router.pushRoute({path:'/zixun'})
+             this.$router.push({path:'/zixun'})
        },
          openRouter2:function(){
-             this.$router.pushRoute({path:'/zhenshi'})
+             this.$router.push({path:'/zhenshi'})
        },
        openzhifu:function(){
-           this.$router.pushRoute({path:'/mingyi'})
+           this.$router.push({path:'/mingyi'})
        },
        openRouter3:function(){
-             this.$router.pushRoute({path:'/jianhu'})
+             this.$router.push({path:'/jianhu'})
        },
        showList() {
           var that = this;

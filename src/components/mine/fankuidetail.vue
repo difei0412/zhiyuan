@@ -51,14 +51,14 @@
 		methods: {
 			closewin:function() {
 	            var _this = this;
-	            _this.$router.backRoute();
+	            _this.$router.back();
 	        },
 			//打开注册协议
 			register_btn1(){
-               this.$router.pushRoute({name:"xiayibu"});
+               this.$router.push({name:"xiayibu"});
 			},
 			openRegisterProtocol() {
-				this.$router.pushRoute({name:"registerProtocol"});
+				this.$router.push({name:"registerProtocol"});
 			},
 			//重新获取验证码倒计时函数
 			countDown() {
@@ -270,7 +270,7 @@
 				that.ajax({url,method,params,
 					success:function(response){
 						that.$Indicator.close();
-						that.$router.backRoute();
+						that.$router.back();
 					}
 				})
 			}

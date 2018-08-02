@@ -86,7 +86,7 @@ import Calendar from '../vue-calendar-component/index';
                       setTimeout(function(){
                         that.ttopic = "";
                         that.content = "请输入帖子内容";
-                        that.$router.backRoute();
+                        that.$router.back();
                       }, 2000);
                       that.toast.success({
                           title:"提交成功",

@@ -87,11 +87,11 @@ export default {
     methods: {
       closewin:function() {
         var _this = this;
-        _this.$router.backRoute();
+        _this.$router.back();
       },
       
       openRegisterProtocol() {
-        this.$router.pushRoute({name:"registerProtocol"});
+        this.$router.push({name:"registerProtocol"});
       },
       // 查询数据
       getMy_user() {

@@ -61,10 +61,10 @@
     },
     methods: {
       opentongzhi() {
-        this.$router.pushRoute({name:"tongzhi"});
+        this.$router.push({name:"tongzhi"});
       },
       goToSearch() {
-        this.$router.pushRoute({name:"search"});
+        this.$router.push({name:"search"});
       },
       openmenu:function(index) {
         var that = this
