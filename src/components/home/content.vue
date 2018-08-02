@@ -150,6 +150,7 @@
             method: "get",
             success: function(data) {
               for(var i=0;i<data.length;i++){
+                data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
                 data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
                 that.tieziArr.push(data[i]);
               }
@@ -173,11 +174,16 @@
             method: "get",
             success: function(data) {
               for(var i=0;i<data.length;i++){
+                data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
                 data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
                 that.tieziArr.push(data[i]);
               }
             }
           });
+       },
+       // 字符串去除HTML标签
+       delHtmlTag(str){
+        return str.replace(/<[^>]+>/g,"");
        }
     },
      mounted () {

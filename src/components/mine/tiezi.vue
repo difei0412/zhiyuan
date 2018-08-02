@@ -159,10 +159,10 @@
           }
         },
          mounted () {
-            var id = this.$route.params.id;
-            this.findData(id);
          },
         created:function() {
+          var id = this.$route.params.id;
+          this.findData(id);
         },
         deactivated(){
           this.$destroy(true);

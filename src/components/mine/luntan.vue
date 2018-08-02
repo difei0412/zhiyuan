@@ -83,6 +83,10 @@
             var _this = this;
             _this.$router.backRoute();
           },
+          // 字符串去除HTML标签
+           delHtmlTag(str){
+            return str.replace(/<[^>]+>/g,"");
+           },
           // 查询数据
           showList() {
               var that = this;
@@ -108,6 +112,7 @@
                   if(data.length<that.pageSize){
                     if(data.length>0){
                       for(var i=0;i<data.length;i++){
+                        data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
                         data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
                         that.tieziArr.push(data[i]);
                       }
@@ -115,6 +120,8 @@
                     that.isLoadFinish = true;
                   } else {
                     for(var i=0;i<data.length;i++){
+                      data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
+                      data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
                       that.tieziArr.push(data[i]);
                     }
                   }
