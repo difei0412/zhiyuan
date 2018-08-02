@@ -116,7 +116,8 @@
 			</div>
 			<div class="list" @click="openSign2">
 				<span class="title">资质认证</span>
-				<span class="title color flex text-show-row-1">{{userInfo.zizhi?userInfo.zizhi:'未设置'}}</span>
+				<span class="title color flex text-show-row-1" v-if="userInfo.file_list">已上传</span>
+				<span class="title color flex text-show-row-1" v-else>未设置</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
