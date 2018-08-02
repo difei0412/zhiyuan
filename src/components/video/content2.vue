@@ -25,8 +25,8 @@
               </div>
               </li>
               
-              <div v-if="tieziArr" v-for="item in tieziArr">
-                <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
+              <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">
+                <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
                     <div class="aui-media-list-item-inner">
                         <div class="aui-list-item-inner">
                            
@@ -94,7 +94,15 @@
         this.$router.pushRoute({name:'imlist'})
       },
       opentiezi(id){
-        this.$router.pushRoute({path:'/tiezi/'+id})
+         var that = this;
+          this.toast.loading({
+               title:"加载中",
+               duration:2000
+           },function(ret){
+           });
+          setTimeout(function(){
+            that.$router.pushRoute({path:'/tiezi/'+id})
+          }, 100);
       },
       openwenda(){
       this.$router.pushRoute({name:'imlist'})

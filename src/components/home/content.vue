@@ -26,7 +26,7 @@
         </div>
         <div class="aui-col-xs-3" @click="openRouter1()">
             <i class="aui-iconfont aui-icon-date"></i>
-            <p>住院患者监护</p>
+            <p>知源资讯</p>
         </div>
          <div class="aui-col-xs-3" @click="openRouter2()">
             <i class="aui-iconfont aui-icon-cert"></i>
@@ -51,8 +51,8 @@
                       <p @click="openjinghua">更多</p>
                  </div>
               </li>
-              <div v-if="tieziArr" v-for="item in tieziArr">
-                <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
+              <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">
+                <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
                     <div class="aui-media-list-item-inner">
                         <div class="aui-list-item-inner">
                            
@@ -109,6 +109,7 @@
         userId: "",
         sessionName: 'scrollForHome',
         tieziArr: [], // 帖子数据展示
+        toast: null,
       }
     },
     methods:{
@@ -116,13 +117,21 @@
         this.$router.pushRoute({name:'jinghuatie'})
       },
       opentiezi(tid){
-        this.$router.pushRoute({path:'/tiezi/'+tid})
+        var that = this;
+        this.toast.loading({
+             title:"加载中",
+             duration:2000
+         },function(ret){
+         });
+        setTimeout(function(){
+          that.$router.pushRoute({path:'/tiezi/'+tid})
+        }, 100);
       },
        openRouter:function(){
              this.$router.pushRoute({path:'/mingyilist'})
        },
         openRouter1:function(){
-             this.$router.pushRoute({path:'/guahao'})
+             this.$router.pushRoute({path:'/zixun'})
        },
          openRouter2:function(){
              this.$router.pushRoute({path:'/zhenshi'})
@@ -187,6 +196,7 @@
        }
     },
      mounted () {
+      this.toast = new auiToast();
       this.showList2();
       this.showList();
       var swiper = new Swiper('.swiper-container', {

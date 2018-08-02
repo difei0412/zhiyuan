@@ -13,8 +13,8 @@
       <scroller :on-refresh="refresh" :on-infinite="infinite" style="top:2.5rem;" ref="myscroller">
         <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
-                  <div v-if="tieziArr" v-for="item in tieziArr">
-                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
+                  <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">
+                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
                         <div class="aui-media-list-item-inner">
                             <div class="aui-list-item-inner">
                                
@@ -62,6 +62,7 @@
                currentPage: 1,
                pageSize:4,
                isLoadFinish:false, //是否加载完全部数据
+               toast: null,
                //isLoading: false, // 是否加载中，防止一直加载
             }
         },
@@ -77,7 +78,15 @@
            this.$router.pushRoute({path:'/mingyi'})
           },
           opentiezi(id){
-            this.$router.pushRoute({path:'/tiezi/'+id})
+            var that = this;
+            this.toast.loading({
+                 title:"加载中",
+                 duration:2000
+             },function(ret){
+             });
+            setTimeout(function(){
+              that.$router.pushRoute({path:'/tiezi/'+id})
+            }, 100);
           },
           closewin:function() {
             var _this = this;
@@ -120,7 +129,6 @@
                     }
                   }
                   sessionStorage.removeItem("doctor_tiezi");
-                  console.log(that.currentPage);
                   var tempDic = {};
                   tempDic['data'] = that.tieziArr;
                   tempDic['page'] = that.currentPage;
@@ -140,13 +148,12 @@
                     that.currentPage++;
                     that.showList();
                   }
-                  if(that.isLoadFinish){
+                  if(that.isLoadFinish){ // 加载完毕
                     done(true);
                     return;
                   } else {
                     done();
                   }
-                  
               }, 500)
             },
             // 下拉刷新
@@ -166,6 +173,7 @@
         },
        mounted() {
           var that = this;
+          this.toast = new auiToast();
           if(sessionStorage.getItem("doctor_tiezi")!=null){
             var tmp = JSON.parse(sessionStorage.getItem("doctor_tiezi"));
             this.tieziArr = tmp['data'];

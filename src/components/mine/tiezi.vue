@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: white; min-height: 100%;">
+    <div style="background-color: white; min-height: 100%;" v-cloak>
         <myHeader :title="'帖子详情'"></myHeader>
        <div class="aui-content aui-content-padded" >
          <h3 class="aui-list-header" v-text="showData.ttopic"></h3>
@@ -35,81 +35,39 @@
       <div class="aui-searchbar-input aui-border-radius">
           <i class="aui-iconfont aui-icon-pencil"></i>
           <form action="javascript:search();">
-              <input type="search" placeholder="请输入您的评价" id="search-input" style="">
+              <input type="search" placeholder="请输入您的评论" id="search-input" style="" v-model="content">
           </form>
 
       </div>
-      <i class="aui-iconfont aui-icon-comment"><div class="aui-badge">3</div></i>
+      <div class="aui-btn aui-btn-warning" @click="saveData">提交</div>
+      <!-- <i class="aui-iconfont aui-icon-comment"><div class="aui-badge">3</div></i> -->
   </div>
 
   <div class="aui-content aui-margin-b-15 pinglun-list">
     <ul class="aui-list aui-media-list">
         <li class="aui-list-header">
-            精彩评论 (11)
+            精彩评论 ({{plnum}})
         </li>
-        <li class="aui-list-item aui-list-item-arrow">
+        <li class="aui-list-item aui-list-item-arrow" v-if="pldata.length>0" v-for="item in pldata">
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-info aui-padded-l-10 aui-padded-r-10">
                         <div class="aui-info-item">
-                            <img src="static/image/demo1.jpeg" class="aui-img-round" />
-                            <div class="user-nick">杨诺依</div>
+                            <img :src="item.face?item.face:'static/image/user.png'" class="aui-img-round" />
+                            <div class="user-nick" v-text="item.username"></div>
                         </div>
-                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
+                        <div class="aui-info-item"> <span class="user-zan-num" v-text="dateFormat(item.createdAt)"></span></div>
                     </div>
-                    <div class="aui-list-item-text aui-ellipsis-2">
-                        这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+                    <div class="aui-list-item-text aui-ellipsis-2" v-text="item.rcontent">
+                        
                     </div>
                 </div>
             </div>
         </li>
-        <li class="aui-list-item aui-list-item-arrow">
-            <div class="aui-media-list-item-inner">
-                <div class="aui-list-item-inner">
-                    <div class="aui-info aui-padded-l-10 aui-padded-r-10">
-                        <div class="aui-info-item">
-                            <img src="static/image/demo1.jpeg" class="aui-img-round" />
-                            <div class="user-nick">杨诺依</div>
-                        </div>
-                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
-                    </div>
-                    <div class="aui-list-item-text aui-ellipsis-2">
-                        这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="aui-list-item aui-list-item-arrow">
-            <div class="aui-media-list-item-inner">
-                <div class="aui-list-item-inner">
-                    <div class="aui-info aui-padded-l-10 aui-padded-r-10">
-                        <div class="aui-info-item">
-                            <img src="static/image/demo1.jpeg" class="aui-img-round" />
-                            <div class="user-nick">杨诺依</div>
-                        </div>
-                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
-                    </div>
-                    <div class="aui-list-item-text aui-ellipsis-2">
-                        这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="aui-list-item aui-list-item-arrow">
-            <div class="aui-media-list-item-inner">
-                <div class="aui-list-item-inner">
-                    <div class="aui-info aui-padded-l-10 aui-padded-r-10">
-                        <div class="aui-info-item">
-                            <img src="static/image/demo1.jpeg" class="aui-img-round" />
-                            <div class="user-nick">杨诺依</div>
-                        </div>
-                        <div class="aui-info-item"> <span class="user-zan-num">2018年04月12日 12:12</span></div>
-                    </div>
-                    <div class="aui-list-item-text aui-ellipsis-2">
-                        这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
-                    </div>
-                </div>
-            </div>
+        <li class="aui-list-item aui-list-item-arrow" v-if="pldata.length<=0">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-inner no-pinglun">暂无评论</div>
+          </div>
         </li>
         
    </ul>
@@ -122,12 +80,18 @@
 </template>
 
 <script>
+    import $ from '../public/jquery'
     export default {
         name: 'geqian',
         data() {
             return {
                id: '',
-               showData: {} 
+               showData: {},
+               plnum:0,
+               pldata: [],
+               userinfo: {},
+               content: '',
+               toast: null
             }
         },
         methods: {
@@ -153,30 +117,171 @@
               }
             });
           },
-          // 评论
-          pinglunData() {
-
-          }
+          // 评论数据显示
+          pinglunData(id) {
+            var that=this;
+            var filter = {
+              "where": {
+                "rtid":id
+              },
+              "limit":that.plnum
+            };
+            that.ajax({
+              url: 'gentie?filter='+encodeURIComponent(JSON.stringify(filter)),
+              method:'get',
+              success: function(data) {
+                that.pldata = data;
+              }
+            });
+          },
+          pinglunnum(id){
+            var that=this;
+            var filter = {
+              "where": {
+                "rtid":id
+              }
+            };
+            that.ajax({
+              url: 'gentie/count?filter='+encodeURIComponent(JSON.stringify(filter)),
+              method:'get',
+              success: function(data) {
+                that.plnum = data['count'];
+              }
+            });
+          },
+          //去左右空格;
+          trim(s){
+            return s.replace(/(^\s*)|(\s*$)/g, "");
+          },
+          saveData() { // 跟帖回复保存
+            var that = this;
+            var id = window.localStorage.getItem('userId');
+            if(!id){
+              this.$router.pushRoute({path:'/login'});
+              return;
+            }
+            if(that.trim(that.content) == ''){
+              that.toast.fail({
+                  title:"请输入评论内容",
+                  duration:2000
+              });
+              return;
+            }
+            var params = {
+              "data":{
+                'rtid':that.showData.id,
+                'rsid':that.showData.tsid,
+                'rcontent':that.content,
+                'rtime':that.dateFormat(),
+                'ruid': that.userinfo.id,
+                'username': that.userinfo.name,
+                'face': that.userinfo.Tx
+              }
+            }
+            that.toast.loading({
+                 title:"加载中",
+                 duration:2000
+             },function(ret){
+             });
+            setTimeout(function(){
+              that.ajax({
+                url:'gentie',
+                method:'post',
+                params,
+                success(data){
+                  that.toast.hide();
+                  if(JSON.stringify(data)!='{}') {
+                    that.content = "";
+                    that.plnum++;
+                    that.pldata.push(data);
+                    that.toast.success({
+                        title:"评论成功",
+                        duration:2000
+                    });
+                  }else{
+                    that.toast.fail({
+                        title:"评论失败",
+                        duration:2000
+                    });
+                  }
+                }
+              });
+             }, 500);
+          },
+          // 当前登录用户信息
+          userFind() {
+            var that = this;
+            var id = window.localStorage.getItem('userId');
+            that.ajax({
+              url: 'expert/'+id,
+              method:'get',
+              success: function(data) {
+                that.userinfo = data;
+              }
+            });
+          },
+          // 时间格式转换,不传参获取当前时间日期
+          dateFormat(date) {
+            date = date||null;
+            if(date == null){
+              var dateObj = new Date();
+            } else {
+              var dateObj = new Date(date);
+            }
+            var year = dateObj.getFullYear();
+            var month = dateObj.getMonth()+1;
+            var day = dateObj.getDate();
+            var hour = dateObj.getHours();
+            var minute = dateObj.getMinutes();
+            var second = dateObj.getSeconds();
+            if(month<=9){
+              month = "0" + month;
+            }
+            if(day<=9){
+              day = "0" + day;
+            }
+            if(hour<=9){
+              hour = "0" + hour;
+            }
+            if(minute<=9){
+              minute = "0" + minute;
+            }
+            if(second<=9){
+              second = "0" + second;
+            }
+            var newDay = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+            return newDay;
+          },
         },
          mounted () {
+           this.$nextTick(() => {
+            $(document).scrollTop(0);
+           })
          },
         created:function() {
           var id = this.$route.params.id;
           this.findData(id);
+          this.pinglunnum(id);
+          this.pinglunData(id);
+          this.toast = new auiToast();
+          this.userFind();
+          this.toast.hide();
         },
         deactivated(){
           this.$destroy(true);
         },
-        // beforeRouteEnter(to,from,next){
-        //   next(vm => {
-        //     var id = vm.$route.params.id;
-        //     vm.findData(id);
-        //   });
-        // },
+        beforeRouteEnter(to,from,next){
+          next(vm => {
+            
+          })
+        }
     }
 </script>
 
 <style scoped>
+    [v-cloak] {
+      display: none;
+    }
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;
@@ -378,5 +483,13 @@ span.zan-num {
 .aui-list-item-arrow {
   padding-bottom: 0.5rem !important;
   border-bottom: 1px solid #eee !important;
+}
+.aui-btn-warning {
+  margin-right:0.5rem;
+}
+.no-pinglun {
+  text-align: center;
+  text-indent: 0rem;
+  margin-top: 1rem;
 }
 </style>
