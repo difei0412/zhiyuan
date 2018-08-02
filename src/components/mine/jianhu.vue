@@ -121,7 +121,7 @@ import Calendar from '../vue-calendar-component/index2';
         },
         methods: {
           openzhifu:function(){
-           this.$router.pushRoute({path:'/rizhiedit'})
+           this.$router.push({path:'/rizhiedit'})
           }
           
         },

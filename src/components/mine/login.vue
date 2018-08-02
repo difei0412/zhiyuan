@@ -58,10 +58,10 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
     },
     methods: {
       openRegister(){
-        this.$router.pushRoute({name:'register'});
+        this.$router.push({name:'register'});
       },
       openForgetPsw(){
-        this.$router.pushRoute({name:'forgetPsw'});
+        this.$router.push({name:'forgetPsw'});
       },
       btn_login:function() {
         if (!myreg.test(this.loginuser)) {
@@ -96,7 +96,7 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
                 } else {
                   window.localStorage.setItem('userMobile',data[0].mobile);
                   window.localStorage.setItem('userId',data[0].id);
-                  that.$router.pushRoute({name:"index"});
+                  that.$router.push({name:"index"});
                 }
               }
             });
@@ -111,7 +111,7 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 			this.loginuser = window.localStorage.getItem('userMobile');
 			this.password = '';
 			if (window.localStorage.getItem('userId')) {
-				this.$router.backRoute();
+				this.$router.back();
 			}
 		}
 	}

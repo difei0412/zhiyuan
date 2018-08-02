@@ -93,40 +93,40 @@
 		},
 		methods: {
 			openfankuilist(){
-              this.$router.pushRoute({name:"fankuilist"});
+              this.$router.push({name:"fankuilist"});
 		    },
 		    openyuyue(){
-              this.$router.pushRoute({name:"yuyue"});
+              this.$router.push({name:"yuyue"});
 		    },
 		    opendaka(){
-             this.$router.pushRoute({name:"daka"});  
+             this.$router.push({name:"daka"});  
 		    },
 			isLogin() {
 				if (this.userId) {
 					return true;
 				} else {
-					this.$router.pushRoute({name:"login"});
+					this.$router.push({name:"login"});
 					return false;
 				}
 			},
 			openUserInfo() {
-				this.$router.pushRoute({name:"userInfo"});
+				this.$router.push({name:"userInfo"});
 			},
 			openLogin() {
-				this.$router.pushRoute({name:"login"});
+				this.$router.push({name:"login"});
 			},
 
 			openRegister() {
-				this.$router.pushRoute({name:"register"});
+				this.$router.push({name:"register"});
 			},
 			openRouter(meth) {
 				if (meth == "aboutUs" || this.isLogin()) {
-					this.$router.pushRoute({name:meth});
+					this.$router.push({name:meth});
 				}
 			},
 			openDetail(index) {
 				if (this.isLogin()) {
-					this.$router.pushRoute({name:"colOrHisOrPush", params:{index:index}});
+					this.$router.push({name:"colOrHisOrPush", params:{index:index}});
 				}
 			},
 			getUserInfo() {

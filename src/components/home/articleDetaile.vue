@@ -109,7 +109,7 @@
 		methods:{
 			goToCommentList() {
 				this.addScrollPlace(this.sessionName);
-				this.$router.pushRoute({name:"commentList", params:{id:this.$route.params.id}});
+				this.$router.push({name:"commentList", params:{id:this.$route.params.id}});
 			},
 			isSupport() {
 				var that = this;
@@ -327,7 +327,7 @@
 				var that = this
 
 				if (!that.userId) {
-					that.$router.pushRoute({name:"login"});
+					that.$router.push({name:"login"});
 					return;
 				}
 
@@ -430,7 +430,7 @@
 				var that = this;
 
 				if (!that.userId) {
-					that.$router.pushRoute({name:"login"});
+					that.$router.push({name:"login"});
 					return;
 				}
 

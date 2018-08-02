@@ -144,7 +144,7 @@ export default {
 													that.ajax({url:url3,method:'post',params,success:function(data){
 														if (data) {
 															Toast("注册成功！")
-															that.$router.pushRoute({name:"login"});
+															that.$router.push({name:"login"});
 														}else{
 															Toast("注册失败！")
 														}
@@ -177,10 +177,10 @@ export default {
 				}
 				
 				
-				// this.$router.pushRoute({name:"xiayibu"});
+				// this.$router.push({name:"xiayibu"});
 			},
 			openRegisterProtocol() {
-				this.$router.pushRoute({name:"registerProtocol"});
+				this.$router.push({name:"registerProtocol"});
 			},
 			//重新获取验证码倒计时函数
 			countDown() {
@@ -433,7 +433,7 @@ export default {
 				that.ajax({url,method,params,
 					success:function(response){
 						that.$Indicator.close();
-						that.$router.backRoute();
+						that.$router.back();
 					}
 				})
 			}

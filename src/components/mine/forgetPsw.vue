@@ -239,7 +239,7 @@ register_btn1(){
 							that.ajax({url:url3,method:'post',params,success:function(data){
 								if (data) {
 									Toast("密码修改成功！")
-									that.$router.pushRoute({name:"login"});
+									that.$router.push({name:"login"});
 								}else{
 									Toast("密码修改失败！")
 								}
@@ -267,7 +267,7 @@ register_btn1(){
 	}
 
 
-				// this.$router.pushRoute({name:"xiayibu"});
+				// this.$router.push({name:"xiayibu"});
 			},
 
 
@@ -385,7 +385,7 @@ register_btn1(){
 										if(data){
 											that.$Indicator.close();
 											that.$MessageBox.alert("修改成功！").then(function(){
-												that.$router.backRoute();
+												that.$router.back();
 											})
 										}
 									}

@@ -341,11 +341,11 @@ export default {
 		},
 		//打开成就简介输入框
 		openSign() {
-			this.$router.pushRoute({path:'/geqian'})
+			this.$router.push({path:'/geqian'})
 		},
 		//打开资质认证上传
 		openSign2() {
-			this.$router.pushRoute({path:'/zizhi'})
+			this.$router.push({path:'/zizhi'})
 		},
 		//打开日期选择器
 		openBirthday() {

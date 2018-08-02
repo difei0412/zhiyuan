@@ -85,13 +85,13 @@
     methods: {
       openRouter() {
         if(window.localStorage.getItem('userId')){
-          this.$router.pushRoute({name:'luntan'})
+          this.$router.push({name:'luntan'})
         }else{
-          this.$router.pushRoute({name:'login'})
+          this.$router.push({name:'login'})
         }
       },
       openRouter1() {
-        this.$router.pushRoute({name:'imlist'})
+        this.$router.push({name:'imlist'})
       },
       opentiezi(id){
          var that = this;
@@ -101,17 +101,17 @@
            },function(ret){
            });
           setTimeout(function(){
-            that.$router.pushRoute({path:'/tiezi/'+id})
+            that.$router.push({path:'/tiezi/'+id})
           }, 100);
       },
       openwenda(){
-      this.$router.pushRoute({name:'imlist'})
+      this.$router.push({name:'imlist'})
       },
        openluntan(){
-      this.$router.pushRoute({name:'luntan'})
+      this.$router.push({name:'luntan'})
       },
       toVideoDetail(id) {
-        this.$router.pushRoute({name:'videoDetaile', params:{id:id}})
+        this.$router.push({name:'videoDetaile', params:{id:id}})
       },
       openChild:function(index, isAnamition) {
         var that = this

@@ -127,13 +127,13 @@
 		methods:{
 			openArticle:function(type, id) {
 				if (type == 'text') {
-					this.$router.pushRoute({name: 'articleDetaile', params:{id:id}})
+					this.$router.push({name: 'articleDetaile', params:{id:id}})
 				} else if (type == 'video') {
-					this.$router.pushRoute({name: 'videoDetaile', params:{id:id}})
+					this.$router.push({name: 'videoDetaile', params:{id:id}})
 				}
 			},
 			closewin:function() {
-				this.$router.backRoute();
+				this.$router.back();
 			},
 			search:function() {
 				var keyword = this.$refs.input.value

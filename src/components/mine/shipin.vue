@@ -41,7 +41,7 @@ import Calendar from '../vue-calendar-component/index';
         methods: {
            closewin:function() {
         var _this = this;
-        _this.$router.backRoute();
+        _this.$router.back();
       },
            //获取用户信息函数
            clickDay(data) {
