@@ -226,104 +226,17 @@
       },
       scrollTitle(index, time) {
         this.$nextTick(() => {
-          // var navItem = $('.head');
-          // var Left = $('.head').scrollLeft();
-          // var Len = (navItem.width()) / 2;
-          // var navSpan = $('.head li').eq(index).offset().left;
-          // navItem.animate({ 'scrollLeft': navSpan + Left - Len + 35}, time, function() {
-          // });
+
         })
       },
       initdata:function() {
-        // var that = this;
-        // var filter = 'filter[where][status]=0'
-        // filter += '&filter[where][to]=noindex'
-        // filter += '&filter[skip]=0'
-        // filter += '&filter[limit]=5000'
-        // var url = "news_info?" + filter;
-        // var method = "GET";
-        // that.ajax({url, method,
-        //   success:function(data) {
-        //     // 添加推荐
-        //     var tempDic = {
-        //       "Info_name" : "推荐",
-        //       "id" : "-1"
-        //     }
-        //     data.unshift(tempDic);
 
-        //     for (var i = 0; i < data.length; i++) {
-        //       that.mylist.push(data[i]);
-        //     }
-
-        //     that.openChild(0, false);
-        //   }
-        // });
       },
       isSupport() {
-        // var that = this;
 
-        // that.supportDic = JSON.parse(window.localStorage.getItem('supportDic'));
-        // if (!that.userId) {
-        //   return;
-        // }
-
-        // var filter = 'filter[skip]=0'
-        // filter += '&filter[limit]=5000'
-        // var url = "support?" + filter;
-        // var method = "GET";
-        // that.ajax({url, method,
-        //   success:function(data) {
-        //     var dic = that.supportDic.login;
-        //     dic.news = {};
-        //     dic.pinglun = {};
-        //     for (var i = 0; i < data.length; i++) {
-        //       var tempDic = data[i];
-        //       dic[tempDic.type][tempDic.record_id] = tempDic.user_id;
-        //     }
-        //     that.supportDic.login = dic;
-        //     window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic))
-        //   }
-        // });
       },
       supportClick(id, index) {
-        // var that = this;
 
-        // if (!that.userId) {
-        //   if (that.supportDic.noLogin["news"][id] == '1') {
-        //     that.$MessageBox.alert('您已经赞过了！');
-        //     return;
-        //   }
-        //   that.supportDic.noLogin["news"][id] = '1';
-        //   that.supportDic = Object.assign({}, that.supportDic);
-        //   window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic));
-        //   that.$MessageBox.alert('点赞成功');
-        //   that.addSupportNum(id, index);
-        //   return;
-        // }
-        // if (that.supportDic.login["news"][id] == that.userId) {
-        //   that.$MessageBox.alert('您已经赞过了！');
-        //   return;
-        // }
-
-        // var url = "support/";
-        // var method = "POST";
-        // var params = {
-        //   "data" : {
-        //     "_method" : "PUT",
-        //     "user_id" : that.userId,
-        //     "record_id" : id,
-        //     "type" : 'news'
-        //   }
-        // }
-        // that.ajax({url, method, params,
-        //   success:function(data) {
-        //     that.supportDic.login["news"][id] = that.userId;
-        //     that.supportDic = Object.assign({}, that.supportDic);
-        //     window.localStorage.setItem('supportDic', JSON.stringify(that.supportDic));
-        //     that.$MessageBox.alert('点赞成功');
-        //     that.addSupportNum(id, index);
-        //   }
-        // });
       },
       addSupportNum(id, index) {
         var that = this;

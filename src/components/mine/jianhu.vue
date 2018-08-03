@@ -102,21 +102,12 @@ import Calendar from '../vue-calendar-component/index2';
         name: 'geqian',
         data() {
             return {
-               arr2: ['2018-7-3'],
-                      arr: [
-                {
-                  date: '2018-07-04',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/5',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/6',
-                  className: 'mark2'
-                }
-              ]     
+                vuegConfig: {
+                  disable: false,
+                  forwardAnim: 'fadeInRight',
+                  duration: '.3',
+                  backAnim: 'fadeInLeft'
+              }    
             }
         },
         methods: {

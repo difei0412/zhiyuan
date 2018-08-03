@@ -77,7 +77,8 @@
 
 		<!-- 退出 -->
 		<div class="exitBg my-middle" v-if="userId">
-			<div class="exit" @click="exitBtn">退出登录</div>
+			<!-- <div class="exit" >退出登录</div> -->
+			<div class="aui-btn aui-btn-danger aui-btn-block" @click="exitBtn">退出登录</div>
 		</div>
 	</div>
 </template>
@@ -126,9 +127,8 @@
 			},
 			getUserInfo() {
 				var that = this;
-				var userId = window.localStorage.getItem('userId');
-				that.userId = userId?userId:'';
-				var url = "expert/" + userId;
+				
+				var url = "expert/" + that.userId;
 				var method = "GET";
 				that.ajax({url,method,
 					success:function(data){
@@ -145,7 +145,9 @@
 			}
 		},
 		activated() {
-			this.getUserInfo()
+			var userId = window.localStorage.getItem('userId');
+			this.userId = userId?userId:'';
+			//this.getUserInfo()
 		}
 	}
 </script>
@@ -297,15 +299,14 @@
 	.exitBg {
 		height: 8rem;
 	}
-	.exit {
-		height: 2rem;
+	.aui-btn-block {
+		margin:0.7rem;
+		width:fill-availabel;
+		width:-webkit-fill-availabel;
+		height:2rem;
 		line-height: 2rem;
-		border-radius: 1rem;
-		font-size: 0.78rem;
-		color: #f22a2a;
-		background-color: rgb(240, 240, 240);
-		width: 7.5rem;
-		margin: 0 auto;
-		text-align: center;
+		font-size: 14px;
+		letter-spacing: 0.1rem;
+		background: #27B5B1 !important;
 	}
 </style>

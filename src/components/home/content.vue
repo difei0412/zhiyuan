@@ -1,6 +1,7 @@
 <template style="background: #ffffff;">
   <div>
-    <div  class="swiper-container" style="width:100%;margin-top:40px">
+    <div style="width:100%;height:2.25rem;"></div>
+    <div  class="swiper-container" style="width:100%;">
       <div class="swiper-wrapper" style="width:100%;height:100%">
         <div class="swiper-slide"  >
           <img style="width:100%;height:100%" src="static/image/myim1.jpeg"   />
@@ -197,8 +198,8 @@
     },
      mounted () {
       this.toast = new auiToast();
-      // this.showList2();
-      // this.showList();
+      this.showList2();
+      this.showList();
       var swiper = new Swiper('.swiper-container', {
                                             autoplay:2500,
                                             mode: 'horizontal',

@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%;" id="app">
-    <header class="aui-bar aui-bar-nav" style="z-index:999999" v-if="menuindex == 0">
+    <header class="aui-bar aui-bar-nav" style="z-index:99999" v-if="menuindex == 0">
       <div style="position:relative;">
         <div>诊疗中心</div>
         <div style="position:absolute;right:1rem;top:0rem;"><i class="aui-iconfont aui-icon-info" @click="opentongzhi()"></i></div>
@@ -42,8 +42,8 @@
 
 <script>
   import content1 from './home/content'
-  import content2 from './video/content2'
-  import content3 from './mine/content3'
+  import content2 from './home/content2'
+  import content3 from './home/content3'
   import Vue from 'vue'
 
   export default {
@@ -51,7 +51,13 @@
     data() {
       return {
         menuindex: 0,
-        transitionName: ''
+        transitionName: '',
+        vuegConfig: {
+            disable: false,
+            forwardAnim: 'fadeInRight',
+            duration: '.3',
+            backAnim: 'fadeInLeft'
+        }
       }
     },
     components: {
@@ -178,8 +184,8 @@
 
   /* 首页切换动画 */
   .slide-left-enter-active, .slide-left-leave-active, .slide-right-enter-active, .slide-right-leave-active {
-    transition: all .3s ease;
-    -webkit-transition: all .3s ease;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
     position: absolute;
     top: 0;
     left: 0;
@@ -191,12 +197,12 @@
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
   }
-  .slide-right-enter {
+  .slide-left-enter,.slide-right-enter {
     opacity: 0;
   }
   .slide-right-enter, .slide-left-leave-active {
-    -webkit-transform: translateX(-40%);
-    transform: translateX(-40%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
   }
   .slide-left-enter-to, .slide-right-leave-to {
     position: fixed;

@@ -16,7 +16,7 @@ import layout from './components/layout'
 import myHeader from './components/public/myHeader'
 
 // 首页
-import articleDetaile from './components/home/articleDetaile' //图文详情
+// import articleDetaile from './components/home/articleDetaile' //图文详情
 
 // 我的
 import register from './components/mine/register' //注册

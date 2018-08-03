@@ -74,6 +74,12 @@
                   start: '00:00',
                   step: '00:30',
                   end: '23:30'
+                },
+                vuegConfig: {
+                  disable: false,
+                  //forwardAnim: 'bounceInUp',
+                  duration: '.3',
+                  backAnim: 'fadeInUp'
                 }
               }
         },
