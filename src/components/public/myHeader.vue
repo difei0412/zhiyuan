@@ -2,7 +2,7 @@
   <div>
     <div class="aui-bar"></div>
     <header class="aui-bar aui-bar-nav">
-      <div class="aui-pull-left" @click="closewin">
+      <div class="aui-pull-left" @click="$router.back();">
         <img src="static/image/fanhui@3x.png">
       </div>
       <div class="aui-title">{{title}}</div>
@@ -21,10 +21,7 @@
       }
     },
     methods: {
-      closewin:function() {
-        var _this = this;
-        _this.$router.back();
-      }
+
     }
   }
 </script>

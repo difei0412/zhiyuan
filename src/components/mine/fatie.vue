@@ -35,7 +35,13 @@ import Calendar from '../vue-calendar-component/index';
             return {
               ttopic: '',
                content: '请输入帖子内容',
-               toast: null
+               toast: null,
+               vuegConfig: {
+                  disable: false,
+                  forwardAnim: 'bounceInUp',
+                  duration: '.3',
+                  backAnim: 'fadeInUp'
+              }
             }
         },
         methods: {

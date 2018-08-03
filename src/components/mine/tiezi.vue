@@ -259,13 +259,16 @@
            })
          },
         created:function() {
-          var id = this.$route.params.id;
-          this.findData(id);
-          this.pinglunnum(id);
-          this.pinglunData(id);
-          this.toast = new auiToast();
-          this.userFind();
-          this.toast.hide();
+          var that = this;
+          setTimeout(function(){
+            var id = that.$route.params.id;
+            that.findData(id);
+            that.pinglunnum(id);
+            that.pinglunData(id);
+            that.toast = new auiToast();
+            that.userFind();
+            that.toast.hide();
+          }, 0);
         },
         deactivated(){
           this.$destroy(true);

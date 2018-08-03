@@ -64,6 +64,12 @@
                isLoadFinish:false, //是否加载完全部数据
                toast: null,
                //isLoading: false, // 是否加载中，防止一直加载
+               vuegConfig: {
+                  disable: false,
+                  forwardAnim: 'fadeInRight',
+                  duration: '.3',
+                  backAnim: 'fadeInLeft'
+              }
             }
         },
         methods: {

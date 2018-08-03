@@ -125,7 +125,7 @@
          });
         setTimeout(function(){
           that.$router.push({path:'/tiezi/'+tid})
-        }, 100);
+        }, 20);
       },
        openRouter:function(){
              this.$router.push({path:'/mingyilist'})
@@ -197,8 +197,8 @@
     },
      mounted () {
       this.toast = new auiToast();
-      this.showList2();
-      this.showList();
+      // this.showList2();
+      // this.showList();
       var swiper = new Swiper('.swiper-container', {
                                             autoplay:2500,
                                             mode: 'horizontal',

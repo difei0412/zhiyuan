@@ -4,7 +4,7 @@
 		<div class="head">
 			<div class="user_info" v-if="userId" @click="openUserInfo">
 				<div class="my-middle">
-					<img :src="userInfo.Tx?userInfo.Tx:'../../../static/image/xitong@3x.png'" class="headImage">
+					<img :src="userInfo.Tx?userInfo.Tx:'static/image/user.png'" class="headImage">
 				</div>
 				<div class="my-middle text">
 					<ul>
@@ -124,16 +124,11 @@
 					this.$router.push({name:meth});
 				}
 			},
-			openDetail(index) {
-				if (this.isLogin()) {
-					this.$router.push({name:"colOrHisOrPush", params:{index:index}});
-				}
-			},
 			getUserInfo() {
 				var that = this;
 				var userId = window.localStorage.getItem('userId');
 				that.userId = userId?userId:'';
-				var url = "f_user/" + userId;
+				var url = "expert/" + userId;
 				var method = "GET";
 				that.ajax({url,method,
 					success:function(data){
