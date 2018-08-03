@@ -87,23 +87,20 @@ export default {
     methods: {
       closewin:function() {
         var _this = this;
-        _this.$router.back();
+        _this.$router.backRoute();
       },
       
       openRegisterProtocol() {
-        this.$router.push({name:"registerProtocol"});
+        this.$router.pushRoute({name:"registerProtocol"});
       },
       // 查询数据
       getMy_user() {
         var that = this;
         var filter = {
-          "fields": {"id":true,"startdate":true,"enddate":true,"servicetime":true,"servieceid":true,"patientid":true},
-          "order": "createdAt DESC",
+          "fields": {"id":true,"realname":true,"enddate":true,"servicetime":true,"servieceid":true,"patientid":true},
           "where": {
             "info":1,
           },
-          "include":"patientidPointer",
-          "includefilter":{"my_user":{"fields":['id','realname',]}}
         };
         that.ajax({
           url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
