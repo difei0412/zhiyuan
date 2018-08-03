@@ -19,7 +19,7 @@
               </div>
               <div class="aui-list-item-inner aui-list-item-arrow">
                 <div class="aui-list-item-text" style="margin-left:11px">
-                  <div class="aui-list-item-title aui-font-size-14">患者：{{item.patientid.realname}}</div>
+                  <div class="aui-list-item-title aui-font-size-14">患者：{{item.patientid.realname?item.patientid.realname:''}}</div>
                 </div>
                 <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                   预约：{{item.startdate}}-{{item.enddate}} 线上诊疗
