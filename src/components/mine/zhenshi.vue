@@ -157,23 +157,25 @@ export default {
               url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
               method: "get",
               success: function(data) {
-                if(data.length<that.pageSize){
-                  if(data.length>0){
+                if (data) {
+                  if(data.length<that.pageSize){
+                    if(data.length>0){
+                      for(var i=0;i<data.length;i++){
+                        that.tieziArr.push(data[i]);
+                      }
+                    }
+                    that.isLoadFinish = true;
+                  } else {
                     for(var i=0;i<data.length;i++){
                       that.tieziArr.push(data[i]);
                     }
                   }
-                  that.isLoadFinish = true;
-                } else {
-                  for(var i=0;i<data.length;i++){
-                    that.tieziArr.push(data[i]);
-                  }
+                  sessionStorage.removeItem("hz_list");
+                  var tempDic = {};
+                  tempDic['data'] = that.tieziArr;
+                  tempDic['page'] = that.currentPage;
+                  sessionStorage.setItem("hz_list", JSON.stringify(tempDic));
                 }
-                sessionStorage.removeItem("hz_list");
-                var tempDic = {};
-                tempDic['data'] = that.tieziArr;
-                tempDic['page'] = that.currentPage;
-                sessionStorage.setItem("hz_list", JSON.stringify(tempDic));
               }
             });
           },
@@ -261,7 +263,7 @@ export default {
       }
       </script>
 
-      <style >
+      <style  scoped>
       .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;

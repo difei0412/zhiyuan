@@ -3,12 +3,12 @@
     <myHeader :title="'患者详情'"></myHeader>
 
     <section class="aui-content-padded">
-      <p><div class="aui-label">预约时间：2018-06-19 17：00 - 17：30 线上诊疗</div></p>
-      <p><div class="aui-label">诊&ensp;室&ensp;号：900001</div></p>
-      <p><div class="aui-label">姓&ensp;&ensp;&ensp;&ensp;名：张三</div></p>
-      <p><div class="aui-label">性&ensp;&ensp;&ensp;&ensp;别：男</div></p>
-      <p><div class="aui-label">年&ensp;&ensp;&ensp;&ensp;龄：23</div></p>
-      <p><div class="aui-label">病&ensp;&ensp;&ensp;&ensp;种：抑郁科</div></p>
+      <p><div class="aui-label">预约时间：{{yy_data}} 线上诊疗</div></p>
+      <!-- <p><div class="aui-label">诊&ensp;室&ensp;号：900001</div></p> -->
+      <p><div class="aui-label">姓&ensp;&ensp;&ensp;&ensp;名：{{realname}}</div></p>
+      <p><div class="aui-label">性&ensp;&ensp;&ensp;&ensp;别：{{sex}}</div></p>
+      <p><div class="aui-label">年&ensp;&ensp;&ensp;&ensp;龄：{{age}}</div></p>
+      <!-- <p><div class="aui-label">病&ensp;&ensp;&ensp;&ensp;种：抑郁科</div></p> -->
       <p><div class="aui-label aui-label-danger aui-label-outlined">病情描述：一天中的大部分时间意志消沉，几乎每天如此，通过两种方式得到证明，一个是主观表达（如感到空虚、无助、悲伤等），另一个是别人的观察（爱哭泣等）。青少年表现为情绪的莫名急躁。</div></p>
       <div class="aui-list-item-inner">
         <div class="aui-list-item-title">病情图片附件：</div>
@@ -76,42 +76,51 @@ export default {
   name: 'register',
   data() {
     return {
-        mobile:'',//手机号
-        code:'',//验证码
-        password:'',//密码
-        isshowCount:false,//是否显示
-        codeMsg:'获取验证码',//获取验证码按钮文本
-        time:60,//获取验证码倒计时
-      }
+      userData:[],
+      yy_data:'',
+      realname:'',
+      sex:'',
+      age:''
+    }
+  },
+  methods: {
+    closewin:function() {
+      var _this = this;
+      _this.$router.backRoute();
     },
-    methods: {
-      closewin:function() {
-        var _this = this;
-        _this.$router.backRoute();
-      },
-      
-      openRegisterProtocol() {
-        this.$router.pushRoute({name:"registerProtocol"});
-      },
+
+    openRegisterProtocol() {
+      this.$router.pushRoute({name:"registerProtocol"});
+    },
       // 查询数据
       getMy_user() {
+        // alert(sessionStorage.getItem("hz_id"))
         var that = this;
+        that.yy_data = sessionStorage.getItem("JZTime")
         var filter = {
-          "fields": {"id":true,"realname":true,"enddate":true,"servicetime":true,"servieceid":true,"patientid":true},
+          "fields": {"id":true,"realname":true,"sex":true,"age":true},
           "where": {
-            "info":1,
+            "id":sessionStorage.getItem("hz_id"),
           },
         };
         that.ajax({
-          url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
+          url: "my_user?filter="+encodeURIComponent(JSON.stringify(filter)),
           method: "get",
           success: function(data) {
+            if (data) {
+              that.realname = data[0].realname;
+              that.sex = data[0].sex;
+              that.age = data[0].age;
+            }
             
           }
         });
       },
       
       
+    },
+    mounted(){
+      this.getMy_user()
     },
     activated() {
 
