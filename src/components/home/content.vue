@@ -118,15 +118,7 @@
         this.$router.push({name:'jinghuatie'})
       },
       opentiezi(tid){
-        var that = this;
-        this.toast.loading({
-             title:"加载中",
-             duration:2000
-         },function(ret){
-         });
-        setTimeout(function(){
-          that.$router.push({path:'/tiezi/'+tid})
-        }, 20);
+        this.$router.push({path:'/tiezi/'+tid})
       },
        openRouter:function(){
              this.$router.push({path:'/mingyilist'})
@@ -149,6 +141,7 @@
             "order": "createdAt DESC",
             "where": {
               "tflag":0,
+              "if_delete": "1",
               "tType":0
             },
             "limit":4,
@@ -173,6 +166,7 @@
             "order": "createdAt DESC",
             "where": {
               "tflag":0,
+              "if_delete": "1",
               "tType":3 // 官方后台发帖
             },
             "limit":2,
@@ -401,4 +395,10 @@
 .aui-label {
   top:-0.1rem;
 }
+.aui-list-item-inner{
+    margin-right:0;
+  }
+  .aui-list-item-title {
+    font-size: 0.6rem;
+  }
 </style>

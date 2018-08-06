@@ -79,6 +79,10 @@
         } else if (that.menuindex == 1) {
           that.$refs.content2.childMethod()
         }
+        if((index==2) && (!window.localStorage.getItem('userId'))){
+           this.$router.push({path:'/login'})
+           return;
+        }
         if(that.menuindex > index){
           that.transitionName = 'slide-right'
         } else{
@@ -112,6 +116,19 @@
         }
         window.localStorage.setItem('supportDic', JSON.stringify(dic));
       }
+    },
+    beforeRouteEnter(to,from,next){
+     next(vm => {
+       if(!window.localStorage.getItem('userId') && (vm.menuindex==2)){
+          vm.menuindex = 0;
+          var footeritem = document.getElementsByClassName("aui-bar-tab-item")
+          var iconcls = document.getElementsByClassName("iconcls")
+          for (var i = 0; i < footeritem.length; i ++) {
+            footeritem[i].className = 'aui-bar-tab-item'
+          }
+          footeritem[vm.menuindex].className = 'aui-bar-tab-item aui-active'
+        }
+     })    
     }
   }
 </script>

@@ -84,15 +84,7 @@
            this.$router.push({path:'/mingyi'})
           },
           opentiezi(id){
-            var that = this;
-            this.toast.loading({
-                 title:"加载中",
-                 duration:2000
-             },function(ret){
-             });
-            setTimeout(function(){
-              that.$router.push({path:'/tiezi/'+id})
-            }, 100);
+            this.$router.push({path:'/tiezi/'+id})
           },
           closewin:function() {
             var _this = this;
@@ -113,6 +105,7 @@
                 "where": {
                   "tflag":0,
                   "tType":1,
+                  "if_delete": "1",
                   "tuid": uid
                 },
                 "skip":start,
@@ -208,7 +201,7 @@
         beforeRouteEnter(to,from,next){
           if(!sessionStorage.getItem("doctor_to_binren")){//当前页面刷新不需要切换位置
             next(vm => {
-              vm.showList();
+              //vm.showList();
             });
           }else{
             next(vm => {
@@ -378,5 +371,11 @@
   }
   .fatie-btn a {
     font-size:14px;
+  }
+  .aui-list-item-inner{
+    margin-right:0;
+  }
+  .aui-list-item-title {
+    font-size: 0.6rem;
   }
 </style>

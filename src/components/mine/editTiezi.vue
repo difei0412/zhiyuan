@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'线上论坛'"></myHeader>
+        <myHeader :title="'帖子编辑'"></myHeader>
         <div class="aui-content aui-margin-b-15">
           <ul class="aui-list aui-form-list">
               <li class="aui-list-item box-title">
@@ -22,13 +22,14 @@
               </li>
             </ul>
           </div>
-            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="saveData">发布</button>
+            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="saveData">修改</button>
     </div>
   
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
+    import $ from '../public/jquery';
+    import Calendar from '../vue-calendar-component/index';
     export default {
         name: 'geqian',
         data() {
@@ -48,7 +49,22 @@ import Calendar from '../vue-calendar-component/index';
           updateData(e = ''){  
             this.content = e;  
           },
+          // 帖子数据
+          findData(id){
+            var that = this;
+            that.ajax({
+              url:'tiezi/'+id,
+              method:"get",
+              success: function(data){
+                if(JSON.stringify(data)!='{}'){
+                  that.ttopic = data.ttopic;
+                  that.content = data.tcontents;
+                }
+              }
+            });
+          },
           saveData() {
+            var id = this.$route.params.id;
             var that = this;
             if(this.ttopic==''){
               that.toast.fail({
@@ -66,42 +82,48 @@ import Calendar from '../vue-calendar-component/index';
             }
             var params = {
               "data":{
-                "tType":1,
-                "treplycount":0,
                 "ttopic":this.ttopic,
                 "tcontents":this.content,
-                "ttime": this.dateFormat(),
-                "tclickcount":0,
-                "tflag":0,
-                "if_delete":'1',
-                "tuid":window.localStorage.getItem('userId')
+                "_method":"PUT"
               }
             }
             that.toast.loading({
                  title:"加载中",
                  duration:2000
-             },function(ret){
-             });
+            },function(ret){
+            });
             setTimeout(function(){
                 that.ajax({
-                  url:'tiezi',
+                  url:'tiezi/'+id,
                   method:"post",
                   params,
                   success: function(res){
                     that.toast.hide();
                     if(JSON.stringify(res)!='{}'){
+                      // 刷新列表缓存
+                      if(sessionStorage.getItem("managertiezi_list")){
+                        var tmp = JSON.parse(sessionStorage.getItem("managertiezi_list"));
+                        for(var i=0;i<tmp['data'].length;i++){
+                          if(tmp['data'][i].id == id){
+                            tmp['data'][i].ttopic = that.ttopic;
+                            tmp['data'][i].tcontents = that.content.substr(0,45);
+                          }
+                        }
+                        sessionStorage.setItem("managertiezi_list", JSON.stringify(tmp));
+                      }
+
                       setTimeout(function(){
                         that.ttopic = "";
                         that.content = "请输入帖子内容";
                         that.$router.back();
                       }, 2000);
                       that.toast.success({
-                          title:"提交成功",
+                          title:"修改成功",
                           duration:2000
                       });
                     }else{
                       that.toast.fail({
-                          title:"提交失败",
+                          title:"修改失败",
                           duration:2000
                       });
                     }
@@ -150,10 +172,15 @@ import Calendar from '../vue-calendar-component/index';
        },
        mounted() {
           this.toast = new auiToast();
-        // var editor = new ___E('textarea1');
-
-        // editor.init();
+          var id = this.$route.params.id;
+          this.findData(id);
+          this.$nextTick(() => {
+            $(document).scrollTop(0);
+          })
        },
+       deactivated(){
+          this.$destroy(true);
+        },
         components: {
           Calendar
         }
