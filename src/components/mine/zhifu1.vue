@@ -9,7 +9,7 @@
       <p><div class="aui-label">性&ensp;&ensp;&ensp;&ensp;别：{{sex}}</div></p>
       <p><div class="aui-label">年&ensp;&ensp;&ensp;&ensp;龄：{{age}}</div></p>
       <!-- <p><div class="aui-label">病&ensp;&ensp;&ensp;&ensp;种：抑郁科</div></p> -->
-      <p><div class="aui-label aui-label-danger aui-label-outlined">病情描述：一天中的大部分时间意志消沉，几乎每天如此，通过两种方式得到证明，一个是主观表达（如感到空虚、无助、悲伤等），另一个是别人的观察（爱哭泣等）。青少年表现为情绪的莫名急躁。</div></p>
+      <p><div class="aui-label aui-label-danger aui-label-outlined">{{bl_con}}</div></p>
       <div class="aui-list-item-inner">
         <div class="aui-list-item-title">病情图片附件：</div>
         <div class="aui-row aui-row-padded">
@@ -80,7 +80,9 @@ export default {
       yy_data:'',
       realname:'',
       sex:'',
-      age:''
+      age:'',
+      bl_con:'',
+      bl_img:[]
     }
   },
   methods: {
@@ -102,15 +104,20 @@ export default {
           "where": {
             "id":sessionStorage.getItem("hz_id"),
           },
+          "include":"cash",
+          "includefilter":{"bingli":{"fields":['id','bl_con',]}}
         };
         that.ajax({
           url: "my_user?filter="+encodeURIComponent(JSON.stringify(filter)),
+          // url: "my_user/5b615a25f5f5bbad6b43a3a3/cash",
           method: "get",
           success: function(data) {
+            console.log(data)
             if (data) {
               that.realname = data[0].realname;
               that.sex = data[0].sex;
               that.age = data[0].age;
+              that.bl_con = data[0].cash[0].bl_con;
             }
             
           }
