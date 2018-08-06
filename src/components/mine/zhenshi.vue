@@ -138,6 +138,7 @@ export default {
           // },
            // 查询数据
            getMy_user() {
+            // console.log('ok');
             var that = this;
             var start = (that.currentPage-1)*that.pageSize;
 
@@ -181,7 +182,8 @@ export default {
           },
            // 上拉加载更多
            infinite1(done) {
-            //done(true);return;
+            console.log('shanglajiazai')
+            // done(true);return;
             var that = this;
             setTimeout(function(){
               if(!that.isLoadFinish){
@@ -217,10 +219,10 @@ export default {
 
           },
           mounted() {
-            console.log(sessionStorage.getItem("hz_list"));
             var that = this;
             // this.toast = new auiToast();
             if(sessionStorage.getItem("hz_list")!=null){
+              // console.log("使用缓存");
               var tmp = JSON.parse(sessionStorage.getItem("hz_list"));
               this.tieziArr = tmp['data'];
               this.currentPage = tmp['page'];
@@ -229,6 +231,7 @@ export default {
                 that.$refs.myscroller.scrollTo(0, tmp['position'], true);
             },0)//同步转异步操作tTime
             }else{
+              // console.log('直接加载');
               this.getMy_user();
             }
           },
@@ -245,7 +248,7 @@ export default {
       beforeRouteEnter(to,from,next){
           if(!sessionStorage.getItem("hz_list")){//当前页面刷新不需要切换位置
             next(vm => {
-              vm.getMy_user();
+              //vm.getMy_user();
             });
           }else{
             next(vm => {
