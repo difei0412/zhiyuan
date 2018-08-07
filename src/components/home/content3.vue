@@ -71,6 +71,15 @@
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
+			<div class="other_list" @click="openRouter('yqlist')">
+				<div class="other_img my-middle" style="margin-left:11px">
+					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
+				</div>
+				<span>会诊邀请</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
 			<div class="other_list" @click="openRouter('manageTiezi')">
 				<div class="other_img my-middle" style="margin-left:11px">
 					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
@@ -141,7 +150,7 @@
 			getUserInfo() {
 				var that = this;
 				var filter = {
-	              fields:{"id":true,"tx":true,"name":true,"username":true},
+	              fields:{"id":true,"tx":true,"name":true,"username":true,"timelist":true},
 	              where:{
 	                id:that.userId
 	              },
@@ -157,6 +166,7 @@
 		                  tmp.tx=data[0].tx;
 		                  tmp.username=data[0].username;
 		                  tmp.name=data[0].name;
+		                  tmp.timelist=data[0].timelist;
 		                  window.localStorage.setItem('userinfo_obj',tmp);
 		                  that.userInfo = data[0];
 		                }

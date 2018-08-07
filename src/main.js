@@ -52,6 +52,8 @@ import rizhiedit from './components/mine/rizhiedit' // 日志编辑
 import zixun from './components/mine/zixun' // 知源资讯
 import manageTiezi from './components/mine/manageTiezi' // 帖子管理列表
 import editTiezi from './components/mine/editTiezi' // 帖子编辑
+import yqdetail from './components/mine/yqdetail' // 会诊邀请详情
+import yqlist from './components/mine/yq_list' // 会诊邀请列表
 
 // vueg
 import vueg from 'vueg'
@@ -217,6 +219,16 @@ let router = new VueRouter({
 			name: 'editTiezi',
 			path: '/editTiezi/:id',
 			component: editTiezi
+		},
+		{
+			name: 'yqlist',
+			path: '/yqlist',
+			component: yqlist
+		},
+		{
+			name: 'yqdetail',
+			path: '/yqdetail/:id',
+			component: yqdetail
 		},
 	]
 })

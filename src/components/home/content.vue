@@ -1,6 +1,11 @@
 <template style="background: #ffffff;">
   <div>
     <div style="width:100%;height:2.25rem;"></div>
+    <div class="aui-tips aui-margin-b-15" id="tips-1" v-show="isTips">
+        <i class="aui-iconfont aui-icon-info"></i>
+        <div class="aui-tips-title">知源会诊邀请<span style="color:#f60;margin-left:0.5rem" @click="toYaoqing">去接受</span></div>
+        <i class="aui-iconfont aui-icon-close" @click="closeTips"></i>
+    </div>
     <div  class="swiper-container" style="width:100%;">
       <div class="swiper-wrapper" style="width:100%;height:100%">
         <div class="swiper-slide"  >
@@ -111,6 +116,7 @@
         sessionName: 'scrollForHome',
         tieziArr: [], // 帖子数据展示
         toast: null,
+        isTips: true,
       }
     },
     methods:{
@@ -134,6 +140,12 @@
        },
        openRouter3:function(){
              this.$router.push({path:'/jianhu'})
+       },
+       toYaoqing() {
+        this.$router.push({path:'/yqlist'})
+       },
+       closeTips() {
+        this.isTips = false;
        },
        showList() {
           var that = this;
@@ -230,6 +242,27 @@
        // 字符串去除HTML标签
        delHtmlTag(str){
         return str.replace(/<[^>]+>/g,"");
+       },
+       // 是否存在会诊邀请
+       yaoqing() {
+        var that = this;
+          var filter = {
+            "where": {
+              "did": window.localStorage.getItem('userId'),
+              "status": 0
+            }
+          };
+          that.ajax({
+            url: "yaoqing/count?filter="+encodeURIComponent(JSON.stringify(filter)),
+            method: "get",
+            success: function(data) {
+              if(data.count>0){
+                that.isTips = true;
+              }else{
+                that.isTips = false;
+              }
+            }
+          });
        }
     },
      mounted () {
@@ -256,6 +289,9 @@
                                             observer: true,//修改swiper自己或子元素时，自动初始化swiper
                                             observeParents: true//修改swiper的父元素时，自动初始化swiper
                                          });
+    },
+    activated() {
+      this.yaoqing();
     },
     watch: {
       '$route'(to, from) {
@@ -442,5 +478,9 @@
   }
   .aui-list-item-title {
     font-size: 0.6rem;
+  }
+  .aui-tips {
+    position: fixed;
+    top:2.25rem;
   }
 </style>

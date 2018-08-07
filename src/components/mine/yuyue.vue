@@ -317,11 +317,13 @@
 .aui-list .aui-list-item-right, .aui-list-item-title-row em {
   top:0;
 }
-._v-container{
-  z-index: 1;
-  padding-bottom: 2rem;
-}
-._v-container>._v-content>.loading-layer {
-  height:100px;
-}
+</style>
+<style>
+  ._v-container{
+    z-index: 1;
+    padding-bottom: 2rem;
+  }
+  ._v-container ._v-content .loading-layer {
+    height:100px !important;
+  }
 </style>
