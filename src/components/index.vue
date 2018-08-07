@@ -17,7 +17,7 @@
       </keep-alive>
     </transition>
 
-    <footer class="aui-bar aui-bar-tab">
+    <footer class="aui-bar aui-bar-tab foot-nav">
       <div class="aui-bar-tab-item aui-active" @click="openmenu(0)">
         <center>
           <i class="aui-iconfont aui-icon-home"></i>
@@ -227,5 +227,8 @@
   /* 首页切换动画 */
   .aui-bar-tab {
     top:auto !important;
+  }
+  .foot-nav {
+    z-index: 1000;
   }
 </style>

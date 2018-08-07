@@ -1,7 +1,7 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'患者评价'"></myHeader>
-        <scroller :on-refresh="refresh" :on-infinite="infinite" style="top:2.5rem;" ref="myscroller">
+        <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
         <ul class="aui-list aui-media-list">
            
             <li class="aui-list-item aui-list-item-middle" v-if="tieziArr" v-for="item in tieziArr">

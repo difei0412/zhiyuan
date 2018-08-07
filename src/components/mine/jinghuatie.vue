@@ -10,7 +10,7 @@
           <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
         </header>
       </div>
-      <scroller :on-refresh="refresh" :on-infinite="infinite" style="top:2.5rem;" ref="myscroller">
+      <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
         <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
                   <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">

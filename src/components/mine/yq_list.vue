@@ -14,7 +14,7 @@
                                
                                 <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
                                   <div class="aui-pull-left" v-text="item.title"></div>
-                                  <div class="aui-pull-right" v-text="'诊费：'+item.price"></div>
+                                  <div class="aui-pull-right" v-text="'诊费：￥'+item.price"></div>
                                 </div>
                                 <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="'会诊内容：'+item.content+'...'">
                                   
