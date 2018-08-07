@@ -118,15 +118,7 @@
         this.$router.push({name:'jinghuatie'})
       },
       opentiezi(tid){
-        var that = this;
-        this.toast.loading({
-             title:"加载中",
-             duration:2000
-         },function(ret){
-         });
-        setTimeout(function(){
-          that.$router.push({path:'/tiezi/'+tid})
-        }, 20);
+        this.$router.push({path:'/tiezi/'+tid})
       },
        openRouter:function(){
              this.$router.push({path:'/mingyilist'})
@@ -149,6 +141,7 @@
             "order": "createdAt DESC",
             "where": {
               "tflag":0,
+              "if_delete": "1",
               "tType":0
             },
             "limit":4,
@@ -167,15 +160,58 @@
             }
           });
        }, 
+       // 置顶资讯
        showList2() {
           var that = this;
           var filter = {
-            "order": "createdAt DESC",
+            "order": "updatedAt DESC",
             "where": {
               "tflag":0,
+              "if_delete": "1",
+              "if_top":"1",
               "tType":3 // 官方后台发帖
             },
             "limit":2,
+            "include":"tuidPointer",
+            "includeFilter":{"expert":{"fields":['id','name','holder']}}
+          };
+          that.ajax({
+            url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
+            method: "get",
+            success: function(data) {
+              if(data.length==0){ // 没有置顶记录
+                var limit=2;
+                that.showList3(limit);
+              } else if (data.length==1) { // 查询到一条置顶
+                var limit=1;
+                for(var i=0;i<data.length;i++){
+                  data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
+                  data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                  that.tieziArr.push(data[i]);
+                }
+                that.showList3(limit);
+              } else {
+                for(var i=0;i<data.length;i++){
+                  data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
+                  data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                  that.tieziArr.push(data[i]);
+                }
+              }
+            }
+          });
+       },
+       // 非置顶资讯
+       showList3(param) {
+          var that = this;
+          var filter = {
+            "order": "updatedAt DESC",
+            "where": {
+              "tflag":0,
+              "if_delete": "1",
+              "if_top":"0",
+              "tType":3 // 官方后台发帖
+            },
+            "limit":param,
             "include":"tuidPointer",
             "includeFilter":{"expert":{"fields":['id','name','holder']}}
           };
@@ -401,4 +437,10 @@
 .aui-label {
   top:-0.1rem;
 }
+.aui-list-item-inner{
+    margin-right:0;
+  }
+  .aui-list-item-title {
+    font-size: 0.6rem;
+  }
 </style>

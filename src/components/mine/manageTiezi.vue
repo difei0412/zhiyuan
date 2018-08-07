@@ -1,20 +1,11 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-      <div>
-        <div class="aui-bar"></div>
-        <header class="aui-bar aui-bar-nav">
-          <div class="aui-pull-left" @click="closewin">
-            <img src="static/image/fanhui@3x.png">
-          </div>
-          <div class="aui-title">医生帖子</div>
-          <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
-        </header>
-      </div>
+      <myHeader :title="'帖子管理'"></myHeader>
       <scroller :on-refresh="refresh" :on-infinite="infinite" style="top:2.5rem;" ref="myscroller">
         <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
-                  <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">
-                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+                  <div v-if="tieziArr" v-for="item in tieziArr">
+                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
                         <div class="aui-media-list-item-inner">
                             <div class="aui-list-item-inner">
                                
@@ -35,7 +26,7 @@
                             <div class="aui-list-item-inner">
                                 <div class="aui-list-item-text doctor">
                                     <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
-                                    <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                                    <div class="aui-list-item-right"><div class="aui-btn" @click="delTiezi(item.id)">删除</div><div class="aui-btn aui-btn-primary" @click="editTiezi(item.id)">编辑</div></div>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +53,8 @@
                currentPage: 1,
                pageSize:4,
                isLoadFinish:false, //是否加载完全部数据
-               toast: null,
                //isLoading: false, // 是否加载中，防止一直加载
+               toast:null,
                vuegConfig: {
                   disable: false,
                   forwardAnim: 'fadeInRight',
@@ -75,7 +66,7 @@
         methods: {
           openfatie(){
             if(window.localStorage.getItem('userId')){
-              this.$router.push({path:'/fatie'})
+              this.$router.push({path:'/fatie2'})
             }else{
               this.$router.push({path:'/login'})
             }
@@ -90,17 +81,22 @@
             var _this = this;
             _this.$router.back();
           },
+          // 字符串去除HTML标签
+           delHtmlTag(str){
+            return str.replace(/<[^>]+>/g,"");
+           },
           // 查询数据
           showList() {
               var that = this;
               var start = (that.currentPage-1)*that.pageSize;
+              var uid = window.localStorage.getItem('userId');
               var filter = {
                 "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true},
                 "order": "createdAt DESC",
                 "where": {
                   "tflag":0,
                   "if_delete": "1",
-                  "tType":0
+                  "tuid": uid
                 },
                 "skip":start,
                 "limit":that.pageSize,
@@ -127,17 +123,66 @@
                       that.tieziArr.push(data[i]);
                     }
                   }
-                  sessionStorage.removeItem("doctor_tiezi");
+                  sessionStorage.removeItem("managertiezi_list");
                   var tempDic = {};
                   tempDic['data'] = that.tieziArr;
                   tempDic['page'] = that.currentPage;
-                  sessionStorage.setItem("doctor_tiezi", JSON.stringify(tempDic));
+                  sessionStorage.setItem("managertiezi_list", JSON.stringify(tempDic));
                 }
               });
            },
-           // 字符串去除HTML标签
-           delHtmlTag(str){
-            return str.replace(/<[^>]+>/g,"");
+           delTiezi(id) {
+            var that = this;
+              var dialog = new auiDialog({});
+              dialog.alert({
+                  title:"提示",
+                  msg:'您确认删除该帖子吗？',
+                  buttons:['取消','确定']
+              },function(ret){
+                  if(ret.buttonIndex==2){
+                    var toast = new auiToast();
+                        toast.loading({
+                        title:"加载中",
+                        duration:2000
+                    },function(ret){
+
+                    });
+                    var params = {
+                      "data": {
+                        "if_delete": "0",
+                        "_method":"PUT"
+                      }
+                    };
+                    that.ajax({
+                      url: "tiezi/"+id,
+                      method: "POST",
+                      params,
+                      success: function(data) {
+                        for(var i=0;i<that.tieziArr.length;i++){
+                          if(that.tieziArr[i].id == id){
+                            that.tieziArr.splice(i,1);
+                          }
+                        }
+                        sessionStorage.removeItem("managertiezi_list");
+                        toast.hide();
+                        toast.success({
+                            title:"删除成功",
+                            duration:2000
+                        });
+                      },
+                      error: function(){
+                        toast.hide();
+                        toast.fail({
+                            title:"删除失败",
+                            duration:2000
+                        });
+                      }
+                    });
+                  }
+              })
+           },
+           editTiezi(id){
+            this.$router.push({'path':'/editTiezi/'+id});
            },
            // 上拉加载更多
            infinite(done) {
@@ -147,12 +192,13 @@
                     that.currentPage++;
                     that.showList();
                   }
-                  if(that.isLoadFinish){ // 加载完毕
+                  if(that.isLoadFinish){
                     done(true);
                     return;
                   } else {
                     done();
                   }
+                  
               }, 500)
             },
             // 下拉刷新
@@ -173,8 +219,8 @@
        mounted() {
           var that = this;
           this.toast = new auiToast();
-          if(sessionStorage.getItem("doctor_tiezi")!=null){
-            var tmp = JSON.parse(sessionStorage.getItem("doctor_tiezi"));
+          if(sessionStorage.getItem("managertiezi_list")!=null){
+            var tmp = JSON.parse(sessionStorage.getItem("managertiezi_list"));
             this.tieziArr = tmp['data'];
             this.currentPage = tmp['page'];
             this.$refs.myscroller.scrollTo(0, tmp['position'], true);
@@ -186,30 +232,33 @@
           }
        },
        beforeRouteLeave(to,from,next){//记录离开时的位置
-          var tempSession = sessionStorage.getItem("doctor_tiezi");
+          var tempSession = sessionStorage.getItem("managertiezi_list");
           if (tempSession) {
             var tempDic = JSON.parse(tempSession);
             tempDic['position'] = this.$refs.myscroller.getPosition().top;
             tempDic['page'] = this.currentPage;
-            sessionStorage.setItem("doctor_tiezi", JSON.stringify(tempDic));
+            sessionStorage.setItem("managertiezi_list", JSON.stringify(tempDic));
           }
           next()
         },
         beforeRouteEnter(to,from,next){
-          if(!sessionStorage.getItem("doctor_tiezi")){//当前页面刷新不需要切换位置
+          if(!sessionStorage.getItem("managertiezi_list")){//当前页面刷新不需要切换位置
             next(vm => {
               //vm.showList();
             });
           }else{
             next(vm => {
-              var tmp = JSON.parse(sessionStorage.getItem("doctor_tiezi"));
+              var tmp = JSON.parse(sessionStorage.getItem("managertiezi_list"));
               vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
               setTimeout(function () {
                 vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
               },20)//同步转异步操作tTime
             })
           }
-       }
+       },
+       deactivated(){
+          this.$destroy(true);
+        },
     }
 </script>
 
@@ -371,6 +420,10 @@
   }
   .aui-list-item-inner{
     margin-right:0;
+  }
+  .aui-btn-primary {
+    margin-left: 0.5rem;
+    background: #28B8A1;
   }
   .aui-list-item-title {
     font-size: 0.6rem;

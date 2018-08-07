@@ -49,6 +49,9 @@ import fankuidetail from './components/mine/fankuidetail' // 反馈详情
 import zizhi from './components/mine/zizhi' // 资质认证
 import tongzhi from './components/mine/tongzhi' // 消息通知
 import rizhiedit from './components/mine/rizhiedit' // 日志编辑
+import zixun from './components/mine/zixun' // 知源资讯
+import manageTiezi from './components/mine/manageTiezi' // 帖子管理列表
+import editTiezi from './components/mine/editTiezi' // 帖子编辑
 
 // vueg
 import vueg from 'vueg'
@@ -199,6 +202,21 @@ let router = new VueRouter({
 			name: 'rizhiedit',
 			path: '/rizhiedit',
 			component: rizhiedit
+		},
+		{
+			name: 'zixun',
+			path: '/zixun',
+			component: zixun
+		},
+		{
+			name: 'manageTiezi',
+			path: '/manageTiezi',
+			component: manageTiezi
+		},
+		{
+			name: 'editTiezi',
+			path: '/editTiezi/:id',
+			component: editTiezi
 		},
 	]
 })

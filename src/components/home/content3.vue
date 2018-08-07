@@ -4,16 +4,14 @@
 		<div class="head">
 			<div class="user_info" v-if="userId" @click="openUserInfo">
 				<div class="my-middle">
-					<img :src="userInfo.Tx?userInfo.Tx:'static/image/user.png'" class="headImage">
+					<img :src="userInfo.tx?userInfo.tx:'static/image/user.png'" class="headImage">
 				</div>
 				<div class="my-middle text">
 					<ul>
-						<li class="nick">
-							{{userInfo.Name}}
-						</li>
+						<li class="nick" v-text="userInfo.name?userInfo.name:userInfo.username"></li>
 						<li>
-							<span v-if="!userInfo.Qm || userInfo.Qm == ''" class="label">这个人很懒，什么都没有留下...</span>
-							<span v-else class="label">{{userInfo.Qm}}</span>
+							<span v-if="!userInfo.timelist || userInfo.timelist == ''" class="label">没有任何信息！</span>
+							<span v-else class="label" v-text="'成就简介：'+userInfo.timelist.substr(0,30)"></span>
 						</li>
 					</ul>
 				</div>
@@ -73,6 +71,15 @@
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
+			<div class="other_list" @click="openRouter('manageTiezi')">
+				<div class="other_img my-middle" style="margin-left:11px">
+					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
+				</div>
+				<span>帖子管理</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
 		</div>
 
 		<!-- 退出 -->
@@ -89,7 +96,13 @@
 		data() {
 			return {
 				userId:'',
-				userInfo:''
+				userInfo:'',
+				vuegConfig: {
+	                disable: false,
+	                forwardAnim: 'fadeInRight',
+	                duration: '.3',
+	                backAnim: 'fadeInLeft'
+	             }
 			}
 		},
 		methods: {
@@ -127,12 +140,26 @@
 			},
 			getUserInfo() {
 				var that = this;
-				
-				var url = "expert/" + that.userId;
+				var filter = {
+	              fields:{"id":true,"tx":true,"name":true,"username":true},
+	              where:{
+	                id:that.userId
+	              },
+	              limit:1
+	            };
+				var url = "expert?filter="+encodeURIComponent(JSON.stringify(filter));
 				var method = "GET";
 				that.ajax({url,method,
 					success:function(data){
-						that.userInfo = data;
+						if(data.length>0){
+						  var tmp = {};
+		                  tmp.id=data[0].id;
+		                  tmp.tx=data[0].tx;
+		                  tmp.username=data[0].username;
+		                  tmp.name=data[0].name;
+		                  window.localStorage.setItem('userinfo_obj',tmp);
+		                  that.userInfo = data[0];
+		                }
 					}
 				})
 			},
@@ -141,13 +168,27 @@
 				that.$MessageBox.confirm("确定退出？").then(function(){
 					window.localStorage.removeItem('userId');
 					that.userId = "";
+					that.menuindex = 1;
+					that.$router.push({"path":"/login"});
 				})
 			}
 		},
+		mounted() {
+			
+		},
 		activated() {
 			var userId = window.localStorage.getItem('userId');
-			this.userId = userId?userId:'';
-			//this.getUserInfo()
+			if(userId){
+				this.userId = userId?userId:'';
+				if(window.localStorage.getItem('userinfo_obj')){
+					var tmp = window.localStorage.getItem('userinfo_obj');
+					this.userInfo = JSON.parse(tmp);
+				}else{
+					this.getUserInfo()
+				}
+			}else{
+				this.$router.push({path:'/'});
+			}
 		}
 	}
 </script>
@@ -301,8 +342,8 @@
 	}
 	.aui-btn-block {
 		margin:0.7rem;
-		width:fill-availabel;
-		width:-webkit-fill-availabel;
+		width:fill-available !important;
+		width:-webkit-fill-available !important;
 		height:2rem;
 		line-height: 2rem;
 		font-size: 14px;

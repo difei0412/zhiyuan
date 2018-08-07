@@ -1,6 +1,7 @@
 <template>
     <div style="background-color: white; min-height: 100%;" v-cloak>
         <myHeader :title="'帖子详情'"></myHeader>
+      <div v-show="isLoadFinish" class="content-box">
        <div class="aui-content aui-content-padded" >
          <h3 class="aui-list-header" v-text="showData.ttopic"></h3>
          <ul class="aui-list aui-select-list">
@@ -74,6 +75,7 @@
   </div>  
   
     <div style="height:2.5rem"></div>     
+  </div>
 
     </div>
   
@@ -91,7 +93,8 @@
                pldata: [],
                userinfo: {},
                content: '',
-               toast: null
+               toast: null,
+               isLoadFinish:false,
             }
         },
         methods: {
@@ -104,13 +107,21 @@
               success: function(data){
                 if(JSON.stringify(data)!='{}'){
                   that.showData = data;
+                  var filter = {
+                    fields:{"id":true,"tx":true,"name":true,"holder":true},
+                    where:{
+                      id:data.tuid
+                    }
+                  };
                   that.ajax({
-                    url:'expert/'+data.tuid,
+                    url:'expert?filter='+encodeURIComponent(JSON.stringify(filter)),
                     method:"get",
                     success:function(data2){
-                      that.showData.tx = data2.tx;
-                      that.showData.name = data2.name;
-                      that.showData.holder = data2.holder;
+                      if(data2.length>0){
+                        that.showData.tx = data2[0].tx;
+                        that.showData.name = data2[0].name;
+                        that.showData.holder = data2[0].holder;
+                      }
                     }
                   })
                 }
@@ -175,7 +186,7 @@
                 'rtime':that.dateFormat(),
                 'ruid': that.userinfo.id,
                 'username': that.userinfo.name,
-                'face': that.userinfo.Tx
+                'face': that.userinfo.tx
               }
             }
             that.toast.loading({
@@ -212,11 +223,20 @@
           userFind() {
             var that = this;
             var id = window.localStorage.getItem('userId');
+            var filter = {
+              fields:{"id":true,"tx":true,"name":true},
+              where:{
+                id:id
+              },
+              limit:1
+            };
             that.ajax({
-              url: 'expert/'+id,
+              url: 'expert?filter='+encodeURIComponent(JSON.stringify(filter)),
               method:'get',
               success: function(data) {
-                that.userinfo = data;
+                if(data.length>0){
+                  that.userinfo = data[0];
+                }
               }
             });
           },
@@ -254,30 +274,22 @@
           },
         },
          mounted () {
+            var that = this;
+            var id = that.$route.params.id;
+            that.toast = new auiToast();
+            that.findData(id);
+            that.pinglunnum(id);
+            that.pinglunData(id);
+            that.userFind();
+            //that.toast.hide();
+            that.isLoadFinish = true;
            this.$nextTick(() => {
             $(document).scrollTop(0);
            })
          },
-        created:function() {
-          var that = this;
-          setTimeout(function(){
-            var id = that.$route.params.id;
-            that.findData(id);
-            that.pinglunnum(id);
-            that.pinglunData(id);
-            that.toast = new auiToast();
-            that.userFind();
-            that.toast.hide();
-          }, 0);
-        },
         deactivated(){
           this.$destroy(true);
         },
-        beforeRouteEnter(to,from,next){
-          next(vm => {
-            
-          })
-        }
     }
 </script>
 
@@ -494,5 +506,8 @@ span.zan-num {
   text-align: center;
   text-indent: 0rem;
   margin-top: 1rem;
+}
+.content-box {
+  height:100%;
 }
 </style>

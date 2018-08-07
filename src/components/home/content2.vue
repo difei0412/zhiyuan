@@ -1,19 +1,14 @@
 <template style="background: #ffffff;">
   <div>
-  <div class="aui-content">
-         <section class="aui-grid">
-            <div class="row aui-text-center">
-            <div class="aui-col-xs-6" @click="openRouter()">
-                    <i class="aui-iconfont aui-icon-display"></i>
-                    <p>患者交流论坛</p>
-                </div>
-                <div class="aui-col-xs-6" @click="openRouter1()">
-                    <i class="aui-iconfont aui-icon-date"></i>
-                    <p>患者沟通</p>
-                </div>
+    <div class="aui-content luntan-box">
+        <div class="aui-col-xs-12 luntan-active" @click="openRouter">
+            <i class="aui-iconfont aui-icon-display"></i>
+            <div class="luntan-text">患者交流论坛</div>
+            <div class="luntan-jiantou">
+              <img class="right" src="static/image/in@3x.png">
             </div>
-
-          </section>
+            <div style="clear:both"></div>
+        </div>
     </div>
      <div class="aui-content aui-margin-b-15">
           <ul class="aui-list aui-media-list">
@@ -94,15 +89,7 @@
         this.$router.push({name:'imlist'})
       },
       opentiezi(id){
-         var that = this;
-          this.toast.loading({
-               title:"加载中",
-               duration:2000
-           },function(ret){
-           });
-          setTimeout(function(){
-            that.$router.push({path:'/tiezi/'+id})
-          }, 100);
+         this.$router.push({path:'/tiezi/'+id})
       },
       openwenda(){
       this.$router.push({name:'imlist'})
@@ -286,6 +273,7 @@
             "order": "createdAt DESC",
             "where": {
               "tflag":0,
+              "if_delete": "1",
               "tType":{"inq":[0,1,2]}
             },
             "skip":start,
@@ -534,4 +522,35 @@
 .aui-label {
   top:-0.1rem;
 }
+.luntan-box{
+  height:5.25rem;
+  width:100%;
+  padding-top:2.25rem;
+}
+.aui-icon-display{
+  font-size:25px;
+  float:left;
+  margin:0.6rem 0.5rem 0 1rem;
+}
+.luntan-text{
+  float:left;
+  margin:1rem 0 0 0;
+  font-size:14px;
+  color:#28B8A1;
+}
+.luntan-jiantou{
+  float:right;
+  width:0.5rem;
+  height:0.5rem;
+  margin:1.1rem 1rem 0 0;
+}
+.luntan-active{
+  height:3rem;
+}
+.aui-list-item-inner{
+    margin-right:0;
+  }
+  .aui-list-item-title {
+    font-size: 0.6rem;
+  }
 </style>

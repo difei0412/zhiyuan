@@ -53,7 +53,13 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 		data() {
       return {
         loginuser : '',
-        password : ''
+        password : '',
+        vuegConfig: {
+            disable: false,
+            forwardAnim: 'fadeInRight',
+            duration: '.3',
+            backAnim: 'fadeInRight'
+        }
       }
     },
     methods: {
@@ -83,7 +89,6 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 				that.ajax({url:url1,method,
 					success:function(data) {
             //账号存在进入登录接口（查）
-            console.log(data)
             if (data.count!==0) {
               var url2 = "expert?filter[where][mobile]=" + that.loginuser;
               url2 += '&filter[where][password]=' + that.password;
@@ -97,6 +102,13 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
                   window.localStorage.setItem('userMobile',data[0].mobile);
                   window.localStorage.setItem('userId',data[0].id);
                   window.localStorage.setItem('userName',data[0].name);
+                  var tmp = {};
+                  tmp.id=data[0].id;
+                  tmp.tx=data[0].tx;
+                  tmp.username=data[0].username;
+                  tmp.name=data[0].name;
+                  tmp = JSON.stringify(tmp);
+                  window.localStorage.setItem('userinfo_obj',tmp);
                   that.$router.push({name:"index"});
                 }
               }
