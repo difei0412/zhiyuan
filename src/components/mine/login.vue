@@ -101,6 +101,7 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
                 } else {
                   window.localStorage.setItem('userMobile',data[0].mobile);
                   window.localStorage.setItem('userId',data[0].id);
+                  window.localStorage.setItem('userName',data[0].name);
                   var tmp = {};
                   tmp.id=data[0].id;
                   tmp.tx=data[0].tx;

@@ -13,18 +13,10 @@
       <div class="aui-list-item-inner">
         <div class="aui-list-item-title">病情图片附件：</div>
         <div class="aui-row aui-row-padded">
-          <div class="aui-col-xs-4">
-            <img v-preview="'static/image/myim1.jpeg'" :src="'static/image/myim1.jpeg'" preview-title-enable="false" preview-nav-enable="true"/>
+          <div class="aui-col-xs-4" v-for="item in bl_img">
+            <img v-preview="item" :src="item" preview-title-enable="false" preview-nav-enable="true"/>
           </div>
-          <div class="aui-col-xs-4">
-            <img v-preview="'static/image/myim1.jpeg'" :src="'static/image/myim1.jpeg'" preview-title-enable="false" preview-nav-enable="true"/>
-          </div>
-          <div class="aui-col-xs-4">
-            <img v-preview="'static/image/myim1.jpeg'" :src="'static/image/myim1.jpeg'" preview-title-enable="false" preview-nav-enable="true"/>
-          </div>
-          <div class="aui-col-xs-4">
-            <img v-preview="'static/image/myim1.jpeg'" :src="'static/image/myim1.jpeg'" preview-title-enable="false" preview-nav-enable="true"/>
-          </div>
+          
         </div>
       </div>
     </section>
@@ -35,8 +27,8 @@
             <div class="aui-list-item-label">
               用药建议
             </div>
-            <div class="aui-list-item-input">
-              <input type="text" placeholder="请输入用药建议">
+            <div class="aui-list-item-input" >
+              <input type="text" placeholder="请输入用药建议" v-model="conntr" @click="yongyao">
             </div>
           </div>
         </li>
@@ -46,7 +38,9 @@
               睡眠建议
             </div>
             <div class="aui-list-item-input">
-              <input type="text" placeholder="请输入睡眠建议">
+              <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
+              <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
+              <div @click="sleepBTN($event)" class="biao aui-btn">不佳</div>
             </div>
           </div>
         </li>
@@ -56,22 +50,27 @@
               其他建议
             </div>
             <div class="aui-list-item-input">
-              <input type="text" placeholder="请输入其他建议">
+              <input type="text" placeholder="请输入其他建议" v-model="other">
             </div>
           </div>
         </li>
       </ul>
     </div>
     <div>
-      <textarea class="text " placeholder="反馈内容"></textarea>
-      <div class="aui-btn aui-btn-danger aui-btn-block">反馈意见</div>
+      <textarea class="text " placeholder="反馈内容" v-model="fkcont"></textarea>
+      <div class="aui-btn aui-btn-danger aui-btn-block" @click='fkyjBTN'>反馈意见</div>
     </div>
+    <ul class="yyseach">
+      <li v-for='item in yp'>{{item.name}} {{item.bzyl}}{{item.unit}}</li>
+    </ul>
+
     <lg-preview></lg-preview>
   </div>
 </template>
 
 <script>
 import md5 from '../public/md5'
+import $ from '../public/jquery';
 export default {
   name: 'register',
   data() {
@@ -82,7 +81,13 @@ export default {
       sex:'',
       age:'',
       bl_con:'',
-      bl_img:[]
+      bl_img:[],
+      conntr:'',
+      sleep:'',
+      other:'',
+      fkcont:'',
+      yp:[]
+
     }
   },
   methods: {
@@ -90,10 +95,12 @@ export default {
       var _this = this;
       _this.$router.backRoute();
     },
-
-    openRegisterProtocol() {
-      this.$router.pushRoute({name:"registerProtocol"});
-    },
+    sleepBTN(e){
+     $(e.target).addClass("sleepYS").siblings().removeClass("sleepYS");
+   },
+   openRegisterProtocol() {
+    this.$router.pushRoute({name:"registerProtocol"});
+  },
       // 查询数据
       getMy_user() {
         // alert(sessionStorage.getItem("hz_id"))
@@ -105,7 +112,7 @@ export default {
             "id":sessionStorage.getItem("hz_id"),
           },
           "include":"cash",
-          "includefilter":{"bingli":{"fields":['id','bl_con',]}}
+          "includefilter":{"bingli":{"fields":['id','bl_con','bl_img']}}
         };
         that.ajax({
           url: "my_user?filter="+encodeURIComponent(JSON.stringify(filter)),
@@ -118,16 +125,57 @@ export default {
               that.sex = data[0].sex;
               that.age = data[0].age;
               that.bl_con = data[0].cash[0].bl_con;
+              that.bl_img = data[0].cash[0].bl_img;
             }
             
           }
         });
       },
-      
+      get_dakailist(){
+        var that = this ;
+        var filter={
+          "where":{
+            "brid":sessionStorage.getItem("hz_id")
+          }
+        };
+        var url = "dakalist?filter="+encodeURIComponent(JSON.stringify(filter));
+        that.ajax({url,method:"get",success:function(data){
+          // console.log(data)
+          that.conntr = data[0].content;
+          that.sleep = data[0].sleep;
+          that.other = data[0].other;
+        }
+      })
+      },
+      fkyjBTN(){
+        var that = this
+        var params ={
+          data:{
+            'brid':sessionStorage.getItem("hz_id"),
+            'brname':that.realname,
+            'did':window.localStorage.getItem("userId"),
+            'dname':window.localStorage.getItem("userName"),
+            'fk':that.fkcont
+          }
+        }
+        var url = 'fankui'
+        that.ajax({url,method:"post",params,success:function(data){
+          console.log(data)
+        }})
+      },
+      yongyao(){
+        var that = this;
+        var url = 'medicine'
+        that.ajax({url,method:'get',success:function(data){
+          console.log(data)
+          that.yp=data
+        }})
+      },
       
     },
     mounted(){
       this.getMy_user()
+      this.get_dakailist()
     },
     activated() {
 
@@ -211,5 +259,32 @@ export default {
   color: #0f0f0f;
   background-color: rgb(250, 250, 250);
   letter-spacing: 0.1rem;
+}
+
+.biao {
+  background: #fff;
+  color: #34DBDA;
+  /*margin-top: 10px;*/
+  height: auto;
+  border: 1px solid #34DBDA;
+  height: 1rem;
+  width: 3rem;
+  border-radius: 6px;
+  line-height: 0.95rem;
+}
+.sleepYS{
+  background: #34DBDA; color:#fff;
+}
+.yyseach{
+  position: absolute;
+  bottom: 0px;
+  height: 10rem;
+  width: 100%;
+  background: #fff;
+}
+.yyseach li{
+  border-bottom: 1px solid #e5e5e5;
+  line-height:1.5rem;
+  padding-left: 1rem
 }
 </style>
