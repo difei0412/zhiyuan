@@ -48,7 +48,12 @@ import Calendar from '../vue-calendar-component/index';
         name: 'geqian',
         data() {
             return {
-
+              vuegConfig: {
+                  disable: false,
+                  forwardAnim: 'fadeInRight',
+                  duration: '.3',
+                  backAnim: 'fadeInLeft'
+              },
             }
         },
         methods: {

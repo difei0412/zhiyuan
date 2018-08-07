@@ -1,145 +1,42 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'打赏收益记录'"></myHeader>
+         <div class="price-total">
+          <span v-text="'费用合计：￥'+total_price"></span>
+        </div>
+        <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:4.5rem;" ref="myscroller">
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item aui-list-item-middle">
+            <li class="aui-list-item aui-list-item-middle" v-if="tieziArr" v-for="item in tieziArr">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                        <img :src="item.patientid.Tx?item.patientid.Tx:'static/image/1.jpg'" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+                            <div class="aui-list-item-title aui-font-size-14" v-text="'患者：'+(item.patientid.realname?item.patientid.realname:item.username)"></div>
                         </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            通过在线诊疗模块赠送您大锦旗
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">抵：￥10</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            通过在线诊疗模块赠送您大锦旗
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-text="item.serviceid.servicename">
+                            
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">抵：￥10</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            通过在线诊疗模块赠送您大锦旗
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">抵：￥10</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            通过在线诊疗模块赠送您大锦旗
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">抵：￥10</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            通过在线诊疗模块赠送您大锦旗
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">抵：￥10</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            通过在线诊疗模块赠送您大锦旗
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">抵：￥10</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            通过在线诊疗模块赠送您大锦旗
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">抵：￥10</div>
+                            <div class="order-status" v-text="'抵：￥'+(item.price?item.price:0)"></div>
                         </div>
                     </div>
                 </div>
             </li>
            
         </ul>
-        <div class="price-total">
-          <span>费用合计：￥2000</span>
-        </div>
+      </scroller>
     </div>
   
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
+    import $ from '../public/jquery'
+    import Vue from 'vue'
+    import VueScroller from 'vue-scroller'
+    Vue.use(VueScroller)
     export default {
         name: 'geqian',
         data() {
@@ -149,25 +46,141 @@ import Calendar from '../vue-calendar-component/index';
                   forwardAnim: 'fadeInRight',
                   duration: '.3',
                   backAnim: 'fadeInLeft'
-              }   
+              },
+              tieziArr: [],
+               currentPage: 1,
+               pageSize:4,
+               isLoadFinish:false, //是否加载完全部数据   
+               total_num:0,
+               total_price:0
             }
         },
         methods: {
-          openzhifu:function(){
-            this.$router.push({path:'/yuyueinfo'})
-          }
+          // 查询数据
+          showList() {
+              var that = this;
+              var start = (that.currentPage-1)*that.pageSize;
+              var filter = {
+                "order": "createdAt DESC",
+                "where": {
+                  "info": '2',
+                  "status": {'inq': ["1","2"]},
+                  "expertid": window.localStorage.getItem('userId')
+                },
+                "skip":start,
+                "limit":that.pageSize,
+                "include":["patientidPointer","serviceidPointer"],
+                "includefilter":{"my_user":{"fields":['id','username','realname','Tx']},"service":{"fields":['id','servicename']}}
+              };
+              that.ajax({
+                url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
+                method: "get",
+                success: function(data) {
+                  if(data.length<that.pageSize){
+                    if(data.length>0){
+                      for(var i=0;i<data.length;i++){
+                        if(data[i].status=='1'){
+                          data[i].status = '待完成';
+                        } else {
+                          data[i].status = '<span style="color:green;">完成</span>';
+                        }
+                        that.tieziArr.push(data[i]);
+                      }
+                    }
+                    that.isLoadFinish = true;
+                  } else {
+                    for(var i=0;i<data.length;i++){
+                      if(data[i].status=='1'){
+                        data[i].status = '待完成';
+                      } else {
+                        data[i].status = '<span style="color:green;">完成</span>';
+                      }
+                      that.tieziArr.push(data[i]);
+                    }
+                  }
+                }
+              });
+           },
+           // 总记录数
+           totalnum() {
+              var that = this;
+              var filter = {
+                "where": {
+                  "info": '2',
+                  "status": {'inq': ["1","2"]},
+                  "expertid": window.localStorage.getItem('userId')
+                }
+              };
+              that.ajax({
+                url: "appointment/count?filter="+encodeURIComponent(JSON.stringify(filter)),
+                method: "get",
+                success: function(data) {
+                  that.total_num = data.count;
+                }
+              });
+           },
+           // 总价格
+           totalPrice() {
+              var that = this;
+              var filter = {
+                "where": {
+                  "info": '2',
+                  "status": {'inq': ["1","2"]},
+                  "expertid": window.localStorage.getItem('userId')
+                },
+                "limit": that.total_num
+              };
+              that.ajax({
+                url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
+                method: "get",
+                success: function(data) {
+                  that.total_price = 0;
+                  for(var i=0;i<data.length;i++){
+                    that.total_price += (data[i].price?parseFloat(data[i].price):0);
+                  }
+                }
+              });
+           },
+           // 上拉加载更多
+           infinite(done) {
+            var that = this;
+             setTimeout(function(){
+                  if(!that.isLoadFinish){
+                    that.currentPage++;
+                    that.showList();
+                  }
+                  if(that.isLoadFinish){ // 加载完毕
+                    done(true);
+                    return;
+                  } else {
+                    done();
+                  }
+              }, 500)
+            },
+            // 下拉刷新
+            refresh(done) {
+                var that = this;
+                setTimeout(function(){
+                    that.currentPage = 1;
+                    that.tieziArr = [];
+                    that.isLoadFinish = false;
+                    that.showList();
+                    that.totalnum();
+                    that.totalPrice();
+                    done();
+                }, 500);
+            },
           
         },
-        activated() {
-          
+        mounted() {
+          var that = this;
+          this.totalnum();
+          this.showList();
+          this.totalPrice();
         },
-       created() {
-   
-   
-  },
-        components: {
-                Calendar
-              }
+        deactivated(){
+          this.$destroy(true);
+        },
     }
 </script>
 
@@ -294,16 +307,26 @@ import Calendar from '../vue-calendar-component/index';
     margin-left:10px
 }
 .price-total {
+  position: relative;
   clear:both;
   font-size:14px;
   color:#f60;
   height:2rem;
   line-height: 2rem;
   text-align: right;
-  padding:0.5rem 0.7rem;
-  margin-bottom: 1rem;
+  padding:0 0.7rem;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+  background: #fff;
 }
 .aui-list .aui-list-item-right, .aui-list-item-title-row em {
   top:0;
+}
+._v-container{
+  z-index: 1;
+  padding-bottom: 2rem;
+}
+._v-container>._v-content>.loading-layer {
+  height:100px;
 }
 </style>

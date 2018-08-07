@@ -1,161 +1,158 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'患者评价'"></myHeader>
+        <scroller :on-refresh="refresh" :on-infinite="infinite" style="top:2.5rem;" ref="myscroller">
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item aui-list-item-middle">
+            <li class="aui-list-item aui-list-item-middle" v-if="tieziArr" v-for="item in tieziArr">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+                        <img :src="item.brid.Tx?item.brid.Tx:'static/image/1.jpg'" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
+                            <div class="aui-list-item-title aui-font-size-14" v-text="'住院患者：'+(item.brid.realname?item.brid.realname:item.brid.username)">林洪生</div>
                         </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            留言内容：您好吗？
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-text="'留言内容：'+item.pjcontent+'...'">
+                            
                         </div>
-                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
-                            评价分数：5
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            留言内容：您好吗？
-                        </div>
-                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
-                            评价分数：5
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            留言内容：您好吗？
-                        </div>
-                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
-                            评价分数：5
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            留言内容：您好吗？
-                        </div>
-                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
-                            评价分数：5
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            留言内容：您好吗？
-                        </div>
-                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
-                            评价分数：5
-                        </div>
-                    </div>
-                </div>
-            </li>
-             <li class="aui-list-item aui-list-item-middle">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">住院患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            留言内容：您好吗？
-                        </div>
-                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px">
-                            评价分数：5
+                        <div class="aui-list-item-text yuding-time pingjia-num" style="margin-left:11px" v-text="'评价分数：'+item.pingfen">
+                            
                         </div>
                     </div>
                 </div>
             </li>
            
         </ul>
+      </scroller>
     </div>
   
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
+    import $ from '../public/jquery'
+    import Vue from 'vue'
+    import VueScroller from 'vue-scroller'
+    Vue.use(VueScroller)
     export default {
         name: 'geqian',
         data() {
             return {
-               arr2: ['2018-7-3'],
-                      arr: [
-                {
-                  date: '2018-07-04',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/5',
-                  className: 'mark1'
-                },
-                {
-                  date: '2018/7/6',
-                  className: 'mark2'
-                }
-              ]     
+               tieziArr: [],
+               currentPage: 1,
+               pageSize:4,
+               isLoadFinish:false, //是否加载完全部数据 
             }
         },
         methods: {
-          openzhifu:function(){
-            this.$router.push({path:'/yuyueinfo'})
+          // 查询数据
+          showList() {
+              var that = this;
+              var start = (that.currentPage-1)*that.pageSize;
+              var filter = {
+                "order": "createdAt DESC",
+                "where": {
+                  "did": window.localStorage.getItem('userId')
+                },
+                "skip":start,
+                "limit":that.pageSize,
+                "include":"bridPointer",
+                "includefilter":{"my_user":{"fields":['id','username','realname','Tx']}}
+              };
+              that.ajax({
+                url: "pingjia?filter="+encodeURIComponent(JSON.stringify(filter)),
+                method: "get",
+                success: function(data) {
+                  if(data.length<that.pageSize){
+                    if(data.length>0){
+                      for(var i=0;i<data.length;i++){
+                        data[i]['pjcontent'] = data[i]['pjcontent']?data[i]['pjcontent'].substr(0,12):'';
+                        that.tieziArr.push(data[i]);
+                      }
+                    }
+                    that.isLoadFinish = true;
+                  } else {
+                    for(var i=0;i<data.length;i++){
+                      data[i]['pjcontent'] = data[i]['pjcontent']?data[i]['pjcontent'].substr(0,12):'';
+                      that.tieziArr.push(data[i]);
+                    }
+                  }
+                  sessionStorage.removeItem("pingjia_list");
+                  var tempDic = {};
+                  tempDic['data'] = that.tieziArr;
+                  tempDic['page'] = that.currentPage;
+                  sessionStorage.setItem("pingjia_list", JSON.stringify(tempDic));
+                }
+              });
+           },
+           // 上拉加载更多
+           infinite(done) {
+            var that = this;
+             setTimeout(function(){
+                  if(!that.isLoadFinish){
+                    that.currentPage++;
+                    that.showList();
+                  }
+                  if(that.isLoadFinish){ // 加载完毕
+                    done(true);
+                    return;
+                  } else {
+                    done();
+                  }
+              }, 500)
+            },
+            // 下拉刷新
+            refresh(done) {
+                var that = this;
+                setTimeout(function(){
+                    that.currentPage = 1;
+                    that.tieziArr = [];
+                    that.isLoadFinish = false;
+                    that.showList();
+                    done();
+                }, 500);
+            },
+          
+        },
+        mounted() {
+          var that = this;
+          if(sessionStorage.getItem("pingjia_list")!=null){
+            var tmp = JSON.parse(sessionStorage.getItem("pingjia_list"));
+            this.tieziArr = tmp['data'];
+            this.currentPage = tmp['page'];
+            this.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            setTimeout(function () {
+              that.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            },0)//同步转异步操作tTime
+          }else{
+            this.showList();
           }
-          
+       },
+        beforeRouteLeave(to,from,next){//记录离开时的位置
+          var tempSession = sessionStorage.getItem("pingjia_list");
+          if (tempSession) {
+            var tempDic = JSON.parse(tempSession);
+            tempDic['position'] = this.$refs.myscroller.getPosition().top;
+            tempDic['page'] = this.currentPage;
+            sessionStorage.setItem("pingjia_list", JSON.stringify(tempDic));
+          }
+          next()
         },
-        activated() {
-          
-        },
-       created() {
-   
-   
-  },
-        components: {
-                Calendar
-              }
+        beforeRouteEnter(to,from,next){
+          if(!sessionStorage.getItem("pingjia_list")){//当前页面刷新不需要切换位置
+            next(vm => {
+              //vm.showList();
+            });
+          }else{
+            next(vm => {
+              var tmp = JSON.parse(sessionStorage.getItem("pingjia_list"));
+              vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+              setTimeout(function () {
+                vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+              },20)//同步转异步操作tTime
+            })
+          }
+       }
     }
 </script>
 

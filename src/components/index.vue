@@ -52,12 +52,12 @@
       return {
         menuindex: 0,
         transitionName: '',
-        vuegConfig: {
-            disable: false,
-            forwardAnim: 'fadeInRight',
-            duration: '.3',
-            backAnim: 'fadeInLeft'
-        }
+        // vuegConfig: {
+        //     disable: false,
+        //     forwardAnim: 'fadeInRight',
+        //     duration: '.3',
+        //     backAnim: 'fadeInLeft'
+        // }
       }
     },
     components: {
@@ -123,7 +123,7 @@
           vm.menuindex = 0;
           var footeritem = document.getElementsByClassName("aui-bar-tab-item")
           var iconcls = document.getElementsByClassName("iconcls")
-          for (var i = 0; i < footeritem.length; i ++) {
+          for (var i = 0; i < footeritem.length; i++) {
             footeritem[i].className = 'aui-bar-tab-item'
           }
           footeritem[vm.menuindex].className = 'aui-bar-tab-item aui-active'
@@ -225,4 +225,7 @@
     position: fixed;
   }
   /* 首页切换动画 */
+  .aui-bar-tab {
+    top:auto !important;
+  }
 </style>

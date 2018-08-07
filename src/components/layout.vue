@@ -60,6 +60,9 @@
 
 <style>
   @import '/static/css/aui.css';
+    #vueg-background {
+      position: fixed !important;
+    }
 </style>
 
 <style scoped>
