@@ -158,7 +158,6 @@
                       method: "POST",
                       params,
                       success: function(data) {
-                        console.log(data);
                         for(var i=0;i<that.tieziArr.length;i++){
                           if(that.tieziArr[i].id == id){
                             that.tieziArr.splice(i,1);

@@ -53,7 +53,13 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 		data() {
       return {
         loginuser : '',
-        password : ''
+        password : '',
+        vuegConfig: {
+            disable: false,
+            forwardAnim: 'fadeInRight',
+            duration: '.3',
+            backAnim: 'fadeInRight'
+        }
       }
     },
     methods: {

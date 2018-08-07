@@ -276,6 +276,7 @@
          mounted () {
             var that = this;
             var id = that.$route.params.id;
+            that.toast = new auiToast();
             that.findData(id);
             that.pinglunnum(id);
             that.pinglunData(id);

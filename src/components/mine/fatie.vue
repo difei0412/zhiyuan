@@ -74,6 +74,7 @@ import Calendar from '../vue-calendar-component/index';
                 "tclickcount":0,
                 "tflag":0,
                 "if_delete":'1',
+                "if_top":'0',
                 "tuid":window.localStorage.getItem('userId')
               }
             }
