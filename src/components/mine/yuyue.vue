@@ -138,7 +138,7 @@
            },
            // 上拉加载更多
            infinite(done) {
-            var that = this;
+             var that = this;
              setTimeout(function(){
                   if(!that.isLoadFinish){
                     that.currentPage++;
@@ -320,7 +320,7 @@
 </style>
 <style>
   ._v-container{
-    z-index: 1;
+    z-index: 0;
     padding-bottom: 2rem;
   }
   ._v-container ._v-content .loading-layer {

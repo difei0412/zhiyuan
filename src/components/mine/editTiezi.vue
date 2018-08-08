@@ -39,7 +39,7 @@
                toast: null,
                vuegConfig: {
                   disable: false,
-                  forwardAnim: 'bounceInUp',
+                  forwardAnim: 'fadeInUp',
                   duration: '.3',
                   backAnim: 'fadeInUp'
               }

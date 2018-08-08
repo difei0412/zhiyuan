@@ -45,7 +45,7 @@
                   disable: false,
                   forwardAnim: 'fadeInRight',
                   duration: '.3',
-                  backAnim: 'fadeInLeft'
+                  backAnim: 'fadeInRight'
               },
               tieziArr: [],
                currentPage: 1,
@@ -325,7 +325,7 @@
 </style>
 <style>
   ._v-container{
-    z-index: 1;
+    z-index: 0;
     padding-bottom: 2rem;
   }
   ._v-container ._v-content .loading-layer {

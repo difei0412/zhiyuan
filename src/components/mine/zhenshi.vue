@@ -260,9 +260,6 @@ export default {
             })
           }
         },
-        components: {
-
-        }
       }
       </script>
 

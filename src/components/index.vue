@@ -52,12 +52,12 @@
       return {
         menuindex: 0,
         transitionName: '',
-        // vuegConfig: {
-        //     disable: false,
-        //     forwardAnim: 'fadeInRight',
-        //     duration: '.3',
-        //     backAnim: 'fadeInLeft'
-        // }
+        vuegConfig: {
+            disable: false,
+            forwardAnim: 'fadeInRight',
+            duration: '.5',
+            backAnim: 'fadeIn'
+        }
       }
     },
     components: {

@@ -36,7 +36,7 @@
         </div>
          <div class="aui-col-xs-3" @click="openRouter2()">
             <i class="aui-iconfont aui-icon-cert"></i>
-            <p>门诊患者跟踪</p>
+            <p>患者跟踪</p>
         </div>
          <div class="aui-col-xs-3" @click="openRouter3()">
             <i class="aui-iconfont aui-icon-video"></i>
