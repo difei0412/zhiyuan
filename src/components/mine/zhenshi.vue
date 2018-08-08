@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: white; min-height: 100%;">
     <myHeader :title="'门诊患者跟踪'"></myHeader>
-    <div class="aui-tab" id="tab" style="position:fixed;width:100%;z-index:1">
+    <div class="aui-tab" id="tab" style="position:fixed;width:100%;z-index:2">
       <div class="aui-tab-item aui-active" v-if="myindex==0" @click="selectmenu(0)">门诊患者在线</div>
       <div class="aui-tab-item " v-if="myindex!=0" @click="selectmenu(0)">门诊患者在线</div> 
       <div class="aui-tab-item aui-active" v-if="myindex==1" @click="selectmenu(1)">患者打卡</div>
@@ -38,54 +38,35 @@
     </scroller>
   </div>
   <div  v-if="myindex==1">
+   <scroller :on-refresh="refresh" :on-infinite="infinite1" style="padding-top:4.5rem;height:auto !important" ref="myscroller">
     <div class="aui-content aui-margin-b-15">
       <ul class="aui-list aui-media-list">
 
-       <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
+        <li class="aui-list-item aui-list-item-middle"  @click="openzhifu(item.brid.id)" v-for="item in dakatieziArr">
          <div class="aui-media-list-item-inner">
           <div class="aui-list-item-media" style="width: 3rem;">
             <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
           </div>
           <div class="aui-list-item-inner aui-list-item-arrow">
             <div class="aui-list-item-text" style="margin-left:11px">
-              <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
+              <div class="aui-list-item-title aui-font-size-14">患者：{{item.brname}}</div>
+              <div class="aui-list-item-text" style="margin-left:11px">
+                <div class="order-status">打卡记录</div>
+              </div>
             </div>
-            <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+            <!-- <div class="aui-list-item-text yuding-time" style="margin-left:11px">
               病房号：90000001
             </div>
             <div class="aui-list-item-text yuding-time" style="margin-left:11px">
               住院时间：2018-05-10 下午12:30
-            </div>
-            <div class="aui-list-item-text" style="margin-left:11px">
-              <div class="order-status">打卡记录</div>
-            </div>
+            </div> -->
+            
           </div>
         </div>
       </li>
-      <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-       <div class="aui-media-list-item-inner">
-        <div class="aui-list-item-media" style="width: 3rem;">
-          <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-        </div>
-        <div class="aui-list-item-inner aui-list-item-arrow">
-          <div class="aui-list-item-text" style="margin-left:11px">
-            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-          </div>
-          <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-            病房号：90000001
-          </div>
-          <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-            住院时间：2018-05-10 下午12:30
-          </div>
-          <div class="aui-list-item-text" style="margin-left:11px">
-            <div class="order-status">打卡记录</div>
-          </div>
-        </div>
-      </div>
-    </li>
-
-  </ul>
-</div>
+    </ul>
+  </div>
+</scroller>
 </div>
 </div>
 
@@ -102,6 +83,7 @@ export default {
     return {
      myindex:0,
      tieziArr: [],
+     dakatieziArr: [],
      currentPage: 1,
      pageSize:8,
      isLoadFinish:false, //是否加载完全部数据
@@ -113,9 +95,14 @@ export default {
           selectmenu:function(index){
 
             this.myindex=index
+            this.tieziArr = [];
+            this.dakatieziArr = [];
+            this.getMy_user();
+
 
           },
-          openzhifu:function(){
+          openzhifu:function(id){
+            sessionStorage.setItem("hz_id", id);
             this.$router.push({path:'/zhifu'})
           },
           openzhifu2:function(id,startdate,enddate,crnumber){
@@ -138,27 +125,30 @@ export default {
           // },
            // 查询数据
            getMy_user() {
-            // console.log('ok');
-            var that = this;
-            var start = (that.currentPage-1)*that.pageSize;
 
-            var filter = {
-              "fields": {"id":true,"startdate":true,"enddate":true,"servicetime":true,"servieceid":true,"patientid":true},
-              "order": "createdAt DESC",
-              "where": {
-                "info":1,
-                "status":1
-              },
-              "skip":start,
-              "limit":that.pageSize,
-              "include":"patientidPointer",
-              "includefilter":{"my_user":{"fields":['id','realname',]}}
-            };
-            that.ajax({
-              url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
-              method: "get",
-              success: function(data) {
-                if (data) {
+            var that = this;
+            console.log(that.myindex)
+            var start = (that.currentPage-1)*that.pageSize;
+            if (that.myindex == 0) {
+              console.log('ok');
+              var filter = {
+                "fields": {"id":true,"startdate":true,"enddate":true,"servicetime":true,"servieceid":true,"patientid":true},
+                "order": "createdAt DESC",
+                "where": {
+                  "info":1,
+                  "status":1
+                },
+                "skip":start,
+                "limit":that.pageSize,
+                "include":"patientidPointer",
+                "includefilter":{"my_user":{"fields":['id','realname',]}}
+              };
+              that.ajax({
+                url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
+                method: "get",
+                success: function(data) {
+                 console.log(data)
+                 if (data) {
                   if(data.length<that.pageSize){
                     if(data.length>0){
                       for(var i=0;i<data.length;i++){
@@ -171,6 +161,7 @@ export default {
                       that.tieziArr.push(data[i]);
                     }
                   }
+
                   sessionStorage.removeItem("hz_list");
                   var tempDic = {};
                   tempDic['data'] = that.tieziArr;
@@ -179,6 +170,52 @@ export default {
                 }
               }
             });
+            }else{
+              console.log('ok1');
+              var filter = {
+                "fields": {"id":true,'brid':true,'brname':true},
+                "order": "createdAt DESC",
+                "skip":start,
+                "limit":that.pageSize,
+                "include":"bridPointer",
+                "includefilter":{"my_user":{"fields":['id','Tx','realname']}}
+              };
+              // console.log(filter)
+              that.ajax({
+                url: "dakalist?filter="+encodeURIComponent(JSON.stringify(filter)),
+                method: "get",
+                success: function(data) {
+                  var hash = {}; 
+                  data = data.reduce(function(item, next) { 
+                    hash[next.brname] ? '' : hash[next.brname] = true && item.push(next); 
+                    return item 
+                  }, []) 
+
+                  console.log(data)
+                  if (data) {
+                    if(data.length<that.pageSize){
+                      if(data.length>0){
+                        for(var i=0;i<data.length;i++){
+                          that.dakatieziArr.push(data[i]);
+                        }
+                      }
+                      that.isLoadFinish = true;
+                    } else {
+                      for(var i=0;i<data.length;i++){
+                        that.dakatieziArr.push(data[i]);
+                      }
+                    }
+                  // console.log(that.dakatieziArr)
+                  sessionStorage.removeItem("hz_list");
+                  var tempDic = {};
+                  tempDic['data'] = that.dakatieziArr;
+                  tempDic['page'] = that.currentPage;
+                  sessionStorage.setItem("hz_list", JSON.stringify(tempDic));
+                }
+              }
+            });
+            }
+
           },
            // 上拉加载更多
            infinite1(done) {
@@ -205,11 +242,13 @@ export default {
               setTimeout(function(){
                 that.currentPage = 1;
                 that.tieziArr = [];
+                that.dakatieziArr = [];
                 that.isLoadFinish = false;
                 that.getMy_user();
                 done();
               }, 500);
             },
+            
           },
           activated() {
             // this.getMy_user()
@@ -219,47 +258,48 @@ export default {
 
           },
           mounted() {
-            var that = this;
-            // this.toast = new auiToast();
-            if(sessionStorage.getItem("hz_list")!=null){
-              // console.log("使用缓存");
-              var tmp = JSON.parse(sessionStorage.getItem("hz_list"));
-              this.tieziArr = tmp['data'];
-              this.currentPage = tmp['page'];
-              this.$refs.myscroller.scrollTo(0, tmp['position'], true);
-              setTimeout(function () {
-                that.$refs.myscroller.scrollTo(0, tmp['position'], true);
-            },0)//同步转异步操作tTime
-            }else{
-              // console.log('直接加载');
-              this.getMy_user();
-            }
+            // var that = this;
+            // // this.toast = new auiToast();
+            // if(sessionStorage.getItem("hz_list")!=null){
+            //   console.log(sessionStorage.getItem("hz_list"));
+            //   console.log("使用缓存");
+            //   var tmp = JSON.parse(sessionStorage.getItem("hz_list"));
+            //   this.tieziArr = tmp['data'];
+            //   this.currentPage = tmp['page'];
+            //   this.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            //   setTimeout(function () {
+            //     that.$refs.myscroller.scrollTo(0, tmp['position'], true);
+            // },0)//同步转异步操作tTime
+            // }else{
+            //   console.log('直接加载');
+            this.getMy_user();
+            // }
           },
-       beforeRouteLeave(to,from,next){//记录离开时的位置
-        var tempSession = sessionStorage.getItem("hz_list");
-        if (tempSession) {
-          var tempDic = JSON.parse(tempSession);
-          tempDic['position'] = this.$refs.myscroller.getPosition().top;
-          tempDic['page'] = this.currentPage;
-          sessionStorage.setItem("hz_list", JSON.stringify(tempDic));
-        }
-        next()
-      },
-      beforeRouteEnter(to,from,next){
-          if(!sessionStorage.getItem("hz_list")){//当前页面刷新不需要切换位置
-            next(vm => {
-              //vm.getMy_user();
-            });
-          }else{
-            next(vm => {
-              var tmp = JSON.parse(sessionStorage.getItem("hz_list"));
-              vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
-              setTimeout(function () {
-                vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
-              },20)//同步转异步操作tTime
-            })
-          }
-        },
+       // beforeRouteLeave(to,from,next){//记录离开时的位置
+        // var tempSession = sessionStorage.getItem("hz_list");
+        // if (tempSession) {
+        //   var tempDic = JSON.parse(tempSession);
+        //   tempDic['position'] = this.$refs.myscroller.getPosition().top;
+        //   tempDic['page'] = this.currentPage;
+        //   sessionStorage.setItem("hz_list", JSON.stringify(tempDic));
+        // }
+        // next()
+      // },
+      // beforeRouteEnter(to,from,next){
+          // if(!sessionStorage.getItem("hz_list")){//当前页面刷新不需要切换位置
+          //   next(vm => {
+          //     //vm.getMy_user();
+          //   });
+          // }else{
+          //   next(vm => {
+          //     var tmp = JSON.parse(sessionStorage.getItem("hz_list"));
+          //     vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+          //     setTimeout(function () {
+          //       vm.$refs.myscroller.scrollTo(0, tmp['position'], false);
+          //     },20)//同步转异步操作tTime
+          //   })
+          // }
+        // },
       }
       </script>
 

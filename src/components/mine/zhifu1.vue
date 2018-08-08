@@ -3,11 +3,11 @@
     <myHeader :title="'患者详情'"></myHeader>
 
     <section class="aui-content-padded">
-      <p><div class="aui-label">预约时间：{{yy_data}} 线上诊疗</div></p>
+      <p><div class="aui-label">预约时间：{{yy_data?yy_data:''}} 线上诊疗</div></p>
       <!-- <p><div class="aui-label">诊&ensp;室&ensp;号：900001</div></p> -->
-      <p><div class="aui-label">姓&ensp;&ensp;&ensp;&ensp;名：{{realname}}</div></p>
-      <p><div class="aui-label">性&ensp;&ensp;&ensp;&ensp;别：{{sex}}</div></p>
-      <p><div class="aui-label">年&ensp;&ensp;&ensp;&ensp;龄：{{age}}</div></p>
+      <p><div class="aui-label">姓&ensp;&ensp;&ensp;&ensp;名：{{realname?realname:''}}</div></p>
+      <p><div class="aui-label">性&ensp;&ensp;&ensp;&ensp;别：{{sex?sex:''}}</div></p>
+      <p><div class="aui-label">年&ensp;&ensp;&ensp;&ensp;龄：{{age?age:''}}</div></p>
       <!-- <p><div class="aui-label">病&ensp;&ensp;&ensp;&ensp;种：抑郁科</div></p> -->
       <p><div class="aui-label aui-label-danger aui-label-outlined">{{bl_con}}</div></p>
       <div class="aui-list-item-inner">
@@ -28,16 +28,16 @@
               用药建议
             </div>
             <div class="aui-list-item-input" >
-              <input type="text" placeholder="请输入用药建议" v-model="conntr" @click="yongyao">
+              <input type="text" placeholder="请输入用药建议" v-model="conntr" @click="yongyao" v-on:blur="yincang()" v-on:input="sjgb"> 
             </div>
           </div>
         </li>
         <li class="aui-list-item">
-          <div class="aui-list-item-inner">
+          <div class="aui-list-item-inner" style="margin-right: 0px">
             <div class="aui-list-item-label">
               睡眠建议
             </div>
-            <div class="aui-list-item-input">
+            <div class="aui-list-item-input"  style="padding-right:0px">
               <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
               <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
               <div @click="sleepBTN($event)" class="biao aui-btn">不佳</div>
@@ -60,8 +60,8 @@
       <textarea class="text " placeholder="反馈内容" v-model="fkcont"></textarea>
       <div class="aui-btn aui-btn-danger aui-btn-block" @click='fkyjBTN'>反馈意见</div>
     </div>
-    <ul class="yyseach">
-      <li v-for='item in yp'>{{item.name}} {{item.bzyl}}{{item.unit}}</li>
+    <ul class="yyseach" style="display: none">
+      <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
     </ul>
 
     <lg-preview></lg-preview>
@@ -71,6 +71,7 @@
 <script>
 import md5 from '../public/md5'
 import $ from '../public/jquery';
+import { Toast } from 'mint-ui';
 export default {
   name: 'register',
   data() {
@@ -91,16 +92,19 @@ export default {
     }
   },
   methods: {
+
     closewin:function() {
       var _this = this;
       _this.$router.backRoute();
     },
     sleepBTN(e){
-     $(e.target).addClass("sleepYS").siblings().removeClass("sleepYS");
-   },
-   openRegisterProtocol() {
-    this.$router.pushRoute({name:"registerProtocol"});
-  },
+      // console.log($(e.target).html())
+      $(e.target).addClass("sleepYS").siblings().removeClass("sleepYS");
+      this.sleep = $(e.target).html()
+    },
+    openRegisterProtocol() {
+      this.$router.pushRoute({name:"registerProtocol"});
+    },
       // 查询数据
       getMy_user() {
         // alert(sessionStorage.getItem("hz_id"))
@@ -119,13 +123,19 @@ export default {
           // url: "my_user/5b615a25f5f5bbad6b43a3a3/cash",
           method: "get",
           success: function(data) {
-            console.log(data)
+            // console.log(data)
             if (data) {
-              that.realname = data[0].realname;
-              that.sex = data[0].sex;
-              that.age = data[0].age;
-              that.bl_con = data[0].cash[0].bl_con;
-              that.bl_img = data[0].cash[0].bl_img;
+              that.realname = data[0].realname?data[0].realname:'';
+              that.sex = data[0].sex?data[0].sex:'';
+              that.age = data[0].age?data[0].age:'';
+              // console.log(data[0].cash[0])
+              if (data[0].cash[0]) {
+                that.bl_con = data[0].cash[0].bl_con?data[0].cash[0].bl_con:'';
+                that.bl_img = data[0].cash[0].bl_img?data[0].cash[0].bl_img:'';
+              }else{
+                that.bl_con="未填写"
+              }
+              
             }
             
           }
@@ -155,12 +165,17 @@ export default {
             'brname':that.realname,
             'did':window.localStorage.getItem("userId"),
             'dname':window.localStorage.getItem("userName"),
-            'fk':that.fkcont
+            'fk':that.fkcont,
+            'yongyao':that.conntr,
+            'sleep':that.sleep,
+            'other':that.other,
           }
         }
         var url = 'fankui'
         that.ajax({url,method:"post",params,success:function(data){
           console.log(data)
+          that.$router.push({path:'/zhenshi'})
+          Toast('反馈成功！');
         }})
       },
       yongyao(){
@@ -169,17 +184,44 @@ export default {
         that.ajax({url,method:'get',success:function(data){
           console.log(data)
           that.yp=data
+          $(".yyseach").show()
         }})
       },
-      
+      touchend(yname,yjiliang,ydanwei,e){
+        this.conntr = yname+' '+yjiliang+ydanwei
+      },
+      yincang(){
+        setTimeout(function(){
+          $(".yyseach").hide()
+        },1)
+        
+      },
+      sjgb(){
+
+        var that = this;
+
+        var filter = {
+          "where": {
+            "name":{
+              "like":that.conntr
+            },
+          },
+        }
+        var url = 'medicine?filter='+encodeURIComponent(JSON.stringify(filter))
+        // console.log(filter)
+        that.ajax({url,method:'get',success:function(data){
+          // console.log(data)
+          that.yp=data
+        }})
+      },
     },
     mounted(){
-      this.getMy_user()
-      this.get_dakailist()
+
+      // this.get_dakailist()
     },
     activated() {
-
-    }
+      this.getMy_user()
+    },
   }
   </script>
 
