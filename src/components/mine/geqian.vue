@@ -16,7 +16,13 @@
         name: 'geqian',
         data() {
             return {
-                geqian: ''
+                geqian: '',
+                vuegConfig: {
+                  disable: false,
+                  forwardAnim: 'fadeInRight',
+                  duration: '.3',
+                  backAnim: 'fadeInRight'
+               }
             }
         },
         methods: {
