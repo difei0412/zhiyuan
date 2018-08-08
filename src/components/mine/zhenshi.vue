@@ -306,9 +306,6 @@ export default {
           //   })
           // }
         // },
-        components: {
-
-        }
       }
       </script>
 

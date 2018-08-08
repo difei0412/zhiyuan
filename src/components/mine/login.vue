@@ -107,6 +107,7 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
                   tmp.tx=data[0].tx;
                   tmp.username=data[0].username;
                   tmp.name=data[0].name;
+                  tmp.timelist = data[0].timelist;
                   tmp = JSON.stringify(tmp);
                   window.localStorage.setItem('userinfo_obj',tmp);
                   that.$router.push({name:"index"});

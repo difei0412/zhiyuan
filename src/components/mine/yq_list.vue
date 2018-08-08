@@ -257,7 +257,7 @@
 </style>
 <style>
   ._v-container{
-    z-index: 1;
+    z-index: 0;
     padding-bottom: 2rem;
   }
   ._v-container ._v-content .loading-layer {

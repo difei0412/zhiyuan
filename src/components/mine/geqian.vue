@@ -16,7 +16,13 @@
         name: 'geqian',
         data() {
             return {
-                geqian: ''
+                geqian: '',
+                vuegConfig: {
+                  disable: false,
+                  forwardAnim: 'fadeInRight',
+                  duration: '.3',
+                  backAnim: 'fadeInRight'
+               }
             }
         },
         methods: {
@@ -45,9 +51,9 @@
       			}
       			that.ajax({url,method,params,
       				success:function(data){
-
+                window.localStorage.removeItem('userinfo_obj')
       					that.$MessageBox.alert("修改成功！");
-                that.$router.push({path:'/userinfo'})
+                that.$router.back();
       				}
       			})
           }
