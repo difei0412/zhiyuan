@@ -1,183 +1,153 @@
 <template>
-    <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'住院日志'"></myHeader>
+  <div style="background-color: white; min-height: 100%;">
+    <myHeader :title="'住院日志'"></myHeader>
 
-<!--         <Calendar ref="Calendar" style="margin-top:1rem;"></Calendar> -->
+    <!--         <Calendar ref="Calendar" style="margin-top:1rem;"></Calendar> -->
 
-        <ul class="aui-list aui-media-list">
-           
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            病房号：600001
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            住院时间：2018-05-10 下午12:30
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">编写住院日志</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            病房号：600001
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            住院时间：2018-05-10 下午12:30
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">编写住院日志</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            病房号：600001
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            住院时间：2018-05-10 下午12:30
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">编写住院日志</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item aui-list-item-middle"  @click="openzhifu()">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-media" style="width: 3rem;">
-                        <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
-                    </div>
-                    <div class="aui-list-item-inner aui-list-item-arrow">
-                        <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14">患者：林洪生</div>
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            病房号：600001
-                        </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                            住院时间：2018-05-10 下午12:30
-                        </div>
-                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="order-status">编写住院日志</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-           
-        </ul>
-    </div>
+    <ul class="aui-list aui-media-list">
+
+      <li class="aui-list-item aui-list-item-middle"  @click="openzhifu(item.id)" v-for="item in zyarr">
+        <div class="aui-media-list-item-inner">
+          <div class="aui-list-item-media" style="width: 3rem;">
+            <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+          </div>
+          <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-text" style="margin-left:11px">
+              <div class="aui-list-item-title aui-font-size-14">患者：{{item.brname}}</div>
+            </div>
+            <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+              病房号：{{item.InpatientWard}}
+            </div>
+            <div class="aui-list-item-text yuding-time" style="margin-left:11px">
+              住院时间：{{dateFormat(item.createdAt)}}
+            </div>
+            <div class="aui-list-item-text" style="margin-left:11px">
+              <div class="order-status">编写住院日志</div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
   
 </template>
 
 <script>
 import Calendar from '../vue-calendar-component/index2';
-    export default {
-        name: 'geqian',
-        data() {
-            return {
-                vuegConfig: {
-                  disable: false,
-                  forwardAnim: 'fadeInRight',
-                  duration: '.3',
-                  backAnim: 'fadeInLeft'
-              }    
-            }
-        },
-        methods: {
-          openzhifu:function(){
-           this.$router.push({path:'/rizhiedit'})
-          }
-          
-        },
-        activated() {
-          
-        },
-       created() {
-   
-   
-  },
-        components: {
-                Calendar
-              }
+export default {
+  name: 'geqian',
+  data() {
+    return {
+      zyarr:[],
+      vuegConfig: {
+        disable: false,
+        forwardAnim: 'fadeInRight',
+        duration: '.3',
+        backAnim: 'fadeInLeft'
+      }    
     }
+  },
+  methods: {
+    openzhifu:function(id){
+     this.$router.push({path:'/rizhiedit/'+id})
+   },
+   get_zhuyuan(){
+    var that = this;
+    var filter = {
+      "fields":{'id':true,'brname':true,'createdAt':true,'InpatientWard':true},
+      "order": "createdAt DESC",
+      "where":{
+        "did":window.localStorage.getItem("userId"),
+        "info":"2"
+      }
+    }
+    var url = "genzong?filter="+encodeURIComponent(JSON.stringify(filter));
+    that.ajax({url,method:'get',success:function(data){
+      console.log(data)
+      that.zyarr = data
+    }})
+  },
+          //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+          dateFormat:function(time) {
+            var date=new Date(time);
+            var year=date.getFullYear();
+    /* 在日期格式中，月份是从0开始的，因此要加0
+     * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+     * */
+     var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+     var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+     var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+     var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+     var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+    // 拼接
+    return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+  },
+
+
+},
+activated() {
+  this.get_zhuyuan()
+},
+created() {
+
+
+},
+components: {
+  Calendar
+}
+}
 </script>
 
 <style scoped>
-    .order-status {
-      width:100%;
-      text-align: right;
-      color:rgb(255, 152, 0);
-      font-size:14px;
-    }
-    .aui-list-item-inner.aui-list-item-arrow {
-      padding-right: 0rem;
-      margin-right: 0rem;
-    }
-    .yuding-time {
-      font-size:12px;
-      color:#666;
-      margin:0.15rem 0;
-    }
-    .my-middle {
-        display: -webkit-box;
-        -webkit-box-orient: horizontal;
-        -webkit-box-align: center;
-        display: box;
-        box-orient: horizontal;
-        box-align: center;
-    }
-    .text {
-        width: 16.75rem;
-        height: 7rem;
-        margin: 0.7rem auto 0;
-        padding: 0.3rem;
-        font-size: 0.7rem;
-        color: #0f0f0f;
-        background-color: rgb(250, 250, 250);
-        letter-spacing: 0.1rem;
-    }
-    .exitBg {
-        height: 5rem;
-    }
-    .exit {
-        height: 2rem;
-        line-height: 2rem;
-        border-radius: 1rem;
-        font-size: 0.85rem;
-        color: #f22a2a;
-        background-color: rgb(240, 240, 240);
-        width: 7.5rem;
-        margin: 0 auto;
-        text-align: center;
-    }
-  h3 {
+.order-status {
+  width:100%;
+  text-align: right;
+  color:rgb(255, 152, 0);
+  font-size:14px;
+}
+.aui-list-item-inner.aui-list-item-arrow {
+  padding-right: 0rem;
+  margin-right: 0rem;
+}
+.yuding-time {
+  font-size:12px;
+  color:#666;
+  margin:0.15rem 0;
+}
+.my-middle {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-align: center;
+}
+.text {
+  width: 16.75rem;
+  height: 7rem;
+  margin: 0.7rem auto 0;
+  padding: 0.3rem;
+  font-size: 0.7rem;
+  color: #0f0f0f;
+  background-color: rgb(250, 250, 250);
+  letter-spacing: 0.1rem;
+}
+.exitBg {
+  height: 5rem;
+}
+.exit {
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  color: #f22a2a;
+  background-color: rgb(240, 240, 240);
+  width: 7.5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+h3 {
   text-align: center;
   width: 90%;
   margin: auto;
@@ -206,30 +176,30 @@ import Calendar from '../vue-calendar-component/index2';
   background: orange;
 }
 .myred{
-    height:15px;
-    width:55px;
-    background:red;
-    position:relative;
-    float:left;
-    margin-left:20px;
-    margin-top:10px
+  height:15px;
+  width:55px;
+  background:red;
+  position:relative;
+  float:left;
+  margin-left:20px;
+  margin-top:10px
 }
 .myblue{
-    height:15px;
-    width:55px;
-    background:blue;
-    position:relative;
-    float:left;
-    margin-left:20px;
-    margin-top:10px
+  height:15px;
+  width:55px;
+  background:blue;
+  position:relative;
+  float:left;
+  margin-left:20px;
+  margin-top:10px
 }
 .button1{
-     border:1px solid #d1d1d1;
-     background:#fff;
-     height:30px;
-     width:67px;
-     color:#d1d1d1;
-     border-radius:15px
+ border:1px solid #d1d1d1;
+ background:#fff;
+ height:30px;
+ width:67px;
+ color:#d1d1d1;
+ border-radius:15px
 
 }
 
@@ -243,13 +213,13 @@ import Calendar from '../vue-calendar-component/index2';
 
 }
 .l1{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
-    border-radius:8px;
-    font-size:12px;
-    background:#fff;
-    width:60px;
-    margin-left:10px
+  color:#27B5B1;
+  border:1px solid #27B5B1;
+  border-radius:8px;
+  font-size:12px;
+  background:#fff;
+  width:60px;
+  margin-left:10px
 }
 .wh_container {
   border-top:1px solid #ccc;

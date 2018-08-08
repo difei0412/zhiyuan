@@ -123,17 +123,20 @@ export default {
           // url: "my_user/5b615a25f5f5bbad6b43a3a3/cash",
           method: "get",
           success: function(data) {
-            // console.log(data)
+            console.log(data)
             if (data) {
               that.realname = data[0].realname?data[0].realname:'';
               that.sex = data[0].sex?data[0].sex:'';
               that.age = data[0].age?data[0].age:'';
+              
               // console.log(data[0].cash[0])
               if (data[0].cash[0]) {
                 that.bl_con = data[0].cash[0].bl_con?data[0].cash[0].bl_con:'';
-                that.bl_img = data[0].cash[0].bl_img?data[0].cash[0].bl_img:'';
+                that.bl_img = data[0].cash[0].bl_img;
+                sessionStorage.setItem("bl_id",data[0].cash[0].id)
               }else{
                 that.bl_con="未填写"
+                that.bl_img=""
               }
               
             }
@@ -169,6 +172,7 @@ export default {
             'yongyao':that.conntr,
             'sleep':that.sleep,
             'other':that.other,
+            'bl_id':sessionStorage.getItem("bl_id"),
           }
         }
         var url = 'fankui'

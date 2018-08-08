@@ -136,7 +136,8 @@ export default {
                 "order": "createdAt DESC",
                 "where": {
                   "info":1,
-                  "status":1
+                  "status":1,
+                  'expertid':window.localStorage.getItem("userId")
                 },
                 "skip":start,
                 "limit":that.pageSize,
@@ -175,6 +176,11 @@ export default {
               var filter = {
                 "fields": {"id":true,'brid':true,'brname':true},
                 "order": "createdAt DESC",
+                "where": {
+                  "info":0,
+                  // "status":1,
+                  'did':window.localStorage.getItem("userId")
+                },
                 "skip":start,
                 "limit":that.pageSize,
                 "include":"bridPointer",

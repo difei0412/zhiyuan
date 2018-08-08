@@ -187,7 +187,7 @@ let router = new VueRouter({
 		},
 		{
 			name: 'fankuidetail',
-			path: '/fankuidetail',
+			path: '/fankuidetail/:id',
 			component: fankuidetail
 		},
 		{
@@ -202,7 +202,7 @@ let router = new VueRouter({
 		},
 		{
 			name: 'rizhiedit',
-			path: '/rizhiedit',
+			path: '/rizhiedit/:id',
 			component: rizhiedit
 		},
 		{
