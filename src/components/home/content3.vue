@@ -167,6 +167,7 @@
 		                  tmp.username=data[0].username;
 		                  tmp.name=data[0].name;
 		                  tmp.timelist=data[0].timelist;
+		                  tmp = JSON.stringify(tmp);
 		                  window.localStorage.setItem('userinfo_obj',tmp);
 		                  that.userInfo = data[0];
 		                }
@@ -192,6 +193,7 @@
 				this.userId = userId?userId:'';
 				if(window.localStorage.getItem('userinfo_obj')){
 					var tmp = window.localStorage.getItem('userinfo_obj');
+					console.log(tmp);
 					this.userInfo = JSON.parse(tmp);
 				}else{
 					this.getUserInfo()

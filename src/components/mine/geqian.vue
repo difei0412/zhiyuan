@@ -45,9 +45,9 @@
       			}
       			that.ajax({url,method,params,
       				success:function(data){
-
+                window.localStorage.removeItem('userinfo_obj')
       					that.$MessageBox.alert("修改成功！");
-                that.$router.push({path:'/userinfo'})
+                that.$router.back();
       				}
       			})
           }

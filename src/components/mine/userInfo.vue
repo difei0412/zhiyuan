@@ -232,6 +232,7 @@ export default {
 				that.ajax({url,method,params,
 					success:function(response){
 						if(response.url) {
+							window.localStorage.removeItem('userinfo_obj');
 							that.userInfo.tx = response.url;
 							that.updateTx(that.userInfo.tx);
 						}
@@ -414,6 +415,7 @@ export default {
 			console.log(params)
 			that.ajax({url,method,params,
 				success:function(data){
+					window.localStorage.removeItem('userinfo_obj');
 					that.userInfo = data;
 				}
 			})

@@ -42,23 +42,15 @@ export default {
   
   data() {
     return {
-     arr2: ['2018-7-3'],
+     toast: null,
      dataUrl:'',
-     filesobj:[],
-     arr: [
-     {
-      date: '2018-07-04',
-      className: 'mark1'
-    },
-    {
-      date: '2018/7/5',
-      className: 'mark1'
-    },
-    {
-      date: '2018/7/6',
-      className: 'mark2'
-    }
-    ]     
+     filesobj:[],    
+     vuegConfig: {
+        disable: false,
+        forwardAnim: 'fadeInRight',
+        duration: '.3',
+        backAnim: 'fadeInRight'
+     }
   }
 },
 methods: {
@@ -75,7 +67,7 @@ methods: {
         success:function(data){
           
           that.filesobj = data.file_list
-          console.log(that.filesobj)
+          //console.log(that.filesobj)
         }
       })
     },
@@ -96,14 +88,16 @@ methods: {
     // console.log(fileObj)
     var files = e.target.files;
     var file = files[0];
+    e.currentTarget.value= '';
     var reader = new FileReader();
     reader.readAsDataURL(file);
     $(reader).load(function () {
       // $('#photo').children("img").attr("src", this.result);
-      fileObj.push(this.result)
-      // that.dataUrl = this.result
-      that.filesobj=fileObj
-      console.log(that.filesobj)
+      // fileObj.push(this.result)
+      // // that.dataUrl = this.result
+      // that.filesobj=fileObj
+      that.filesobj.push(this.result);
+      //console.log(that.filesobj)
       
     })
     
@@ -122,10 +116,35 @@ methods: {
           "_method":"PUT"
         }
       }
-      console.log(url)
+      that.toast.loading({
+           title:"加载中",
+           duration:2000
+       },function(ret){
+       });
+      //console.log(url)
       that.ajax({url,method,params,
-        success:function(response){
-          console.log(response)
+        success:function(res){
+          that.toast.hide();
+          if(JSON.stringify(res)!='{}'){
+            setTimeout(function(){
+              that.$router.back();
+            }, 2000);
+            that.toast.success({
+                title:"提交成功",
+                duration:2000
+            });
+          }else{
+            that.toast.fail({
+                title:"提交失败",
+                duration:2000
+            });
+          }
+        },
+        error:function() {
+          that.toast.fail({
+              title:"提交失败",
+              duration:2000
+          });
         }
       })
     },
@@ -133,22 +152,20 @@ methods: {
           delpic(obj) {
             var el = event.currentTarget;
             this.filesobj.splice($(el).prevAll().attr('id'),1)
-            console.log(this.filesobj)
+            //console.log(this.filesobj)
             // $(el).parent().remove();
           },
           opennext(){
-            console.log(this.filesobj )
-            this.updateTx(fileObj)
-            
+            this.updateTx(this.filesobj);
           },
 
         },
         activated() {
+          this.filesobj = [];
           this.getImg()
         },
         created() {
-
-
+          this.toast = new auiToast();
         },
 
         components: {
