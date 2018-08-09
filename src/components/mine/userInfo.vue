@@ -602,7 +602,7 @@ export default {
 					that.userInfo = data;
 					that.zhuzhi = that.userInfo.speciality?that.userInfo.speciality:'';
 					that.keshi = that.userInfo.office?that.userInfo.office:'';
-					that.zhiji = that.userInfo.holder?that.userInfo.holder:'';
+					that.zhiji = that.userInfo.holderid?that.userInfo.holderid:'';
 					that.yiyuan = that.userInfo.hospital?that.userInfo.hospital:'';
 				}
 			})
