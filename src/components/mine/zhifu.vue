@@ -57,6 +57,9 @@
         </div>
       </div>
     </li>
+    <select id="pid" name="" multiple class="yyseach" style="display: none" v-on:change="gradeChange">
+      <option value="aa" v-for='item in yp'>{{item.name}} {{item.bzyl}}{{item.unit}}</option>
+    </select>
     <li class="aui-list-item">
       <div class="aui-list-item-inner" style="margin-right: 0px">
         <div class="aui-list-item-label">
@@ -84,9 +87,9 @@
 <div>
   <textarea class="text " placeholder="反馈内容" v-model="fkcont"></textarea>
 </div>
-<ul class="yyseach" style="display: none">
+<!-- <ul class="yyseach" style="display: none">
   <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
-</ul>
+</ul> -->
 <div class="exitBg my-middle">
   <div class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" @click="fkyjBTN">确 定</div>
 </div>
@@ -164,13 +167,15 @@ dateFormat:function(time) {
     // 拼接
     return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
   },
-
+  gradeChange(){ 
+    this.conntr = $("#pid  option:selected").text()
+  },
 // 建议
 sleepBTN(e){
   console.log($(e.target).html())
-      $(e.target).addClass("sleepYS").siblings().removeClass("sleepYS");
-      this.sleep = $(e.target).html()
-    },
+  $(e.target).addClass("sleepYS").siblings().removeClass("sleepYS");
+  this.sleep = $(e.target).html()
+},
 fkyjBTN(){
   // console.log(this.dakaijiluid)
   var that = this
@@ -393,10 +398,11 @@ h3 {
   background: #34DBDA; color:#fff;
 }
 .yyseach{
-  position: fixed;
-  bottom: 0px;
-  height: 20rem;
-  width: 100%;
+  /*position: fixed;*/
+  /*bottom: 0px;*/
+  /*height: 20rem;*/
+  /*width: 100%;*/
+  padding-left: 1rem; 
   background: #fff;
   z-index: 100;
 }

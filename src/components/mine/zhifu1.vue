@@ -32,6 +32,9 @@
             </div>
           </div>
         </li>
+        <select id="pid" name="" multiple class="yyseach" style="display: none" v-on:change="gradeChange">
+          <option value="aa" v-for='item in yp'>{{item.name}} {{item.bzyl}}{{item.unit}}</option>
+        </select>
         <li class="aui-list-item">
           <div class="aui-list-item-inner" style="margin-right: 0px">
             <div class="aui-list-item-label">
@@ -60,9 +63,9 @@
       <textarea class="text " placeholder="反馈内容" v-model="fkcont"></textarea>
       <div class="aui-btn aui-btn-danger aui-btn-block" @click='fkyjBTN'>反馈意见</div>
     </div>
-    <ul class="yyseach" style="display: none">
+    <!-- <ul class="yyseach" style="display: none">
       <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
-    </ul>
+    </ul> -->
 
     <lg-preview></lg-preview>
   </div>
@@ -96,6 +99,9 @@ export default {
     closewin:function() {
       var _this = this;
       _this.$router.backRoute();
+    },
+    gradeChange(){ 
+      this.conntr = $("#pid  option:selected").text()
     },
     sleepBTN(e){
       // console.log($(e.target).html())
@@ -322,11 +328,13 @@ export default {
   background: #34DBDA; color:#fff;
 }
 .yyseach{
-  position: absolute;
-  bottom: 0px;
-  height: 10rem;
-  width: 100%;
+  /*position: fixed;*/
+  /*bottom: 0px;*/
+  /*height: 20rem;*/
+  /*width: 100%;*/
+  padding-left: 1rem; 
   background: #fff;
+  z-index: 100;
 }
 .yyseach li{
   border-bottom: 1px solid #e5e5e5;
