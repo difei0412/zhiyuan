@@ -330,9 +330,9 @@ activated() {
   background: #34DBDA; color:#fff;
 }
 .yyseach{
-  /*position: fixed;*/
+  position: relative;
   /*bottom: 0px;*/
-  /*height: 20rem;*/
+  height: 7rem;
   /*width: 100%;*/
   padding-left: 1rem; 
   background: #fff;
