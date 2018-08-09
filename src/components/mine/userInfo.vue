@@ -73,35 +73,52 @@
 			</div>
 			<mt-actionsheet :actions="hospitalActions" v-model="hospitalVisible"></mt-actionsheet>就值医院选择器 -->
 
-			<div class="list" @click="hospital">
+			<div class="list">
 				<span class="title flex">就职医院</span>
-				<span class="title color">{{userInfo.hospital?userInfo.hospital:'未设置'}}</span>
+				<div class="aui-list-item-input">
+                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="yiyuan" @change="save_yiyuan">
+                        <option value="">未设置</option>
+                        <option v-if="yiyuanarr" v-for="item in yiyuanarr" v-text="item.hospital" :value="item.id"></option>
+                    </select>
+                </div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<div class="list" @click="zhijiVisible = true">
+			<div class="list">
 				<span class="title flex">职级</span>
-				<span class="title color">{{userInfo.holder?userInfo.holder:'未设置'}}</span>
+				<div class="aui-list-item-input">
+                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="zhiji" @change="save_zhiji">
+                        <option value="">未设置</option>
+                        <option v-if="zhijiarr" v-for="item in zhijiarr" v-text="item.zhicheng" :value="item.id"></option>
+                    </select>
+                </div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<mt-actionsheet :actions="zhijiActions" v-model="zhijiVisible"></mt-actionsheet><!-- 职级选择器 -->
 
-
-			<div class="list" @click="office = true">
+			<div class="list">
 				<span class="title flex">科室</span>
-				<span class="title color">{{userInfo.office?userInfo.office:'未设置'}}</span>
+				<div class="aui-list-item-input">
+                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="keshi" @change="save_keshi">
+                        <option value="">未设置</option>
+                        <option v-if="keshiarr" v-for="item in keshiarr" v-text="item.keshi" :value="item.id"></option>
+                    </select>
+                </div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<mt-actionsheet :actions="officeDate" v-model="office"></mt-actionsheet><!-- 科室选择器 -->
 
-			<div class="list" @click="speciality">
+			<div class="list">
 				<span class="title flex">主治</span>
-				<span class="title color">{{userInfo.speciality?userInfo.speciality:'未设置'}}</span>
+				<div class="aui-list-item-input">
+                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="zhuzhi" @change="save_speciality">
+                        <option value="">未设置</option>
+                        <option v-if="zhuzhiarr" v-for="item in zhuzhiarr" v-text="item.keyword" :value="item.id"></option>
+                    </select>
+                </div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -153,14 +170,6 @@ export default {
 				name:'博士',
 				method:this.xueli
 			}],
-			hospitalActions:[{
-				name:'知源精神病医院',
-				method:this.updateSex1
-			},
-			{
-				name:'人民医院',
-				method:this.updateSex2
-			}],
 			sex1:[{
 				name:'男',
 				method:this.updateSex1
@@ -169,35 +178,16 @@ export default {
 				name:'女',
 				method:this.updateSex2
 			}],
-			zhijiActions:[{
-				name:'主任医师',
-				method:this.zhicheng
-			},
-			{
-				name:'副主任医师',
-				method:this.zhicheng
-			},
-			{
-				name:'主治医师',
-				method:this.zhicheng
-			},
-			{
-				name:'住院医师',
-				method:this.zhicheng
-			}],
-			officeDate:[{
-				name:'精神科',
-				method:this.officeClick
-			},
-			{
-				name:'心理科',
-				method:this.officeClick
-			}],
 			xueliVisible:false,
-			hospitalVisible:false,
-			zhijiVisible:false,
 			sex:false,
-			office:false,
+			zhuzhi: '',
+			zhuzhiarr: [],
+			keshi: '',
+			keshiarr: [],
+			zhiji: '',
+			zhijiarr: [],
+			yiyuan: '',
+			yiyuanarr: []
 		}
 	},
 	filters: {
@@ -281,22 +271,6 @@ export default {
 					return
 				}
 				that.updateInfo("username",response.value)
-			}).catch(function(error){
-			});
-		},
-		//打开就职医院输入框
-		hospital() {
-			var that = this;
-			that.$MessageBox.prompt('请输入医院名称').then(function(response){
-				if(!response.value) {
-					that.$MessageBox.alert("请输入医院名称");
-					return
-				}
-				// if(response.value.length>7) {
-				// 	that.$MessageBox.alert("请输入最长7位姓名");
-				// 	return
-				// }
-				that.updateInfo("hospital",response.value)
 			}).catch(function(error){
 			});
 		},
@@ -474,63 +448,145 @@ export default {
 				}
 			})
 		},
-		//更改职称
-		zhicheng(e) {
-			// alert(e.name)
+		// 更改医院
+		save_yiyuan() {
 			var that = this;
 			var url = "expert/" + that.userId;
 
 			var method = "POST";
 			var params = {
 				"data":{
-					"holder":e.name,
+					"hospital":that.yiyuan,
 					"_method":"PUT"
 				}
 			}
 			
 			that.ajax({url,method,params,
 				success:function(data){
-					console.log(data)
 					that.userInfo = data;
+				}
+			})
+		},
+		// 查询医院
+		yiyuan_list() {
+			var that = this;
+			var filter = {
+				"fields":{"id":true,"hospital":true}
+			};
+			that.ajax({
+				url:'hospital?filter='+encodeURIComponent(JSON.stringify(filter)),
+				method: 'get',
+				success:function(data){
+					that.yiyuanarr = data;
+				}
+			})
+		},
+		//更改职称
+		save_zhiji() {
+			var that = this;
+			var url = "expert/" + that.userId;
+			var holder = '';
+			for(var i=0;i<that.zhijiarr.length;i++) {
+				if(that.zhijiarr[i]['id']==that.zhiji){
+					holder = that.zhijiarr[i]['zhicheng']; 
+				}
+			}
+			var method = "POST";
+			var params = {
+				"data":{
+					"holderid":that.zhiji,
+					"holder":holder,
+					"_method":"PUT"
+				}
+			}
+			
+			that.ajax({url,method,params,
+				success:function(data){
+					that.userInfo = data;
+				}
+			})
+		},
+		//职称列表
+		zhiji_list() {
+			var that = this;
+			var filter = {
+				"fields":{"id":true,"zhicheng":true},
+				"order": 'paixu ASC'
+			};
+			that.ajax({
+				url:'zhicheng?filter='+encodeURIComponent(JSON.stringify(filter)),
+				method: 'get',
+				success:function(data){
+					that.zhijiarr = data;
+				}
+			})
+		},
+		// 科室列表
+		keshi_list() {
+			var that = this;
+			var filter = {
+				"fields":{"id":true,"keshi":true}
+			};
+			that.ajax({
+				url:'keshi?filter='+encodeURIComponent(JSON.stringify(filter)),
+				method: 'get',
+				success:function(data){
+					that.keshiarr = data;
 				}
 			})
 		},
 		//更改科室
-		officeClick(e) {
-			// alert(e.name)
+		save_keshi() {
 			var that = this;
 			var url = "expert/" + that.userId;
-
 			var method = "POST";
 			var params = {
 				"data":{
-					"office":e.name,
+					"office":that.keshi,
 					"_method":"PUT"
 				}
 			}
 			
 			that.ajax({url,method,params,
 				success:function(data){
-					console.log(data)
 					that.userInfo = data;
 				}
 			})
 		},
-		//打开主治输入框
+		// 查询主治列表
 		speciality() {
 			var that = this;
-			that.$MessageBox.prompt('请输入主治关键词').then(function(response){
-				if(!response.value) {
-					that.$MessageBox.alert("请输入主治管检测");
-					return
+			var filter = {
+				"fields":{"id":true,"keyword":true},
+				"where": {
+					"bankuai": '主治关键词'
 				}
-				// if(response.value.length>7) {
-				// 	that.$MessageBox.alert("请输入最长7位用户名");
-				// 	return
-				// }
-				that.updateInfo("speciality",response.value)
-			}).catch(function(error){
-			});
+			};
+			that.ajax({
+				url:'keyword?filter='+encodeURIComponent(JSON.stringify(filter)),
+				method: 'get',
+				success:function(data){
+					that.zhuzhiarr = data;
+				}
+			})
+		},
+		save_speciality() {
+			var that = this;
+			var url = "expert/" + that.userId;
+
+			var method = "POST";
+			var params = {
+				"data":{
+					"speciality":that.zhuzhi,
+					"_method":"PUT"
+				}
+			}
+			
+			that.ajax({url,method,params,
+				success:function(data){
+					that.userInfo = data;
+				}
+			})
 		},
 		//获取用户信息函数
 		getUserInfo() {
@@ -540,19 +596,27 @@ export default {
 			var userId = window.localStorage.getItem('userId');
 			that.userId = userId?userId:'';
 			var url = 'expert/'+that.userId;
-			// alert(url)
 			var method = "GET";
 			that.ajax({url,method,
 				success:function(data){
-					// console.log(data)
 					that.userInfo = data;
+					that.zhuzhi = that.userInfo.speciality?that.userInfo.speciality:'';
+					that.keshi = that.userInfo.office?that.userInfo.office:'';
+					that.zhiji = that.userInfo.holder?that.userInfo.holder:'';
+					that.yiyuan = that.userInfo.hospital?that.userInfo.hospital:'';
 				}
 			})
 		}
 	},
+	mounted() {
+		this.speciality();
+		this.keshi_list();
+		this.zhiji_list();
+		this.yiyuan_list();
+	},
 	activated() {
 		this.getUserInfo();
-	}
+	},
 }
 </script>
 

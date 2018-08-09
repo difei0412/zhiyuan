@@ -21,12 +21,12 @@
                     <li class="aui-list-item doctor-box">
                         <div class="aui-media-list-item-inner">
                             <div class="aui-list-item-media">
-                                <img src="static/image/sofa@3x.png" class="aui-img-round">
+                                <img src="static/image/user.png" class="aui-img-round">
                             </div>
                             <div class="aui-list-item-inner">
                                 <div class="aui-list-item-text doctor">
-                                    <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
-                                    <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                                    <div class="aui-list-item-title" v-text="'知源医院'"> </div>
+                                    <div class="aui-list-item-right"><div class="aui-label">官方发帖</div></div>
                                 </div>
                             </div>
                         </div>
@@ -345,5 +345,11 @@
   }
   .fatie-btn a {
     font-size:14px;
+  }
+  .aui-list-item-inner{
+    margin-right:0;
+  }
+  .aui-list-item-title {
+    font-size: 0.6rem;
   }
 </style>

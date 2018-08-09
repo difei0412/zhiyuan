@@ -193,7 +193,6 @@
 				this.userId = userId?userId:'';
 				if(window.localStorage.getItem('userinfo_obj')){
 					var tmp = window.localStorage.getItem('userinfo_obj');
-					console.log(tmp);
 					this.userInfo = JSON.parse(tmp);
 				}else{
 					this.getUserInfo()

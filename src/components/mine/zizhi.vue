@@ -86,6 +86,7 @@ methods: {
     // var formData = new FormData($("#imagform0")[0]);
     // fileObj.push(formData)
     // console.log(fileObj)
+    
     var files = e.target.files;
     var file = files[0];
     e.currentTarget.value= '';

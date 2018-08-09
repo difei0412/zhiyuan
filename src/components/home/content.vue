@@ -74,7 +74,7 @@
                 <li class="aui-list-item doctor-box">
                     <div class="aui-media-list-item-inner">
                         <div class="aui-list-item-media">
-                            <img src="static/image/sofa@3x.png" class="aui-img-round">
+                            <img :src="item.tuid.tx?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
                         </div>
                         <div class="aui-list-item-inner">
                             <div class="aui-list-item-text doctor">
@@ -158,7 +158,7 @@
             },
             "limit":4,
             "include":"tuidPointer",
-            "includeFilter":{"expert":{"fields":['id','name','holder']}}
+            "includeFilter":{"expert":{"fields":['id','name','holder',"tx"]}}
           };
           that.ajax({
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),

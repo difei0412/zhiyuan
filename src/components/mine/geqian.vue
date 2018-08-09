@@ -2,7 +2,7 @@
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'成就简介'"></myHeader>
 
-        <div>
+        <div style="padding:0 0.5rem">
             <textarea v-model="geqian" class="text " placeholder="请输入您的成就简介"></textarea>
             <div class="exitBg my-middle">
               <div class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" @click="submit">确 定</div>
@@ -74,29 +74,18 @@
         box-align: center;
     }
     .text {
-        width: 16.75rem;
         height: 7rem;
         margin: 0.7rem auto 0;
-        padding: 0.3rem;
+        padding: 0.5rem;
         font-size: 0.7rem;
         color: #0f0f0f;
         background-color: rgb(250, 250, 250);
         letter-spacing: 0.1rem;
+        border:1px solid #eee;
     }
     .exitBg {
         height: 5rem;
-        padding: 0 0.5rem;
-    }
-    .exit {
-        height: 2rem;
-        line-height: 2rem;
-        border-radius: 1rem;
-        font-size: 0.85rem;
-        color: #f22a2a;
-        background-color: rgb(240, 240, 240);
-        width: 7.5rem;
-        margin: 0 auto;
-        text-align: center;
+        /*padding: 0 0.5rem;*/
     }
     .aui-btn-success {
       background: #28B8A1;
