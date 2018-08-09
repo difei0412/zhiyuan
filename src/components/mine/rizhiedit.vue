@@ -167,6 +167,26 @@ export default {
       },
       submit(){
         var that=this;
+        if (that.time1 == '') {
+          Toast('请选择时间！');
+          return;
+        }
+        if (that.conntr == '') {
+          Toast('请选择用药建议！');
+          return;
+        }
+        if (that.sleep == '') {
+          Toast('请选择睡眠建议！');
+          return;
+        }
+        if (that.other == '') {
+          Toast('请填写其他建议！');
+          return;
+        }
+        if (that.fkcont == '') {
+          Toast('请填写日志内容！');
+          return;
+        }
         var params = {
           data:{
             "dakaData":that.dateFormat(that.time1),
