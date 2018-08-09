@@ -73,6 +73,7 @@ export default {
       other:'',
       fkcont:'',
       yp:[],
+      brname:'',
       dakaijiluid:[],
       confirm:true,
       editable:false,
@@ -80,6 +81,7 @@ export default {
       time1: '',
       time2: '',
       time3: '',
+      brid:'',
       shortcuts: [
       {
         text: '今天',
@@ -105,8 +107,18 @@ export default {
               get_daka(id){
                 var that = this;
                 var filter = {
-                  "fields":{'did':true,'brid':true}
+                  "fields":{'brid':true,'brname':true},
+                  "where":{
+                    "id":id
+                  }
                 }
+                var url = "genzong?filter="+encodeURIComponent(JSON.stringify(filter))
+                that.ajax({url,method:'get',success:function(data){
+                  console.log(data)
+                  that.brid = data[0].brid;
+                  that.brname = data[0].brname;
+
+                }})
               },
               // 建议
               sleepBTN(e){
@@ -157,132 +169,158 @@ export default {
         var that=this;
         var params = {
           data:{
-            "dakaDate":that.time1,
-            "conntent":that.yongyao,
+            "dakaData":that.dateFormat(that.time1),
+            "content":that.conntr,
             "sleep":that.sleep,
             "other":that.other,
             "rz_con":that.fkcont,
+            "brname":that.brname,
             "did":window.localStorage.getItem("userId"),
+            "brid":that.brid,
+            "info":'1',
                     // "brname":
                   }
                 }
+                console.log(params)
+                var url = 'dakalist'
+                that.ajax({url,method:'post',params,success:function(data){
+                  console.log(data)
+                  that.$router.push({path:'/jianhu'})
+                  Toast('反馈成功！');
+                }})
               },
-            },
-            activated() {
-              var id = this.$router.params.id
-              this.get_daka(id);
-            }
-          }
-          </script>
+                //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+                dateFormat:function(time) {
+                  var date=new Date(time);
+                  var year=date.getFullYear();
+    /* 在日期格式中，月份是从0开始的，因此要加0
+     * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+     * */
+     var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+     var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+     var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+     var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+     var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+    // 拼接
+    return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+  },
+},
+activated() {
+  var id = this.$route.params.id
 
-          <style scoped>
-          .my-middle {
-            display: -webkit-box;
-            -webkit-box-orient: horizontal;
-            -webkit-box-align: center;
-            display: box;
-            box-orient: horizontal;
-            box-align: center;
-          }
-          .text {
-            width: 16.75rem;
-            height: 7rem;
-            margin: 0.7rem auto 0;
-            padding: 0.3rem;
-            font-size: 0.7rem;
-            color: #0f0f0f;
-            background-color: rgb(250, 250, 250);
-            letter-spacing: 0.1rem;
-          }
-          .exitBg {
-            height: 5rem;
-            padding: 0 0.5rem;
-          }
-          .exit {
-            height: 2rem;
-            line-height: 2rem;
-            border-radius: 1rem;
-            font-size: 0.85rem;
-            color: #f22a2a;
-            background-color: rgb(240, 240, 240);
-            width: 7.5rem;
-            margin: 0 auto;
-            text-align: center;
-          }
-          .aui-btn-success {
-            background: #28B8A1;
-          }
-          .aui-list-item {
-            border-bottom: 1px solid #eee;
-            font-size:14px;
-          }
-          .aui-list-item-label{
-            color:#28B8A1;
-          }
-          .aui-list-item-input input {
-            font-size:14px;
-          }
-          .date-box {
-            padding:0 0.5rem;
-          }
-          </style>
-          <style>
-          .mx-datepicker {
-            border:1px solid #eee;
-            width:100%;
-            margin: 0.5rem auto;
-            display: block;
-            background: #eee;
-          }
-          .mx-input-wrapper input {
-            padding:0 0.5rem !important;
-            text-align: center !important;
-            color:#666 !important;
-          }
-          .mx-calendar-icon,.mx-input-icon {
-            background: #eee;
-          }
-          .mx-datepicker-popup,.mx-calendar,.mx-calendar-content {
-            width:100%;
-          }
-          .mx-panel-date td.today {
-            color:#28B8A1;
-            font-weight: bold;
-          }
-          .mx-calendar-content .cell.actived {
-            background-color: #28B8A1;
-          }
+  this.get_daka(id);
+}
+}
+</script>
 
-          .biao {
-            background: #fff;
-            color: #34DBDA;
-            /*margin-top: 10px;*/
-            height: auto;
-            border: 1px solid #34DBDA;
-            height: 1rem;
-            width: 3rem;
-            border-radius: 6px;
-            line-height: 0.95rem;
-          }
-          .aui-btn:active {
-            color: #fff;
-            background-color: #34DBDA;
-          }
-          .sleepYS{
-            background: #34DBDA; color:#fff;
-          }
-          .yyseach{
-            /*position: fixed;*/
-            /*bottom: 0px;*/
-            /*height: 20rem;*/
-            /*width: 100%;*/
-            padding-left: 1rem; 
-            background: #fff;
-            z-index: 100;
-          }
-          .yyseach li{
-            border-bottom: 1px solid #e5e5e5;
-            line-height:1.5rem;
-            padding-left: 1rem
-          }
-          </style>
+<style scoped>
+.my-middle {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+  display: box;
+  box-orient: horizontal;
+  box-align: center;
+}
+.text {
+  width: 16.75rem;
+  height: 7rem;
+  margin: 0.7rem auto 0;
+  padding: 0.3rem;
+  font-size: 0.7rem;
+  color: #0f0f0f;
+  background-color: rgb(250, 250, 250);
+  letter-spacing: 0.1rem;
+}
+.exitBg {
+  height: 5rem;
+  padding: 0 0.5rem;
+}
+.exit {
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  color: #f22a2a;
+  background-color: rgb(240, 240, 240);
+  width: 7.5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.aui-btn-success {
+  background: #28B8A1;
+}
+.aui-list-item {
+  border-bottom: 1px solid #eee;
+  font-size:14px;
+}
+.aui-list-item-label{
+  color:#28B8A1;
+}
+.aui-list-item-input input {
+  font-size:14px;
+}
+.date-box {
+  padding:0 0.5rem;
+}
+</style>
+<style>
+.mx-datepicker {
+  border:1px solid #eee;
+  width:100%;
+  margin: 0.5rem auto;
+  display: block;
+  background: #eee;
+}
+.mx-input-wrapper input {
+  padding:0 0.5rem !important;
+  text-align: center !important;
+  color:#666 !important;
+}
+.mx-calendar-icon,.mx-input-icon {
+  background: #eee;
+}
+.mx-datepicker-popup,.mx-calendar,.mx-calendar-content {
+  width:100%;
+}
+.mx-panel-date td.today {
+  color:#28B8A1;
+  font-weight: bold;
+}
+.mx-calendar-content .cell.actived {
+  background-color: #28B8A1;
+}
+
+.biao {
+  background: #fff;
+  color: #34DBDA;
+  /*margin-top: 10px;*/
+  height: auto;
+  border: 1px solid #34DBDA;
+  height: 1rem;
+  width: 3rem;
+  border-radius: 6px;
+  line-height: 0.95rem;
+}
+.aui-btn:active {
+  color: #fff;
+  background-color: #34DBDA;
+}
+.sleepYS{
+  background: #34DBDA; color:#fff;
+}
+.yyseach{
+  /*position: fixed;*/
+  /*bottom: 0px;*/
+  /*height: 20rem;*/
+  /*width: 100%;*/
+  padding-left: 1rem; 
+  background: #fff;
+  z-index: 100;
+}
+.yyseach li{
+  border-bottom: 1px solid #e5e5e5;
+  line-height:1.5rem;
+  padding-left: 1rem
+}
+</style>
