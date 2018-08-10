@@ -77,7 +77,7 @@
 				<span class="title flex">就职医院</span>
 				<div class="aui-list-item-input">
                     <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="yiyuan" @change="save_yiyuan">
-                        <option value="">未设置</option>
+                        <option value="" disabled="disabled">未设置</option>
                         <option v-if="yiyuanarr" v-for="item in yiyuanarr" v-text="item.hospital" :value="item.id"></option>
                     </select>
                 </div>
@@ -89,7 +89,7 @@
 				<span class="title flex">职级</span>
 				<div class="aui-list-item-input">
                     <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="zhiji" @change="save_zhiji">
-                        <option value="">未设置</option>
+                        <option value="" disabled="disabled">未设置</option>
                         <option v-if="zhijiarr" v-for="item in zhijiarr" v-text="item.zhicheng" :value="item.id"></option>
                     </select>
                 </div>
@@ -102,7 +102,7 @@
 				<span class="title flex">科室</span>
 				<div class="aui-list-item-input">
                     <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="keshi" @change="save_keshi">
-                        <option value="">未设置</option>
+                        <option value="" disabled="disabled">未设置</option>
                         <option v-if="keshiarr" v-for="item in keshiarr" v-text="item.keshi" :value="item.id"></option>
                     </select>
                 </div>
@@ -115,7 +115,7 @@
 				<span class="title flex">主治</span>
 				<div class="aui-list-item-input">
                     <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="zhuzhi" @change="save_speciality">
-                        <option value="">未设置</option>
+                        <option value="" disabled="disabled">未设置</option>
                         <option v-if="zhuzhiarr" v-for="item in zhuzhiarr" v-text="item.keyword" :value="item.id"></option>
                     </select>
                 </div>

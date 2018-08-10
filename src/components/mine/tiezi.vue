@@ -12,7 +12,7 @@
             </li>
           </ul>
           <div style="margin-top:0.5rem;">
-              <img :src="showData.tx" class="aui-list-img-sm" style="height:2.5rem;float:left;">
+              <img :src="showData.tx?showData.tx:''" class="aui-list-img-sm" style="width:2.5rem;height:2.5rem;float:left;border-radius:1.25rem;">
               <div style="color:#28B8A1;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.holder+'：'+showData.name"></div>
               <div style="clear:both"></div>
           </div>
@@ -23,11 +23,11 @@
             <span><i class="aui-iconfont aui-icon-laud"></i><span class="zan-num">(12)</span></span>
             <span><i class="aui-iconfont aui-icon-laud zan-icon2"></i><span class="zan-num">(12)</span></span>
         </div> -->
-        <div class="aui-col-xs-12">
+        <!-- <div class="aui-col-xs-12">
            <i class="aui-iconfont aui-pull-right aui-icon-weibo"></i>
            <i class="aui-iconfont aui-pull-right aui-icon-wechat-circle"></i>
            <i class="aui-iconfont aui-pull-right aui-icon-wechat"></i>
-        </div>
+        </div> -->
        </div>
 
        <!-- <hr style="background:#eee;height:1px;margin:0.5rem 0"/> -->
@@ -118,6 +118,7 @@
                     method:"get",
                     success:function(data2){
                       if(data2.length>0){
+                        console.log(data2);
                         that.showData.tx = data2[0].tx;
                         that.showData.name = data2[0].name;
                         that.showData.holder = data2[0].holder;
