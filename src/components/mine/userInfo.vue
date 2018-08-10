@@ -64,14 +64,6 @@
 				</div>
 			</div>
 			<mt-actionsheet :actions="xueliActions" v-model="xueliVisible"></mt-actionsheet><!-- 学历选择器 -->
-			<!-- <div class="list" @click="hospitalVisible = true">
-				<span class="title flex">就职医院</span>
-				<span class="title color">{{userInfo.hospital?userInfo.hospital:'未设置'}}</span>
-				<div class="my-middle">
-					<img class="right" src="static/image/in@3x.png">
-				</div>
-			</div>
-			<mt-actionsheet :actions="hospitalActions" v-model="hospitalVisible"></mt-actionsheet>就值医院选择器 -->
 
 			<div class="list">
 				<span class="title flex">就职医院</span>
@@ -261,7 +253,7 @@ export default {
 		//打开昵称输入框
 		openNickUsername() {
 			var that = this;
-			that.$MessageBox.prompt('请输入用户名').then(function(response){
+			that.$MessageBox.prompt('请输入用户名','').then(function(response){
 				if(!response.value) {
 					that.$MessageBox.alert("请输入用户名");
 					return
@@ -277,7 +269,7 @@ export default {
 		//打开姓名输入框
 		openNickname() {
 			var that = this;
-			that.$MessageBox.prompt('请输入姓名').then(function(response){
+			that.$MessageBox.prompt('请输入姓名','').then(function(response){
 				if(!response.value) {
 					that.$MessageBox.alert("请输入姓名");
 					return
@@ -293,7 +285,7 @@ export default {
 		// 打开身份证输入框
 		openIDCard() {
 			var that = this;
-			that.$MessageBox.prompt('请输入身份证号').then(function(response){
+			that.$MessageBox.prompt('请输入身份证号','').then(function(response){
 				if(!response.value) {
 					that.$MessageBox.alert("请输入身份证号");
 					return
@@ -305,7 +297,7 @@ export default {
 		// 打开年龄输入框
 		openAge() {
 			var that = this;
-			that.$MessageBox.prompt('请输入年龄').then(function(response){
+			that.$MessageBox.prompt('请输入年龄','').then(function(response){
 				if(!response.value) {
 					that.$MessageBox.alert("请输入年龄");
 					return

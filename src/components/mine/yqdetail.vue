@@ -5,7 +5,10 @@
     	<section class="aui-content-padded">
     		<p><div class="aui-label" v-text="'会诊主题：'+(showData.title?showData.title:'')"></div></p>
     		<p><div class="aui-label" v-text="'会诊费用：'+(showData.price?showData.price:0)+'元'"></div></p>
-    		<p><div class="aui-label aui-label-danger aui-label-outlined" v-html="'会诊详情：'+showData.content"></div></p>
+    		<p><div class="aui-label aui-label-danger aui-label-outlined">
+    			<p>会诊内容：</p>
+    			<div v-html="showData.content"></div>
+    		</div></p>
 		</section>
 		<p><div class="aui-btn aui-btn-danger aui-btn-block" @click="receive" v-show="showData.status==0">接受会诊</div></p>
     </div>
@@ -26,7 +29,7 @@
           findData(id){
             var that = this;
             that.ajax({
-              url:'yaoqing/'+id,
+              url:'news/'+id,
               method:"get",
               success: function(data){
                 if(JSON.stringify(data)!='{}'){
@@ -50,7 +53,7 @@
             },function(ret){
             });
             that.ajax({
-              url:'yaoqing/'+id,
+              url:'news/'+id,
               method:"post",
               params,
               success: function(data){

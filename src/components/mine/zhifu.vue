@@ -53,13 +53,13 @@
           用药建议
         </div>
         <div class="aui-list-item-input" >
-          <input type="text" placeholder="请输入用药建议" v-model="conntr" @click="yongyao" v-on:blur="yincang()" v-on:input="sjgb"> 
+          <input type="text" placeholder="请输入用药建议" v-model="conntr" @click="yongyao"  v-on:input="sjgb"> 
         </div>
       </div>
     </li>
-    <select id="pid" name="" multiple class="yyseach" style="display: none" v-on:change="gradeChange">
-      <option value="aa" v-for='item in yp'>{{item.name}} {{item.bzyl}}{{item.unit}}</option>
-    </select>
+     <ul class="yyseach " style="display: none">
+           <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
+      </ul>
     <li class="aui-list-item">
       <div class="aui-list-item-inner" style="margin-right: 0px">
         <div class="aui-list-item-label">
@@ -217,22 +217,25 @@ fkyjBTN(){
 },
 yongyao(){
   var that = this;
+  $("body").css('overflow','hidden');
   var url = 'medicine'
   that.ajax({url,method:'get',success:function(data){
     console.log(data)
     that.yp=data
-    $(".yyseach").show()
-  }})
-},
-touchend(yname,yjiliang,ydanwei,e){
-  this.conntr = yname+' '+yjiliang+ydanwei
-},
-yincang(){
-  setTimeout(function(){
-    $(".yyseach").hide()
-  },1)
+      $(".yyseach").show()
+    }})
+  },
+  touchend(yname,yjiliang,ydanwei,e){
+    this.conntr = yname+' '+yjiliang+ydanwei
+     $(".yyseach").hide()
+     $("body").css('overflow','auto');
+  },
+// yincang(){
+//   setTimeout(function(){
+//     $(".yyseach").hide()
+//   },1)
 
-},
+// },
 sjgb(){
 
   var that = this;
@@ -245,13 +248,20 @@ sjgb(){
     },
   }
   var url = 'medicine?filter='+encodeURIComponent(JSON.stringify(filter))
-        // console.log(filter)
-        that.ajax({url,method:'get',success:function(data){
-          // console.log(data)
-          that.yp=data
-        }})
-      },
-    },
+  // console.log(filter)
+  that.ajax({url,method:'get',success:function(data){
+    console.log(data)
+      if (data.length>0) {
+        $(".yyseach").show()
+        that.yp=data
+      }else{
+        $(".yyseach").hide()
+      }
+    
+  }})
+
+},
+},
     mounted () {
      console.log('挂载好了')
      this.get_dakaishuju()
@@ -259,6 +269,9 @@ sjgb(){
 
    },
    created:function() {
+
+   },
+   watch:{
 
    },
    components: {
@@ -398,17 +411,24 @@ h3 {
   background: #34DBDA; color:#fff;
 }
 .yyseach{
-  position: relative;
+  /*position: absolute;*/
+  float: left;
+  border: 1px solid #e5e5e5;
+  border-top: none;
   /*bottom: 0px;*/
-  height: 7rem;
-  /*width: 100%;*/
-  padding-left: 1rem; 
+  height: 12rem;
+  width: 100%;
+  padding-left: 3.5rem; 
   background: #fff;
-  z-index: 100;
+  overflow-y: auto;
+  z-index: 99999999;
+
 }
 .yyseach li{
-  border-bottom: 1px solid #e5e5e5;
+  /*border-bottom: 1px solid #e5e5e5;*/
   line-height:1.5rem;
-  padding-left: 1rem
+  padding-left: 1rem;
+  font-size: 0.7rem;
+  color: #aaa;
 }
 </style>

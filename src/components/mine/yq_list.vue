@@ -16,7 +16,7 @@
                                   <div class="aui-pull-left" v-text="item.title"></div>
                                   <div class="aui-pull-right" v-text="'诊费：￥'+item.price"></div>
                                 </div>
-                                <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="'会诊内容：'+item.content+'...'">
+                                <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-html="'会诊内容：'+item.content+'...'">
                                   
                                 </div>
                             </div>
@@ -72,13 +72,14 @@
               var filter = {
                 "order": ["status ASC","createdAt DESC"],
                 "where": {
-                  "did": window.localStorage.getItem('userId')
+                  "docid": window.localStorage.getItem('userId'),
+                  "bankuai": '会诊'
                 },
                 "skip":start,
                 "limit":that.pageSize
               };
               that.ajax({
-                url: "yaoqing?filter="+encodeURIComponent(JSON.stringify(filter)),
+                url: "news?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
                 success: function(data) {
                   if(data.length<that.pageSize){
@@ -89,6 +90,8 @@
                         } else {
                           data[i].status = '<span style="color:green;">已接受</span>';
                         }
+                        data[i]['content'] = that.delHtmlTag(data[i]['content']);
+                        data[i]['content'] = data[i]['content'].substr(0,45);
                         that.tieziArr.push(data[i]);
                       }
                     }
@@ -100,6 +103,8 @@
                       } else {
                         data[i].status = '<span style="color:green;">已接受</span>';
                       }
+                      data[i]['content'] = that.delHtmlTag(data[i]['content']);
+                      data[i]['content'] = data[i]['content'].substr(0,45);
                       that.tieziArr.push(data[i]);
                     }
                   }
@@ -112,11 +117,12 @@
               var filter = {
                 "where": {
                   "status": 1,
-                  "did": window.localStorage.getItem('userId')
+                  "docid": window.localStorage.getItem('userId'),
+                  "bankuai": '会诊'
                 }
               };
               that.ajax({
-                url: "yaoqing/count?filter="+encodeURIComponent(JSON.stringify(filter)),
+                url: "news/count?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
                 success: function(data) {
                   that.total_num = data.count;
@@ -129,12 +135,13 @@
               var filter = {
                 "where": {
                    "status": 1,
-                   "did": window.localStorage.getItem('userId')
+                   "docid": window.localStorage.getItem('userId'),
+                   "bankuai": '会诊'
                 },
                 "limit": that.total_num
               };
               that.ajax({
-                url: "yaoqing?filter="+encodeURIComponent(JSON.stringify(filter)),
+                url: "news?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
                 success: function(data) {
                   that.total_price = 0;
@@ -143,6 +150,10 @@
                   }
                 }
               });
+           },
+           // 字符串去除HTML标签
+           delHtmlTag(str){
+            return str.replace(/<[^>]+>/g,"");
            },
            // 上拉加载更多
            infinite(done) {

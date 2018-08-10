@@ -79,7 +79,7 @@
                         <div class="aui-list-item-inner">
                             <div class="aui-list-item-text doctor">
                                 <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
-                                <div class="aui-list-item-right"><div class="aui-label" v-text="item.tType==3?'官方发帖':'优质问答'"></div></div>
+                                <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
                             </div>
                         </div>
                     </div>
@@ -127,19 +127,28 @@
         this.$router.push({path:'/tiezi/'+tid})
       },
        openRouter:function(){
-             this.$router.push({path:'/mingyilist'})
+          if(window.localStorage.getItem('userId')){
+            this.$router.push({path:'/mingyilist'})
+          }else{
+            this.$router.push({name:'login'})
+          }
        },
         openRouter1:function(){
              this.$router.push({path:'/zixun'})
        },
          openRouter2:function(){
-             this.$router.push({path:'/zhenshi'})
-       },
-       openzhifu:function(){
-           this.$router.push({path:'/mingyi'})
+          if(window.localStorage.getItem('userId')){
+            this.$router.push({path:'/zhenshi'})
+          }else{
+            this.$router.push({name:'login'})
+          }
        },
        openRouter3:function(){
-             this.$router.push({path:'/jianhu'})
+          if(window.localStorage.getItem('userId')){
+            this.$router.push({path:'/jianhu'})
+          }else{
+            this.$router.push({name:'login'})
+          }
        },
        toYaoqing() {
         this.$router.push({path:'/yqlist'})
@@ -157,8 +166,8 @@
               "tType":0
             },
             "limit":4,
-            "include":"tuidPointer",
-            "includeFilter":{"expert":{"fields":['id','name','holder',"tx"]}}
+            "include":["tuidPointer","tsidPointer"],
+            "includefilter":{"expert":{"fields":['id','name','holder',"tx"]},"bankuai":{"fields":['id','sname']}}
           };
           that.ajax({
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
@@ -184,8 +193,8 @@
               "tType":3 // 官方后台发帖
             },
             "limit":2,
-            "include":"tuidPointer",
-            "includeFilter":{"expert":{"fields":['id','name','holder']}}
+            "include":["tuidPointer","tsidPointer"],
+            "includefilter":{"expert":{"fields":['id','name','holder']},"bankuai":{"fields":['id','sname']}}
           };
           that.ajax({
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
@@ -224,8 +233,8 @@
               "tType":3 // 官方后台发帖
             },
             "limit":param,
-            "include":"tuidPointer",
-            "includeFilter":{"expert":{"fields":['id','name','holder']}}
+            "include":["tuidPointer","tsidPointer"],
+            "includefilter":{"expert":{"fields":['id','name','holder']},"bankuai":{"fields":['id','sname']}}
           };
           that.ajax({
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
@@ -248,12 +257,13 @@
         var that = this;
           var filter = {
             "where": {
-              "did": window.localStorage.getItem('userId'),
-              "status": 0
+              "docid": window.localStorage.getItem('userId'),
+              "status": 0,
+              "bankuai": '会诊'
             }
           };
           that.ajax({
-            url: "yaoqing/count?filter="+encodeURIComponent(JSON.stringify(filter)),
+            url: "news/count?filter="+encodeURIComponent(JSON.stringify(filter)),
             method: "get",
             success: function(data) {
               if(data.count>0){

@@ -42,7 +42,7 @@
                         <div class="aui-list-item-inner">
                             <div class="aui-list-item-text doctor">
                                 <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
-                                <div class="aui-list-item-right"><div class="aui-label">优质问答</div></div>
+                                <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
                             </div>
                         </div>
                     </div>
@@ -269,7 +269,7 @@
           var that = this;
           var start = (that.currentPage-1)*that.pageSize;
           var filter = {
-            "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true},
+            "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true,"tsid":true},
             "order": "createdAt DESC",
             "where": {
               "tflag":0,
@@ -278,8 +278,8 @@
             },
             "skip":start,
             "limit":that.pageSize,
-            "include":"tuidPointer",
-            "includefilter":{"expert":{"fields":['id','name','holder','tx']}}
+            "include":["tuidPointer","tsidPointer"],
+            "includefilter":{"expert":{"fields":['id','name','holder','tx']},"bankuai":{"fields":['id','sname']}}
           };
           that.ajax({
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
