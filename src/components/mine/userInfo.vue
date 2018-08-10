@@ -105,10 +105,11 @@
 
 			<div class="list">
 				<span class="title flex">主治</span>
-				<div class="aui-list-item-input">
-                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="zhuzhi" @change="save_speciality">
+				<span class="title color flex text-show-row-1" style="position:relative;right:-8rem;z-index:2">{{(zhuzhi.length>0)?zhuzhi.join(','):'未设置'}}</span>
+				<div class="aui-list-item-input" style="background-color:rgba(0,0,0,0);position:relative;z-index:3">
+                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl;width:8rem;background:transparent;height:100%;color:rgba(0,0,0,0)" v-model="zhuzhi" @change="save_speciality" multiple="true" id="select-btn">
                         <option value="" disabled="disabled">未设置</option>
-                        <option v-if="zhuzhiarr" v-for="item in zhuzhiarr" v-text="item.keyword" :value="item.id"></option>
+                        <option v-if="zhuzhiarr" v-for="item in zhuzhiarr" v-text="item.keyword" :value="item.keyword"></option>
                     </select>
                 </div>
 				<div class="my-middle">
@@ -172,7 +173,7 @@ export default {
 			}],
 			xueliVisible:false,
 			sex:false,
-			zhuzhi: '',
+			zhuzhi: ['被害妄想症','失眠'],
 			zhuzhiarr: [],
 			keshi: '',
 			keshiarr: [],
@@ -567,9 +568,10 @@ export default {
 			var url = "expert/" + that.userId;
 
 			var method = "POST";
+			var tmp = JSON.stringify(that.zhuzhi);
 			var params = {
 				"data":{
-					"speciality":that.zhuzhi,
+					"speciality":tmp,
 					"_method":"PUT"
 				}
 			}
@@ -592,7 +594,7 @@ export default {
 			that.ajax({url,method,
 				success:function(data){
 					that.userInfo = data;
-					that.zhuzhi = that.userInfo.speciality?that.userInfo.speciality:'';
+					that.zhuzhi = that.userInfo.speciality?JSON.parse(that.userInfo.speciality):[];
 					that.keshi = that.userInfo.office?that.userInfo.office:'';
 					that.zhiji = that.userInfo.holderid?that.userInfo.holderid:'';
 					that.yiyuan = that.userInfo.hospital?that.userInfo.hospital:'';
@@ -684,4 +686,12 @@ input::-webkit-input-placeholder {
 .mint-popup-area {
 	width: 100%;
 }
+#select-btn option{
+	color: rgba(0,0,0,0);
+    background: rgba(0,0,0,0);
+}
+#select-btn option:checked {
+	color: rgba(0,0,0,0);
+    background: rgba(0,0,0,0);	
+} 
 </style>
