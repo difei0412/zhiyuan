@@ -135,7 +135,7 @@
 
 <style scoped>
   .aui-bar-nav {
-    background: #28B8A1;
+    background: #34DBDA;
     text-align: center;
     position: fixed;
     float: left;
