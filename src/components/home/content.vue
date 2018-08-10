@@ -27,20 +27,20 @@
     <section class="aui-grid">
     <div class="row aui-text-center">
     <div class="aui-col-xs-3" @click="openRouter()">
-            <i class="aui-iconfont aui-icon-display"></i>
-            <p>线上诊室</p>
+            <img style="width:3rem;margin: auto;" src="/static/image/xszs.png"   />
+            <p style="color:#0F0F0F">线上诊室</p>
         </div>
         <div class="aui-col-xs-3" @click="openRouter1()">
-            <i class="aui-iconfont aui-icon-date"></i>
-            <p>知源资讯</p>
+            <img style="width:3rem;margin: auto;" src="/static/image/zyzx.png"   />
+            <p style="color:#0F0F0F">知源资讯</p>
         </div>
          <div class="aui-col-xs-3" @click="openRouter2()">
-            <i class="aui-iconfont aui-icon-cert"></i>
-            <p>患者跟踪</p>
+            <img style="width:3rem;margin: auto;" src="/static/image/genzong.png"   />
+            <p style="color:#0F0F0F">患者跟踪</p>
         </div>
          <div class="aui-col-xs-3" @click="openRouter3()">
-            <i class="aui-iconfont aui-icon-video"></i>
-            <p>住院日志</p>
+            <img style="width:3rem;margin: auto;" src="/static/image/zyrz.png"   />
+            <p style="color:#0F0F0F">住院日志</p>
         </div>
     </div>
 
@@ -62,10 +62,10 @@
                     <div class="aui-media-list-item-inner">
                         <div class="aui-list-item-inner">
                            
-                            <div class="aui-list-item-text aui-ellipsis-2" style="color:#000" v-text="item.ttopic">
+                            <div class="aui-list-item-text aui-ellipsis-2" style="color:#0F0F0F" v-text="item.ttopic">
                               
                             </div>
-                            <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="item.tcontents.substr(0,45)+'...'">
+                            <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" style="color:#666666" v-text="item.tcontents.substr(0,45)+'...'">
                               
                             </div>
                         </div>
