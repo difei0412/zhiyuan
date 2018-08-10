@@ -18,11 +18,11 @@
             </div>
           </div>
         </li>
-         <ul class="yyseach " style="display: none">
-           <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
-        </ul>
-        <!-- <select    v-on:change="gradeChange"> -->
-          <!-- <option value="aa" v-for='item in yp'>{{item.name}} {{item.bzyl}}{{item.unit}}</option> -->
+        <ul class="yyseach " style="display: none">
+         <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
+       </ul>
+       <!-- <select    v-on:change="gradeChange"> -->
+        <!-- <option value="aa" v-for='item in yp'>{{item.name}} {{item.bzyl}}{{item.unit}}</option> -->
           <!-- <option  >aaaqqq</option>
           <option  >bbb</option>
           <option  >vvv</option>
@@ -55,7 +55,7 @@
     <div>
       <textarea class="text " placeholder="请输入日志内容" v-model='fkcont'></textarea>
       
-     
+      
       <div class="exitBg my-middle">
         <div class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" @click="submit">确 定</div>
       </div>
@@ -143,8 +143,8 @@ export default {
               },
               touchend(yname,yjiliang,ydanwei,e){
                 this.conntr = yname+' '+yjiliang+ydanwei
-                 $(".yyseach").hide()
-                 $("body").css('overflow','auto');
+                $(".yyseach").hide()
+                $("body").css('overflow','auto');
               },
               // yincang(){
               //   setTimeout(function(){
@@ -169,9 +169,11 @@ export default {
           // console.log(data)
           if (data.length>0) {
             $(".yyseach").show()
+            $("body").css('overflow','hidden');
             that.yp=data
           }else{
             $(".yyseach").hide()
+            $("body").css('overflow','auto');
           }
         }})
       },
@@ -242,7 +244,12 @@ activated() {
   var id = this.$route.params.id
 
   this.get_daka(id);
-}
+},
+beforeRouteLeave(to,from,next){//记录离开时的位置
+  $(".yyseach").hide()
+  $("body").css('overflow','auto');
+  next()
+},
 }
 </script>
 

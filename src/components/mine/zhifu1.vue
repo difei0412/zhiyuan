@@ -200,14 +200,14 @@ export default {
       },
       touchend(yname,yjiliang,ydanwei,e){
         this.conntr = yname+' '+yjiliang+ydanwei
-         $(".yyseach").hide()
-         $("body").css('overflow','auto');
+        $(".yyseach").hide()
+        $("body").css('overflow','auto');
       },
       // yincang(){
       //   setTimeout(function(){
       //     $(".yyseach").hide()
       //   },1)
-        
+
       // },
       sjgb(){
 
@@ -226,9 +226,11 @@ export default {
           // console.log(data)
           if (data.length>0) {
             $(".yyseach").show()
+            $("body").css('overflow','hidden');
             that.yp=data
           }else{
             $(".yyseach").hide()
+            $("body").css('overflow','auto');
           }
         }})
       },
@@ -239,6 +241,11 @@ export default {
     },
     activated() {
       this.getMy_user()
+    },
+    beforeRouteLeave(to,from,next){//记录离开时的位置
+      $(".yyseach").hide()
+      $("body").css('overflow','auto');
+      next()
     },
   }
   </script>

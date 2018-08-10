@@ -57,32 +57,32 @@
         </div>
       </div>
     </li>
-     <ul class="yyseach " style="display: none">
-           <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
-      </ul>
-    <li class="aui-list-item">
-      <div class="aui-list-item-inner" style="margin-right: 0px">
-        <div class="aui-list-item-label">
-          睡眠建议
-        </div>
-        <div class="aui-list-item-input" style="padding-right:0px">
-          <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
-          <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
-          <div @click="sleepBTN($event)" class="biao aui-btn">不佳</div>
-        </div>
+    <ul class="yyseach " style="display: none">
+     <li v-for='item in yp' @click="touchend(item.name,item.bzyl,item.unit)">{{item.name}} {{item.bzyl}}{{item.unit}}</li>
+   </ul>
+   <li class="aui-list-item">
+    <div class="aui-list-item-inner" style="margin-right: 0px">
+      <div class="aui-list-item-label">
+        睡眠建议
       </div>
-    </li>
-    <li class="aui-list-item">
-      <div class="aui-list-item-inner">
-        <div class="aui-list-item-label">
-          其他建议
-        </div>
-        <div class="aui-list-item-input">
-          <input type="text" placeholder="请输入其他建议" v-model="other">
-        </div>
+      <div class="aui-list-item-input" style="padding-right:0px">
+        <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
+        <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
+        <div @click="sleepBTN($event)" class="biao aui-btn">不佳</div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </li>
+  <li class="aui-list-item">
+    <div class="aui-list-item-inner">
+      <div class="aui-list-item-label">
+        其他建议
+      </div>
+      <div class="aui-list-item-input">
+        <input type="text" placeholder="请输入其他建议" v-model="other">
+      </div>
+    </div>
+  </li>
+</ul>
 </div>
 <div>
   <textarea class="text " placeholder="反馈内容" v-model="fkcont"></textarea>
@@ -222,14 +222,14 @@ yongyao(){
   that.ajax({url,method:'get',success:function(data){
     console.log(data)
     that.yp=data
-      $(".yyseach").show()
-    }})
-  },
-  touchend(yname,yjiliang,ydanwei,e){
-    this.conntr = yname+' '+yjiliang+ydanwei
-     $(".yyseach").hide()
-     $("body").css('overflow','auto');
-  },
+    $(".yyseach").show()
+  }})
+},
+touchend(yname,yjiliang,ydanwei,e){
+  this.conntr = yname+' '+yjiliang+ydanwei
+  $(".yyseach").hide()
+  $("body").css('overflow','auto');
+},
 // yincang(){
 //   setTimeout(function(){
 //     $(".yyseach").hide()
@@ -251,30 +251,37 @@ sjgb(){
   // console.log(filter)
   that.ajax({url,method:'get',success:function(data){
     console.log(data)
-      if (data.length>0) {
-        $(".yyseach").show()
-        that.yp=data
-      }else{
-        $(".yyseach").hide()
-      }
+    if (data.length>0) {
+      $(".yyseach").show()
+      $("body").css('overflow','hidden');
+      that.yp=data
+    }else{
+      $(".yyseach").hide()
+      $("body").css('overflow','auto');
+    }
     
   }})
 
 },
 },
-    mounted () {
-     console.log('挂载好了')
-     this.get_dakaishuju()
+mounted () {
+ console.log('挂载好了')
+ this.get_dakaishuju()
 
 
-   },
-   created:function() {
+},
+created:function() {
 
-   },
-   watch:{
+},
+   beforeRouteLeave(to,from,next){//记录离开时的位置
+    $(".yyseach").hide()
+    $("body").css('overflow','auto');
+    next()
+  },
+  watch:{
 
-   },
-   components: {
+  },
+  components: {
     Calendar
   }
 }
