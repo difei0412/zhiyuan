@@ -536,7 +536,7 @@
   float:left;
   margin:1rem 0 0 0;
   font-size:14px;
-  color:#28B8A1;
+  color:#34DBDA;
 }
 .luntan-jiantou{
   float:right;

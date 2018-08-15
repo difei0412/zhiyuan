@@ -530,8 +530,8 @@ import Calendar from '../vue-calendar-component/index';
 
 }
 .l1{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
+    color:#34DBDA;
+    border:1px solid #34DBDA;
     border-radius:8px;
     font-size:12px;
     background:#fff;
@@ -562,7 +562,7 @@ import Calendar from '../vue-calendar-component/index';
 }
 .bottom-fxied .fxied-barnav {
     padding: 0.3rem 0;
-    background: #28B8A1;
+    background: #34DBDA;
     position: relative;
 }
 
@@ -614,7 +614,7 @@ import Calendar from '../vue-calendar-component/index';
     bottom: 0;
     left: 0;
     z-index: 999;
-    background: #28B8A1;
+    background: #34DBDA;
     height:2.5rem;
 }
 .bottom-fxied .fxied-right span{

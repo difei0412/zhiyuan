@@ -20,7 +20,7 @@
               <div class="aui-list-item-inner aui-list-item-arrow">
                 <div class="aui-list-item-text" style="margin-left:11px">
                   <div class="aui-list-item-title aui-font-size-14">患者：{{item.patientid.realname?item.patientid.realname:''}}</div>
-                   <div class="aui-list-item-right" style="color:#27B5B1">付款：￥{{item.price}}</div>
+                   <div class="aui-list-item-right" style="color:#34DBDA">付款：￥{{item.price}}</div>
                 </div>
                 <div class="aui-list-item-text yuding-time" style="margin-left:11px">
                   预约：{{item.startdate}}-{{item.enddate}} 线上诊疗
@@ -399,8 +399,8 @@ export default {
 
      }
      .l1{
-      color:#27B5B1;
-      border:1px solid #27B5B1;
+      color:#34DBDA;
+      border:1px solid #34DBDA;
       border-radius:8px;
       font-size:12px;
       background:#fff;

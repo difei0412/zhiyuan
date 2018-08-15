@@ -189,8 +189,8 @@ import Calendar from '../vue-calendar-component/index';
 
 }
 .l1{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
+    color:#34DBDA;
+    border:1px solid #34DBDA;
     border-radius:8px;
     font-size:12px;
     background:#fff;

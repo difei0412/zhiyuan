@@ -379,7 +379,6 @@ export default {
 				}
 			}
 			params.data[key] = value;
-			console.log(params)
 			that.ajax({url,method,params,
 				success:function(data){
 					window.localStorage.removeItem('userinfo_obj');
@@ -686,12 +685,12 @@ input::-webkit-input-placeholder {
 .mint-popup-area {
 	width: 100%;
 }
-#select-btn option{
-	color: rgba(0,0,0,0);
-    background: rgba(0,0,0,0);
+#select-btn>option{
+	color: rgba(0,0,0,0) !important;
+    background: rgba(0,0,0,0) !important;
 }
-#select-btn option:checked {
-	color: rgba(0,0,0,0);
-    background: rgba(0,0,0,0);	
-} 
+#select-btn>option:checked {
+	color: rgba(0,0,0,0) !important;
+    background: rgba(0,0,0,0) !important;	
+}
 </style>

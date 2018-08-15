@@ -433,7 +433,7 @@ register_btn1(){
 		padding:0.3rem 0.6rem;
 	}
 	.aui-btn-danger {
-		background-color: #28B8A1 !important;
+		background-color: #34DBDA !important;
 		margin:5rem 1rem 0;
 		height:2rem;
 		line-height: 2rem;

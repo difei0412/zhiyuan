@@ -362,8 +362,8 @@ h3 {
 
 }
 .l1{
-  color:#27B5B1;
-  border:1px solid #27B5B1;
+  color:#34DBDA;
+  border:1px solid #34DBDA;
   border-radius:8px;
   font-size:12px;
   background:#fff;
@@ -380,7 +380,7 @@ h3 {
 
 }
 .aui-btn-success {
-  background: #28B8A1;
+  background: #34DBDA;
   width:fill-available;
   width:-webkit-fill-available;
 }
@@ -389,7 +389,7 @@ h3 {
   font-size:14px;
 }
 .aui-list-item-label{
-  color:#28B8A1 !important;
+  color:#34DBDA !important;
 }
 .aui-list-item-input input {
   font-size:14px;
@@ -400,7 +400,7 @@ h3 {
 }
 .aui-list-header {
   font-size:14px;
-  color:#28B8A1;
+  color:#34DBDA;
 }
 
 .biao {

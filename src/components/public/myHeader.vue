@@ -32,7 +32,7 @@
     height: 1.25rem;
   }
   .aui-bar-nav {
-    background-color: #28B8A1;
+    background-color: #34DBDA;
     position: fixed;
     top: 0px;
     width: 100%;

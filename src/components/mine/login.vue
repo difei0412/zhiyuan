@@ -141,12 +141,12 @@ var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
     width:17.25rem;
   }
   .aui-btn-danger {
-    background-color: #28B8A1 !important;
+    background-color: #34DBDA !important;
     margin-top: 0.6rem;
   }
   .app-name {
     color:rgb(233,98,80);
-    /*color:#27B5B1;*/
+    /*color:#34DBDA;*/
     font-weight: bold;
     font-family: "微软雅黑";
     letter-spacing: 0.1rem;

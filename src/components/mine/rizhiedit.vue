@@ -288,14 +288,14 @@ beforeRouteLeave(to,from,next){//记录离开时的位置
   text-align: center;
 }
 .aui-btn-success {
-  background: #28B8A1;
+  background: #34DBDA;
 }
 .aui-list-item {
   border-bottom: 1px solid #eee;
   font-size:14px;
 }
 .aui-list-item-label{
-  color:#28B8A1;
+  color:#34DBDA;
 }
 .aui-list-item-input input {
   font-size:14px;
@@ -324,11 +324,11 @@ beforeRouteLeave(to,from,next){//记录离开时的位置
   width:100%;
 }
 .mx-panel-date td.today {
-  color:#28B8A1;
+  color:#34DBDA;
   font-weight: bold;
 }
 .mx-calendar-content .cell.actived {
-  background-color: #28B8A1;
+  background-color: #34DBDA;
 }
 
 .biao {

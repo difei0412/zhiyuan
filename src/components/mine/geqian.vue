@@ -88,6 +88,6 @@
         /*padding: 0 0.5rem;*/
     }
     .aui-btn-success {
-      background: #28B8A1;
+      background: #34DBDA;
     }
 </style>

@@ -13,7 +13,7 @@
           </ul>
           <div style="margin-top:0.5rem;">
               <img :src="showData.tx?showData.tx:''" class="aui-list-img-sm" style="width:2.5rem;height:2.5rem;float:left;border-radius:1.25rem;">
-              <div style="color:#28B8A1;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.holder+'：'+showData.name"></div>
+              <div style="color:#34DBDA;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.holder+'：'+showData.name"></div>
               <div style="clear:both"></div>
           </div>
       </div>
@@ -386,8 +386,8 @@
 
 }
 .mybiaoqian900{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
+    color:#34DBDA;
+    border:1px solid #34DBDA;
     border-radius:8px;
     font-size:12px;
     background:#fff;
@@ -430,7 +430,7 @@ span.zan-num {
 }
 #search {
   width:100%;
-  background:#28B8A1;
+  background:#34DBDA;
   position: fixed;
   left:0;
   bottom:0;

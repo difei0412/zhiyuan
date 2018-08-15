@@ -85,10 +85,10 @@
                   if(data.length<that.pageSize){
                     if(data.length>0){
                       for(var i=0;i<data.length;i++){
-                        if(data[i].status==0){
-                          data[i].status = '<span style="color:#f60;">待接受</span>';
-                        } else {
+                        if(data[i].status==1){
                           data[i].status = '<span style="color:green;">已接受</span>';
+                        } else {
+                          data[i].status = '<span style="color:#f60;">待接受</span>';
                         }
                         data[i]['content'] = that.delHtmlTag(data[i]['content']);
                         data[i]['content'] = data[i]['content'].substr(0,45);
@@ -98,10 +98,10 @@
                     that.isLoadFinish = true;
                   } else {
                     for(var i=0;i<data.length;i++){
-                      if(data[i].status==0){
-                        data[i].status = '<span style="color:#f60;">待接受</span>';
-                      } else {
+                      if(data[i].status==1){
                         data[i].status = '<span style="color:green;">已接受</span>';
+                      } else {
+                        data[i].status = '<span style="color:#f60;">待接受</span>';
                       }
                       data[i]['content'] = that.delHtmlTag(data[i]['content']);
                       data[i]['content'] = data[i]['content'].substr(0,45);
@@ -250,7 +250,7 @@
     height: 1.25rem;
   }
   .aui-bar-nav {
-    background-color: #28B8A1;
+    background-color: #34DBDA;
     position: fixed;
     top: 0px;
     width: 100%;

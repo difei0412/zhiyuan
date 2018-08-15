@@ -10,7 +10,7 @@
     			<div v-html="showData.content"></div>
     		</div></p>
 		</section>
-		<p><div class="aui-btn aui-btn-danger aui-btn-block" @click="receive" v-show="showData.status==0">接受会诊</div></p>
+		<p><div class="aui-btn aui-btn-danger aui-btn-block" @click="receive" v-show="showData.status!=1">接受会诊</div></p>
     </div>
 </template>
 
@@ -102,7 +102,7 @@
 		width:17.25rem;
 	}
 	.aui-btn-danger {
-		background-color: #27B5B1 !important;
+		background-color: #34DBDA !important;
 		margin-top: 1.5rem;
 	}
 	.aui-list-item-inner {

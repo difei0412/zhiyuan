@@ -258,7 +258,7 @@
           var filter = {
             "where": {
               "docid": window.localStorage.getItem('userId'),
-              "status": 0,
+              "status": {'inq':[0,null]},
               "bankuai": '会诊'
             }
           };
@@ -439,8 +439,8 @@
     -webkit-transform: translate(-50%, -50%);
   }
   .l1{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
+    color:#34DBDA;
+    border:1px solid #34DBDA;
     border-radius:8px;
     font-size:12px;
     background:#fff;
@@ -453,7 +453,7 @@
 }
 .jinghua-btn p {
   font-size:14px;
-  color:#28B8A1;
+  color:#34DBDA;
 }
 .aui-list-item-media {
   width:2rem !important;

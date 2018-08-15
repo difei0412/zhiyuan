@@ -145,7 +145,7 @@
     z-index: 99999;
   }
   .aui-bar-tab .aui-active {
-    color: #28B8A1;
+    color: #34DBDA;
   }
   .iconcls {
     max-height: 22px;

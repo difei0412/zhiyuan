@@ -456,7 +456,7 @@ export default {
 		width:17.25rem;
 	}
 	.aui-btn-danger {
-		background-color: #27B5B1 !important;
+		background-color: #34DBDA !important;
 		margin-top: 1rem;
 		height:2rem;
 		line-height: 2rem;
@@ -467,7 +467,7 @@ export default {
 	}
 	.app-name {
 		color:rgb(233,98,80);
-		/*color:#27B5B1;*/
+		/*color:#34DBDA;*/
 		font-weight: bold;
 		font-family: "微软雅黑";
 		letter-spacing: 0.1rem;

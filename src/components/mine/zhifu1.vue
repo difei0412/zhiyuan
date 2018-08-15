@@ -260,7 +260,7 @@ export default {
     width:17.25rem;
   }
   .aui-btn-danger {
-    background-color: #27B5B1 !important;
+    background-color: #34DBDA !important;
     margin-top: 1.5rem;
   }
   section .aui-list-item-inner {
@@ -303,7 +303,7 @@ export default {
   letter-spacing: 0.1rem;
 }
 .aui-btn-success {
-  background: #28B8A1;
+  background: #34DBDA;
   width:fill-available;
   width:-webkit-fill-available;
 }
@@ -312,7 +312,7 @@ export default {
   font-size:14px;
 }
 .aui-list-item-label{
-  color:#28B8A1 !important;
+  color:#34DBDA !important;
 }
 .aui-list-item-input input {
   font-size:14px;

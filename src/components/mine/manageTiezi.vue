@@ -362,8 +362,8 @@
 
 }
 .l1{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
+    color:#34DBDA;
+    border:1px solid #34DBDA;
     border-radius:8px;
     font-size:12px;
     background:#fff;
@@ -404,7 +404,7 @@
     height: 1.25rem;
   }
   .aui-bar-nav {
-    background-color: #28B8A1;
+    background-color: #34DBDA;
     position: fixed;
     top: 0px;
     width: 100%;
@@ -423,7 +423,7 @@
   }
   .aui-btn-primary {
     margin-left: 0.5rem;
-    background: #28B8A1;
+    background: #34DBDA;
   }
   .aui-list-item-title {
     font-size: 0.6rem;

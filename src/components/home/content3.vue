@@ -219,10 +219,10 @@
 		line-height: 1.3rem;
 		width: 4rem;
 		font-size: 0.65rem;
-		border: 0.05rem solid #28B8A1;
+		border: 0.05rem solid #34DBDA;
 		border-radius: 0.65rem;
 		text-align: center;
-		color: #28B8A1;
+		color: #34DBDA;
 	}
 	.login {
 		margin-left: 0.7rem;
@@ -359,6 +359,6 @@
 		line-height: 2rem;
 		font-size: 14px;
 		letter-spacing: 0.1rem;
-		background: #27B5B1 !important;
+		background: #34DBDA !important;
 	}
 </style>

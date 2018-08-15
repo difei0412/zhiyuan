@@ -116,7 +116,7 @@ export default {
   	width:17.25rem;
   }
   .aui-btn-danger {
-  	background-color: #27B5B1 !important;
+  	background-color: #34DBDA !important;
   	margin-top: 1.5rem;
   }
   .aui-list-item-inner {

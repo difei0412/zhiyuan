@@ -22,7 +22,7 @@
               </li>
             </ul>
           </div>
-            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #28B8A1;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="saveData">修改</button>
+            <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #34DBDA;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="saveData">修改</button>
     </div>
   
 </template>
@@ -276,8 +276,8 @@
 
 }
 .l1{
-    color:#27B5B1;
-    border:1px solid #27B5B1;
+    color:#34DBDA;
+    border:1px solid #34DBDA;
     border-radius:8px;
     font-size:12px;
     background:#fff;
