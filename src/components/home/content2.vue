@@ -2,7 +2,8 @@
   <div>
     <div class="aui-content luntan-box">
         <div class="aui-col-xs-12 luntan-active" @click="openRouter">
-            <i class="aui-iconfont aui-icon-display"></i>
+            <!-- <i class="aui-iconfont aui-icon-display"></i> -->
+            <img src="static/image/luntan@2x.png" style="height:1.2rem;float:left;margin:0.95rem 0.5rem 0 0.5rem">
             <div class="luntan-text">患者交流论坛</div>
             <div class="luntan-jiantou">
               <img class="right" src="static/image/in@3x.png">
@@ -49,7 +50,7 @@
                 </li>
               </div>
               
-              <li class="aui-list-item"></li>
+              <li class="aui-list-item" style="border:none"></li>
             
           </ul>
 

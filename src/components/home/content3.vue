@@ -36,7 +36,7 @@
 		<div class="other">
 			<div class="other_list" @click="openyuyue()">
 				<div class="other_img my-middle" style="margin-left:11px">
-					<i class="aui-iconfont aui-icon-image" style="font-size:22px"></i>
+					<img src="static/image/guahao@2x.png" class="icon_img">
 				</div>
 				<span>挂号记录</span>
 				<div class="my-middle">
@@ -46,7 +46,7 @@
 			
 			<div class="other_list" @click="opendaka()">
 				<div class="other_img my-middle" style="margin-left:11px">
-					<i class="aui-iconfont aui-icon-video" style="font-size:22px"></i>
+					<img src="static/image/pingjia@2x.png" class="icon_img">
 				</div>
 				<span>患者评价查看</span>
 				<div class="my-middle">
@@ -55,7 +55,7 @@
 			</div>
 			<div class="other_list" @click="openfankuilist()">
 				<div class="other_img my-middle" style="margin-left:11px">
-					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
+					<img src="static/image/fankui@2x.png" class="icon_img">
 				</div>
 				<span>线上反馈清单</span>
 				<div class="my-middle">
@@ -64,7 +64,7 @@
 			</div>
 			<div class="other_list" @click="openRouter('aboutUs')">
 				<div class="other_img my-middle" style="margin-left:11px">
-					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
+					<img src="static/image/dashang@2x.png" class="icon_img">
 				</div>
 				<span>打赏记录</span>
 				<div class="my-middle">
@@ -73,7 +73,7 @@
 			</div>
 			<div class="other_list" @click="openRouter('yqlist')">
 				<div class="other_img my-middle" style="margin-left:11px">
-					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
+					<img src="static/image/yaoqing@2x.png" class="icon_img">
 				</div>
 				<span>会诊邀请</span>
 				<div class="my-middle">
@@ -82,7 +82,7 @@
 			</div>
 			<div class="other_list" @click="openRouter('manageTiezi')">
 				<div class="other_img my-middle" style="margin-left:11px">
-					<i class="aui-iconfont aui-icon-question" style="font-size:22px"></i>
+					<img src="static/image/tiezimanage@2x.png" class="icon_img">
 				</div>
 				<span>帖子管理</span>
 				<div class="my-middle">
@@ -327,10 +327,10 @@
 		box-sizing: content-box;
    		-moz-box-sizing: content-box;
    		-webkit-box-sizing: content-box;
-   		border-bottom: 0.1rem solid rgb(250, 250, 250);
+   		border-bottom: 1px solid #eee;
 	}
 	.other_list:nth-child(3) {
-		border-bottom: 0.68rem solid rgb(250, 250, 250);
+		border-bottom: 1px solid #eee;
 	}
 	.other_img img {
 		display: block;
@@ -360,5 +360,10 @@
 		font-size: 14px;
 		letter-spacing: 0.1rem;
 		background: #34DBDA !important;
+	}
+	.icon_img{
+		height:1.1rem !important;
+		width:auto !important;
+		margin-left:0 !important;
 	}
 </style>

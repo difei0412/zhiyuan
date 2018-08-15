@@ -63,6 +63,9 @@
     #vueg-background {
       position: fixed !important;
     }
+    .aui-list .aui-list-item {
+      border-bottom: 1px solid #eee;
+    }
 </style>
 
 <style scoped>

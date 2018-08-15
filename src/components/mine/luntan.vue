@@ -7,7 +7,10 @@
             <img src="static/image/fanhui@3x.png">
           </div>
           <div class="aui-title">论坛</div>
-          <div class="fatie-btn"><a href="javascript:;" @click="openfatie()">发帖</a></div>
+          <div class="fatie-btn">
+            <!-- <a href="javascript:;" @click="openfatie()">发帖</a> -->
+            <img src="static/image/fatie@2x.png" style="height:1.1rem;margin:0.55rem 0 0 0" @click="openfatie()">
+          </div>
         </header>
       </div>
       <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">

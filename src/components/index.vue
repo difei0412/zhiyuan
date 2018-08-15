@@ -3,7 +3,9 @@
     <header class="aui-bar aui-bar-nav" style="z-index:99999" v-if="menuindex == 0">
       <div style="position:relative;">
         <div>诊疗中心</div>
-        <div style="position:absolute;right:1rem;top:0rem;"><i class="aui-iconfont aui-icon-info" @click="opentongzhi()"></i></div>
+        <div style="position:absolute;right:1rem;top:0rem;">
+          <img src="static/image/tongzhi@3x.png" style="height:1.2rem;margin:0.6rem 0 0 0" @click="opentongzhi()">
+        </div>
       </div>
     </header>
     <header class="aui-bar aui-bar-nav" v-if="menuindex == 1">病患沟通</header>
