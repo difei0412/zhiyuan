@@ -7,6 +7,12 @@
     </div>
 
     <div class="aui-content aui-margin-b-15">
+      <div style="width:100%;height:auto">
+        <div class="ybiaoqian" v-for="(item,index) in yaoming">
+          {{item}}
+          <img src="/static/image/shanchu.png" @click="shanchu(index)" alt="" class="quxiaoyao">
+        </div>
+      </div>
       <ul class="aui-list aui-form-list">
         <li class="aui-list-item">
           <div class="aui-list-item-inner">
@@ -73,6 +79,7 @@ export default {
   data() {
     return {
       dakaijilu:[],
+      yaoming:[],
       conntr:'',
       sleep:'',
       other:'',
@@ -142,9 +149,12 @@ export default {
                 }})
               },
               touchend(yname,yjiliang,ydanwei,e){
-                this.conntr = yname+' '+yjiliang+ydanwei
+                
+                this.yaoming.push(yname+' '+yjiliang+ydanwei)
+                this.conntr = ''
                 $(".yyseach").hide()
                 $("body").css('overflow','auto');
+                console.log(this.yaoming)
               },
               // yincang(){
               //   setTimeout(function(){
@@ -186,7 +196,7 @@ export default {
           Toast('请选择时间！');
           return;
         }
-        if (that.conntr == '') {
+        if (that.yaoming == '') {
           Toast('请选择用药建议！');
           return;
         }
@@ -205,7 +215,7 @@ export default {
         var params = {
           data:{
             "dakaData":that.dateFormat(that.time1),
-            "content":that.conntr,
+            "content":that.yaoming.toString(),
             "sleep":that.sleep,
             "other":that.other,
             "rz_con":that.fkcont,
@@ -238,6 +248,10 @@ export default {
      var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
     // 拼接
     return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+  },
+  shanchu(index){
+    this.yaoming.splice(index,1)
+    console.log(this.yaoming)
   },
 },
 activated() {
@@ -371,4 +385,33 @@ beforeRouteLeave(to,from,next){//记录离开时的位置
   color: #aaa;
 }
 
+
+.ybiaoqian{
+  width:28.5%;
+  border: 1px solid #eee;
+  background: #eee;
+  color: #0f0f0f;
+  text-align:center;
+  border-radius:5%;
+  display:inline-block;
+  position: relative;
+  top: 19px;
+  margin-bottom: 1rem;
+  margin-left:0.5rem;
+  font-size: 0.6rem;
+  line-height: 1.7rem
+}
+.quxiaoyao{
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  right: -5px;
+  top: -12px;
+  width: 1rem;
+  height: 1rem;
+  color: #fff;
+  line-height: 22px;
+  font-weight: 900;
+  font-size: 0.5rem;
+}
 </style>

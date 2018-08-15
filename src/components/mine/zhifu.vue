@@ -45,7 +45,7 @@
 </ul>
 
 </div>
-<div class="aui-content aui-margin-b-15">
+<div class="aui-content aui-margin-b-15" style="display:none">
   <ul class="aui-list aui-form-list">
     <li class="aui-list-item">
       <div class="aui-list-item-inner">
@@ -179,28 +179,29 @@ sleepBTN(e){
 fkyjBTN(){
   // console.log(this.dakaijiluid)
   var that = this
-  if (that.conntr == '') {
-    Toast('请输入用药建议！');
-    return
-  }
-  if (that.sleep == '') {
-    Toast('请选择建议！');
-    return
-  }
-  if (that.other == '') {
-    Toast('请输入其他建议！');
-    return
-  }
+  // if (that.conntr == '') {
+  //   Toast('请输入用药建议！');
+  //   return
+  // }
+  // if (that.sleep == '') {
+  //   Toast('请选择建议！');
+  //   return
+  // }
+  // if (that.other == '') {
+  //   Toast('请输入其他建议！');
+  //   return
+  // }
   var params ={
     data:{
       'brid':sessionStorage.getItem("hz_id"),
       'brname':that.realname,
       'did':window.localStorage.getItem("userId"),
       'dname':window.localStorage.getItem("userName"),
-      'fk':that.fkcont,
-      'content':that.conntr,
-      'sleep':that.sleep,
-      'other':that.other,
+      // 'fk':that.fkcont,
+      'rz_con':that.fkcont,
+      // 'content':that.conntr,
+      // 'sleep':that.sleep,
+      // 'other':that.other,
       "_method":"PUT"
     }
   }

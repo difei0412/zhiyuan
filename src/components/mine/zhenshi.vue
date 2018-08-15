@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: white; min-height: 100%;">
     <myHeader :title="'门诊患者跟踪'"></myHeader>
-    <div class="aui-tab" id="tab" style="position:fixed;width:100%;z-index:2">
+    <div class="aui-tab" id="tab" style="position:fixed;width:100%;z-index:2;display:none" >
       <div class="aui-tab-item aui-active" v-if="myindex==0" @click="selectmenu(0)">门诊患者在线</div>
       <div class="aui-tab-item " v-if="myindex!=0" @click="selectmenu(0)">门诊患者在线</div> 
       <div class="aui-tab-item aui-active" v-if="myindex==1" @click="selectmenu(1)">患者打卡</div>
@@ -38,7 +38,7 @@
     </scroller>
   </div>
   <div  v-if="myindex==1">
-   <scroller :on-refresh="refresh" :on-infinite="infinite1" style="padding-top:4.5rem;height:auto !important" ref="myscroller">
+   <scroller :on-refresh="refresh" :on-infinite="infinite1" style="padding-top:2.5rem;height:auto !important" ref="myscroller">
     <div class="aui-content aui-margin-b-15">
       <ul class="aui-list aui-media-list">
 
@@ -81,7 +81,7 @@ export default {
   name: 'geqian',
   data() {
     return {
-     myindex:0,
+     myindex:1,
      tieziArr: [],
      dakatieziArr: [],
      currentPage: 1,
