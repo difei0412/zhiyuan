@@ -4,7 +4,7 @@
         <div class="aui-bar"></div>
         <header class="aui-bar aui-bar-nav">
           <div class="aui-pull-left" @click="closewin">
-            <img src="static/image/fanhui@3x.png">
+            <img src="static/image/fanhui@3x.png" style="height:1.1rem;margin-top:0.55rem">
           </div>
           <div class="aui-title">医生帖子</div>
           <div class="fatie-btn">

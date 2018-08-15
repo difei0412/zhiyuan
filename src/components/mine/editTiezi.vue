@@ -10,6 +10,16 @@
                       </div>
                   </div>
               </li>
+              <li class="aui-list-item box-title">
+                 <div class="aui-list-item-inner">
+                    <div class="aui-list-item-input">
+                        <select style="color:#424242;font-size:0.65rem;" v-model="tsid">
+                            <option value="0" disabled="true">请选择版块</option>
+                            <option :value="item.id" v-if="bankuaiarr" v-for="item in bankuaiarr" v-text="item.sname"></option>
+                        </select>
+                    </div>
+                </div>
+              </li>
               <li class="aui-list-item">
                 <div class="aui-list-item-inner textarea-box">
                     <div class="aui-list-item-input">
@@ -37,6 +47,8 @@
               ttopic: '',
                content: '请输入帖子内容',
                toast: null,
+               tsid: '0',
+               bankuaiarr: [],
                vuegConfig: {
                   disable: false,
                   forwardAnim: 'fadeInUp',
@@ -59,6 +71,11 @@
                 if(JSON.stringify(data)!='{}'){
                   that.ttopic = data.ttopic;
                   that.content = data.tcontents;
+                  if(data.tsid){
+                    that.tsid = data.tsid;
+                  }else{
+                    that.tsid = '0';
+                  }
                 }
               }
             });
@@ -73,6 +90,13 @@
               });
               return;
             }
+            if(this.tsid=='0'){
+              that.toast.fail({
+                  title:"请选择版块",
+                  duration:2000
+              });
+              return;
+            }
             if(this.content=='' || this.content=="请输入帖子内容"){
               that.toast.fail({
                   title:"请输入帖子内容",
@@ -83,6 +107,7 @@
             var params = {
               "data":{
                 "ttopic":this.ttopic,
+                "tsid": this.tsid,
                 "tcontents":this.content,
                 "_method":"PUT"
               }
@@ -163,6 +188,20 @@
             var newDay = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
             return newDay;
           },
+          // 查询板块
+          bankuai_list() {
+            var that = this;
+            var filter = {
+              "fields":{"id":true,"sname":true}
+            };
+            that.ajax({
+              url:'bankuai?filter='+encodeURIComponent(JSON.stringify(filter)),
+              method: 'get',
+              success:function(data){
+                that.bankuaiarr = data;
+              }
+            })
+          },
         },
         activated() {
           
@@ -172,6 +211,7 @@
        },
        mounted() {
           this.toast = new auiToast();
+          this.bankuai_list();
           var id = this.$route.params.id;
           this.findData(id);
           this.$nextTick(() => {
