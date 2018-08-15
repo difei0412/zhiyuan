@@ -8,7 +8,7 @@
 					<li class="aui-list-item">
 						<div class="aui-list-item-inner">
 							<div class="aui-list-item-label-icon">
-								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" width="18">
+								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
 							</div>
 							<div class="aui-list-item-input">
 								<input type="text" placeholder="请输入手机号" v-model='mobile'>
@@ -20,7 +20,7 @@
 					<li class="aui-list-item">
 						<div class="aui-list-item-inner">
 							<div class="aui-list-item-label-icon">
-								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" width="18">
+								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
 							</div>
 							<div class="aui-list-item-input">
 								<input type="text" placeholder="请输入验证码" v-model="code">
@@ -71,7 +71,13 @@ export default {
 				passwordZ:'',//确认密码
 				isshowCount:false,//是否显示
 				codeMsg:'获取验证码',//获取验证码按钮文本
-				time:60//获取验证码倒计时
+				time:60,//获取验证码倒计时
+				vuegConfig: {
+		            disable: false,
+		            forwardAnim: 'fadeInRight',
+		            duration: '.3',
+		            backAnim: 'fadeInRight'
+		        }
 			}
 		},
 		methods: {
