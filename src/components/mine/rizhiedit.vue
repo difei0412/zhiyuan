@@ -37,12 +37,48 @@
         <li class="aui-list-item">
           <div class="aui-list-item-inner" style="margin-right: 0px">
             <div class="aui-list-item-label">
+              饮食建议
+            </div>
+            <div class="aui-list-item-input" style="padding-right:0px">
+              <div @click="sleepBTN($event,0)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
+              <div @click="sleepBTN($event,0)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
+              <div @click="sleepBTN($event,0)" class="biao aui-btn">不佳</div>
+            </div>
+          </div>
+        </li>
+        <li class="aui-list-item">
+          <div class="aui-list-item-inner" style="margin-right: 0px">
+            <div class="aui-list-item-label">
               睡眠建议
             </div>
             <div class="aui-list-item-input" style="padding-right:0px">
-              <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
-              <div @click="sleepBTN($event)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
-              <div @click="sleepBTN($event)" class="biao aui-btn">不佳</div>
+              <div @click="sleepBTN($event,1)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
+              <div @click="sleepBTN($event,1)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
+              <div @click="sleepBTN($event,1)" class="biao aui-btn">不佳</div>
+            </div>
+          </div>
+        </li>
+        <li class="aui-list-item">
+          <div class="aui-list-item-inner" style="margin-right: 0px">
+            <div class="aui-list-item-label">
+              状态建议
+            </div>
+            <div class="aui-list-item-input" style="padding-right:0px">
+              <div @click="sleepBTN($event,2)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
+              <div @click="sleepBTN($event,2)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
+              <div @click="sleepBTN($event,2)" class="biao aui-btn">不佳</div>
+            </div>
+          </div>
+        </li>
+        <li class="aui-list-item">
+          <div class="aui-list-item-inner" style="margin-right: 0px">
+            <div class="aui-list-item-label">
+              诊疗建议
+            </div>
+            <div class="aui-list-item-input" style="padding-right:0px">
+              <div @click="sleepBTN($event,3)" class="biao aui-btn" style="margin-right: 0.5rem">好</div>
+              <div @click="sleepBTN($event,3)" class="biao aui-btn" style="margin-right: 0.5rem">一般</div>
+              <div @click="sleepBTN($event,3)" class="biao aui-btn">不佳</div>
             </div>
           </div>
         </li>
@@ -82,6 +118,9 @@ export default {
       yaoming:[],
       conntr:'',
       sleep:'',
+      yinshi:'',
+      zhuangtai:'',
+      zhenliao:'',
       other:'',
       fkcont:'',
       yp:[],
@@ -133,10 +172,26 @@ export default {
                 }})
               },
               // 建议
-              sleepBTN(e){
-                console.log($(e.target).html())
+              sleepBTN(e,index){
+                // console.log($(e.target).html())
                 $(e.target).addClass("sleepYS").siblings().removeClass("sleepYS");
-                this.sleep = $(e.target).html()
+                if (index == 0) {
+                  this.yinshi = $(e.target).html()
+                  console.log(this.yinshi)
+                }
+                if (index == 1) {
+                  this.sleep = $(e.target).html()
+                  console.log(this.sleep)
+                }
+                if (index == 2) {
+                  this.zhuangtai = $(e.target).html()
+                  console.log(this.zhuangtai)
+                }
+                if (index == 3) {
+                  this.zhenliao = $(e.target).html()
+                  console.log(this.zhenliao)
+                }
+                
               },
               yongyao(){
                 var that = this;
@@ -217,6 +272,9 @@ export default {
             "dakaData":that.dateFormat(that.time1),
             "content":that.yaoming.toString(),
             "sleep":that.sleep,
+            "diet":that.yinshi,
+            "state":that.zhuangtai,
+            "diagnosis":that.sleep,
             "other":that.other,
             "rz_con":that.fkcont,
             "brname":that.brname,
