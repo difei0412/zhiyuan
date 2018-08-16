@@ -13,7 +13,21 @@
           </div>
         </header>
       </div>
-      <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
+
+      <div class="search-type">
+        <div class="one">
+          <div class="left" v-text="bankuai_name"></div>
+          <div class="right" @click="bankuaiChoice"><img :src="isShowSearchList?'static/image/top.png':'static/image/bottom.png'"></div>
+        </div>
+        <ul class="two" style="display:none">
+          <li @click="search('','全部')" v-bind:class="{activeStatus:!tsid}">全部</li>
+          <li v-for="item in bankuaiarr" v-text="item.sname" @click="search(item.id,item.sname)" v-bind:class="{activeStatus:(item.id==tsid)}"></li>
+        </ul>
+      </div>
+
+      <div class="mark-screen" v-show="isMark"></div>
+
+      <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:4.5rem;" ref="myscroller">
         <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
                   <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">
@@ -67,6 +81,11 @@
                isLoadFinish:false, //是否加载完全部数据
                //isLoading: false, // 是否加载中，防止一直加载
                toast:null,
+               isShowSearchList: false,
+               bankuai_name: '全部',
+               isMark: false,
+               bankuaiarr: [],
+               tsid: '',
                vuegConfig: {
                   disable: false,
                   forwardAnim: 'fadeInRight',
@@ -76,6 +95,49 @@
             }
         },
         methods: {
+          search(param,param2) {
+            this.tsid = param;
+            this.bankuai_name = param2;
+            this.isMark = false;
+            this.isShowSearchList = false;
+            var that = this;
+            setTimeout(function(){
+              that.isMark = false;
+            }, 400);
+            $('.search-type .two').slideUp();
+            that.currentPage = 1;
+            that.tieziArr = [];
+            that.isLoadFinish = false;
+            this.showList();
+          },
+          bankuaiChoice() {
+            var that = this;
+            if(this.isShowSearchList){
+              this.isShowSearchList = false;
+              setTimeout(function(){
+                that.isMark = false;
+              }, 400);
+              $('.search-type .two').slideUp();
+            }else{
+              this.isShowSearchList = true;
+              this.isMark = true;
+              $('.search-type .two').slideDown();
+            }
+          },
+          // 查询板块
+          bankuai_list() {
+            var that = this;
+            var filter = {
+              "fields":{"id":true,"sname":true}
+            };
+            that.ajax({
+              url:'bankuai?filter='+encodeURIComponent(JSON.stringify(filter)),
+              method: 'get',
+              success:function(data){
+                that.bankuaiarr = data;
+              }
+            })
+          },
           openfatie(){
             if(window.localStorage.getItem('userId')){
               this.$router.push({path:'/fatie2'})
@@ -116,6 +178,9 @@
                 "include":["tuidPointer","tsidPointer"],
                 "includefilter":{"expert":{"fields":['id','name','holder','tx']},"bankuai":{"fields":['id','sname']}}
               };
+              if(that.tsid) {
+                filter['where']['tsid'] = that.tsid;
+              }
               that.ajax({
                 url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
@@ -179,6 +244,7 @@
        mounted() {
           var that = this;
           this.toast = new auiToast();
+          this.bankuai_list();
           if(sessionStorage.getItem("doctor_to_binren")!=null){
             var tmp = JSON.parse(sessionStorage.getItem("doctor_to_binren"));
             this.tieziArr = tmp['data'];
@@ -192,6 +258,9 @@
           }
        },
        beforeRouteLeave(to,from,next){//记录离开时的位置
+          this.isMark = false;
+          this.isShowSearchList = false;
+          $('.search-type .two').hide();
           var tempSession = sessionStorage.getItem("doctor_to_binren");
           if (tempSession) {
             var tempDic = JSON.parse(tempSession);
@@ -352,6 +421,7 @@
 }
 .doctor-answer {
   margin-top:0.5rem;
+  font-size: 0.64rem;
 }
 .aui-label {
   top:-0.1rem;
@@ -381,4 +451,74 @@
   .aui-list-item-title {
     font-size: 0.6rem;
   }
+    /* 版块搜索开始 */
+  .search-type {
+    background: #fff;
+    height:2rem;
+    z-index:100;
+    position: relative;
+    width:100%;
+    border-bottom: 1px solid #eee;
+  }
+  .search-type .one {
+    width:100%;
+    height:2rem;
+  }
+  .search-type .one .left{
+    position: absolute;
+    width:auto;
+    height:2rem;
+    top:0;
+    left:0;
+    right:3rem;
+    text-align: left;
+    padding-left:0.5rem;
+    line-height: 2rem;
+    color:#666;
+    font-size:0.65rem;
+  }
+  .search-type .one .right{
+    position: absolute;
+    width:3rem;
+    height:2rem;
+    right:0;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left:1px solid #eee;
+  }
+  .search-type .one .right img {
+    height:0.5rem;    
+  }
+  .search-type .two {
+    position:absolute;
+    left:0;
+    top:2rem;
+    width:100%;
+    background: #fff;
+    z-index: 2000;
+  }
+  .search-type .two li {
+    height:1.8rem;
+    line-height: 1.8rem;
+    padding:0 0.5rem;
+    border-bottom: 1px solid rgb(238,238,238);
+    color:#666;
+    font-size:0.65rem;
+    background: #fff;
+  }
+  .mark-screen {
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    left:0;
+    right:0;
+    top:4.25rem;
+    bottom:0;
+    z-index: 20;
+  }
+  .activeStatus{
+    color:#f60 !important;
+  }
+  /* 版块搜索结束 */
 </style>

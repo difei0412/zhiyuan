@@ -20,8 +20,8 @@
           <div class="right" @click="bankuaiChoice"><img :src="isShowSearchList?'static/image/top.png':'static/image/bottom.png'"></div>
         </div>
         <ul class="two" style="display:none">
-          <li @click="search('','全部')">全部</li>
-          <li v-for="item in bankuaiarr" v-text="item.sname" @click="search(item.id,item.sname)"></li>
+          <li @click="search('','全部')" v-bind:class="{activeStatus:!tsid}">全部</li>
+          <li v-for="item in bankuaiarr" v-text="item.sname" @click="search(item.id,item.sname)" v-bind:class="{activeStatus:(item.id==tsid)}"></li>
         </ul>
       </div>
 
@@ -255,6 +255,9 @@
           }
        },
        beforeRouteLeave(to,from,next){//记录离开时的位置
+          this.isMark = false;
+          this.isShowSearchList = false;
+          $('.search-type .two').hide();
           var tempSession = sessionStorage.getItem("doctor_tiezi");
           if (tempSession) {
             var tempDic = JSON.parse(tempSession);
@@ -415,6 +418,7 @@
 }
 .doctor-answer {
   margin-top:0.5rem;
+  font-size: 0.64rem;
 }
 .aui-label {
   top:-0.1rem;
@@ -509,6 +513,9 @@
     top:4.25rem;
     bottom:0;
     z-index: 20;
+  }
+  .activeStatus{
+    color:#f60 !important;
   }
   /* 版块搜索结束 */
 </style>

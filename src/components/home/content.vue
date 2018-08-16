@@ -479,6 +479,7 @@
 }
 .doctor-answer {
   margin-top:0.5rem;
+  font-size: 0.64rem;
 }
 .aui-label {
   top:-0.1rem;
