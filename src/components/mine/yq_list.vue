@@ -1,10 +1,7 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
         <myHeader :title="'会诊邀请'"></myHeader>
-        <div class="price-total">
-          <span v-text="'费用合计：￥'+total_price"></span>
-        </div>
-        <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:4.5rem;" ref="myscroller">
+        <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
           <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
                   <div v-if="tieziArr" v-for="item in tieziArr"  @click="toDetail(item.id)">
@@ -57,8 +54,6 @@
                currentPage: 1,
                pageSize:4,
                isLoadFinish:false, //是否加载完全部数据   
-               total_num:0,
-               total_price:0
             }
         },
         methods: {
@@ -111,46 +106,6 @@
                 }
               });
            },
-           // 总记录数
-           totalnum() {
-              var that = this;
-              var filter = {
-                "where": {
-                  "status": 1,
-                  "docid": window.localStorage.getItem('userId'),
-                  "bankuai": '会诊'
-                }
-              };
-              that.ajax({
-                url: "news/count?filter="+encodeURIComponent(JSON.stringify(filter)),
-                method: "get",
-                success: function(data) {
-                  that.total_num = data.count;
-                }
-              });
-           },
-           // 总价格
-           totalPrice() {
-              var that = this;
-              var filter = {
-                "where": {
-                   "status": 1,
-                   "docid": window.localStorage.getItem('userId'),
-                   "bankuai": '会诊'
-                },
-                "limit": that.total_num
-              };
-              that.ajax({
-                url: "news?filter="+encodeURIComponent(JSON.stringify(filter)),
-                method: "get",
-                success: function(data) {
-                  that.total_price = 0;
-                  for(var i=0;i<data.length;i++){
-                    that.total_price += (data[i].price?parseFloat(data[i].price):0);
-                  }
-                }
-              });
-           },
            // 字符串去除HTML标签
            delHtmlTag(str){
             return str.replace(/<[^>]+>/g,"");
@@ -179,17 +134,13 @@
                     that.tieziArr = [];
                     that.isLoadFinish = false;
                     that.showList();
-                    that.totalnum();
-                    that.totalPrice();
                     done();
                 }, 500);
             },
           },
           mounted() {
             var that = this;
-            this.totalnum();
             this.showList();
-            this.totalPrice();
           },
           deactivated(){
             this.$destroy(true);

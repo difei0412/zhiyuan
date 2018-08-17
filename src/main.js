@@ -54,6 +54,7 @@ import manageTiezi from './components/mine/manageTiezi' // 帖子管理列表
 import editTiezi from './components/mine/editTiezi' // 帖子编辑
 import yqdetail from './components/mine/yqdetail' // 会诊邀请详情
 import yqlist from './components/mine/yq_list' // 会诊邀请列表
+import yqsr from './components/mine/yqsr' // 会诊邀请收入
 
 // vueg
 import vueg from 'vueg'
@@ -229,6 +230,11 @@ let router = new VueRouter({
 			name: 'yqdetail',
 			path: '/yqdetail/:id',
 			component: yqdetail
+		},
+		{
+			name: 'yqsr',
+			path: '/yqsr',
+			component: yqsr
 		},
 	]
 })

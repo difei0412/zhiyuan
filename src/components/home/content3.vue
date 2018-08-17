@@ -80,6 +80,15 @@
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
+			<div class="other_list" @click="openRouter('yqsr')">
+				<div class="other_img my-middle" style="margin-left:11px">
+					<img src="static/image/huizhen@2x.png" class="icon_img">
+				</div>
+				<span>会诊收入</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
 			<div class="other_list" @click="openRouter('manageTiezi')">
 				<div class="other_img my-middle" style="margin-left:11px">
 					<img src="static/image/tiezimanage@2x.png" class="icon_img">
