@@ -51,7 +51,7 @@
                             </div>
                             <div class="aui-list-item-inner">
                                 <div class="aui-list-item-text doctor">
-                                    <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                                    <div class="aui-list-item-title" v-text="item.tuid.name+' '+(item.tuid.holder?item.tuid.holder:'')"> </div>
                                     <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
                                 </div>
                             </div>

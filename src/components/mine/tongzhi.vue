@@ -1,9 +1,9 @@
 <template>
-    <div style="background-color: white; min-height: 100%;">
+    <div style="background-color: #eee; min-height: 100%;">
         <myHeader :title="'通知消息'"></myHeader>
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item">
+           <!--  <li class="aui-list-item">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-inner">
                         <div class="tongzhi-info">
@@ -18,21 +18,140 @@
                         </div>
                     <div class="aui-info-item date-info">2015-07-14 10:31</div>
                 </div>
-            </li>
-             <li class="aui-list-item">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-                        <div class="tongzhi-info">
-                            患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
-                            <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
-                        </div>
-                    </div>
+            </li> -->
+
+            <li class="aui-list-item" style="position:relative;background:#eee">
+                <div class="kapian"></div>
+                <div class="kapian-top"></div>
+                <div class="kapian-top-1"></div>
+                <div class="kapian-bottom"></div>
+                <div class="kapian-bottom-1"></div>
+                <div class="msg-info">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                          <div class="tongzhi-info">
+                              患者<span style="color:#f60;font-size:12px;">流浪男</span>对您的帖子进行了评价 
+                            <router-link to="/tiezi" class="detail-link">查看&gt;&gt;</router-link>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="aui-info">
+                      <div class="aui-info-item">
+                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
+                          </div>
+                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
+                  </div>
                 </div>
-                <div class="aui-info" style="padding-top:0">
-                    <div class="aui-info-item">
-                        <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
-                        </div>
-                    <div class="aui-info-item date-info">2015-07-14 10:31</div>
+                <div class="msg-status">
+                  <span>未读</span>
+                </div>
+            </li>
+
+            <li class="aui-list-item" style="position:relative;background:#eee">
+                <div class="kapian"></div>
+                <div class="kapian-top"></div>
+                <div class="kapian-top-1"></div>
+                <div class="kapian-bottom"></div>
+                <div class="kapian-bottom-1"></div>
+                <div class="msg-info">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                          <div class="tongzhi-info">
+                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
+                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="aui-info" style="padding-top:0">
+                      <div class="aui-info-item">
+                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
+                          </div>
+                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
+                  </div>
+                </div>
+                <div class="msg-status">
+                  <span class="yidu">已读</span>
+                </div>
+            </li>
+
+             <li class="aui-list-item" style="position:relative;background:#eee">
+                <div class="kapian"></div>
+                <div class="kapian-top"></div>
+                <div class="kapian-top-1"></div>
+                <div class="kapian-bottom"></div>
+                <div class="kapian-bottom-1"></div>
+                <div class="msg-info">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                          <div class="tongzhi-info">
+                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
+                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="aui-info" style="padding-top:0">
+                      <div class="aui-info-item">
+                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
+                          </div>
+                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
+                  </div>
+                </div>
+                <div class="msg-status">
+                  <span class="yidu">已读</span>
+                </div>
+            </li>
+
+             <li class="aui-list-item" style="position:relative;background:#eee">
+                <div class="kapian"></div>
+                <div class="kapian-top"></div>
+                <div class="kapian-top-1"></div>
+                <div class="kapian-bottom"></div>
+                <div class="kapian-bottom-1"></div>
+                <div class="msg-info">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                          <div class="tongzhi-info">
+                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
+                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="aui-info" style="padding-top:0">
+                      <div class="aui-info-item">
+                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
+                          </div>
+                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
+                  </div>
+                </div>
+                <div class="msg-status">
+                  <span class="yidu">已读</span>
+                </div>
+            </li>
+
+             <li class="aui-list-item" style="position:relative;background:#eee">
+                <div class="kapian"></div>
+                <div class="kapian-top"></div>
+                <div class="kapian-top-1"></div>
+                <div class="kapian-bottom"></div>
+                <div class="kapian-bottom-1"></div>
+                <div class="msg-info">
+                  <div class="aui-media-list-item-inner">
+                      <div class="aui-list-item-inner">
+                          <div class="tongzhi-info">
+                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
+                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="aui-info" style="padding-top:0">
+                      <div class="aui-info-item">
+                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
+                          </div>
+                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
+                  </div>
+                </div>
+                <div class="msg-status">
+                  <span class="yidu">已读</span>
                 </div>
             </li>
            
@@ -76,6 +195,9 @@ import Calendar from '../vue-calendar-component/index';
 </script>
 
 <style scoped>
+    body,html{
+      background: #eee !important;
+    }
     .order-status {
       width:100%;
       text-align: right;
@@ -220,6 +342,10 @@ import Calendar from '../vue-calendar-component/index';
   margin:0;
   padding:0;
   font-size:14px;
+  position:absolute;
+  width:90%;
+  left:0.5rem;
+  bottom:1rem;
 }
 .aui-list-item {
   border-bottom:1px solid #eee;
@@ -235,7 +361,7 @@ import Calendar from '../vue-calendar-component/index';
 .tongzhi-info {
   font-size:12px;
   color:#666;
-  padding:0 0 0.5rem;
+  padding:0.5rem 0 0.5rem;
 }
 .aui-info-item img {
   width:1.5rem;
@@ -243,5 +369,84 @@ import Calendar from '../vue-calendar-component/index';
 }
 .aui-info-item span {
   color:#444;
+}
+.kapian {
+  background:#fff;
+  position:absolute;
+  left:0.5rem;
+  top:0.5rem;
+  right:0.5rem;
+  padding:0.5rem;
+  height:6rem;
+  border-radius:0.5rem;
+  box-shadow: 0.05rem 0.05rem 0.5rem #ccc;
+}
+.kapian-top{
+  position: absolute;
+  right:20%;
+  top:-0.5rem;
+  width:2rem;
+  height:2rem;
+  background: #eee;
+  z-index: 2;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0rem 0.1rem 0.2rem #ccc inset;
+}
+.kapian-bottom{
+  position: absolute;
+  right:20%;
+  top:5.5rem;
+  width:2rem;
+  height:2rem;
+  background: #eee;
+  z-index: 2;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0rem 0.1rem 0.2rem #ccc inset;
+}
+.kapian-bottom-1 {
+   position: absolute;
+  right:20%;
+  top:6.5rem;
+  width:2rem;
+  height:1rem;
+  background: #eee;
+  z-index: 3;
+}
+.kapian-top-1{
+  position: absolute;
+  right:20%;
+  top:-0.5rem;
+  width:2rem;
+  height:1rem;
+  background: #eee;
+  z-index: 3;
+}
+.msg-status{
+  position:absolute;
+  right:0.5rem;
+  top:0.5rem;
+  width:17.5%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:6rem;
+}
+.msg-status span {
+  color:#f60;
+}
+.msg-info{
+  position:absolute;
+  left:0.5rem;
+  top:0.5rem;
+  width:67%;
+  padding:0 0.5rem;
+  height:6rem;
+  padding:1rem 0.5rem;
+}
+.aui-list-item{
+  height:7rem;
+}
+.msg-status .yidu {
+  color:green;
 }
 </style>

@@ -203,6 +203,7 @@
                 success(data){
                   that.toast.hide();
                   if(JSON.stringify(data)!='{}') {
+                    that.changeIsreply();
                     that.content = "";
                     that.plnum++;
                     that.pldata.push(data);
@@ -219,6 +220,24 @@
                 }
               });
              }, 500);
+          },
+          // 改变主贴是否恢复isreply状态改变
+          changeIsreply(){
+            var that = this;
+            var params = {
+              "data":{
+                'isreply':'1',
+                '_method':'put'
+              }
+            }
+            that.ajax({
+              url:'tiezi/'+that.showData.id,
+              method:'post',
+              params,
+              success(data){
+
+              }
+            });
           },
           // 当前登录用户信息
           userFind() {

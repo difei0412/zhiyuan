@@ -254,12 +254,14 @@
        },
        // 是否存在会诊邀请
        yaoqing() {
+        var currentTime = this.getNowFormatDate();
         var that = this;
           var filter = {
             "where": {
               "docid": window.localStorage.getItem('userId'),
               "status": {'inq':[0,null]},
-              "bankuai": '会诊'
+              "bankuai": '会诊',
+              "endtime": {"gte":currentTime}
             }
           };
           that.ajax({
@@ -273,7 +275,23 @@
               }
             }
           });
-       }
+       },
+       // 时间格式转换,不传参获取当前时间日期
+       getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = year + seperator1 + month + seperator1 + strDate;
+            return currentdate;
+        },
     },
      mounted () {
       this.toast = new auiToast();

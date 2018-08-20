@@ -43,21 +43,11 @@
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			
-			<div class="other_list" @click="opendaka()">
+			<div class="other_list" @click="openRouter('xinli')">
 				<div class="other_img my-middle" style="margin-left:11px">
-					<img src="static/image/pingjia@2x.png" class="icon_img">
+					<img src="static/image/zixun@2x.png" class="icon_img">
 				</div>
-				<span>患者评价查看</span>
-				<div class="my-middle">
-					<img class="right" src="static/image/in@3x.png">
-				</div>
-			</div>
-			<div class="other_list" @click="openfankuilist()">
-				<div class="other_img my-middle" style="margin-left:11px">
-					<img src="static/image/fankui@2x.png" class="icon_img">
-				</div>
-				<span>线上反馈清单</span>
+				<span>心理咨询</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -71,15 +61,7 @@
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
-			<div class="other_list" @click="openRouter('yqlist')">
-				<div class="other_img my-middle" style="margin-left:11px">
-					<img src="static/image/yaoqing@2x.png" class="icon_img">
-				</div>
-				<span>会诊邀请</span>
-				<div class="my-middle">
-					<img class="right" src="static/image/in@3x.png">
-				</div>
-			</div>
+
 			<div class="other_list" @click="openRouter('yqsr')">
 				<div class="other_img my-middle" style="margin-left:11px">
 					<img src="static/image/huizhen@2x.png" class="icon_img">
@@ -89,11 +71,42 @@
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
+
+			<div class="other_list" @click="openRouter('yqlist')">
+				<div class="other_img my-middle" style="margin-left:11px">
+					<img src="static/image/yaoqing@2x.png" class="icon_img">
+				</div>
+				<span>会诊邀请</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+			
+			<div class="other_list" @click="openfankuilist()">
+				<div class="other_img my-middle" style="margin-left:11px">
+					<img src="static/image/fankui@2x.png" class="icon_img">
+				</div>
+				<span>线上反馈清单</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+			
 			<div class="other_list" @click="openRouter('manageTiezi')">
 				<div class="other_img my-middle" style="margin-left:11px">
 					<img src="static/image/tiezimanage@2x.png" class="icon_img">
 				</div>
 				<span>帖子管理</span>
+				<div class="my-middle">
+					<img class="right" src="static/image/in@3x.png">
+				</div>
+			</div>
+
+			<div class="other_list" @click="opendaka()">
+				<div class="other_img my-middle" style="margin-left:11px">
+					<img src="static/image/pingjia@2x.png" class="icon_img">
+				</div>
+				<span>患者评价查看</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>

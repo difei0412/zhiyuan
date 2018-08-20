@@ -4,6 +4,7 @@
       <div style="position:relative;">
         <div>诊疗中心</div>
         <div style="position:absolute;right:1rem;top:0rem;">
+          <div class="aui-badge" style="top:0.4rem;left:50%">8</div>
           <img src="static/image/tongzhi@3x.png" style="height:1.2rem;margin:0.6rem 0 0 0" @click="opentongzhi()">
         </div>
       </div>

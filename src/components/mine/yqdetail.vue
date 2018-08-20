@@ -10,7 +10,7 @@
     			<div v-html="showData.content"></div>
     		</div></p>
 		</section>
-		<p><div class="aui-btn aui-btn-danger aui-btn-block" @click="receive" v-show="showData.status!=1">接受会诊</div></p>
+		<p><div class="aui-btn aui-btn-danger aui-btn-block" @click="receive" v-show="isReceive">接受会诊</div></p>
     </div>
 </template>
 
@@ -22,17 +22,25 @@
 			return {
 				showData: {},
 				toast: null,
+				isReceive: false,
 			}
 		},
 		methods: {
 			// 帖子数据
           findData(id){
             var that = this;
+            var currentTime = this.getNowFormatDate();
             that.ajax({
               url:'news/'+id,
               method:"get",
               success: function(data){
                 if(JSON.stringify(data)!='{}'){
+                  if((data['status']!=1) && (data['endtime']>=currentTime)){
+                  	console.log('ok');
+                  	that.isReceive = true;
+                  }else{
+                  	that.isReceive = false;
+                  }
                   that.showData = data;
                 }
               }
@@ -77,7 +85,23 @@
 
               }
             });
-          }
+          },
+          // 时间格式转换,不传参获取当前时间日期
+	       getNowFormatDate() {
+	            var date = new Date();
+	            var seperator1 = "-";
+	            var year = date.getFullYear();
+	            var month = date.getMonth() + 1;
+	            var strDate = date.getDate();
+	            if (month >= 1 && month <= 9) {
+	                month = "0" + month;
+	            }
+	            if (strDate >= 0 && strDate <= 9) {
+	                strDate = "0" + strDate;
+	            }
+	            var currentdate = year + seperator1 + month + seperator1 + strDate;
+	            return currentdate;
+	        },
 		},
 		mounted() {
 			this.toast = new auiToast();

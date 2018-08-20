@@ -62,6 +62,7 @@
   @import '/static/css/aui.css';
     #vueg-background {
       position: fixed !important;
+      background: #eee !important;
     }
     .aui-list .aui-list-item {
       border-bottom: 1px solid #eee;

@@ -73,6 +73,7 @@
                 "skip":start,
                 "limit":that.pageSize
               };
+              var currentTime = this.getNowFormatDate();
               that.ajax({
                 url: "news?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
@@ -80,10 +81,14 @@
                   if(data.length<that.pageSize){
                     if(data.length>0){
                       for(var i=0;i<data.length;i++){
-                        if(data[i].status==1){
-                          data[i].status = '<span style="color:green;">已接受</span>';
-                        } else {
-                          data[i].status = '<span style="color:#f60;">待接受</span>';
+                        if(currentTime > data[i]['endtime']){
+                          data[i].status = '<span style="color:green;">已完成</span>';
+                        }else{
+                          if(data[i].status==1){
+                            data[i].status = '<span style="color:green;">已接受</span>';
+                          } else {
+                            data[i].status = '<span style="color:#f60;">待接受</span>'; 
+                          }
                         }
                         data[i]['content'] = that.delHtmlTag(data[i]['content']);
                         data[i]['content'] = data[i]['content'].substr(0,45);
@@ -93,10 +98,14 @@
                     that.isLoadFinish = true;
                   } else {
                     for(var i=0;i<data.length;i++){
-                      if(data[i].status==1){
-                        data[i].status = '<span style="color:green;">已接受</span>';
-                      } else {
-                        data[i].status = '<span style="color:#f60;">待接受</span>';
+                      if(currentTime > data[i]['endtime']){
+                        data[i].status = '<span style="color:green;">已完成</span>';
+                      }else{
+                        if(data[i].status==1){
+                          data[i].status = '<span style="color:green;">已接受</span>';
+                        } else {
+                          data[i].status = '<span style="color:#f60;">待接受</span>'; 
+                        }
                       }
                       data[i]['content'] = that.delHtmlTag(data[i]['content']);
                       data[i]['content'] = data[i]['content'].substr(0,45);
@@ -106,6 +115,22 @@
                 }
               });
            },
+           // 时间格式转换,不传参获取当前时间日期
+           getNowFormatDate() {
+                var date = new Date();
+                var seperator1 = "-";
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                }
+                var currentdate = year + seperator1 + month + seperator1 + strDate;
+                return currentdate;
+            },
            // 字符串去除HTML标签
            delHtmlTag(str){
             return str.replace(/<[^>]+>/g,"");
