@@ -40,7 +40,7 @@ module.exports = {
         options: {
           presets: ['es2015']
         },
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'),resolve('/node_modules/vue-picture-preview')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

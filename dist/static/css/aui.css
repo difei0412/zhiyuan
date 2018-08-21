@@ -1918,7 +1918,7 @@ input[type="search"]::-webkit-search-cancel-button {
 	border-radius: 0.25rem;
 	color: #ffffff;
 	position: fixed;
-	z-index: 3;
+	z-index: 99999;
 	top: 45%;
 	left: 50%;
 	width: 7.5em;

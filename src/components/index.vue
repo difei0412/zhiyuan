@@ -29,7 +29,7 @@
       </div>
       <div class="aui-bar-tab-item" @click="openmenu(1)">
         <center>
-        <i class="aui-iconfont aui-icon-comment"></i>
+          <i class="aui-iconfont aui-icon-comment"></i>
         </center>
         <div class="aui-bar-tab-label">病患沟通</div>
       </div>
@@ -44,194 +44,197 @@
 </template>
 
 <script>
-  import content1 from './home/content'
-  import content2 from './home/content2'
-  import content3 from './home/content3'
-  import Vue from 'vue'
+import content1 from './home/content'
+import content2 from './home/content2'
+import content3 from './home/content3'
+import Vue from 'vue'
 
-  export default {
-    name: 'index',
-    data() {
-      return {
-        menuindex: 0,
-        transitionName: '',
-        vuegConfig: {
-            disable: false,
-            forwardAnim: 'fadeInRight',
-            duration: '.5',
-            backAnim: 'fadeIn'
-        }
-      }
-    },
-    components: {
-      content1,
-      content2,
-      content3
-    },
-    methods: {
-      opentongzhi() {
-        this.$router.push({name:"tongzhi"});
-      },
-      goToSearch() {
-        this.$router.push({name:"search"});
-      },
-      openmenu:function(index) {
-        var that = this
-        if (that.menuindex == 0) {
-          
-        } else if (that.menuindex == 1) {
-          that.$refs.content2.childMethod()
-        }
-        if((index==2) && (!window.localStorage.getItem('userId'))){
-           this.$router.push({path:'/login'})
-           return;
-        }
-        if(that.menuindex > index){
-          that.transitionName = 'slide-right'
-        } else{
-          this.transitionName = 'slide-left'
-        }
-        that.menuindex = index
 
-        var footeritem = document.getElementsByClassName("aui-bar-tab-item")
-        var iconcls = document.getElementsByClassName("iconcls")
-        for (var i = 0; i < footeritem.length; i ++) {
-          footeritem[i].className = 'aui-bar-tab-item'
-          
-        }
 
-        footeritem[index].className = 'aui-bar-tab-item aui-active'
-        
+export default {
+  name: 'index',
+  data() {
+    return {
+      menuindex: 0,
+      transitionName: '',
+      vuegConfig: {
+        disable: false,
+        forwardAnim: 'fadeInRight',
+        duration: '.5',
+        backAnim: 'fadeIn'
       }
-    },
-    created() {
-      var supportDic = window.localStorage.getItem('supportDic');
-      if (!supportDic) {
-        var dic = {
-          "login" : {
-            "news" : {},
-            "pinglun" : {}
-          },
-          "noLogin" : {
-            "news" : {},
-            "pinglun" : {}
-          }
-        }
-        window.localStorage.setItem('supportDic', JSON.stringify(dic));
-      }
-    },
-    beforeRouteEnter(to,from,next){
-     next(vm => {
-       if(!window.localStorage.getItem('userId') && (vm.menuindex==2)){
-          vm.menuindex = 0;
-          var footeritem = document.getElementsByClassName("aui-bar-tab-item")
-          var iconcls = document.getElementsByClassName("iconcls")
-          for (var i = 0; i < footeritem.length; i++) {
-            footeritem[i].className = 'aui-bar-tab-item'
-          }
-          footeritem[vm.menuindex].className = 'aui-bar-tab-item aui-active'
-        }
-     })    
     }
+  },
+  components: {
+    content1,
+    content2,
+    content3
+  },
+  methods: {
+    opentongzhi() {
+      this.$router.push({name:"tongzhi"});
+    },
+    goToSearch() {
+      this.$router.push({name:"search"});
+    },
+    openmenu:function(index) {
+      var that = this
+      if (that.menuindex == 0) {
+
+      } else if (that.menuindex == 1) {
+        that.$refs.content2.childMethod()
+      }
+      if((index==2) && (!window.localStorage.getItem('userId'))){
+       this.$router.push({path:'/login'})
+       return;
+     }
+     if(that.menuindex > index){
+      that.transitionName = 'slide-right'
+    } else{
+      this.transitionName = 'slide-left'
+    }
+    that.menuindex = index
+
+    var footeritem = document.getElementsByClassName("aui-bar-tab-item")
+    var iconcls = document.getElementsByClassName("iconcls")
+    for (var i = 0; i < footeritem.length; i ++) {
+      footeritem[i].className = 'aui-bar-tab-item'
+
+    }
+
+    footeritem[index].className = 'aui-bar-tab-item aui-active'
+
   }
+},
+created() {
+  var supportDic = window.localStorage.getItem('supportDic');
+  if (!supportDic) {
+    var dic = {
+      "login" : {
+        "news" : {},
+        "pinglun" : {}
+      },
+      "noLogin" : {
+        "news" : {},
+        "pinglun" : {}
+      }
+    }
+    window.localStorage.setItem('supportDic', JSON.stringify(dic));
+  }
+ 
+},
+beforeRouteEnter(to,from,next){
+ next(vm => {
+   if(!window.localStorage.getItem('userId') && (vm.menuindex==2)){
+    vm.menuindex = 0;
+    var footeritem = document.getElementsByClassName("aui-bar-tab-item")
+    var iconcls = document.getElementsByClassName("iconcls")
+    for (var i = 0; i < footeritem.length; i++) {
+      footeritem[i].className = 'aui-bar-tab-item'
+    }
+    footeritem[vm.menuindex].className = 'aui-bar-tab-item aui-active'
+  }
+})    
+}
+}
 </script>
 
 <style scoped>
-  .aui-bar-nav {
-    background: #34DBDA;
-    text-align: center;
-    position: fixed;
-    float: left;
-    margin-left: 0px;
-    width: 100%;
-    top: 0px;
-    z-index: 99999;
-  }
-  .aui-bar-tab .aui-active {
-    color: #34DBDA;
-  }
-  .iconcls {
-    max-height: 22px;
-  }
-  .logo {
-    float: left;
-    max-height: 0.9rem;
-    margin-left: 10px;
-    margin-top: 0.675rem;
-  }
-  .search {
-    float: right;
-    max-width:90%;
-    margin-right:5%;
-    margin-top:5px
-   
-  }
-  .aui-searchbar {
-    width: 60%;
-    float: right;
-    margin-right: 22px;
-    margin-top: -22px;
-    height: 100%;
-    background: none
-  }
-  footer {
-    border-top: 1px solid #eee;
-    box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-  }
-  .H-flexbox-vertical {
-    display: box;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-flex-flow: column;
-    flex-flow: column;
-    height: 100%;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-  }
-  .H-flex-item {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-  }
+.aui-bar-nav {
+  background: #34DBDA;
+  text-align: center;
+  position: fixed;
+  float: left;
+  margin-left: 0px;
+  width: 100%;
+  top: 0px;
+  z-index: 99999;
+}
+.aui-bar-tab .aui-active {
+  color: #34DBDA;
+}
+.iconcls {
+  max-height: 22px;
+}
+.logo {
+  float: left;
+  max-height: 0.9rem;
+  margin-left: 10px;
+  margin-top: 0.675rem;
+}
+.search {
+  float: right;
+  max-width:90%;
+  margin-right:5%;
+  margin-top:5px
 
-  /* 首页切换动画 */
-  .slide-left-enter-active, .slide-left-leave-active, .slide-right-enter-active, .slide-right-leave-active {
-    transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .slide-left-enter, .slide-right-leave-active {
-    z-index: 30;
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-  .slide-left-enter,.slide-right-enter {
-    opacity: 0;
-  }
-  .slide-right-enter, .slide-left-leave-active {
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
-  .slide-left-enter-to, .slide-right-leave-to {
-    position: fixed;
-  }
-  /* 首页切换动画 */
-  .aui-bar-tab {
-    top:auto !important;
-  }
-  .foot-nav {
-    z-index: 1000;
-  }
+}
+.aui-searchbar {
+  width: 60%;
+  float: right;
+  margin-right: 22px;
+  margin-top: -22px;
+  height: 100%;
+  background: none
+}
+footer {
+  border-top: 1px solid #eee;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+.H-flexbox-vertical {
+  display: box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+  height: 100%;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.H-flex-item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+/* 首页切换动画 */
+.slide-left-enter-active, .slide-left-leave-active, .slide-right-enter-active, .slide-right-leave-active {
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slide-left-enter, .slide-right-leave-active {
+  z-index: 30;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.slide-left-enter,.slide-right-enter {
+  opacity: 0;
+}
+.slide-right-enter, .slide-left-leave-active {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+.slide-left-enter-to, .slide-right-leave-to {
+  position: fixed;
+}
+/* 首页切换动画 */
+.aui-bar-tab {
+  top:auto !important;
+}
+.foot-nav {
+  z-index: 1000;
+}
 </style>

@@ -1,12 +1,12 @@
 <template style="background: #ffffff;">
-    <!-- <transition :name="transitionName"> -->
-      <keep-alive>
-        <router-view style="min-height: 100%;" v-transition="true"></router-view>
-      </keep-alive>
+  <!-- <transition :name="transitionName"> -->
+    <keep-alive>
+      <router-view style="min-height: 100%;" v-transition="true"></router-view>
+    </keep-alive>
     <!-- </transition> -->
-</template>
+  </template>
 
-<script>
+  <script>
   import '../../static/css/aui.css';
   export default {
     name: 'layout',
@@ -17,6 +17,7 @@
       }
     },
     methods: {
+
       // keyback() {
       //   var that = this
       //   try {
@@ -40,6 +41,9 @@
       //   }
       // },
     },
+    mounted(){
+     
+    },
     watch: {
       // 如果路由有变化，会再次执行该方法
       // '$route'(to, from) {
@@ -56,20 +60,20 @@
       // }
     }
   }
-</script>
+  </script>
 
-<style>
+  <style>
   @import '/static/css/aui.css';
-    #vueg-background {
-      position: fixed !important;
-      background: #eee !important;
-    }
-    .aui-list .aui-list-item {
-      border-bottom: 1px solid #eee;
-    }
-</style>
+  #vueg-background {
+    position: fixed !important;
+    background: #eee !important;
+  }
+  .aui-list .aui-list-item {
+    border-bottom: 1px solid #eee;
+  }
+  </style>
 
-<style scoped>
+  <style scoped>
   .slide-left-enter-active, .slide-left-leave-active, .slide-right-enter-active, .slide-right-leave-active {
     transition: all .3s ease;
     -webkit-transition: all .3s ease;
@@ -94,4 +98,4 @@
   .slide-left-enter-to, .slide-right-leave-to {
     position: fixed;
   }
-</style>
+  </style>

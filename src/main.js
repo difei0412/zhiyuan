@@ -77,109 +77,109 @@ Vue.prototype.$Indicator = Indicator
 
 let router = new VueRouter({
 	routes: [
-		{
-			path: '/',
-			name: 'index',
-			component: index
-		},
-		{
-			name: 'userInfo',
-			path: '/userInfo',
-			component: userInfo
-		},
-		{
-			name: 'aboutUs',
-			path: '/aboutUs',
-			component: aboutUs
-		},
-		{
-			name: 'login',
-			path: '/login',
-			component: login
-		},
-		{
-			name: 'register',
-			path: '/register',
-			component: register
-		},
-		{
-			name: 'registerProtocol',
-			path: '/registerProtocol',
-			component: registerProtocol
-		},
-		{
-			name: 'forgetPsw',
-			path: '/forgetPsw',
-			component: forgetPsw
-		},
-		{
-			name: 'geqian',
-			path: '/geqian',
-			component: geqian
-		},
-		{
-			name: 'zhifu',
-			path: '/zhifu',
-			component: zhifu
-		},
-		{
-			name: 'zhenshi',
-			path: '/zhenshi',
-			component: zhenshi
-		},
-		{
-			name: 'mingyilist',
-			path: '/mingyilist',
-			component: mingyilist
-		},
-		{
-			name: 'zhifu1',
-			path: '/zhifu1',
-			component: zhifu1
-		},
-			{
-			name: 'jianhu',
-			path: '/jianhu',
-			component: jianhu
-		},
-		{
-			name: 'luntan',
-			path: '/luntan',
-			component: luntan
-		},
-		{
-			name: 'fatie',
-			path: '/fatie',
-			component: fatie
-		},{
-			name: 'fatie2',
-			path: '/fatie2',
-			component: fatie2
-		},
-		{
-			name: 'tiezi',
-			path: '/tiezi/:id',
-			component: tiezi
-		},
-		 {
-			name: 'yuyue',
-			path: '/yuyue',
-			component: yuyue
-		},
-		 {
-			name: 'daka',
-			path: '/daka',
-			component: daka
-		},
-		 {
-			name: 'yuyueinfo',
-			path: '/yuyueinfo',
-			component: yuyueinfo
-		},
-		{
-			name: 'jinghuatie',
-			path: '/jinghuatie',
-			component: jinghuatie,
+	{
+		path: '/',
+		name: 'index',
+		component: index
+	},
+	{
+		name: 'userInfo',
+		path: '/userInfo',
+		component: userInfo
+	},
+	{
+		name: 'aboutUs',
+		path: '/aboutUs',
+		component: aboutUs
+	},
+	{
+		name: 'login',
+		path: '/login',
+		component: login
+	},
+	{
+		name: 'register',
+		path: '/register',
+		component: register
+	},
+	{
+		name: 'registerProtocol',
+		path: '/registerProtocol',
+		component: registerProtocol
+	},
+	{
+		name: 'forgetPsw',
+		path: '/forgetPsw',
+		component: forgetPsw
+	},
+	{
+		name: 'geqian',
+		path: '/geqian',
+		component: geqian
+	},
+	{
+		name: 'zhifu',
+		path: '/zhifu',
+		component: zhifu
+	},
+	{
+		name: 'zhenshi',
+		path: '/zhenshi',
+		component: zhenshi
+	},
+	{
+		name: 'mingyilist',
+		path: '/mingyilist',
+		component: mingyilist
+	},
+	{
+		name: 'zhifu1',
+		path: '/zhifu1',
+		component: zhifu1
+	},
+	{
+		name: 'jianhu',
+		path: '/jianhu',
+		component: jianhu
+	},
+	{
+		name: 'luntan',
+		path: '/luntan',
+		component: luntan
+	},
+	{
+		name: 'fatie',
+		path: '/fatie',
+		component: fatie
+	},{
+		name: 'fatie2',
+		path: '/fatie2',
+		component: fatie2
+	},
+	{
+		name: 'tiezi',
+		path: '/tiezi/:id',
+		component: tiezi
+	},
+	{
+		name: 'yuyue',
+		path: '/yuyue',
+		component: yuyue
+	},
+	{
+		name: 'daka',
+		path: '/daka',
+		component: daka
+	},
+	{
+		name: 'yuyueinfo',
+		path: '/yuyueinfo',
+		component: yuyueinfo
+	},
+	{
+		name: 'jinghuatie',
+		path: '/jinghuatie',
+		component: jinghuatie,
 			meta: { keepAlive: true },//当前的.vue文件需要缓存
 		},
 		{
@@ -242,14 +242,25 @@ let router = new VueRouter({
 			path: '/xinli',
 			component: xinli
 		},
-	]
-})
+		]
+	})
 
 Vue.use(vueg,router);
 
-new Vue({
-  el: '#app',
-  router,
-  template: '<layout/>',
-  components: { layout }
-})
+
+window.apiready=function(){
+	var vue1=new Vue({
+		el: '#app',
+		router,
+		template: '<layout/>',
+		components: { layout }
+	})
+}
+
+
+// new Vue({
+// 	el: '#app',
+// 	router,
+// 	template: '<layout/>',
+// 	components: { layout }
+// })

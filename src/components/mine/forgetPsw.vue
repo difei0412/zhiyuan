@@ -8,7 +8,7 @@
 					<li class="aui-list-item">
 						<div class="aui-list-item-inner">
 							<div class="aui-list-item-label-icon">
-								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
+								<img data-v-6d71e44c="" src="static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
 							</div>
 							<div class="aui-list-item-input">
 								<input type="text" placeholder="请输入手机号" v-model='mobile'>
@@ -20,7 +20,7 @@
 					<li class="aui-list-item">
 						<div class="aui-list-item-inner">
 							<div class="aui-list-item-label-icon">
-								<img data-v-6d71e44c="" src="/static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
+								<img data-v-6d71e44c="" src="static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
 							</div>
 							<div class="aui-list-item-input">
 								<input type="text" placeholder="请输入验证码" v-model="code">
@@ -30,7 +30,7 @@
 					<li class="aui-list-item">
 						<div class="aui-list-item-inner">
 							<div class="aui-list-item-label-icon">
-								<img src="/static/image/pswatByFoot.png" alt="" width="18" />
+								<img src="static/image/pswatByFoot.png" alt="" width="18" />
 							</div>
 							<div class="aui-list-item-input">
 								<input type="password" placeholder="请输入新密码" v-model="password">
@@ -40,7 +40,7 @@
 					<li class="aui-list-item">
 						<div class="aui-list-item-inner">
 							<div class="aui-list-item-label-icon">
-								<img src="/static/image/pswatByFoot.png" alt="" width="18" />
+								<img src="static/image/pswatByFoot.png" alt="" width="18" />
 							</div>
 							<div class="aui-list-item-input">
 								<input type="password" placeholder="请输入确认密码" v-model="passwordZ">

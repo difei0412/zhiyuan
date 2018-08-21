@@ -10,7 +10,7 @@
       <div style="width:100%;height:auto">
         <div class="ybiaoqian" v-for="(item,index) in yaoming">
           {{item}}
-          <img src="/static/image/shanchu.png" @click="shanchu(index)" alt="" class="quxiaoyao">
+          <img src="static/image/shanchu.png" @click="shanchu(index)" alt="" class="quxiaoyao">
         </div>
       </div>
       <ul class="aui-list aui-form-list">
