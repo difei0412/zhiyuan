@@ -1,21 +1,22 @@
 <template>
 	<div style="background-color: white; min-height: 100%;">
-		 <div  class="swiper-container" style="width:100%;height:100%">
-      <div class="swiper-wrapper" style="width:100%;height:100%">
-        <div class="swiper-slide"  >
-          <img style="width:100%;height:100%" src="static/image/start1.png"   />
-        </div>
-        <div class="swiper-slide"  >
-          <img style="width:100%;height:100%" src="static/image/start2.png"   />
-        </div>
-        <div class="swiper-slide"  >
-          <img style="width:100%;height:100%" src="static/image/start3.png"   />
-        </div>
-        
+   <div  class="swiper-container" style="width:100%;height:100%">
+    <div class="swiper-wrapper" style="width:100%;height:100%">
+      <div class="swiper-slide"  >
+        <img style="width:100%;height:100%" src="static/image/start1.png"   />
       </div>
-      <div class="swiper-pagination"></div>
+      <div class="swiper-slide"  >
+        <img style="width:100%;height:100%" src="static/image/start2.png"   />
+      </div>
+      <div class="swiper-slide"  >
+        <img style="width:100%;height:100%" src="static/image/start3.png"   />
+        <div class="aui-btn aui-btn-primary" style="position: absolute;bottom: 3rem;margin: auto;left: 0;right: 0;width: 8rem;" @click="tiaozhuan">立即使用</div>
+      </div>
+
     </div>
-	</div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
 </template>
 <style scoped>
 @import url("/static/css/swiper.min.css");
@@ -30,7 +31,12 @@ export default {
     return {};
   },
 
-  methods: {},
+  methods: {
+    tiaozhuan(){
+      this.$router.push({path:'/'})
+      localStorage.yindao = 1;
+    }
+  },
   mounted() {
     console.log("挂载好了");
     var that=this
@@ -46,7 +52,7 @@ export default {
         that.$router.pushRoute({
           name: "index"
         })
-    },
+      },
 
     });
   },
@@ -62,11 +68,11 @@ export default {
       autoplayStopOnLast: true,
       onAutoplayStop: function(swiper){
        that.$router.pushRoute({
-          name: "index"
-        })
-    },
- 
-    });
+        name: "index"
+      })
+     },
+
+   });
   }
 };
 </script>
