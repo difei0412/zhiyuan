@@ -125,7 +125,7 @@ export default {
                       userId: data[0].id
                     }, function(ret, err){
                       if( ret ){
-                        alert( data[0].id);
+                        // alert( data[0].id);
                       }else{
                         alert( JSON.stringify( err) );
                       }
@@ -144,6 +144,7 @@ export default {
 		},
     mounted(){
       this.toast = new auiToast();
+
     },
 		activated() {
 			this.loginuser = window.localStorage.getItem('userMobile');
