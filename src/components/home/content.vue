@@ -110,13 +110,14 @@ export default {
   name: 'content1',
   data() {
     return {
-      mylist : [],
-      myIndex : -1,
-      userId: "",
-      sessionName: 'scrollForHome',
+        mylist : [],
+        myIndex : -1,
+        userId: "",
+        sessionName: 'scrollForHome',
         tieziArr: [], // 帖子数据展示
         toast: null,
         isTips: true,
+        readNum: 0,
       }
     },
     methods:{
@@ -276,6 +277,24 @@ export default {
           }
         });
       },
+      // 是否存在未读消息
+       readMsg() {
+        var that = this;
+        var filter = {
+          "order": "createdAt DESC",
+          "where": {
+            "user_id": {"like":window.localStorage.getItem('userId')},
+            "if_read": "{'inq':[0,null]}",
+          }
+        };
+        that.ajax({
+          url: "message_push/count?filter="+encodeURIComponent(JSON.stringify(filter)),
+          method: "get",
+          success: function(data) {
+            that.readNum = data.count;
+          }
+        });
+      },
        // 时间格式转换,不传参获取当前时间日期
        getNowFormatDate() {
         var date = new Date();
@@ -320,6 +339,7 @@ export default {
   },
   activated() {
     this.yaoqing();
+    this.readMsg();
   },
   watch: {
     '$route'(to, from) {

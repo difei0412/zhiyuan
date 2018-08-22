@@ -10,14 +10,14 @@
             <li class="aui-list-item aui-list-item-middle" v-if="tieziArr.length!=0" v-for="item in tieziArr">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
-                        <img :src="item.patientid.Tx?item.patientid.Tx:'static/image/1.jpg'" class="aui-list-img-sm" style="max-widht:30px">
+                        <img :src="(item.patientid && item.patientid.Tx)?item.patientid.Tx:'static/image/1.jpg'" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
                             <div class="aui-list-item-title aui-font-size-14" v-text="'患者：'+(item.patientid.realname?item.patientid.realname:item.username)"></div>
                              <div class="aui-list-item-right" style="color:#34DBDA" v-text="'付款：￥'+item.price"></div>
                         </div>
-                        <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-text="'预约：'+(item.startdate+' - '+item.enddate)+(' '+item.serviceid.servicename)">
+                        <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-text="'预约：'+(item.startdate+' - '+item.enddate)+(' '+(item.serviceid?item.serviceid.servicename:''))">
                             预约：2018-06-19 17：00 - 17：30 线上诊疗
                         </div>
                          <div class="aui-list-item-text" style="margin-left:11px">

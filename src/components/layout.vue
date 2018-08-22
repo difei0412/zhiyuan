@@ -75,6 +75,7 @@
             if(that.push_info.desc){
               content = that.delHtmlTag(that.push_info.desc).substr(0,20)+'...';
             }
+            
             api.notification({
               notify: {
                 title:that.push_info.theme?that.push_info.theme:'未知标题',

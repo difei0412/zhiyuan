@@ -4,7 +4,7 @@
       <div style="position:relative;">
         <div>诊疗中心</div>
         <div style="position:absolute;right:1rem;top:0rem;">
-          <div class="aui-badge" style="top:0.4rem;left:50%">8</div>
+          <div class="aui-badge" style="top:0.4rem;left:50%" v-show="readNum>0" v-text="readNum"></div>
           <img src="static/image/tongzhi@3x.png" style="height:1.2rem;margin:0.6rem 0 0 0" @click="opentongzhi()">
         </div>
       </div>
@@ -62,7 +62,8 @@ export default {
         forwardAnim: 'fadeInRight',
         duration: '.5',
         backAnim: 'fadeIn'
-      }
+      },
+      readNum: 0,
     }
   },
   components: {
@@ -104,7 +105,28 @@ export default {
 
     footeritem[index].className = 'aui-bar-tab-item aui-active'
 
-  }
+  },
+  // 是否存在未读消息
+   readMsg() {
+    var that = this;
+    var filter = {
+      "order": "createdAt DESC",
+      "where": {
+        "or": [
+          {"user_id": {"like":window.localStorage.getItem('userId')}}
+        ],
+        "if_read": {'inq':[0,null]},
+      }
+    };
+    that.ajax({
+      url: "message_push/count?filter="+encodeURIComponent(JSON.stringify(filter)),
+      method: "get",
+      success: function(data) {
+        that.readNum = data.count;
+        alert(data.count);
+      }
+    });
+  },
 },
 created() {
   var supportDic = window.localStorage.getItem('supportDic');
@@ -123,6 +145,9 @@ created() {
   }
  
 },
+activated() {
+  this.readMsg();
+}, 
 beforeRouteEnter(to,from,next){
  next(vm => {
    if(!window.localStorage.getItem('userId') && (vm.menuindex==2)){
