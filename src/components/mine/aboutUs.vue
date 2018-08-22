@@ -7,7 +7,7 @@
         <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:4.5rem;" ref="myscroller">
         <ul class="aui-list aui-media-list">
            
-            <li class="aui-list-item aui-list-item-middle" v-if="tieziArr" v-for="item in tieziArr">
+            <li class="aui-list-item aui-list-item-middle" v-if="tieziArr.length!= 0" v-for="item in tieziArr">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
                         <img :src="item.patientid.Tx?item.patientid.Tx:'static/image/1.jpg'" class="aui-list-img-sm" style="max-widht:30px">
@@ -24,6 +24,9 @@
                         </div>
                     </div>
                 </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="tieziArr.length == 0">
+              <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
             </li>
            
         </ul>

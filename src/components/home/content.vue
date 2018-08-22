@@ -49,12 +49,12 @@
     <!-- 最新帖子和精华帖 << start >> -->
     <div class="aui-content aui-margin-b-10">
       <ul class="aui-list aui-media-list">
-        <li class="aui-list-header">
+        <li class="aui-list-header" style="background:#eee">
          <div class="recent-btn">
           <p>最新帖子</p>
         </div>
         <div class="jinghua-btn">
-          <p @click="openjinghua">更多</p>
+          <p @click="openjinghua" style="color:#666">更多</p>
         </div>
       </li>
       <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">
@@ -294,36 +294,6 @@ export default {
       },
     },
     mounted () {
-      if (api) {
-
-    //设置监听
-    var push = api.require('push');
-    push.setListener(
-      function(ret,err){
-
-        if(ret){
-          api.alert({msg:ret.data});
-          api.notification({
-            notify: {
-              title:'新案件',
-              extra:"ret.data",
-              content:"fgh",
-            },
-          }, function(ret, err) {
-            alert("aaaa")
-          });
-          
-        }
-      }
-
-
-      );
-      
-     // push.removeListener();
-
-  }else{
-      // alert("aaaa")
-    }
     this.toast = new auiToast();
     this.showList2();
     this.showList();

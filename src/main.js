@@ -56,6 +56,7 @@ import yqdetail from './components/mine/yqdetail' // 会诊邀请详情
 import yqlist from './components/mine/yq_list' // 会诊邀请列表
 import yqsr from './components/mine/yqsr' // 会诊邀请收入
 import xinli from './components/mine/xinli' // 会诊邀请收入
+import tongzhidetail from './components/mine/tongzhidetail' // 通知详情
 
 // vueg
 import vueg from 'vueg'
@@ -241,6 +242,11 @@ let router = new VueRouter({
 			name: 'xinli',
 			path: '/xinli',
 			component: xinli
+		},
+		{
+			name: 'tongzhidetail',
+			path: '/tongzhidetail/:id',
+			component: tongzhidetail
 		},
 		]
 	})

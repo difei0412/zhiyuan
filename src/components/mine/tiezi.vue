@@ -46,7 +46,7 @@
 
   <div class="aui-content aui-margin-b-15 pinglun-list">
     <ul class="aui-list aui-media-list">
-        <li class="aui-list-header">
+        <li class="aui-list-header" style="background:#eee">
             精彩评论 ({{plnum}})
         </li>
         <li class="aui-list-item aui-list-item-arrow" v-if="pldata.length>0" v-for="item in pldata">
