@@ -14,6 +14,7 @@
       return {
         api: '',
         transitionName: '',
+        push_info: {},
       }
     },
     methods: {
@@ -40,24 +41,72 @@
       //   catch(error) {
       //   }
       // },
+
+      // 查询推送消息
+      findData(id){
+        var that = this;
+        that.ajax({
+          url:'message_push/'+id,
+          method:"get",
+          success: function(data){
+            if(JSON.stringify(data)!='{}'){
+              that.push_info = data;
+            }
+          }
+        });
+      },
+      // 字符串去除HTML标签
+      delHtmlTag(str){
+        return str.replace(/<[^>]+>/g,"");
+      },
     },
     mounted(){
-     
+      //this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})
+      var that = this;
+      if (api) {
+        //设置监听
+        var push = api.require('push');
+        push.setListener(function(ret,err){
+          if(ret){
+            if(ret.data[0]){
+              that.findData(ret.data[0]);
+            }
+            var content = '未知内容';
+            if(that.push_info.desc){
+              content = that.delHtmlTag(that.push_info.desc).substr(0,20)+'...';
+            }
+            api.notification({
+              notify: {
+                title:that.push_info.theme?that.push_info.theme:'未知标题',
+                extra:that.push_info.id?that.push_info.id:'',
+                content:content,
+              },
+            }, function(ret, err) {
+            });
+          }
+        });
+        // 状态栏通知点击事件
+        api.addEventListener({
+            name:'noticeclicked'
+        },function(ret,err){
+            that.$router.push({path:'/tongzhidetail/'+ret.value})
+        });
+      }
     },
     watch: {
       // 如果路由有变化，会再次执行该方法
-      // '$route'(to, from) {
-      //   var isBack = this.$router.isBack  // 监听路由变化时的状态为前进还是后退
-      //   if (isBack == "1") {
-      //     this.transitionName = 'slide-right'
-      //   } else if (isBack == "2") {
-      //     this.transitionName = 'slide-left'
-      //   } else if (isBack == "0") {
-      //     this.transitionName = ''
-      //   }
-      //   this.$router.isBack = "0"
-      //   this.keyback();
-      // }
+      '$route'(to, from) {
+        // var isBack = this.$router.isBack  // 监听路由变化时的状态为前进还是后退
+        // if (isBack == "1") {
+        //   this.transitionName = 'slide-right'
+        // } else if (isBack == "2") {
+        //   this.transitionName = 'slide-left'
+        // } else if (isBack == "0") {
+        //   this.transitionName = ''
+        // }
+        // this.$router.isBack = "0"
+        // this.keyback();
+      }
     }
   }
   </script>

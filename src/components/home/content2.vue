@@ -13,7 +13,7 @@
     </div>
      <div class="aui-content aui-margin-b-15">
           <ul class="aui-list aui-media-list">
-              <li class="aui-list-header">
+              <li class="aui-list-header" style="background:#eee">
                  最新帖子
                  <div>
                   <i class="aui-iconfont aui-icon-refresh" style="margin-right:5px"></i>
@@ -38,11 +38,11 @@
                 <li class="aui-list-item doctor-box">
                     <div class="aui-media-list-item-inner">
                         <div class="aui-list-item-media">
-                            <img :src="item.tuid.tx?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
+                            <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
                         </div>
                         <div class="aui-list-item-inner">
                             <div class="aui-list-item-text doctor">
-                                <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                                <div class="aui-list-item-title" v-text="((item.tuid && item.tuid.name)?item.tuid.name:'')+' '+((item.tuid && item.tuid.holder)?item.tuid.holder:'')"> </div>
                                 <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
                             </div>
                         </div>

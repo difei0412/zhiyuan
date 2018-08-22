@@ -412,7 +412,7 @@ beforeRouteLeave(to,from,next){//记录离开时的位置
   height: 1rem;
   width: 3rem;
   border-radius: 6px;
-  line-height: 0.95rem;
+  line-height: 1rem;
 }
 .aui-btn:active {
   color: #fff;

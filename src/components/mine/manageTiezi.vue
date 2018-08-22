@@ -4,7 +4,7 @@
       <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
         <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
-                  <div v-if="tieziArr" v-for="item in tieziArr">
+                  <div v-if="tieziArr.length!=0" v-for="item in tieziArr">
                     <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
                         <div class="aui-media-list-item-inner">
                             <div class="aui-list-item-inner">
@@ -32,6 +32,10 @@
                         </div>
                     </li>
                   </div>
+
+                  <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="tieziArr.length == 0">
+                    <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
+                  </li>
                 
               </ul>
           </div>
