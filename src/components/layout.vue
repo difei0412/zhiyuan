@@ -15,6 +15,7 @@
         api: '',
         transitionName: '',
         push_info: {},
+        yindao:0
       }
     },
     methods: {
@@ -61,9 +62,12 @@
       },
     },
     mounted(){
-      //this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})
-      var that = this;
-      if (api) {
+      if (localStorage.yindao == 0) {
+        this.$router.push({path:'/yindao'})
+      }
+         //this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})
+         var that = this;
+         if (api) {
         //设置监听
         var push = api.require('push');
         push.setListener(function(ret,err){
@@ -88,13 +92,15 @@
         });
         // 状态栏通知点击事件
         api.addEventListener({
-            name:'noticeclicked'
+          name:'noticeclicked'
         },function(ret,err){
-            that.$router.push({path:'/tongzhidetail/'+ret.value})
+          that.$router.push({path:'/tongzhidetail/'+ret.value})
         });
       }
-    },
-    watch: {
+  
+
+  },
+  watch: {
       // 如果路由有变化，会再次执行该方法
       '$route'(to, from) {
         // var isBack = this.$router.isBack  // 监听路由变化时的状态为前进还是后退
