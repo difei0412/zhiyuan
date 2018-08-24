@@ -57,12 +57,19 @@
         });
       },
       // 字符串去除HTML标签
-      delHtmlTag(str){
-        return str.replace(/<[^>]+>/g,"");
+       delHtmlTag(str){
+        var msg  = str;
+        msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+        msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+        msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+        msg = msg.replace(/\s+/g," ");//去掉回车换行
+        return msg;
       },
     },
     mounted(){
-      if (localStorage.yindao == 0) {
+      if (localStorage.yindao != 1) {
         this.$router.push({path:'/yindao'})
       }
          //this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})

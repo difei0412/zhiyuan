@@ -112,10 +112,10 @@ export default {
     var filter = {
       "order": "createdAt DESC",
       "where": {
-        "or": [
-          {"user_id": {"like":window.localStorage.getItem('userId')}}
-        ],
-        "if_read": {'inq':[0,null]},
+        "or":[
+              {"user_id": {"like":window.localStorage.getItem('userId')},"if_read": {'inq':[0,null]}},
+              {"user_id": '[]',"if_read": {'inq':[0,null]}}
+         ]
       }
     };
     that.ajax({
@@ -123,7 +123,6 @@ export default {
       method: "get",
       success: function(data) {
         that.readNum = data.count;
-        alert(data.count);
       }
     });
   },

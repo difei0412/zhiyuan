@@ -2,35 +2,17 @@
     <div style="background-color: white; min-height: 100%;" v-cloak>
         <myHeader :title="'帖子详情'"></myHeader>
       <div v-show="isLoadFinish" class="content-box">
-       <div class="aui-content aui-content-padded" >
+       <div class="aui-content aui-content-padded">
          <h3 class="aui-list-header" v-text="showData.ttopic"></h3>
-         <ul class="aui-list aui-select-list">
-            <li class="aui-list-item">
-                <div class="aui-content aui-content-padded ">
-                   <div class="aui-content" v-html="showData.tcontents"></div>
-                </div>
-            </li>
-          </ul>
+            <div class="aui-content aui-content-padded content-box-2">
+                <div v-html="showData.tcontents"></div>
+            </div>
           <div style="margin-top:0.5rem;">
-              <img :src="showData.tx?showData.tx:''" class="aui-list-img-sm" style="width:2.5rem;height:2.5rem;float:left;border-radius:1.25rem;">
-              <div style="color:#34DBDA;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.holder+'：'+showData.name"></div>
+              <img :src="showData.tx?showData.tx:'static/image/user.png'" class="aui-list-img-sm" style="width:2.5rem;height:2.5rem;float:left;border-radius:1.25rem;">
+              <div style="color:#34DBDA;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.tType==3?'知源医院':(showData.holder+'：'+showData.name)"></div>
               <div style="clear:both"></div>
           </div>
       </div>
-
-       <div class="aui-content">
-        <!-- <div class="aui-col-xs-6">
-            <span><i class="aui-iconfont aui-icon-laud"></i><span class="zan-num">(12)</span></span>
-            <span><i class="aui-iconfont aui-icon-laud zan-icon2"></i><span class="zan-num">(12)</span></span>
-        </div> -->
-        <!-- <div class="aui-col-xs-12">
-           <i class="aui-iconfont aui-pull-right aui-icon-weibo"></i>
-           <i class="aui-iconfont aui-pull-right aui-icon-wechat-circle"></i>
-           <i class="aui-iconfont aui-pull-right aui-icon-wechat"></i>
-        </div> -->
-       </div>
-
-       <!-- <hr style="background:#eee;height:1px;margin:0.5rem 0"/> -->
 
    <div class="aui-searchbar" id="search">
       <div class="aui-searchbar-input aui-border-radius">
@@ -529,5 +511,10 @@ span.zan-num {
 }
 .content-box {
   height:100%;
+}
+.content-box-2 {
+  color:#666;
+  font-size:0.7rem;
+  line-height: 1.2rem;
 }
 </style>

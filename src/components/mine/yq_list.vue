@@ -4,35 +4,31 @@
         <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
           <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
-                  <div v-if="tieziArr.length!=0" v-for="item in tieziArr"  @click="toDetail(item.id)">
-                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-inner">
-                               
-                                <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
-                                  <div class="aui-pull-left" v-text="item.title"></div>
-                                  <div class="aui-pull-right" v-text="'诊费：￥'+item.price"></div>
-                                </div>
-                                <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-html="'会诊内容：'+item.content+'...'">
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="aui-list-item doctor-box">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-media">
-                                <img src="static/image/user.png" class="aui-img-round">
-                            </div>
-                            <div class="aui-list-item-inner">
-                                <div class="aui-list-item-text doctor">
-                                    <div class="aui-list-item-title" v-text="'知源医院'"> </div>
-                                    <div class="aui-list-item-right" v-html="item.status"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                  </div>
+                  <li class="aui-list-item aui-list-item-arrow" v-if="tieziArr.length!=0" v-for="item in tieziArr"  @click="toDetail(item.id)">
+                      <div class="aui-media-list-item-inner">
+                          <div class="aui-list-item-inner">
+                             
+                              <div class="aui-list-item-text aui-ellipsis-2" style="color:#000">
+                                <div class="aui-pull-left" v-text="item.title"></div>
+                                <div class="aui-pull-right" v-text="'诊费：￥'+item.price"></div>
+                              </div>
+                              <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-html="'会诊内容：'+item.content+'...'">
+                                
+                              </div>
+                          </div>
+                      </div>
+                      <div class="aui-media-list-item-inner doctor-box">
+                          <div class="aui-list-item-media">
+                              <img src="static/image/user.png" class="aui-img-round">
+                          </div>
+                          <div class="aui-list-item-inner">
+                              <div class="aui-list-item-text doctor">
+                                  <div class="aui-list-item-title" v-text="'知源医院'"> </div>
+                                  <div class="aui-list-item-right" v-html="item.status"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
 
                   <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="tieziArr.length == 0">
                     <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
@@ -95,7 +91,7 @@
                           }
                         }
                         data[i]['content'] = that.delHtmlTag(data[i]['content']);
-                        data[i]['content'] = data[i]['content'].substr(0,45);
+                        data[i]['content'] = data[i]['content'].substr(0,50);
                         that.tieziArr.push(data[i]);
                       }
                     }
@@ -112,7 +108,7 @@
                         }
                       }
                       data[i]['content'] = that.delHtmlTag(data[i]['content']);
-                      data[i]['content'] = data[i]['content'].substr(0,45);
+                      data[i]['content'] = data[i]['content'].substr(0,50);
                       that.tieziArr.push(data[i]);
                     }
                   }
@@ -136,9 +132,16 @@
                 return currentdate;
             },
            // 字符串去除HTML标签
-           delHtmlTag(str){
-            return str.replace(/<[^>]+>/g,"");
-           },
+             delHtmlTag(str){
+              var msg  = str;
+              msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+              msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+              msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+              msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+              msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+              msg = msg.replace(/\s+/g," ");//去掉回车换行
+              return msg;
+            },
            // 上拉加载更多
            infinite(done) {
             var that = this;
@@ -217,7 +220,7 @@
   color:#666;
 }
 .doctor-box {
-  padding-top:0rem;
+  padding-top:0.5rem;
 }
 .doctor-answer {
   margin-top:0.5rem;

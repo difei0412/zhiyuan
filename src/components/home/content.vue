@@ -57,35 +57,31 @@
           <p @click="openjinghua" style="color:#666">更多</p>
         </div>
       </li>
-      <div v-if="tieziArr" v-for="item in tieziArr" @click="opentiezi(item.id)">
-        <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none">
+
+        <li class="aui-list-item aui-list-item-arrow" v-if="tieziArr.length!=0" v-for="item in tieziArr" @click="opentiezi(item.id)">
           <div class="aui-media-list-item-inner">
             <div class="aui-list-item-inner">
 
               <div class="aui-list-item-text aui-ellipsis-2" style="color:#0F0F0F" v-text="item.ttopic">
 
               </div>
-              <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" style="color:#666666" v-text="item.tcontents.substr(0,45)+'...'">
+              <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" style="color:#666666" v-text="item.tcontents+'...'">
 
               </div>
             </div>
           </div>
-        </li>
-        <li class="aui-list-item doctor-box">
-          <div class="aui-media-list-item-inner">
+          <div class="aui-media-list-item-inner doctor-box">
             <div class="aui-list-item-media">
-              <img :src="item.tuid.tx?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
+              <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
             </div>
             <div class="aui-list-item-inner">
               <div class="aui-list-item-text doctor">
-                <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                <div class="aui-list-item-title" v-text="(item.tuid && item.tuid.name?item.tuid.name:'')+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>
                 <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
               </div>
             </div>
           </div>
         </li>
-      </div>
-
 
       <li class="aui-list-item aui-list-item-arrow"></li>
 
@@ -117,7 +113,6 @@ export default {
         tieziArr: [], // 帖子数据展示
         toast: null,
         isTips: true,
-        readNum: 0,
       }
     },
     methods:{
@@ -188,7 +183,6 @@ export default {
         var filter = {
           "order": "updatedAt DESC",
           "where": {
-            "tflag":0,
             "if_delete": "1",
             "if_top":"1",
               "tType":3 // 官方后台发帖
@@ -208,14 +202,14 @@ export default {
                 var limit=1;
                 for(var i=0;i<data.length;i++){
                   data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
-                  data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                  data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
                   that.tieziArr.push(data[i]);
                 }
                 that.showList3(limit);
               } else {
                 for(var i=0;i<data.length;i++){
                   data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
-                  data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                  data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
                   that.tieziArr.push(data[i]);
                 }
               }
@@ -228,7 +222,6 @@ export default {
         var filter = {
           "order": "updatedAt DESC",
           "where": {
-            "tflag":0,
             "if_delete": "1",
             "if_top":"0",
               "tType":3 // 官方后台发帖
@@ -243,7 +236,7 @@ export default {
             success: function(data) {
               for(var i=0;i<data.length;i++){
                 data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
-                data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
                 that.tieziArr.push(data[i]);
               }
             }
@@ -251,7 +244,14 @@ export default {
         },
        // 字符串去除HTML标签
        delHtmlTag(str){
-        return str.replace(/<[^>]+>/g,"");
+        var msg  = str;
+        msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+        msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+        msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+        msg = msg.replace(/\s+/g," ");//去掉回车换行
+        return msg;
       },
        // 是否存在会诊邀请
        yaoqing() {
@@ -339,7 +339,6 @@ export default {
   },
   activated() {
     this.yaoqing();
-    this.readMsg();
   },
   watch: {
     '$route'(to, from) {
@@ -513,7 +512,7 @@ export default {
   color:#666;
 }
 .doctor-box {
-  padding-top:0rem;
+  padding-top:0.5rem;
 }
 .doctor-answer {
   margin-top:0.5rem;
