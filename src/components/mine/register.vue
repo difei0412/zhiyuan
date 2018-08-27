@@ -80,11 +80,11 @@ export default {
 				time:60,//获取验证码倒计时
 				codeid:"",
 				vuegConfig: {
-		            disable: false,
-		            forwardAnim: 'fadeInRight',
-		            duration: '.3',
-		            backAnim: 'fadeInRight'
-		        }
+					disable: false,
+					forwardAnim: 'fadeInRight',
+					duration: '.3',
+					backAnim: 'fadeInRight'
+				}
 			}
 		},
 		methods: {
@@ -133,35 +133,40 @@ export default {
 									};
 									that.ajax({url:url1,method:'GET',
 										success:function(data){
-											
-											that.codeid = data[0].id
-											console.log(that.codeid)
-											if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
-												var url2 = 'expert';
-												that.ajax({url:url2,method:'post',params,success:function(data){
-													var params = {
-														data:{
-															status: "1",
-															_method: "PUT"
-														}
-													}
-													var url3 = 'verycode/'+that.codeid;
-													console.log(url3)
-													that.ajax({url:url3,method:'post',params,success:function(data){
-														if (data) {
-															Toast("注册成功！")
-															that.$router.push({name:"login"});
-														}else{
-															Toast("注册失败！")
-														}
-													}})
-													
-												}
+											console.log(data)
+											if (data!=''&&data !=[]&&data!=undefined&&data!=nul) {
+												that.codeid = data[0].id
 
-											})
+												if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
+													var url2 = 'expert';
+													that.ajax({url:url2,method:'post',params,success:function(data){
+														var params = {
+															data:{
+																status: "1",
+																_method: "PUT"
+															}
+														}
+														var url3 = 'verycode/'+that.codeid;
+														console.log(url3)
+														that.ajax({url:url3,method:'post',params,success:function(data){
+															if (data) {
+																Toast("注册成功！")
+																that.$router.push({name:"login"});
+															}else{
+																Toast("注册失败！")
+															}
+														}})
+
+													}
+
+												})
+												}else{
+													Toast("验证码无效，请重新输入！")
+												}
 											}else{
 												Toast("验证码无效，请重新输入！")
 											}
+											
 
 
 										}
