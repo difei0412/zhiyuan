@@ -4,34 +4,30 @@
       <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
         <div class="aui-content aui-margin-b-15">
               <ul class="aui-list aui-media-list">
-                  <div v-if="tieziArr.length!=0" v-for="item in tieziArr">
-                    <li class="aui-list-item aui-list-item-arrow" style="border-bottom:none" @click="opentiezi(item.id)">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-inner">
-                               
-                                <div class="aui-list-item-text aui-ellipsis-2" style="color:#000" v-text="item.ttopic">
-                                  
-                                </div>
-                                <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="item.tcontents+'...'">
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="aui-list-item doctor-box">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-media">
-                                <img :src="item.tuid?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
-                            </div>
-                            <div class="aui-list-item-inner">
-                                <div class="aui-list-item-text doctor">
-                                    <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
-                                    <div class="aui-list-item-right"><div class="aui-btn" @click="delTiezi(item.id)">删除</div><div class="aui-btn aui-btn-primary" @click="editTiezi(item.id)">编辑</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                  </div>
+                  <li class="aui-list-item aui-list-item-arrow" v-if="tieziArr.length!=0" v-for="item in tieziArr">
+                      <div class="aui-media-list-item-inner" @click="opentiezi(item.id)">
+                          <div class="aui-list-item-inner">
+                             
+                              <div class="aui-list-item-text aui-ellipsis-2" style="color:#000" v-text="item.ttopic">
+                                
+                              </div>
+                              <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" v-text="item.tcontents+'...'">
+                                
+                              </div>
+                          </div>
+                      </div>
+                      <div class="aui-media-list-item-inner doctor-box">
+                          <div class="aui-list-item-media">
+                              <img :src="item.tuid?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
+                          </div>
+                          <div class="aui-list-item-inner">
+                              <div class="aui-list-item-text doctor">
+                                  <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                                  <div class="aui-list-item-right"><div class="aui-btn" @click="delTiezi(item.id)">删除</div><div class="aui-btn aui-btn-primary" @click="editTiezi(item.id)">编辑</div></div>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
 
                   <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="tieziArr.length == 0">
                     <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
@@ -87,8 +83,15 @@
           },
           // 字符串去除HTML标签
            delHtmlTag(str){
-            return str.replace(/<[^>]+>/g,"");
-           },
+            var msg  = str;
+            msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+            msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+            msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+            msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+            msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+            msg = msg.replace(/\s+/g," ");//去掉回车换行
+            return msg;
+          },
           // 查询数据
           showList() {
               var that = this;
@@ -115,7 +118,7 @@
                     if(data.length>0){
                       for(var i=0;i<data.length;i++){
                         data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
-                        data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                        data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
                         that.tieziArr.push(data[i]);
                       }
                     }
@@ -123,7 +126,7 @@
                   } else {
                     for(var i=0;i<data.length;i++){
                       data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
-                      data[i]['tcontents'] = data[i]['tcontents'].substr(0,45);
+                      data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
                       that.tieziArr.push(data[i]);
                     }
                   }
@@ -395,7 +398,7 @@
   color:#666;
 }
 .doctor-box {
-  padding-top:0rem;
+  padding-top:0.5rem;
 }
 .doctor-answer {
   margin-top:0.5rem;

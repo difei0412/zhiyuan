@@ -7,11 +7,11 @@
             <li class="aui-list-item aui-list-item-middle" v-if="tieziArr" v-for="item in tieziArr">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-media" style="width: 3rem;">
-                        <img :src="item.brid.Tx?item.brid.Tx:'static/image/1.jpg'" class="aui-list-img-sm" style="max-widht:30px">
+                        <img :src="(item.brid && item.brid.Tx)?item.brid.Tx:'static/image/1.jpg'" class="aui-list-img-sm" style="max-widht:30px">
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14" v-text="'住院患者：'+(item.brid.realname?item.brid.realname:item.brid.username)">林洪生</div>
+                            <div class="aui-list-item-title aui-font-size-14" v-text="'住院患者：'+((item.brid && item.brid.realname)?item.brid.realname:item.brid.username)">林洪生</div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-text="'留言内容：'+item.pjcontent+'...'">
                             

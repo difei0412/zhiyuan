@@ -20,7 +20,7 @@
                 </div>
             </li> -->
 
-            <li class="aui-list-item" style="position:relative;background:#eee">
+            <li class="aui-list-item" style="position:relative;background:#eee" v-for="item in msgArr" @click="readLink(item.id,item.link_url)">
                 <div class="kapian"></div>
                 <div class="kapian-top"></div>
                 <div class="kapian-top-1"></div>
@@ -30,128 +30,21 @@
                   <div class="aui-media-list-item-inner">
                       <div class="aui-list-item-inner">
                           <div class="tongzhi-info">
-                              患者<span style="color:#f60;font-size:12px;">流浪男</span>对您的帖子进行了评价 
-                            <router-link to="/tiezi" class="detail-link">查看&gt;&gt;</router-link>
+                              <span v-html="item.desc"></span>
+                              <span class="detail-link">查看&gt;&gt;</span>
                           </div>
                       </div>
                   </div>
                   <div class="aui-info">
-                      <div class="aui-info-item">
-                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
-                          </div>
-                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
+                      <div class="aui-info-item" style="font-size:0.6rem">
+                          <!-- <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span> -->
+                          发布日期
+                      </div>
+                      <div class="aui-info-item date-info" v-text="dateFormat(item.createdAt)"></div>
                   </div>
                 </div>
                 <div class="msg-status">
                   <span>未读</span>
-                </div>
-            </li>
-
-            <li class="aui-list-item" style="position:relative;background:#eee">
-                <div class="kapian"></div>
-                <div class="kapian-top"></div>
-                <div class="kapian-top-1"></div>
-                <div class="kapian-bottom"></div>
-                <div class="kapian-bottom-1"></div>
-                <div class="msg-info">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                          <div class="tongzhi-info">
-                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
-                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="aui-info" style="padding-top:0">
-                      <div class="aui-info-item">
-                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
-                          </div>
-                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
-                  </div>
-                </div>
-                <div class="msg-status">
-                  <span class="yidu">已读</span>
-                </div>
-            </li>
-
-             <li class="aui-list-item" style="position:relative;background:#eee">
-                <div class="kapian"></div>
-                <div class="kapian-top"></div>
-                <div class="kapian-top-1"></div>
-                <div class="kapian-bottom"></div>
-                <div class="kapian-bottom-1"></div>
-                <div class="msg-info">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                          <div class="tongzhi-info">
-                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
-                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="aui-info" style="padding-top:0">
-                      <div class="aui-info-item">
-                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
-                          </div>
-                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
-                  </div>
-                </div>
-                <div class="msg-status">
-                  <span class="yidu">已读</span>
-                </div>
-            </li>
-
-             <li class="aui-list-item" style="position:relative;background:#eee">
-                <div class="kapian"></div>
-                <div class="kapian-top"></div>
-                <div class="kapian-top-1"></div>
-                <div class="kapian-bottom"></div>
-                <div class="kapian-bottom-1"></div>
-                <div class="msg-info">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                          <div class="tongzhi-info">
-                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
-                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="aui-info" style="padding-top:0">
-                      <div class="aui-info-item">
-                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
-                          </div>
-                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
-                  </div>
-                </div>
-                <div class="msg-status">
-                  <span class="yidu">已读</span>
-                </div>
-            </li>
-
-             <li class="aui-list-item" style="position:relative;background:#eee">
-                <div class="kapian"></div>
-                <div class="kapian-top"></div>
-                <div class="kapian-top-1"></div>
-                <div class="kapian-bottom"></div>
-                <div class="kapian-bottom-1"></div>
-                <div class="msg-info">
-                  <div class="aui-media-list-item-inner">
-                      <div class="aui-list-item-inner">
-                          <div class="tongzhi-info">
-                              患者<span style="color:#f60;font-size:12px;">流浪男</span>心情好，一不小心送了您一支大火箭
-                              <router-link to="/aboutUs" class="detail-link">查看&gt;&gt;</router-link>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="aui-info" style="padding-top:0">
-                      <div class="aui-info-item">
-                          <img src="static/image/demo1.jpeg" class="aui-img-round" /><span class="aui-margin-l-5">流浪男</span>
-                          </div>
-                      <div class="aui-info-item date-info">2015-07-14 10:31</div>
-                  </div>
-                </div>
-                <div class="msg-status">
-                  <span class="yidu">已读</span>
                 </div>
             </li>
            
@@ -162,7 +55,6 @@
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
     export default {
         name: 'geqian',
         data() {
@@ -173,24 +65,98 @@ import Calendar from '../vue-calendar-component/index';
                   duration: '.3',
                   backAnim: 'fadeInLeft'
               },
+              msgArr: []
             }
         },
         methods: {
           openzhifu:function(){
             this.$router.push({path:'/yuyueinfo'})
+          },
+          // 是否存在未读消息
+           readMsg() {
+            var that = this;
+            var filter = {
+              "fields":{"id":true,"desc":true,"link_url":true,"createdAt":true},
+              "order": "createdAt DESC",
+              "where": {
+                "or":[
+                      {"user_id": {"like":window.localStorage.getItem('userId')},"if_read": {'inq':[0,null]}},
+                      {"user_id": '[]',"if_read": {'inq':[0,null]}}
+                 ]
+              }
+            };
+            that.ajax({
+              url: "message_push?filter="+encodeURIComponent(JSON.stringify(filter)),
+              method: "get",
+              success: function(data) {
+                that.msgArr = data;
+              }
+            });
+          },
+          // 时间格式转换,不传参获取当前时间日期
+          dateFormat(date) {
+            date = date||null;
+            if(date == null){
+              var dateObj = new Date();
+            } else {
+              var dateObj = new Date(date);
+            }
+            var year = dateObj.getFullYear();
+            var month = dateObj.getMonth()+1;
+            var day = dateObj.getDate();
+            var hour = dateObj.getHours();
+            var minute = dateObj.getMinutes();
+            var second = dateObj.getSeconds();
+            if(month<=9){
+              month = "0" + month;
+            }
+            if(day<=9){
+              day = "0" + day;
+            }
+            if(hour<=9){
+              hour = "0" + hour;
+            }
+            if(minute<=9){
+              minute = "0" + minute;
+            }
+            if(second<=9){
+              second = "0" + second;
+            }
+            var newDay = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+            return newDay;
+          },
+          readLink(id,url) {
+            var that = this;
+            var params = {
+              "data":{
+                "if_read":'1',
+                "_method":"PUT"
+              }
+            }
+            that.ajax({
+              url:'message_push/'+id,
+              method:"post",
+              params,
+              success: function(res){
+
+              }
+            })
+            var tmp = '';
+            if(url){
+              tmp = url;
+            }else{
+              tmp = '/tongzhidetail/'+id;
+            }
+            that.$router.push({path:tmp})
           }
-          
         },
         activated() {
-          
+          this.readMsg();
         },
        created() {
    
    
   },
-        components: {
-                Calendar
-              }
     }
 </script>
 

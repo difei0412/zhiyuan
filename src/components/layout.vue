@@ -57,45 +57,55 @@
         });
       },
       // 字符串去除HTML标签
-      delHtmlTag(str){
-        return str.replace(/<[^>]+>/g,"");
+       delHtmlTag(str){
+        var msg  = str;
+        msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+        msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+        msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+        msg = msg.replace(/\s+/g," ");//去掉回车换行
+        return msg;
       },
     },
     mounted(){
-      if (localStorage.yindao == 0) {
+      if (localStorage.yindao != 1) {
         this.$router.push({path:'/yindao'})
       }
          //this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})
          var that = this;
-      //    if (api) {
-      //   //设置监听
-      //   var push = api.require('push');
-      //   push.setListener(function(ret,err){
-      //     if(ret){
-      //       if(ret.data[0]){
-      //         that.findData(ret.data[0]);
-      //       }
-      //       var content = '未知内容';
-      //       if(that.push_info.desc){
-      //         content = that.delHtmlTag(that.push_info.desc).substr(0,20)+'...';
-      //       }
-      //       api.notification({
-      //         notify: {
-      //           title:that.push_info.theme?that.push_info.theme:'未知标题',
-      //           extra:that.push_info.id?that.push_info.id:'',
-      //           content:content,
-      //         },
-      //       }, function(ret, err) {
-      //       });
-      //     }
-      //   });
-      //   // 状态栏通知点击事件
-      //   api.addEventListener({
-      //     name:'noticeclicked'
-      //   },function(ret,err){
-      //     that.$router.push({path:'/tongzhidetail/'+ret.value})
-      //   });
-      // }
+
+         if (api) {
+        //设置监听
+        var push = api.require('push');
+        push.setListener(function(ret,err){
+          if(ret){
+            if(ret.data[0]){
+              that.findData(ret.data[0]);
+            }
+            var content = '未知内容';
+            if(that.push_info.desc){
+              content = that.delHtmlTag(that.push_info.desc).substr(0,20)+'...';
+            }
+            
+            api.notification({
+              notify: {
+                title:that.push_info.theme?that.push_info.theme:'未知标题',
+                extra:that.push_info.id?that.push_info.id:'',
+                content:content,
+              },
+            }, function(ret, err) {
+            });
+          }
+        });
+        // 状态栏通知点击事件
+        api.addEventListener({
+          name:'noticeclicked'
+        },function(ret,err){
+          that.$router.push({path:'/tongzhidetail/'+ret.value})
+        });
+      }
+
   
 
   },

@@ -171,6 +171,34 @@ export default {
 
                 }})
               },
+              // 推送消息
+              pushMsg(dakaid) {
+                var that = this;
+                var params = {
+                  data:{
+                    "theme":"住院日志跟踪反馈",
+                    "desc":"医师"+window.localStorage.getItem('userName')+"对您进行了住院跟踪反馈，请注意查看",
+                    "number":"1",
+                    "photos": [],
+                    "if_read":"1",
+                    "link_url": "/zhufankui/"+dakaid,
+                    "user_id": JSON.stringify([that.brid])
+                  }
+                }
+                var url = 'message_push'
+                that.ajax({url,method:'post',params,success:function(data){
+                  if(JSON.stringify(data)!='{}'){
+                    var dataObj = {
+                      "title":"this is a title",
+                      "content": data.id,
+                      "userIds": that.brid
+                    };
+                    $.post("http://zhiyuan.btisl.com/api/getpush",dataObj,function(res){
+                      // 推送回调
+                    });
+                  }
+                }})
+              },
               // 建议
               sleepBTN(e,index){
                 // console.log($(e.target).html())
@@ -284,10 +312,11 @@ export default {
                     // "brname":
                   }
                 }
-                console.log(params)
                 var url = 'dakalist'
                 that.ajax({url,method:'post',params,success:function(data){
-                  console.log(data)
+                  if(JSON.stringify(data)!='{}'){
+                    that.pushMsg(data.id);
+                  }
                   that.$router.push({path:'/jianhu'})
                   Toast('反馈成功！');
                 }})
