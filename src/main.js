@@ -15,6 +15,12 @@ import index from './components/index'
 import layout from './components/layout'
 import myHeader from './components/public/myHeader'
 
+// 兼容
+import 'babel-polyfill'
+import Es6Promise from 'es6-promise'
+require('es6-promise').polyfill()
+Es6Promise.polyfill()
+
 // 首页
 // import articleDetaile from './components/home/articleDetaile' //图文详情
 

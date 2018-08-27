@@ -101,7 +101,7 @@ export default {
               // url2 += '&filter[where][info]=1';
               url2 += '&filter[fields][password]=false'
               that.ajax({url:url2, method,
-               success:function(data) {
+                success:function(data) {
                 that.toast.hide();
                 if (JSON.stringify(data) == '[]') {
                   that.$MessageBox.alert('账号或者密码错误');
@@ -116,7 +116,7 @@ export default {
                   tmp.name=data[0].name;
                   tmp.timelist = data[0].timelist;
                   tmp = JSON.stringify(tmp);
-                  window.localStorage.setItem('userinfo_obj',tmp);
+                  window.sessionStorage.setItem('userinfo_obj',tmp);
                   if (api) {
                     //推送绑定用户
                     var push = api.require('push');
@@ -137,6 +137,7 @@ export default {
             });
 						} else { //账号不存在
 							that.$MessageBox.alert('该账号未注册');
+              that.toast.hide();
 						}
 					}
 				})

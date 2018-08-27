@@ -8,8 +8,8 @@
                 <div v-html="showData.tcontents"></div>
             </div>
           <div style="margin-top:0.5rem;">
-              <img :src="showData.tx?showData.tx:'static/image/user.png'" class="aui-list-img-sm" style="width:2.5rem;height:2.5rem;float:left;border-radius:1.25rem;">
-              <div style="color:#34DBDA;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.tType==3?'知源医院':(showData.holder+'：'+showData.name)"></div>
+              <img :src="showData.tx" class="aui-list-img-sm" style="width:2.5rem;height:2.5rem;float:left;border-radius:1.25rem;">
+              <div style="color:#34DBDA;height:2.5rem;line-height:2.5rem;float:left; margin-left:0.5rem" v-text="showData.name"></div>
               <div style="clear:both"></div>
           </div>
       </div>
@@ -89,24 +89,46 @@
               success: function(data){
                 if(JSON.stringify(data)!='{}'){
                   that.showData = data;
-                  var filter = {
-                    fields:{"id":true,"tx":true,"name":true,"holder":true},
-                    where:{
-                      id:data.tuid
-                    }
-                  };
-                  that.ajax({
-                    url:'expert?filter='+encodeURIComponent(JSON.stringify(filter)),
-                    method:"get",
-                    success:function(data2){
-                      if(data2.length>0){
-                        console.log(data2);
-                        that.showData.tx = data2[0].tx;
-                        that.showData.name = data2[0].name;
-                        that.showData.holder = data2[0].holder;
+                  if(data.tType==2){
+                    var filter = {
+                      fields:{"id":true,"Tx":true,"realname":true,"linkmethod":true},
+                      where:{
+                        id:data.brid
                       }
-                    }
-                  })
+                    };
+                    that.ajax({
+                      url:'my_user?filter='+encodeURIComponent(JSON.stringify(filter)),
+                      method:"get",
+                      success:function(data2){
+                        if(data2.length>0){
+                          that.showData.tx = data2[0].Tx?data2[0].Tx:'static/image/user.png';
+                          that.showData.name = '患者：';
+                          that.showData.name += data2[0].realname?data2[0].realname:data2[0].linkmethod;
+                        }
+                      }
+                    })
+                  }else if(data.tType==3){
+                    that.showData.tx = 'static/image/user.png';
+                    that.showData.name = '知源医院';
+                  }else{
+                    var filter = {
+                      fields:{"id":true,"tx":true,"name":true,"holder":true,"mobile":true},
+                      where:{
+                        id:data.tuid
+                      }
+                    };
+                    that.ajax({
+                      url:'expert?filter='+encodeURIComponent(JSON.stringify(filter)),
+                      method:"get",
+                      success:function(data2){
+                        if(data2.length>0){
+                          that.showData.tx = data2[0].tx?data2[0].tx:'static/image/user.png';
+                          that.showData.name = data2[0].holder?(data2[0].holder+'：'):"";
+                          that.showData.name += data2[0].name?data2[0].name:data2[0].mobile;
+                        }
+                      }
+                    })
+                  }
                 }
               }
             });

@@ -11,6 +11,7 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
+    //"babel-polyfill":"babel-polyfill",
     app: './src/main.js'
   },
   output: {
@@ -40,7 +41,7 @@ module.exports = {
         options: {
           presets: ['es2015']
         },
-        include: [resolve('src'), resolve('test'),resolve('/node_modules/vue-picture-preview')]
+        include: [resolve('src'), resolve('test'),resolve('/node_modules/vue-picture-preview'),resolve('/node_modules/_vue-picture-preview@1.2.0@vue-picture-preview'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

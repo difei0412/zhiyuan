@@ -35,11 +35,11 @@
                 </div>
                 <div class="aui-media-list-item-inner doctor-box">
                   <div class="aui-list-item-media">
-                    <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
+                    <img :src="item.user_face" class="aui-img-round">
                   </div>
                   <div class="aui-list-item-inner">
                     <div class="aui-list-item-text doctor">
-                      <div class="aui-list-item-title" v-text="(item.tuid && item.tuid.name?item.tuid.name:'')+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>
+                      <div class="aui-list-item-title" v-text="item.user_text"> </div>
                       <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
                     </div>
                   </div>
@@ -267,7 +267,7 @@
           var that = this;
           var start = (that.currentPage-1)*that.pageSize;
           var filter = {
-            "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true,"tsid":true},
+            "fields": {"id":true,"ttopic":true,"tcontents":true,"tuid":true,"tsid":true,"brid":true,"tType":true},
             "order": "createdAt DESC",
             "where": {
               "tflag":0,
@@ -276,8 +276,8 @@
             },
             "skip":start,
             "limit":that.pageSize,
-            "include":["tuidPointer","tsidPointer"],
-            "includefilter":{"expert":{"fields":['id','name','holder','tx']},"bankuai":{"fields":['id','sname']}}
+            "include":["tuidPointer","tsidPointer","bridPointer"],
+            "includefilter":{"expert":{"fields":['id','name','holder','tx','mobile']},"bankuai":{"fields":['id','sname']},"my_user":{"fields":['id','Tx','realname','linkmethod']}}
           };
           that.ajax({
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
@@ -294,6 +294,13 @@
               if(data.length<that.pageSize){
                 if(data.length>0){
                   for(var i=0;i<data.length;i++){
+                    if(data[i]['tType']==2){
+                      data[i]['user_face'] = (data[i]['brid'] && data[i]['brid'].Tx)?data[i]['brid'].Tx:'static/image/user.png';
+                      data[i]['user_text'] = (data[i]['brid'] && data[i]['brid'].realname)?data[i]['brid'].realname:data[i]['brid'].linkmethod;
+                      data[i]['user_text'] += ' 患者';
+                    }else{
+                      data[i]['user_face'] = (data[i].tuid && data[i].tuid.tx)?data[i].tuid.tx:'static/image/user.png';
+                    }
                     data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
                     data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
                     that.tieziArr.push(data[i]);
@@ -302,6 +309,16 @@
                 that.isLoadFinish = true;
               } else {
                 for(var i=0;i<data.length;i++){
+                  if(data[i]['tType']==2){
+                    data[i]['user_face'] = (data[i]['brid'] && data[i]['brid'].Tx)?data[i]['brid'].Tx:'static/image/user.png';
+                    data[i]['user_text'] = (data[i]['brid'] && data[i]['brid'].realname)?data[i]['brid'].realname:data[i]['brid'].linkmethod;
+                    data[i]['user_text'] += ' 患者';
+                  }else{
+                    data[i]['user_face'] = (data[i].tuid && data[i].tuid.tx)?data[i].tuid.tx:'static/image/user.png';
+                    data[i]['user_text'] = (data[i].tuid && data[i].tuid.name)?data[i].tuid.name:data[i].tuid.mobile;
+                    data[i]['user_text'] += ' ';
+                    data[i]['user_text'] += (data[i].tuid && data[i].tuid.holder)?data[i].tuid.holder:'';
+                  }
                   data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
                   data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
                   that.tieziArr.push(data[i]);

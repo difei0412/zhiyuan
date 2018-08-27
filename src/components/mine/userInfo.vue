@@ -3,8 +3,9 @@
 		<myHeader :title="'医生信息'"></myHeader>
 
 		<div>
+			<simple-cropper :initParam="uploadParam" :successCallback="uploadHandle" ref="cropper">
 			<form action="http://d.apicloud.com/mcm/api/file" id="imagform0" method="post" enctyp="multipart/form-data">
-				<label class="list" for="file">
+				<label class="list" for="file" @click="upload">
 					<span class="title flex">头像</span>
 					<div class="my-middle">
 						<img class="headImage" :src="userInfo.tx?userInfo.tx:'../../../static/image/xitong@3x.png'">
@@ -13,10 +14,11 @@
 						<img class="right" src="static/image/in@3x.png">
 					</div>
 				</label>
-				<input type="file"  class="uploadFile" name="file" id="file" @change="setImagePreview" hidden/>
+				<!-- <input type="file"  class="uploadFile" name="file" id="file" @change="setImagePreview" />
 				<input type="hidden" height="50px" width="90px" id="type">
-				<input type="hidden" height="50px" width="90px" id="filename">
+				<input type="hidden" height="50px" width="90px" id="filename"> -->
 			</form>
+			</simple-cropper> 
 			<div class="list" @click="openNickUsername">
 				<span class="title flex">用户名</span>
 				<span class="title color">{{userInfo.username?userInfo.username:'未设置'}}</span>
@@ -141,10 +143,16 @@
 import $ from '../public/jquery'
 import sha from '../public/request'
 import areaJson from '../public/address'
+import SimpleCropper from '../public/SimpleCropper' // 裁剪插件
 export default {
 	name: 'userInfo',
 	data() {
 		return {
+			uploadParam: { 
+				fileType: 'recruit', // 其他上传参数 
+				uploadURL: '', // 上传地址 
+				scale: 4 // 相对手机屏幕放大的倍数: 4倍 
+			}, 
 			userId:'',
 			userInfo:'',
 			xueliActions:[{
@@ -173,7 +181,7 @@ export default {
 			}],
 			xueliVisible:false,
 			sex:false,
-			zhuzhi: ['被害妄想症','失眠'],
+			zhuzhi: [],
 			zhuzhiarr: [],
 			keshi: '',
 			keshiarr: [],
@@ -194,6 +202,18 @@ export default {
 		}
 	},
 	methods: {
+		// 上传头像 
+		upload () { 
+			this.$refs['cropper'].upload() 
+		}, 
+		// 上传头像成功回调 
+		uploadHandle (data) { 
+		  	if (data.url) { 
+		   		window.sessionStorage.removeItem('userinfo_obj');
+		   		this.$set(this.userInfo,'tx',data.url);
+				this.updateTx(data.url);
+		  	}
+		},
 		//将图片上传到数据库file表
 		setImagePreview() {
 			var that = this;
@@ -215,7 +235,7 @@ export default {
 				that.ajax({url,method,params,
 					success:function(response){
 						if(response.url) {
-							window.localStorage.removeItem('userinfo_obj');
+							window.sessionStorage.removeItem('userinfo_obj');
 							that.userInfo.tx = response.url;
 							that.updateTx(that.userInfo.tx);
 						}
@@ -381,7 +401,7 @@ export default {
 			params.data[key] = value;
 			that.ajax({url,method,params,
 				success:function(data){
-					window.localStorage.removeItem('userinfo_obj');
+					window.sessionStorage.removeItem('userinfo_obj');
 					that.userInfo = data;
 				}
 			})
@@ -610,6 +630,9 @@ export default {
 	activated() {
 		this.getUserInfo();
 	},
+	components: { 
+	 	SimpleCropper 
+	}
 }
 </script>
 

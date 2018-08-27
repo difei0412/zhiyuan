@@ -181,7 +181,7 @@ export default {
                     "number":"1",
                     "photos": [],
                     "if_read":"1",
-                    "link_url": "/zhufankui/"+dakaid,
+                    "link_url": "zhufankui?id="+dakaid,
                     "user_id": JSON.stringify([that.brid])
                   }
                 }

@@ -84,7 +84,8 @@ export default {
 		            forwardAnim: 'fadeInRight',
 		            duration: '.3',
 		            backAnim: 'fadeInRight'
-		        }
+		        },
+		        toast: null,
 			}
 		},
 		methods: {
@@ -345,6 +346,13 @@ export default {
 					this.$MessageBox.alert('请输入密码');
 					return
 				}
+				var that = this;
+				that.toast.loading({
+			       title:"加载中",
+			       duration:2000
+			     },function(ret){
+
+			     });
 				this.registerAjax();
 			},
 			registerAjax() {
@@ -356,6 +364,7 @@ export default {
 				that.ajax({url,method,
 					success:function(response){
 						if(response.length>0){
+							that.toast.hide();
 							var code = response[0].code;
 							var time = new Date(response[0].updatedAt);
 							time = time.getTime();
@@ -384,6 +393,7 @@ export default {
 									}
 								})
 							} else {
+								that.toast.hide();
 								that.$Indicator.close();
 								that.$MessageBox.alert("验证码验证失败或者过期！");
 							}
@@ -448,6 +458,9 @@ export default {
 			this.mobile = '';
 			this.code = '';
 			this.password = '';
+		},
+		mounted() {
+			this.toast = new auiToast();
 		}
 	}
 	</script>

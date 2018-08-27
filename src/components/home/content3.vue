@@ -190,7 +190,7 @@
 		                  tmp.name=data[0].name;
 		                  tmp.timelist=data[0].timelist;
 		                  tmp = JSON.stringify(tmp);
-		                  window.localStorage.setItem('userinfo_obj',tmp);
+		                  window.sessionStorage.setItem('userinfo_obj',tmp);
 		                  that.userInfo = data[0];
 		                }
 					}
@@ -213,8 +213,8 @@
 			var userId = window.localStorage.getItem('userId');
 			if(userId){
 				this.userId = userId?userId:'';
-				if(window.localStorage.getItem('userinfo_obj')){
-					var tmp = window.localStorage.getItem('userinfo_obj');
+				if(window.sessionStorage.getItem('userinfo_obj')){
+					var tmp = window.sessionStorage.getItem('userinfo_obj');
 					this.userInfo = JSON.parse(tmp);
 				}else{
 					this.getUserInfo()

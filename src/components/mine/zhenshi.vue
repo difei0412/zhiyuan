@@ -112,7 +112,6 @@ export default {
           },
           openzhifu2:function(id,startdate,enddate,crnumber){
             var JZTime = startdate+'-'+enddate
-            console.log(JZTime)
             sessionStorage.setItem("hz_id", id);
             sessionStorage.setItem("JZTime", JZTime);
             sessionStorage.setItem("crnumber", crnumber);
@@ -132,10 +131,8 @@ export default {
            getMy_user() {
 
             var that = this;
-            console.log(that.myindex)
             var start = (that.currentPage-1)*that.pageSize;
             if (that.myindex == 0) {
-              console.log('ok');
               var filter = {
                 "fields": {"id":true,"startdate":true,"enddate":true,"servicetime":true,"servieceid":true,"patientid":true},
                 "order": "createdAt DESC",
@@ -153,7 +150,6 @@ export default {
                 url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
                 success: function(data) {
-                 console.log(data)
                  if (data) {
                   if(data.length<that.pageSize){
                     if(data.length>0){
@@ -177,7 +173,6 @@ export default {
               }
             });
             }else{
-              console.log('ok1');
               var filter = {
                 "fields": {"id":true,'brid':true,'brname':true},
                 "order": "createdAt DESC",
@@ -202,7 +197,6 @@ export default {
                     return item 
                   }, []) 
 
-                  console.log(data)
                   if (data) {
                     if(data.length<that.pageSize){
                       if(data.length>0){

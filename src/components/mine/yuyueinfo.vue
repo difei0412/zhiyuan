@@ -109,7 +109,7 @@ export default {
       this.sleep = $(e.target).html()
   },
   openRegisterProtocol() {
-  	this.$router.pushRoute({name:"registerProtocol"});
+  	this.$router.push({name:"registerProtocol"});
   },
       // 查询数据
       getMy_user() {
