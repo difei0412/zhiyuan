@@ -173,7 +173,7 @@ export default {
 			}],
 			xueliVisible:false,
 			sex:false,
-			zhuzhi: ['被害妄想症','失眠'],
+			zhuzhi: [],
 			zhuzhiarr: [],
 			keshi: '',
 			keshiarr: [],
