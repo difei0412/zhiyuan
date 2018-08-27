@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: white; min-height: 100%;">
-    <myHeader :title="'门诊患者跟踪'"></myHeader>
+    <myHeader :title="'门诊在线患者'"></myHeader>
     <div class="aui-tab" id="tab" style="position:fixed;width:100%;z-index:2;display:none">
       <div class="aui-tab-item aui-active" v-if="myindex==0" @click="selectmenu(0)">门诊患者在线</div>
       <div class="aui-tab-item " v-if="myindex!=0" @click="selectmenu(0)">门诊患者在线</div> 
