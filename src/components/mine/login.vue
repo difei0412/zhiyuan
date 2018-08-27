@@ -79,16 +79,18 @@ export default {
         this.$MessageBox.alert('请输入密码');
         return
       }
-      this.loginAjax();
+       var that = this;
+        that.toast.loading({
+         title:"加载中",
+         duration:2000
+       },function(ret){
+
+       });
+      setTimeout(function(){
+        that.loginAjax();
+      }, 70);
     },
     loginAjax:function() {
-      var that = this;
-      that.toast.loading({
-       title:"加载中",
-       duration:2000
-     },function(ret){
-
-     });
 				//查询账号是否存在
 				var url1 = 'expert/count?filter={"where":{"mobile":' + that.loginuser + '}}';
 				var method = 'get';

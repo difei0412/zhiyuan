@@ -8,7 +8,7 @@
 				<label class="list" for="file" @click="upload">
 					<span class="title flex">头像</span>
 					<div class="my-middle">
-						<img class="headImage" :src="userInfo.tx?userInfo.tx:'../../../static/image/xitong@3x.png'">
+						<img class="headImage" :src="userInfo.tx?userInfo.tx:'static/image/user.png'">
 					</div>
 					<div class="my-middle">
 						<img class="right" src="static/image/in@3x.png">

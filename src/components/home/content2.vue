@@ -283,6 +283,7 @@
             url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
             method: "get",
             success: function(data) {
+              that.toast.hide();
               if(data.length<1 && (that.currentPage == 1)){
                 return;
               } else if(data.length<1) {
@@ -300,6 +301,9 @@
                       data[i]['user_text'] += ' 患者';
                     }else{
                       data[i]['user_face'] = (data[i].tuid && data[i].tuid.tx)?data[i].tuid.tx:'static/image/user.png';
+                      data[i]['user_text'] = (data[i].tuid && data[i].tuid.name)?data[i].tuid.name:data[i].tuid.mobile;
+                      data[i]['user_text'] += ' ';
+                      data[i]['user_text'] += (data[i].tuid && data[i].tuid.holder)?data[i].tuid.holder:'';
                     }
                     data[i]['tcontents'] = that.delHtmlTag(data[i]['tcontents']);
                     data[i]['tcontents'] = data[i]['tcontents'].substr(0,50);
@@ -329,6 +333,9 @@
               // tempDic['data'] = that.tieziArr;
               // tempDic['page'] = that.currentPage;
               // sessionStorage.setItem("all_tiezi_data", JSON.stringify(tempDic));
+            },
+            error: function(){
+              that.toast.hide();
             }
           });
        },
@@ -352,7 +359,6 @@
          },function(ret){
              setTimeout(function(){
               that.showList();
-              that.toast.hide();
            }, 500);
          });
        }
