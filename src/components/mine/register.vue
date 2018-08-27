@@ -80,20 +80,12 @@ export default {
 				time:60,//获取验证码倒计时
 				codeid:"",
 				vuegConfig: {
-<<<<<<< HEAD
 		            disable: false,
 		            forwardAnim: 'fadeInRight',
 		            duration: '.3',
 		            backAnim: 'fadeInRight'
 		        },
 		        toast: null,
-=======
-					disable: false,
-					forwardAnim: 'fadeInRight',
-					duration: '.3',
-					backAnim: 'fadeInRight'
-				}
->>>>>>> fff32103e93b8ad3789f9e40dbda76e5206b790f
 			}
 		},
 		methods: {
@@ -126,7 +118,6 @@ export default {
 						var url = 'expert?filter={"where":{"mobile":' + that.mobile + '}}';
 						that.ajax({url:url,method:'GET',
 							success:function(data){
-								console.log(data)
 								if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
 									Toast("该账号已注册！")
 								}else{
@@ -142,8 +133,7 @@ export default {
 									};
 									that.ajax({url:url1,method:'GET',
 										success:function(data){
-											console.log(data)
-											if (data!=''&&data !=[]&&data!=undefined&&data!=nul) {
+											if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
 												that.codeid = data[0].id
 
 												if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
@@ -366,7 +356,9 @@ export default {
 			     },function(ret){
 
 			     });
-				this.registerAjax();
+				setTimeout(function(){
+					that.registerAjax();
+				}, 70);
 			},
 			registerAjax() {
 				var that = this;

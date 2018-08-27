@@ -114,6 +114,7 @@ export default {
                   tmp.tx=data[0].tx;
                   tmp.username=data[0].username;
                   tmp.name=data[0].name;
+                  tmp.mobile=data[0].mobile;
                   tmp.timelist = data[0].timelist;
                   tmp = JSON.stringify(tmp);
                   window.sessionStorage.setItem('userinfo_obj',tmp);

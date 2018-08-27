@@ -69,7 +69,6 @@
       },
     },
     mounted(){
-<<<<<<< HEAD
        // this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})
        var that = this;
        setTimeout(function(){
@@ -105,48 +104,6 @@
           }
       }, 600);
     },
-=======
-      if (localStorage.yindao != 1) {
-        this.$router.push({path:'/yindao'})
-      }
-         //this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})
-         var that = this;
-
-         if (api) {
-        //设置监听
-        var push = api.require('push');
-        push.setListener(function(ret,err){
-          if(ret){
-            if(ret.data[0]){
-              that.findData(ret.data[0]);
-            }
-            var content = '未知内容';
-            if(that.push_info.desc){
-              content = that.delHtmlTag(that.push_info.desc).substr(0,20)+'...';
-            }
-            
-            api.notification({
-              notify: {
-                title:that.push_info.theme?that.push_info.theme:'未知标题',
-                extra:that.push_info.id?that.push_info.id:'',
-                content:content,
-              },
-            }, function(ret, err) {
-            });
-          }
-        });
-        // 状态栏通知点击事件
-        api.addEventListener({
-          name:'noticeclicked'
-        },function(ret,err){
-          that.$router.push({path:'/tongzhidetail/'+ret.value})
-        });
-      }
-
-  
-
-  },
->>>>>>> fff32103e93b8ad3789f9e40dbda76e5206b790f
   watch: {
       // 如果路由有变化，会再次执行该方法
       '$route'(to, from) {
