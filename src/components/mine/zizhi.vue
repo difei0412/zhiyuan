@@ -6,7 +6,7 @@
         <!-- <form action="http://d.apicloud.com/mcm/api/file" id="imagform0" method="post" enctyp="multipart/form-data" -->
           <div id="photo">
            <div class="aui-col-xs-4 pic-box" v-for='(item,index) in filesobj'>
-            <img v-preview='item' :src='item' preview-title-enable="false" preview-nav-enable="false" :id='index'/>
+            <img v-preview='item' :src='item'  preview-title-enable="false" preview-nav-enable="false" :id='index'/>
             <span @click="delpic()">删除</span>
           </div>
 
@@ -46,11 +46,11 @@ export default {
      dataUrl:'',
      filesobj:[],    
      vuegConfig: {
-        disable: false,
-        forwardAnim: 'fadeInRight',
-        duration: '.3',
-        backAnim: 'fadeInRight'
-     }
+      disable: false,
+      forwardAnim: 'fadeInRight',
+      duration: '.3',
+      backAnim: 'fadeInRight'
+    }
   }
 },
 methods: {
@@ -65,7 +65,7 @@ methods: {
       var method = "GET";
       that.ajax({url,method,
         success:function(data){
-          
+
           that.filesobj = data.file_list
           //console.log(that.filesobj)
         }
@@ -97,12 +97,72 @@ methods: {
       // fileObj.push(this.result)
       // // that.dataUrl = this.result
       // that.filesobj=fileObj
-      that.filesobj.push(this.result);
+      // that.filesobj.push(this.result);　　
+      // console.log("压缩前：" + this.result.length / 1024  );　
+      // 
+      // 
+      // 
+      // 
+      //图片压缩初稿　
+      if((this.result.length / 1024) < 2048){
+        console.log("图片小于2m不需要压缩")
+        that.filesobj.push(this.result);　
+      }else{
+        console.log("图片大于2m需要压缩")
+        // 调用函数处理图片 　　　　　　　　　　　　　　　　
+        that.dealImage(this.result, {
+          // 注意：在pc端可以用绝对路径或相对路径，移动端最好用绝对路径（因为用take photo后的图片路径，我没有试成功（如果有人试成功了可以分享一下经验））
+          width : 200
+        }, function(base){
+          //直接将获取到的base64的字符串，放到一个image标签中就可看到测试后的压缩之后的样式图了
+           // document.getElementById("transform").src = base;
+           console.log("压缩后：" + base.length / 1024 );　　
+           that.filesobj.push(base);　　
+         })
       //console.log(that.filesobj)
       
-    })
-    
+
+    }
+  })
+
   },
+
+// 压缩
+dealImage(path, obj, callback){
+ var img = new Image();
+ img.src = path;
+ img.onload = function(){
+  var that = this;
+  // 默认按比例压缩
+  var w = that.width,
+  h = that.height,
+  scale = w / h;
+  w = obj.width || w;
+  h = obj.height || (w / scale);
+  var quality = 1;  // 默认图片质量为0.7
+  //生成canvas
+  var canvas = document.createElement('canvas');
+  // canvas.style.background = "red"
+  var ctx = canvas.getContext('2d');
+  // 创建属性节点
+  var anw = document.createAttribute("width");
+  anw.nodeValue = w;
+  var anh = document.createAttribute("height");
+  anh.nodeValue = h;
+  canvas.setAttributeNode(anw);
+  canvas.setAttributeNode(anh); 
+  ctx.drawImage(that, 0, 0, w, h);
+  // 图像质量
+  if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+   quality = obj.quality;
+ }
+  // quality值越小，所绘制出的图像越模糊
+  var base64 = canvas.toDataURL('image/jpeg', quality );
+  // 回调函数返回base64的值
+  callback(base64);
+}
+},
+
 
 
     //将图片url更新到用户表函数
@@ -118,10 +178,10 @@ methods: {
         }
       }
       that.toast.loading({
-           title:"加载中",
-           duration:2000
-       },function(ret){
-       });
+       title:"加载中",
+       duration:2000
+     },function(ret){
+     });
       //console.log(url)
       that.ajax({url,method,params,
         success:function(res){
@@ -131,20 +191,20 @@ methods: {
               that.$router.back();
             }, 2000);
             that.toast.success({
-                title:"提交成功",
-                duration:2000
+              title:"提交成功",
+              duration:2000
             });
           }else{
             that.toast.fail({
-                title:"提交失败",
-                duration:2000
+              title:"提交失败",
+              duration:2000
             });
           }
         },
         error:function() {
           that.toast.fail({
-              title:"提交失败",
-              duration:2000
+            title:"提交失败",
+            duration:2000
           });
         }
       })
