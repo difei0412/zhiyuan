@@ -112,7 +112,7 @@ methods: {
         // 调用函数处理图片 　　　　　　　　　　　　　　　　
         that.dealImage(this.result, {
           // 注意：在pc端可以用绝对路径或相对路径，移动端最好用绝对路径（因为用take photo后的图片路径，我没有试成功（如果有人试成功了可以分享一下经验））
-          width : 200
+          width : 500
         }, function(base){
           //直接将获取到的base64的字符串，放到一个image标签中就可看到测试后的压缩之后的样式图了
            // document.getElementById("transform").src = base;
