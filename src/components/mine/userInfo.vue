@@ -315,7 +315,7 @@ export default {
 		// 打开身份证输入框
 		openIDCard() {
 			var that = this;
-			that.$MessageBox.prompt('请输入身份证号','').then(function(response){
+			that.$MessageBox.prompt('请输入身份证号','',{inputValue: that.userInfo.IDCard}).then(function(response){
 				if(!response.value) {
 					that.$MessageBox.alert("请输入身份证号");
 					return
