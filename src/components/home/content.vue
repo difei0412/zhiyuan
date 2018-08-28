@@ -6,9 +6,12 @@
       <div class="aui-tips-title">知源会诊邀请<span style="color:#f60;margin-left:0.5rem" @click="toYaoqing">去接受</span></div>
       <i class="aui-iconfont aui-icon-close" @click="closeTips"></i>
     </div>
-    <div  class="swiper-container" style="width:100%;">
+    <div  class="swiper-container" style="width:100%;" >
       <div class="swiper-wrapper" style="width:100%;height:8rem;">
-        <div class="swiper-slide"  >
+        <div class="swiper-slide" v-for="item in bannerImg">
+          <img style="width:100%;height:100%" :src="item.img"  />
+        </div>
+<!--         <div class="swiper-slide"  >
           <img style="width:100%;height:100%" src="static/image/myim1.jpeg"   />
         </div>
         <div class="swiper-slide"  >
@@ -16,10 +19,7 @@
         </div>
         <div class="swiper-slide"  >
           <img style="width:100%;height:100%" src="static/image/myim1.jpeg"   />
-        </div>
-        <div class="swiper-slide"  >
-          <img style="width:100%;height:100%" src="static/image/myim1.jpeg"   />
-        </div>
+        </div> -->
 
       </div>
       <div class="swiper-pagination"></div>
@@ -58,30 +58,30 @@
         </div>
       </li>
 
-        <li class="aui-list-item aui-list-item-arrow" v-if="tieziArr.length!=0" v-for="item in tieziArr" @click="opentiezi(item.id)">
-          <div class="aui-media-list-item-inner">
-            <div class="aui-list-item-inner">
+      <li class="aui-list-item aui-list-item-arrow" v-if="tieziArr.length!=0" v-for="item in tieziArr" @click="opentiezi(item.id)">
+        <div class="aui-media-list-item-inner">
+          <div class="aui-list-item-inner">
 
-              <div class="aui-list-item-text aui-ellipsis-2" style="color:#0F0F0F" v-text="item.ttopic">
+            <div class="aui-list-item-text aui-ellipsis-2" style="color:#0F0F0F" v-text="item.ttopic">
 
-              </div>
-              <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" style="color:#666666" v-text="item.tcontents+'...'">
+            </div>
+            <div class="aui-list-item-text aui-ellipsis-2 doctor-answer" style="color:#666666" v-text="item.tcontents+'...'">
 
-              </div>
             </div>
           </div>
-          <div class="aui-media-list-item-inner doctor-box">
-            <div class="aui-list-item-media">
-              <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
-            </div>
-            <div class="aui-list-item-inner">
-              <div class="aui-list-item-text doctor">
-                <div class="aui-list-item-title" v-text="(item.tType==3?'知源医院':((item.tuid && item.tuid.name)?item.tuid.name:item.tuid.mobile))+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>
-                <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
-              </div>
+        </div>
+        <div class="aui-media-list-item-inner doctor-box">
+          <div class="aui-list-item-media">
+            <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
+          </div>
+          <div class="aui-list-item-inner">
+            <div class="aui-list-item-text doctor">
+              <div class="aui-list-item-title" v-text="(item.tType==3?'知源医院':((item.tuid && item.tuid.name)?item.tuid.name:item.tuid.mobile))+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>
+              <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
             </div>
           </div>
-        </li>
+        </div>
+      </li>
 
       <li class="aui-list-item aui-list-item-arrow"></li>
 
@@ -106,16 +106,45 @@ export default {
   name: 'content1',
   data() {
     return {
-        mylist : [],
-        myIndex : -1,
-        userId: "",
-        sessionName: 'scrollForHome',
+      mylist : [],
+      bannerImg:[],
+      myIndex : -1,
+      userId: "",
+      sessionName: 'scrollForHome',
         tieziArr: [], // 帖子数据展示
         toast: null,
         isTips: true,
       }
     },
     methods:{
+      banner(){
+        var that = this;
+        var filter = {
+          // "order": "createdAt DESC",
+          "where": {
+            "bankuai":"APPbanner",
+            // "if_delete": "1",
+            // "tType":0
+          },
+        };
+        that.ajax({
+          url: "imglist?filter="+encodeURIComponent(JSON.stringify(filter)),
+          method: "get",
+          success: function(data) {
+            if (data) {
+              that.bannerImg = data
+            }else{
+              that.bannerImg.img = 'static/image/banner@3x.png'
+            }
+            
+          //   for(var i=0;i<data.length;i++){
+              
+          //     that.bannerImg.push(data[i].img);
+          //   }
+          //   console.log(that.bannerImg)
+          }
+        });
+      },
       openjinghua() {
         this.$router.push({name:'jinghuatie'})
       },
@@ -278,7 +307,7 @@ export default {
         });
       },
       // 是否存在未读消息
-       readMsg() {
+      readMsg() {
         var that = this;
         var filter = {
           "order": "createdAt DESC",
@@ -313,220 +342,221 @@ export default {
       },
     },
     mounted () {
-    this.toast = new auiToast();
-    this.showList2();
-    this.showList();
-    var swiper = new Swiper('.swiper-container', {
-      autoplay:2500,
-      mode: 'horizontal',
-      pagination: '.swiper-pagination',
+      this.toast = new auiToast();
+      this.showList2();
+      this.showList();
+      this.banner();
+      var swiper = new Swiper('.swiper-container', {
+        autoplay:2500,
+        mode: 'horizontal',
+        pagination: '.swiper-pagination',
       //loop: true,
       observer: true,//修改swiper自己或子元素时，自动初始化swiper
       observeParents: true//修改swiper的父元素时，自动初始化swiper
     });
-  },
-  created:function() {
-    var swiper = new Swiper('.swiper-container', {
-      autoplay:2500,
-      mode: 'horizontal',
-      pagination: '.swiper-pagination',
+    },
+    created:function() {
+      var swiper = new Swiper('.swiper-container', {
+        autoplay:2500,
+        mode: 'horizontal',
+        pagination: '.swiper-pagination',
       //loop: true,
       observer: true,//修改swiper自己或子元素时，自动初始化swiper
       observeParents: true//修改swiper的父元素时，自动初始化swiper
     });
-  },
-  activated() {
-    this.yaoqing();
-  },
-  watch: {
-    '$route'(to, from) {
-      if (from.name == "mylable") {
-        this.chooseData();
+    },
+    activated() {
+      this.yaoqing();
+    },
+    watch: {
+      '$route'(to, from) {
+        if (from.name == "mylable") {
+          this.chooseData();
+        }
       }
     }
   }
-}
-</script>
+  </script>
 
-<style scoped>
-.img-container {
-  width: 100%;
-  height: 0px;
-  padding-bottom: calc(100% * 695 / 1240.0);
-  overflow:hidden;
-  margin: 0;
-  position:relative;
-}
-.img-container img {
-  position:absolute;
-  width: 100%;
-  height: 100%;
-}
-.img-noVide-container {
-  width: 100%;
-  height: 0px;
-  padding-bottom: calc(100% * 245 / 375.0);
-  overflow:hidden;
-  margin: 0;
-  position:relative;
-}
-.img-noVide-container img {
-  position:absolute;
-  width: 100%;
-  height: 100%;
-}
-.my-middle {
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: center;
-  display: box;
-  box-orient: horizontal;
-  box-align: center;
-}
-.headTitle {
-  position: fixed;
-  width: 100%;
-  height: 2rem;
-  top: 2.25rem;
-  left: 0;
-  z-index: 10;
-  overflow: hidden;
-  background-color: white;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  border-bottom: 1px solid #eee;
-}
-.chooseImageBg {
-  width: 2.5rem;
-  height: 100%;
-  position: absolute;
-  right:0;
-  top: 0;
-}
-.chooseImage {
-  width: 100%;
-  height: 1rem;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  border-left: 1px solid #eee;
-}
-.chooseImage img {
-  width: 0.75rem;
-}
-.head {
-  float: left;
-  width: calc(100% - 2.5rem);
-  height: calc(2rem + 10px);
-  line-height: 2rem;
-  overflow-y: hidden;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-.head_activate {
-  width: 100%;
-}
-.head::-webkit-scrollbar {
-  display: none;
-}
-.head li {
-  display: inline-block;
-  height: 2rem;
-  line-height: 2rem;
-  padding: 0 10px;
-  position: relative;
-}
-.carve {
-  position: absolute;
-  width: 100%;
-  top: 0.5rem;
-  left: 0;
-  height: 1rem;
-  line-height: 1rem;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  border-right: 1px solid #eee;
-}
-.head li span {
-  display: inline-block;
-  text-align: center;
-  height: 2rem;
-  line-height: 2rem;
-  font-size: 0.8rem;
-}
-.head li:nth-last-child(1) :nth-child(1) {
-  border-right: none;
-}
-.nav_active {
-  color: #f22a2a;
-  border-bottom: 3px solid #f22a2a;
-}
-.aui-list .aui-list-item-media {
-  width: 6rem;
-}
-.H-position-center-all {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-}
-.l1{
-  color:#34DBDA;
-  border:1px solid #34DBDA;
-  border-radius:8px;
-  font-size:12px;
-  background:#fff;
-  width:60px;
-  margin-left:10px
-}
-.recent-btn p {
-  font-size:14px;
-  color:#333;
-}
-.jinghua-btn p {
-  font-size:14px;
-  color:#34DBDA;
-}
-.aui-list-item-media {
-  width:2rem !important;
-  height:2rem !important;
-  border-radius: 1rem;
-  border: 1px solid #eee;
-  overflow: hidden;
-}
-.aui-list-item-media img {
-  min-height: 2rem;
-  min-width: 2rem;
-}
-.doctor {
-  height:2.2rem;
-  line-height: 2.2rem;
-  padding-left:0.7rem;
-}
-.doctor .aui-list-item-title {
-  color:#666;
-}
-.doctor-box {
-  padding-top:0.5rem;
-}
-.doctor-answer {
-  margin-top:0.5rem;
-  font-size: 0.64rem;
-}
-.aui-label {
-  top:-0.1rem;
-}
-.aui-list-item-inner{
-  margin-right:0;
-}
-.aui-list-item-title {
-  font-size: 0.6rem;
-}
-.aui-tips {
-  position: fixed;
-  top:2.25rem;
-}
-</style>
+  <style scoped>
+  .img-container {
+    width: 100%;
+    height: 0px;
+    padding-bottom: calc(100% * 695 / 1240.0);
+    overflow:hidden;
+    margin: 0;
+    position:relative;
+  }
+  .img-container img {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .img-noVide-container {
+    width: 100%;
+    height: 0px;
+    padding-bottom: calc(100% * 245 / 375.0);
+    overflow:hidden;
+    margin: 0;
+    position:relative;
+  }
+  .img-noVide-container img {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .my-middle {
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    display: box;
+    box-orient: horizontal;
+    box-align: center;
+  }
+  .headTitle {
+    position: fixed;
+    width: 100%;
+    height: 2rem;
+    top: 2.25rem;
+    left: 0;
+    z-index: 10;
+    overflow: hidden;
+    background-color: white;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    border-bottom: 1px solid #eee;
+  }
+  .chooseImageBg {
+    width: 2.5rem;
+    height: 100%;
+    position: absolute;
+    right:0;
+    top: 0;
+  }
+  .chooseImage {
+    width: 100%;
+    height: 1rem;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    border-left: 1px solid #eee;
+  }
+  .chooseImage img {
+    width: 0.75rem;
+  }
+  .head {
+    float: left;
+    width: calc(100% - 2.5rem);
+    height: calc(2rem + 10px);
+    line-height: 2rem;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .head_activate {
+    width: 100%;
+  }
+  .head::-webkit-scrollbar {
+    display: none;
+  }
+  .head li {
+    display: inline-block;
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0 10px;
+    position: relative;
+  }
+  .carve {
+    position: absolute;
+    width: 100%;
+    top: 0.5rem;
+    left: 0;
+    height: 1rem;
+    line-height: 1rem;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    border-right: 1px solid #eee;
+  }
+  .head li span {
+    display: inline-block;
+    text-align: center;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 0.8rem;
+  }
+  .head li:nth-last-child(1) :nth-child(1) {
+    border-right: none;
+  }
+  .nav_active {
+    color: #f22a2a;
+    border-bottom: 3px solid #f22a2a;
+  }
+  .aui-list .aui-list-item-media {
+    width: 6rem;
+  }
+  .H-position-center-all {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+  }
+  .l1{
+    color:#34DBDA;
+    border:1px solid #34DBDA;
+    border-radius:8px;
+    font-size:12px;
+    background:#fff;
+    width:60px;
+    margin-left:10px
+  }
+  .recent-btn p {
+    font-size:14px;
+    color:#333;
+  }
+  .jinghua-btn p {
+    font-size:14px;
+    color:#34DBDA;
+  }
+  .aui-list-item-media {
+    width:2rem !important;
+    height:2rem !important;
+    border-radius: 1rem;
+    border: 1px solid #eee;
+    overflow: hidden;
+  }
+  .aui-list-item-media img {
+    min-height: 2rem;
+    min-width: 2rem;
+  }
+  .doctor {
+    height:2.2rem;
+    line-height: 2.2rem;
+    padding-left:0.7rem;
+  }
+  .doctor .aui-list-item-title {
+    color:#666;
+  }
+  .doctor-box {
+    padding-top:0.5rem;
+  }
+  .doctor-answer {
+    margin-top:0.5rem;
+    font-size: 0.64rem;
+  }
+  .aui-label {
+    top:-0.1rem;
+  }
+  .aui-list-item-inner{
+    margin-right:0;
+  }
+  .aui-list-item-title {
+    font-size: 0.6rem;
+  }
+  .aui-tips {
+    position: fixed;
+    top:2.25rem;
+  }
+  </style>
