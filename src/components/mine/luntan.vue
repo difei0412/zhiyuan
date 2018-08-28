@@ -303,7 +303,6 @@
 </script>
 
 <style scoped>
-    @import '/static/css/aui-pull-refresh.css';
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;

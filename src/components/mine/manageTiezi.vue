@@ -18,7 +18,7 @@
                       </div>
                       <div class="aui-media-list-item-inner doctor-box">
                           <div class="aui-list-item-media">
-                              <img :src="item.tuid?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
+                              <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
                           </div>
                           <div class="aui-list-item-inner">
                               <div class="aui-list-item-text doctor">
@@ -270,7 +270,6 @@
 </script>
 
 <style scoped>
-    @import '/static/css/aui-pull-refresh.css';
     .my-middle {
         display: -webkit-box;
         -webkit-box-orient: horizontal;

@@ -94,7 +94,7 @@
 </template>
 
 <style scoped>
-@import url("/static/css/swiper.min.css");
+@import url("../../../static/css/swiper.min.css");
 </style>
 <script src="sha.js"></script>
 <script>
