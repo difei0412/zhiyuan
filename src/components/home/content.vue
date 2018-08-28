@@ -7,7 +7,7 @@
       <i class="aui-iconfont aui-icon-close" @click="closeTips"></i>
     </div>
     <div  class="swiper-container" style="width:100%;">
-      <div class="swiper-wrapper" style="width:100%;height:100%">
+      <div class="swiper-wrapper" style="width:100%;height:8rem;">
         <div class="swiper-slide"  >
           <img style="width:100%;height:100%" src="static/image/myim1.jpeg"   />
         </div>
@@ -76,7 +76,7 @@
             </div>
             <div class="aui-list-item-inner">
               <div class="aui-list-item-text doctor">
-                <div class="aui-list-item-title" v-text="(item.tuid && item.tuid.name?item.tuid.name:'')+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>
+                <div class="aui-list-item-title" v-text="(item.tType==3?'知源医院':((item.tuid && item.tuid.name)?item.tuid.name:item.tuid.mobile))+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>
                 <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default {
         },
         "limit":4,
         "include":["tuidPointer","tsidPointer"],
-        "includefilter":{"expert":{"fields":['id','name','holder',"tx"]},"bankuai":{"fields":['id','sname']}}
+        "includefilter":{"expert":{"fields":['id','name','holder',"tx","mobile"]},"bankuai":{"fields":['id','sname']}}
       };
       that.ajax({
         url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),
@@ -320,22 +320,20 @@ export default {
       autoplay:2500,
       mode: 'horizontal',
       pagination: '.swiper-pagination',
-                                            //loop: true,
-                                            observer: true,//修改swiper自己或子元素时，自动初始化swiper
-                                            observeParents: true//修改swiper的父元素时，自动初始化swiper
-                                          });
-
-
+      //loop: true,
+      observer: true,//修改swiper自己或子元素时，自动初始化swiper
+      observeParents: true//修改swiper的父元素时，自动初始化swiper
+    });
   },
   created:function() {
     var swiper = new Swiper('.swiper-container', {
       autoplay:2500,
       mode: 'horizontal',
       pagination: '.swiper-pagination',
-                                            //loop: true,
-                                            observer: true,//修改swiper自己或子元素时，自动初始化swiper
-                                            observeParents: true//修改swiper的父元素时，自动初始化swiper
-                                          });
+      //loop: true,
+      observer: true,//修改swiper自己或子元素时，自动初始化swiper
+      observeParents: true//修改swiper的父元素时，自动初始化swiper
+    });
   },
   activated() {
     this.yaoqing();

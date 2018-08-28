@@ -79,16 +79,18 @@ export default {
         this.$MessageBox.alert('请输入密码');
         return
       }
-      this.loginAjax();
+       var that = this;
+        that.toast.loading({
+         title:"加载中",
+         duration:2000
+       },function(ret){
+
+       });
+      setTimeout(function(){
+        that.loginAjax();
+      }, 70);
     },
     loginAjax:function() {
-      var that = this;
-      that.toast.loading({
-       title:"加载中",
-       duration:2000
-     },function(ret){
-
-     });
 				//查询账号是否存在
 				var url1 = 'expert/count?filter={"where":{"mobile":' + that.loginuser + '}}';
 				var method = 'get';
@@ -101,7 +103,7 @@ export default {
               // url2 += '&filter[where][info]=1';
               url2 += '&filter[fields][password]=false'
               that.ajax({url:url2, method,
-               success:function(data) {
+                success:function(data) {
                 that.toast.hide();
                 if (JSON.stringify(data) == '[]') {
                   that.$MessageBox.alert('账号或者密码错误');
@@ -114,9 +116,10 @@ export default {
                   tmp.tx=data[0].tx;
                   tmp.username=data[0].username;
                   tmp.name=data[0].name;
+                  tmp.mobile=data[0].mobile;
                   tmp.timelist = data[0].timelist;
                   tmp = JSON.stringify(tmp);
-                  window.localStorage.setItem('userinfo_obj',tmp);
+                  window.sessionStorage.setItem('userinfo_obj',tmp);
                   if (api) {
                     //推送绑定用户
                     var push = api.require('push');
@@ -137,6 +140,7 @@ export default {
             });
 						} else { //账号不存在
 							that.$MessageBox.alert('该账号未注册');
+              that.toast.hide();
 						}
 					}
 				})

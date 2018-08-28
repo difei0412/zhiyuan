@@ -51,7 +51,7 @@
       			}
       			that.ajax({url,method,params,
       				success:function(data){
-                window.localStorage.removeItem('userinfo_obj')
+                window.sessionStorage.removeItem('userinfo_obj')
       					that.$MessageBox.alert("修改成功！");
                 that.$router.back();
       				}

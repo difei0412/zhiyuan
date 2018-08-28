@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%;" id="app">
-    <header class="aui-bar aui-bar-nav" style="z-index:99999" v-if="menuindex == 0">
+    <header class="aui-bar aui-bar-nav" style="z-index:99999" v-if="menuindex == 0 && yindao==false">
       <div style="position:relative;">
         <div>诊疗中心</div>
         <div style="position:absolute;right:1rem;top:0rem;">
@@ -9,18 +9,18 @@
         </div>
       </div>
     </header>
-    <header class="aui-bar aui-bar-nav" v-if="menuindex == 1">病患沟通</header>
-    <header class="aui-bar aui-bar-nav" v-if="menuindex == 2">个人中心</header>
+    <header class="aui-bar aui-bar-nav" v-if="menuindex == 1 && yindao==false">病患沟通</header>
+    <header class="aui-bar aui-bar-nav" v-if="menuindex == 2 && yindao==false">个人中心</header>
 
     <transition :name="transitionName">
       <keep-alive>
-        <content1 ref="content1" v-if="menuindex==0"></content1>
-        <content2 ref="content2" v-if="menuindex==1"></content2>
-        <content3 v-if="menuindex==2"></content3>
+        <content1 ref="content1" v-if="menuindex==0 && yindao==false"></content1>
+        <content2 ref="content2" v-if="menuindex==1 && yindao==false"></content2>
+        <content3 v-if="menuindex==2 && yindao==false"></content3>
       </keep-alive>
     </transition>
 
-    <footer class="aui-bar aui-bar-tab foot-nav">
+    <footer class="aui-bar aui-bar-tab foot-nav" v-show="yindao==false">
       <div class="aui-bar-tab-item aui-active" @click="openmenu(0)">
         <center>
           <i class="aui-iconfont aui-icon-home"></i>
@@ -40,16 +40,34 @@
         <div class="aui-bar-tab-label">个人中心</div>
       </div>
     </footer>
+
+    <!-- 引导页 -->
+    <div  class="swiper-container" style="width:100%;height:100%" v-show="yindao==true">
+      <div class="swiper-wrapper" style="width:100%;height:100%">
+        <div class="swiper-slide"  >
+          <img style="width:100%;height:100%" src="static/image/start1.png"   />
+        </div>
+        <div class="swiper-slide"  >
+          <img style="width:100%;height:100%" src="static/image/start2.png"   />
+        </div>
+        <div class="swiper-slide"  >
+          <img style="width:100%;height:100%" src="static/image/start3.png"   />
+          <div class="aui-btn aui-btn-primary" style="position: absolute;bottom: 3rem;margin: auto;left: 0;right: 0;width: 8rem;" @click="tiaozhuan">立即使用</div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
   </div>
 </template>
 
 <script>
+import $ from "./public/jquery";
+import Swiper from "./public/swiper.min.js";
 import content1 from './home/content'
 import content2 from './home/content2'
 import content3 from './home/content3'
 import Vue from 'vue'
-
-
 
 export default {
   name: 'index',
@@ -64,6 +82,7 @@ export default {
         backAnim: 'fadeIn'
       },
       readNum: 0,
+      yindao: false,
     }
   },
   components: {
@@ -72,8 +91,16 @@ export default {
     content3
   },
   methods: {
+    tiaozhuan(){
+      this.yindao = false;
+      localStorage.yindao = 1;
+    },
     opentongzhi() {
-      this.$router.push({name:"tongzhi"});
+      if(window.localStorage.getItem('userId')){
+        this.$router.push({name:"tongzhi"});
+      }else{
+        this.$router.push({name:'login'})
+      }
     },
     goToSearch() {
       this.$router.push({name:"search"});
@@ -128,6 +155,29 @@ export default {
   },
 },
 created() {
+  // -------------------- 引导页 -----------------------
+  if(localStorage.yindao != 1){
+      var that=this;
+      that.yindao = true;
+      setTimeout(function(){
+        var swiper = new Swiper(".swiper-container", {
+            autoplay: 2500,
+            mode: "horizontal",
+            pagination: ".swiper-pagination",
+            // loop: 1,
+            observer: true, //修改swiper自己或子元素时，自动初始化swiper
+            observeParents: true, //修改swiper的父元素时，自动初始化swiper
+            autoplayStopOnLast: true,
+            onAutoplayStop: function(swiper){
+            //  that.$router.push({
+            //   name: "index"
+            // })
+           },
+
+         });
+      }, 20);
+  }
+  // -------------------- 引导页 -----------------------
   var supportDic = window.localStorage.getItem('supportDic');
   if (!supportDic) {
     var dic = {

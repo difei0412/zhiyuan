@@ -80,11 +80,12 @@ export default {
 				time:60,//获取验证码倒计时
 				codeid:"",
 				vuegConfig: {
-					disable: false,
-					forwardAnim: 'fadeInRight',
-					duration: '.3',
-					backAnim: 'fadeInRight'
-				}
+		            disable: false,
+		            forwardAnim: 'fadeInRight',
+		            duration: '.3',
+		            backAnim: 'fadeInRight'
+		        },
+		        toast: null,
 			}
 		},
 		methods: {
@@ -117,7 +118,6 @@ export default {
 						var url = 'expert?filter={"where":{"mobile":' + that.mobile + '}}';
 						that.ajax({url:url,method:'GET',
 							success:function(data){
-								console.log(data)
 								if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
 									Toast("该账号已注册！")
 								}else{
@@ -133,8 +133,7 @@ export default {
 									};
 									that.ajax({url:url1,method:'GET',
 										success:function(data){
-											console.log(data)
-											if (data!=''&&data !=[]&&data!=undefined&&data!=nul) {
+											if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
 												that.codeid = data[0].id
 
 												if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
@@ -350,7 +349,16 @@ export default {
 					this.$MessageBox.alert('请输入密码');
 					return
 				}
-				this.registerAjax();
+				var that = this;
+				that.toast.loading({
+			       title:"加载中",
+			       duration:2000
+			     },function(ret){
+
+			     });
+				setTimeout(function(){
+					that.registerAjax();
+				}, 70);
 			},
 			registerAjax() {
 				var that = this;
@@ -361,6 +369,7 @@ export default {
 				that.ajax({url,method,
 					success:function(response){
 						if(response.length>0){
+							that.toast.hide();
 							var code = response[0].code;
 							var time = new Date(response[0].updatedAt);
 							time = time.getTime();
@@ -389,6 +398,7 @@ export default {
 									}
 								})
 							} else {
+								that.toast.hide();
 								that.$Indicator.close();
 								that.$MessageBox.alert("验证码验证失败或者过期！");
 							}
@@ -453,6 +463,9 @@ export default {
 			this.mobile = '';
 			this.code = '';
 			this.password = '';
+		},
+		mounted() {
+			this.toast = new auiToast();
 		}
 	}
 	</script>

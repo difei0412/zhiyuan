@@ -22,7 +22,7 @@
                           </div>
                           <div class="aui-list-item-inner">
                               <div class="aui-list-item-text doctor">
-                                  <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                                  <div class="aui-list-item-title" v-text="(item.tuid.name?item.tuid.name:item.tuid.mobile)+' '+(item.tuid.holder?item.tuid.holder:'')"> </div>
                                   <div class="aui-list-item-right"><div class="aui-btn" @click="delTiezi(item.id)">删除</div><div class="aui-btn aui-btn-primary" @click="editTiezi(item.id)">编辑</div></div>
                               </div>
                           </div>
@@ -108,7 +108,7 @@
                 "skip":start,
                 "limit":that.pageSize,
                 "include":"tuidPointer",
-                "includefilter":{"expert":{"fields":['id','name','holder','tx']}}
+                "includefilter":{"expert":{"fields":['id','name','holder','mobile','tx']}}
               };
               that.ajax({
                 url: "tiezi?filter="+encodeURIComponent(JSON.stringify(filter)),

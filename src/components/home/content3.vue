@@ -8,7 +8,7 @@
 				</div>
 				<div class="my-middle text">
 					<ul>
-						<li class="nick" v-text="userInfo.name?userInfo.name:userInfo.username"></li>
+						<li class="nick" v-text="userInfo.name?userInfo.name:userInfo.mobile"></li>
 						<li>
 							<span v-if="!userInfo.timelist || userInfo.timelist == ''" class="label">没有任何信息！</span>
 							<span v-else class="label" v-text="'成就简介：'+userInfo.timelist.substr(0,30)"></span>
@@ -172,7 +172,7 @@
 			getUserInfo() {
 				var that = this;
 				var filter = {
-	              fields:{"id":true,"tx":true,"name":true,"username":true,"timelist":true},
+	              fields:{"id":true,"tx":true,"name":true,"username":true,"timelist":true,"mobile":true},
 	              where:{
 	                id:that.userId
 	              },
@@ -188,9 +188,10 @@
 		                  tmp.tx=data[0].tx;
 		                  tmp.username=data[0].username;
 		                  tmp.name=data[0].name;
+		                  tmp.mobile=data[0].mobile;
 		                  tmp.timelist=data[0].timelist;
 		                  tmp = JSON.stringify(tmp);
-		                  window.localStorage.setItem('userinfo_obj',tmp);
+		                  window.sessionStorage.setItem('userinfo_obj',tmp);
 		                  that.userInfo = data[0];
 		                }
 					}
@@ -213,8 +214,8 @@
 			var userId = window.localStorage.getItem('userId');
 			if(userId){
 				this.userId = userId?userId:'';
-				if(window.localStorage.getItem('userinfo_obj')){
-					var tmp = window.localStorage.getItem('userinfo_obj');
+				if(window.sessionStorage.getItem('userinfo_obj')){
+					var tmp = window.sessionStorage.getItem('userinfo_obj');
 					this.userInfo = JSON.parse(tmp);
 				}else{
 					this.getUserInfo()

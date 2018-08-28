@@ -44,11 +44,11 @@
                     </div>
                     <div class="aui-media-list-item-inner doctor-box">
                       <div class="aui-list-item-media">
-                        <img :src="item.tuid.tx?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
+                        <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
                       </div>
                       <div class="aui-list-item-inner">
                         <div class="aui-list-item-text doctor">
-                          <div class="aui-list-item-title" v-text="item.tuid.name+' '+item.tuid.holder"> </div>
+                          <div class="aui-list-item-title" v-text="(item.tuid && item.tuid.name?item.tuid.name:item.tuid.mobile)+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>
                           <div class="aui-list-item-right"><div class="aui-label" v-if="item.tsid" v-text="item.tsid?item.tsid.sname:''"></div></div>
                         </div>
                       </div>
@@ -178,7 +178,7 @@
                 "skip":start,
                 "limit":that.pageSize,
                 "include":["tuidPointer","tsidPointer"],
-                "includefilter":{"expert":{"fields":['id','name','holder','tx']},"bankuai":{"fields":['id','sname']}}
+                "includefilter":{"expert":{"fields":['id','name','holder','tx','mobile']},"bankuai":{"fields":['id','sname']}}
               };
               if(that.tsid) {
                 filter['where']['tsid'] = that.tsid;
@@ -252,7 +252,7 @@
         },
         activated() {
           
-        },
+        }, 
        mounted() {
           var that = this;
           this.toast = new auiToast();

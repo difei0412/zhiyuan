@@ -37,25 +37,25 @@ export default {
       localStorage.yindao = 1;
     }
   },
-  mounted() {
-    console.log("挂载好了");
-    var that=this
-    var swiper = new Swiper(".swiper-container", {
-      autoplay: 2500,
-      mode: "horizontal",
-      pagination: ".swiper-pagination",
-      // loop:1,
-      observer: true, //修改swiper自己或子元素时，自动初始化swiper
-      observeParents: true, //修改swiper的父元素时，自动初始化swiper
-      autoplayStopOnLast: true,
-      onAutoplayStop: function(swiper){
-        that.$router.pushRoute({
-          name: "index"
-        })
-      },
+  // mounted() {
+  //   console.log("挂载好了");
+  //   var that=this
+  //   var swiper = new Swiper(".swiper-container", {
+  //     autoplay: 2500,
+  //     mode: "horizontal",
+  //     pagination: ".swiper-pagination",
+  //     // loop:1,
+  //     observer: true, //修改swiper自己或子元素时，自动初始化swiper
+  //     observeParents: true, //修改swiper的父元素时，自动初始化swiper
+  //     autoplayStopOnLast: true,
+  //     onAutoplayStop: function(swiper){
+  //       that.$router.push({
+  //         name: "index"
+  //       })
+  //     },
 
-    });
-  },
+  //   });
+  // },
   created: function() {
     var that=this
     var swiper = new Swiper(".swiper-container", {
@@ -67,9 +67,9 @@ export default {
       observeParents: true, //修改swiper的父元素时，自动初始化swiper
       autoplayStopOnLast: true,
       onAutoplayStop: function(swiper){
-       that.$router.pushRoute({
-        name: "index"
-      })
+      //  that.$router.push({
+      //   name: "index"
+      // })
      },
 
    });
