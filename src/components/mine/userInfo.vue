@@ -254,9 +254,14 @@ export default {
 		//打开昵称输入框
 		openNickUsername() {
 			var that = this;
+
 			that.$MessageBox.prompt('请输入用户名','').then(function(response){
 				if(!response.value) {
 					that.$MessageBox.alert("请输入用户名");
+					return
+				}
+				if(response.value.indexOf(" ") >= 0) {
+					that.$MessageBox.alert("用户名不能为空！");
 					return
 				}
 				if(response.value.length>7) {
@@ -273,6 +278,10 @@ export default {
 			that.$MessageBox.prompt('请输入姓名','').then(function(response){
 				if(!response.value) {
 					that.$MessageBox.alert("请输入姓名");
+					return
+				}
+				if(response.value.indexOf(" ") >= 0) {
+					that.$MessageBox.alert("姓名不能为空！");
 					return
 				}
 				if(response.value.length>7) {
