@@ -7,7 +7,6 @@
   </template>
 
   <script>
-  import '../../static/css/aui.css';
   export default {
     name: 'layout',
     data () {
@@ -123,7 +122,7 @@
   </script>
 
   <style>
-  @import '/static/css/aui.css';
+  @import '../../static/css/aui.css';
   #vueg-background {
     position: fixed !important;
     background: #eee !important;

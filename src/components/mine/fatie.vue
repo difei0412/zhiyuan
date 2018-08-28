@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index';
+    import "../../../static/css/font-awesome.css"
     export default {
         name: 'geqian',
         data() {
@@ -187,9 +187,6 @@ import Calendar from '../vue-calendar-component/index';
           this.toast = new auiToast();
           this.bankuai_list();
        },
-        components: {
-          Calendar
-        }
     }
 </script>
 

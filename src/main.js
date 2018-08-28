@@ -7,7 +7,6 @@ import fun from './components/public/fun'
 import 'mint-ui/lib/style.css'
 import { Toast,MessageBox,Indicator } from 'mint-ui'
 // 富文编辑器
-import "font-awesome.css/css/font-awesome.css"
 import initRichText from './common/initHTMLEditor';  
 initRichText();
 

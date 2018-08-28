@@ -122,9 +122,9 @@
                       method:"get",
                       success:function(data2){
                         if(data2.length>0){
-                          that.showData.tx = data2[0].tx?data2[0].tx:'static/image/user.png';
-                          that.showData.name = data2[0].holder?(data2[0].holder+'：'):"";
-                          that.showData.name += data2[0].name?data2[0].name:data2[0].mobile;
+                          that.showData.tx = data2[0]['tx']?data2[0]['tx']:'static/image/user.png';
+                          that.showData.name = data2[0]['holder']?(data2[0]['holder']+'：'):"";
+                          that.showData.name += data2[0]['name']?data2[0]['name']:data2[0]['mobile'];
                         }
                       }
                     })

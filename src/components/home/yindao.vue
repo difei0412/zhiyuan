@@ -19,7 +19,7 @@
 </div>
 </template>
 <style scoped>
-@import url("/static/css/swiper.min.css");
+@import url("../../../static/css/swiper.min.css");
 </style>
 <script>
 import $ from "../public/jquery";

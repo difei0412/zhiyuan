@@ -91,6 +91,7 @@ export default {
       }, 70);
     },
     loginAjax:function() {
+        var that = this;
 				//查询账号是否存在
 				var url1 = 'expert/count?filter={"where":{"mobile":' + that.loginuser + '}}';
 				var method = 'get';
