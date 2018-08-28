@@ -47,6 +47,10 @@
                   <span>未读</span>
                 </div>
             </li>
+
+            <li class="aui-list-item" style="border-bottom:0px solid #eee;background:#eee" v-show="msgArr.length == 0">
+              <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
+            </li>
            
         </ul>
         <div style="height:100%"></div>

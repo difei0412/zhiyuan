@@ -24,7 +24,7 @@
 					<li class="aui-list-item">
 						<div class="aui-list-item-inner">
 							<div class="aui-list-item-label-icon">
-								<img data-v-6d71e44c="" src="static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
+								<img data-v-6d71e44c="" src="static/image/yanzhengma@2x.png" alt="" style="height:1.1rem">
 							</div>
 							<div class="aui-list-item-input">
 								<input type="text" placeholder="请输入验证码" v-model= 'code'>

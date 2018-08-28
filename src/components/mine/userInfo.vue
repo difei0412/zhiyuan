@@ -19,13 +19,13 @@
 				<input type="hidden" height="50px" width="90px" id="filename"> -->
 			</form>
 			</simple-cropper> 
-			<div class="list" @click="openNickUsername">
+			<!-- <div class="list" @click="openNickUsername">
 				<span class="title flex">用户名</span>
 				<span class="title color">{{userInfo.username?userInfo.username:'未设置'}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
-			</div>
+			</div> -->
 			<div class="list" @click="openNickname">
 				<span class="title flex">医生姓名</span>
 				<span class="title color">{{userInfo.name?userInfo.name:'未设置'}}</span>
@@ -107,7 +107,7 @@
 
 			<div class="list">
 				<span class="title flex">主治</span>
-				<span class="title color flex text-show-row-1" style="position:relative;right:-8rem;z-index:2">{{(zhuzhi.length>0)?zhuzhi.join(','):'未设置'}}</span>
+				<span class="title color" style="position:relative;right:-8rem;z-index:2">{{(zhuzhi.length>0)?zhuzhi.join(','):'未设置'}}</span>
 				<div class="aui-list-item-input" style="background-color:rgba(0,0,0,0);position:relative;z-index:3">
                     <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl;width:8rem;background:transparent;height:100%;color:rgba(0,0,0,0)" v-model="zhuzhi" @change="save_speciality" multiple="true" id="select-btn">
                         <option value="" disabled="disabled">未设置</option>
@@ -121,18 +121,18 @@
 
 			<div class="list" @click="openSign">
 				<span class="title">成就简介</span>
-				<span class="title color flex text-show-row-1">{{userInfo.timelist?userInfo.timelist:'未设置'}}</span>
+				<span class="title color right-text flex">{{userInfo.timelist?userInfo.timelist:'未设置'}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
 			</div>
 			<div class="list" @click="openSign2">
 				<span class="title">资质认证</span>
-				<span class="title color flex text-show-row-1" v-if="userInfo.file_list">已上传</span>
-				<span class="title color flex text-show-row-1" v-else>未设置</span>
+				<span class="title color right-text flex" v-if="userInfo.file_list && userInfo.file_list.length > 0">已上传</span>
+				<span class="title color right-text flex" v-else>未设置</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
-				</div>
+				</div>   
 			</div>
 
 		</div>
@@ -724,5 +724,8 @@ input::-webkit-input-placeholder {
 #select-btn>option:checked {
 	color: rgba(0,0,0,0) !important;
     background: rgba(0,0,0,0) !important;	
+}
+.right-text{
+	text-align: right !important;
 }
 </style>

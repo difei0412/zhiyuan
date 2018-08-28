@@ -105,10 +105,10 @@ methods: {
       // 
       //图片压缩初稿　
       if((this.result.length / 1024) < 2048){
-        console.log("图片小于2m不需要压缩")
+        // console.log("图片小于2m不需要压缩")
         that.filesobj.push(this.result);　
       }else{
-        console.log("图片大于2m需要压缩")
+        // console.log("图片大于2m需要压缩")
         // 调用函数处理图片 　　　　　　　　　　　　　　　　
         that.dealImage(this.result, {
           // 注意：在pc端可以用绝对路径或相对路径，移动端最好用绝对路径（因为用take photo后的图片路径，我没有试成功（如果有人试成功了可以分享一下经验））
@@ -116,7 +116,7 @@ methods: {
         }, function(base){
           //直接将获取到的base64的字符串，放到一个image标签中就可看到测试后的压缩之后的样式图了
            // document.getElementById("transform").src = base;
-           console.log("压缩后：" + base.length / 1024 );　　
+           // console.log("压缩后：" + base.length / 1024 );　　
            that.filesobj.push(base);　　
          })
       //console.log(that.filesobj)

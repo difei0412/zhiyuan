@@ -44,15 +44,15 @@
     <!-- 引导页 -->
     <div  class="swiper-container" style="width:100%;height:100%" v-show="yindao==true">
       <div class="swiper-wrapper" style="width:100%;height:100%">
-        <div class="swiper-slide"  >
-          <img style="width:100%;height:100%" src="static/image/start1.png"   />
+        <div class="swiper-slide"  style="display:flex;justify-content:center;align-items:center;">
+          <img style="width:100%;" src="static/image/start1.png"   />
         </div>
-        <div class="swiper-slide"  >
-          <img style="width:100%;height:100%" src="static/image/start2.png"   />
+        <div class="swiper-slide"  style="display:flex;justify-content:center;align-items:center;">
+          <img style="width:100%;" src="static/image/start2.png"   />
         </div>
-        <div class="swiper-slide"  >
-          <img style="width:100%;height:100%" src="static/image/start3.png"   />
-          <div class="aui-btn aui-btn-primary" style="position: absolute;bottom: 3rem;margin: auto;left: 0;right: 0;width: 8rem;" @click="tiaozhuan">立即使用</div>
+        <div class="swiper-slide"  style="display:flex;justify-content:center;align-items:center;">
+          <img style="width:100%;" src="static/image/start3.png"   />
+          <div class="aui-btn aui-btn-primary" style="position: absolute;bottom:3.2rem;margin: auto;left: 0;right: 0;width: 8.5rem;" @click="tiaozhuan">立即使用</div>
         </div>
 
       </div>
