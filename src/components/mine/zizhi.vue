@@ -202,6 +202,7 @@ dealImage(path, obj, callback){
           }
         },
         error:function() {
+          that.toast.hide();
           that.toast.fail({
             title:"提交失败",
             duration:2000

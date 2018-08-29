@@ -79,19 +79,19 @@ export default {
         this.$MessageBox.alert('请输入密码');
         return
       }
-       var that = this;
-        that.toast.loading({
-         title:"加载中",
-         duration:2000
-       },function(ret){
+      var that = this;
+      that.toast.loading({
+       title:"加载中",
+       duration:2000
+     },function(ret){
 
-       });
+     });
       setTimeout(function(){
         that.loginAjax();
       }, 70);
     },
     loginAjax:function() {
-        var that = this;
+      var that = this;
 				//查询账号是否存在
 				var url1 = 'expert/count?filter={"where":{"mobile":' + that.loginuser + '}}';
 				var method = 'get';
@@ -105,23 +105,23 @@ export default {
               url2 += '&filter[fields][password]=false'
               that.ajax({url:url2, method,
                 success:function(data) {
-                that.toast.hide();
-                if (JSON.stringify(data) == '[]') {
-                  that.$MessageBox.alert('账号或者密码错误');
-                } else {
-                  window.localStorage.setItem('userMobile',data[0].mobile);
-                  window.localStorage.setItem('userId',data[0].id);
-                  window.localStorage.setItem('userName',data[0].name);
-                  var tmp = {};
-                  tmp.id=data[0].id;
-                  tmp.tx=data[0].tx;
-                  tmp.username=data[0].username;
-                  tmp.name=data[0].name;
-                  tmp.mobile=data[0].mobile;
-                  tmp.timelist = data[0].timelist;
-                  tmp = JSON.stringify(tmp);
-                  window.sessionStorage.setItem('userinfo_obj',tmp);
-                  if (api) {
+                  that.toast.hide();
+                  if (JSON.stringify(data) == '[]') {
+                    that.$MessageBox.alert('账号或者密码错误');
+                  } else {
+                    window.localStorage.setItem('userMobile',data[0].mobile);
+                    window.localStorage.setItem('userId',data[0].id);
+                    window.localStorage.setItem('userName',data[0].name);
+                    var tmp = {};
+                    tmp.id=data[0].id;
+                    tmp.tx=data[0].tx;
+                    tmp.username=data[0].username;
+                    tmp.name=data[0].name;
+                    tmp.mobile=data[0].mobile;
+                    tmp.timelist = data[0].timelist;
+                    tmp = JSON.stringify(tmp);
+                    window.sessionStorage.setItem('userinfo_obj',tmp);
+                    if (api) {
                     //推送绑定用户
                     var push = api.require('push');
                     push.bind({
@@ -137,84 +137,86 @@ export default {
                   }
                   that.$router.push({name:"index"});
                 }
+              },error:function(data){
+                that.toast.hide();
               }
             });
 						} else { //账号不存在
 							that.$MessageBox.alert('该账号未注册');
               that.toast.hide();
-						}
-					}
-				})
+            }
+          }
+        })
 			}
 		},
     mounted(){
       this.toast = new auiToast();
 
     },
-		activated() {
-			this.loginuser = window.localStorage.getItem('userMobile');
-			this.password = '';
-			if (window.localStorage.getItem('userId')) {
-				this.$router.back();
-			}
-		}
-	}
-  </script>
+    activated() {
+     this.loginuser = window.localStorage.getItem('userMobile');
+     this.password = '';
+     if (window.localStorage.getItem('userId')) {
+      this.$router.back();
+    }
+  }
+}
+</script>
 
-  <style scoped>
-  .logo {
-    width: 4rem;
-    margin: 1.8rem auto 0;
-  }
-  .iptBox {
-    margin:1.5rem auto 0;
-    width:17.25rem;
-  }
-  .aui-btn-danger {
-    background-color: #34DBDA !important;
-    margin-top: 0.6rem;
-  }
-  .app-name {
-    color:rgb(233,98,80);
-    /*color:#34DBDA;*/
-    font-weight: bold;
-    font-family: "微软雅黑";
-    letter-spacing: 0.1rem;
-    font-size: 14px;
+<style scoped>
+.logo {
+  width: 4rem;
+  margin: 1.8rem auto 0;
+}
+.iptBox {
+  margin:1.5rem auto 0;
+  width:17.25rem;
+}
+.aui-btn-danger {
+  background-color: #34DBDA !important;
+  margin-top: 0.6rem;
+}
+.app-name {
+  color:rgb(233,98,80);
+  /*color:#34DBDA;*/
+  font-weight: bold;
+  font-family: "微软雅黑";
+  letter-spacing: 0.1rem;
+  font-size: 14px;
 
-  }
-  .aui-content {
-    margin-top:2rem !important;
-  }
-  .aui-list-item {
-    border-bottom: 1px solid #eee;
-    padding:0.3rem 0.6rem;
-  }
-  .submit-box {
-    padding:1rem 0.8rem 0.5rem;
-  }
-  .submit-box a{
-    color:#f22a2a;
-  }
-  .aui-font-size-14 {
-    padding-top:2rem;
-    text-align: center;
-  }
+}
+.aui-content {
+  margin-top:2rem !important;
+}
+.aui-list-item {
+  border-bottom: 1px solid #eee;
+  padding:0.3rem 0.6rem;
+}
+.submit-box {
+  padding:1rem 0.8rem 0.5rem;
+}
+.submit-box a{
+  color:#f22a2a;
+}
+.aui-font-size-14 {
+  padding-top:2rem;
+  text-align: center;
+}
 
-  .aui-btn-danger,.aui-btn-outlined {
-    margin-top: 1rem;
-    height:2rem;
-    line-height: 2rem;
-    font-size: 14px;
-  }
-  .aui-btn-outlined {
-    border: 1px solid #ccc !important;
-  }
-  .forget-pass {
-    font-size:12px;
-    text-align:right;
-    line-height:2.1rem;
-    margin-right: 1rem;
-    color:#f60;
-  }
-  </style>
+.aui-btn-danger,.aui-btn-outlined {
+  margin-top: 1rem;
+  height:2rem;
+  line-height: 2rem;
+  font-size: 14px;
+}
+.aui-btn-outlined {
+  border: 1px solid #ccc !important;
+}
+.forget-pass {
+  font-size:12px;
+  text-align:right;
+  line-height:2.1rem;
+  margin-right: 1rem;
+  color:#f60;
+}
+</style>

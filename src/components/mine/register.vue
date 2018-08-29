@@ -407,7 +407,9 @@ export default {
 							that.$MessageBox.alert("验证码验证失败或者过期！");
 						}
 					},
-					error:function(data){}
+					error:function(data){
+						that.toast.hide();
+					}
 				})
 			},
 			//查表获取默认订阅
