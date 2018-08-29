@@ -167,13 +167,19 @@ dealImage(path, obj, callback){
 
     //将图片url更新到用户表函数
     updateTx(imgurl) {
-
+      console.log(imgurl)
+      var imgurlArr
+      if (imgurl.length == 0) {
+        imgurlArr = [""]
+      }else{
+        imgurlArr = imgurl
+      }
       var that = this;
       var url = "expert/" + window.localStorage.getItem('userId');
       var method = "POST";
       var params = {
         "data":{
-          "file_list":imgurl,
+          "file_list":imgurlArr,
           "_method":"PUT"
         }
       }
