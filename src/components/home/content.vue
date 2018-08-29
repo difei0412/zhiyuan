@@ -28,7 +28,7 @@
       <div class="row aui-text-center">
         <div class="aui-col-xs-3" @click="openRouter()">
           <img style="width:3rem;margin: auto;" src="static/image/xszs.png"   />
-          <p style="color:#0F0F0F">线上诊室</p>
+          <p style="color:#0F0F0F">心理咨询</p>
         </div>
         <div class="aui-col-xs-3" @click="openRouter1()">
           <img style="width:3rem;margin: auto;" src="static/image/zyzx.png"   />
