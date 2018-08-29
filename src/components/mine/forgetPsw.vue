@@ -143,7 +143,6 @@ export default {
 					var url1 = 'expert?filter={"where":{"mobile":' + that.mobile + '}}';
 					that.ajax({url:url1,method:'GET',
 						success:function(data){
-							console.log(data)
 							
 							if(data != 0&&data != []&&data != '') {
 								that.userId = data[0].id;
@@ -157,7 +156,6 @@ export default {
 											// data: {mobile: that.mobile},
 										})
 								.done(function(data) {
-									console.log(data[0].code);
 									if (data[0].code == '0000') {
 										Toast(data[0].msg)
 									}else if(data[0].code == '0001'){
@@ -215,18 +213,16 @@ register_btn1(){
 	}else{
 		if (that.password == that.passwordZ) {
 			var url1 = 'verycode?filter={"where":{"mobile":"' + that.mobile + '","code":"'+that.code+'"}}';
-			console.log(url1)
 			
 			that.ajax({url:url1,method:'GET',
 				success:function(data){
-					console.log(data)
 					
 					
 					if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
 						that.codeid = data[0].id
 						var params = {
 							data:{		
-								password:that.password,
+								password:'zhiyuan_'+that.password,
 								_method: "PUT"
 							}
 

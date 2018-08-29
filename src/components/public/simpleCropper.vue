@@ -6,8 +6,8 @@
  <input class="file" ref="file" type="file" accept="image/*" @change="uploadChange"> 
  <div class="v-cropper-layer" ref="layer"> 
   <div class="layer-header"> 
-  <button class="cancel" @click="cancelHandle">取消</button> 
-  <button class="confirm" @click="confirmHandle">裁剪</button> 
+  <button class="aui-btn" @click="cancelHandle">取消</button> 
+  <button class="confirm1 aui-btn" @click="confirmHandle">裁剪</button> 
   </div> 
   <img ref="cropperImg"> 
  </div> 
@@ -172,13 +172,30 @@ export default {
   font-size:0.65rem;
   font-weight: bold;
 }
-.v-simple-cropper .v-cropper-layer .confirm {
+.v-simple-cropper .v-cropper-layer .confirm1 {
   float: right;
+  margin-top:0.4rem;
+  margin-right: 0.5rem;
 }
 .v-simple-cropper .v-cropper-layer img {
   position: inherit!important;
   border-radius: inherit!important;
   float: inherit!important;
+}
+
+.aui-btn {
+    padding:0 0.8rem;
+    height:1.5rem;
+    line-height: 1.6rem;
+    font-size: 0.65rem;
+    font-weight: bold;
+    font-family: inherit;
+    text-align: center;
+    margin-left:0.5rem;
+    background: #e0e0e0;
+    border-radius: 0.2rem;
+    border:none;
+    vertical-align: middle;
 }
  
 </style> 

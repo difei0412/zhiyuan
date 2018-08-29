@@ -85,6 +85,7 @@
                isMark: false,
                bankuaiarr: [],
                tsid: '',
+               ischeck: false,
                vuegConfig: {
                   disable: false,
                   forwardAnim: 'fadeInRight',
@@ -94,6 +95,29 @@
             }
         },
         methods: {
+          // 是否签约判断
+          isSignCheck() {
+            var that = this;
+            var filter = {
+              fields:{"id":true,"ischeck":true},
+              where:{
+                id:window.localStorage.getItem('userId')
+              }
+            };
+            that.ajax({
+              url:'expert?filter='+encodeURIComponent(JSON.stringify(filter)),
+              method:"get",
+              success:function(data2){
+                if(data2.length>0){
+                  if(data2[0]['ischeck']==1){
+                    that.ischeck = true;
+                  }else{
+                    that.ischeck = false;
+                  }
+                }
+              }
+            })
+          },
           search(param,param2) {
             this.tsid = param;
             this.bankuai_name = param2;
@@ -147,7 +171,14 @@
           },
           openfatie(){
             if(window.localStorage.getItem('userId')){
-              this.$router.push({path:'/fatie2'})
+              if(this.ischeck){
+                this.$router.push({path:'/fatie2'})
+              }else{
+                this.toast.fail({
+                    title:"您未签约，禁止发帖",
+                    duration:2000
+                });
+              }
             }else{
               this.$router.push({path:'/login'})
             }
@@ -253,8 +284,8 @@
             },
         },
         activated() {
-          
-        },
+          this.isSignCheck();
+        }, 
        mounted() {
           var that = this;
           this.toast = new auiToast();

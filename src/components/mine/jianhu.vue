@@ -3,7 +3,7 @@
     <myHeader :title="'住院日志'"></myHeader>
 
     <!--         <Calendar ref="Calendar" style="margin-top:1rem;"></Calendar> -->
-
+    <scroller :on-refresh="refresh" :on-infinite="infinite" style="padding-top:2.5rem;" ref="myscroller">
     <ul class="aui-list aui-media-list">
 
       <li class="aui-list-item aui-list-item-middle"  @click="openzhifu(item.id)" v-for="item in zyarr">
@@ -27,19 +27,24 @@
           </div>
         </div>
       </li>
-
+      <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="zyarr.length == 0">
+        <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
+      </li>
     </ul>
+    </scroller>
   </div>
   
 </template>
 
 <script>
-import Calendar from '../vue-calendar-component/index2';
 export default {
   name: 'geqian',
   data() {
     return {
       zyarr:[],
+      isLoadFinish:false, //是否加载完全部数据
+      currentPage: 1,
+      pageSize:4,
       vuegConfig: {
         disable: false,
         forwardAnim: 'fadeInRight',
@@ -52,6 +57,39 @@ export default {
     openzhifu:function(id){
      this.$router.push({path:'/rizhiedit/'+id})
    },
+    // 查询数据
+    showList() {
+        var that = this;
+        var start = (that.currentPage-1)*that.pageSize;
+        var filter = {
+          "fields":{'id':true,'brname':true,'createdAt':true,'InpatientWard':true},
+          "order": "createdAt DESC",
+          "where":{
+            "did":window.localStorage.getItem("userId"),
+            "info":"2"
+          },
+          "skip":start,
+          "limit":that.pageSize
+        };
+        that.ajax({
+          url: "genzong?filter="+encodeURIComponent(JSON.stringify(filter)),
+          method: "get",
+          success: function(data) {
+            if(data.length<that.pageSize){
+              if(data.length>0){
+                for(var i=0;i<data.length;i++){
+                  that.zyarr.push(data[i]);
+                }
+              }
+              that.isLoadFinish = true;
+            } else {
+              for(var i=0;i<data.length;i++){
+                that.zyarr.push(data[i]);
+              }
+            }
+          }
+        });
+     },
    get_zhuyuan(){
     var that = this;
     var filter = {
@@ -83,19 +121,43 @@ export default {
     // 拼接
     return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
   },
+  // 上拉加载更多
+   infinite(done) {
+    var that = this;
+     setTimeout(function(){
+          if(!that.isLoadFinish){
+            that.currentPage++;
+            that.showList();
+          }
+          if(that.isLoadFinish){ // 加载完毕
+            done(true);
+            return;
+          } else {
+            done();
+          }
+      }, 500)
+    },
+    // 下拉刷新
+    refresh(done) {
+        var that = this;
+        setTimeout(function(){
+            that.currentPage = 1;
+            that.zyarr = [];
+            that.isLoadFinish = false;
+            that.showList();
+            done();
+        }, 500);
+    },
 
 
 },
 activated() {
-  this.get_zhuyuan()
+  this.showList()
 },
 created() {
 
 
 },
-components: {
-  Calendar
-}
 }
 </script>
 

@@ -107,7 +107,7 @@
 
 			<div class="list">
 				<span class="title flex">主治</span>
-				<span class="title color" style="position:relative;right:-8rem;z-index:2">{{(zhuzhi.length>0)?zhuzhi.join(','):'未设置'}}</span>
+				<span class="title color" style="position:relative;right:-8rem;z-index:2">{{(zhuzhi.length>0)?(zhuzhi.length==1?zhuzhi.join(',').substr(0,8):zhuzhi.join(',').substr(0,8)+'...'):'未设置'}}</span>
 				<div class="aui-list-item-input" style="background-color:rgba(0,0,0,0);position:relative;z-index:3">
                     <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl;width:8rem;background:transparent;height:100%;color:rgba(0,0,0,0)" v-model="zhuzhi" @change="save_speciality" multiple="true" id="select-btn">
                         <option value="" disabled="disabled">未设置</option>
@@ -121,7 +121,7 @@
 
 			<div class="list" @click="openSign">
 				<span class="title">成就简介</span>
-				<span class="title color right-text flex">{{userInfo.timelist?userInfo.timelist:'未设置'}}</span>
+				<span class="title color right-text flex">{{userInfo.timelist?userInfo.timelist.substr(0,10)+'...':'未设置'}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>

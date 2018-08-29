@@ -126,7 +126,7 @@ export default {
 									var params = {
 										data:{
 											"mobile":that.mobile,
-											"password":that.password,
+											"password":'zhiyuan_'+that.password,
 											"status":'0'
 										}
 
@@ -383,7 +383,7 @@ export default {
 										"User_name": that.mobile,
 										"password": that.password,
 										"Name": that.mobile,
-										"Tx": "../../../static/image/xitong@3x.png",
+										"Tx": "../../../static/image/user.png",
 										"info": 1
 									}
 								}

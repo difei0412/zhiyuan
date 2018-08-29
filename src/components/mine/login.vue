@@ -100,7 +100,7 @@ export default {
             //账号存在进入登录接口（查）
             if (data.count!==0) {
               var url2 = "expert?filter[where][mobile]=" + that.loginuser;
-              url2 += '&filter[where][password]=' + that.password;
+              url2 += '&filter[where][password]=' + ('zhiyuan_'+that.password);
               // url2 += '&filter[where][info]=1';
               url2 += '&filter[fields][password]=false'
               that.ajax({url:url2, method,
