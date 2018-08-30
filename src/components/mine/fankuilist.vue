@@ -75,7 +75,6 @@ methods: {
     that.tieziArr = [];
     // console.log(that.myindex)
     var start = (that.currentPage-1)*that.pageSize;
-    console.log('ok');
     var filter = {
       "fields": {"id":true,"brname":true,"fk":true,'brid':true,'createdAt':true},
       "where":{
