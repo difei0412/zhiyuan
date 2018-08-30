@@ -1,10 +1,10 @@
 <template>
   <div style="background-color: white; min-height: 100%;">
-    <myHeader :title="'心理咨询'"></myHeader>
+    <myHeader :title="'反馈清单'"></myHeader>
     <scroller :on-refresh="refresh" :on-infinite="infinite1" style="padding-top:2.5rem;height:auto !important" ref="myscroller"> 
       <ul class="aui-list aui-media-list">
 
-        <li class="aui-list-item aui-list-item-middle"  @click="openzhifu(item.id)" v-for="item in tieziArr">
+        <li class="aui-list-item aui-list-item-middle"   v-for="item in tieziArr">
           <div class="aui-media-list-item-inner">
             <div class="aui-list-item-media" style="width: 3rem;">
               <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
@@ -13,19 +13,45 @@
               <div class="aui-list-item-text" style="margin-left:11px">
                 <div class="aui-list-item-title aui-font-size-14">患者：{{item.brname}}</div>
               </div>
-              <div class="aui-list-item-text yuding-time" style="margin-left:11px">
-                就诊：{{dateFormat(item.createdAt)}} 线上诊疗
+              <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-if='item.info == 1'>
+                就诊：{{dateFormat(item.createdAt)}} 住院反馈
               </div>
-              <div class="aui-list-item-text yuding-time"  style="margin-left:11px">
-                反馈内容：{{item.fk}}
+              <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-if='item.info == 2'>
+                就诊：{{dateFormat(item.createdAt)}} 心理咨询
               </div>
-              <div class="aui-list-item-text" style="margin-left:11px">
+              <div class="aui-list-item-text yuding-time"  style="margin-left:11px" >
+                反馈内容：{{item.rz_con}}
+              </div>
+              <div class="aui-list-item-text" style="margin-left:11px;display:none">
                 <div class="order-status">查看详情</div>
               </div>
             </div>
           </div>
         </li>
-
+<!--     <li class="aui-list-item aui-list-item-middle"  @click="openzhifu(item.id)" v-for="item in tieziArr">
+          <div class="aui-media-list-item-inner">
+            <div class="aui-list-item-media" style="width: 3rem;">
+              <img src="static/image/1.jpg" class="aui-list-img-sm" style="max-widht:30px">
+            </div>
+            <div class="aui-list-item-inner aui-list-item-arrow">
+              <div class="aui-list-item-text" style="margin-left:11px">
+                <div class="aui-list-item-title aui-font-size-14">患者：{{item.brname}}</div>
+              </div>
+              <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-if='item.info == 1'>
+                就诊：{{dateFormat(item.createdAt)}} 住院反馈
+              </div>
+              <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-if='item.info == 2'>
+                就诊：{{dateFormat(item.createdAt)}} 心理咨询
+              </div>
+              <div class="aui-list-item-text yuding-time"  style="margin-left:11px" >
+                反馈内容：{{item.rz_con}}
+              </div>
+              <div class="aui-list-item-text" style="margin-left:11px;display:none">
+                <div class="order-status">查看详情</div>
+              </div>
+            </div>
+          </div>
+        </li> -->
         <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="tieziArr.length == 0">
           <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
         </li>
@@ -72,23 +98,24 @@ methods: {
   getMy_user() {
 
     var that = this;
-    that.tieziArr = [];
+    
     // console.log(that.myindex)
     var start = (that.currentPage-1)*that.pageSize;
     console.log('ok');
     var filter = {
-      "fields": {"id":true,"brname":true,"fk":true,'brid':true,'createdAt':true},
+      "fields": {"id":true,"brname":true,"fk":true,'brid':true,'info':true,'rz_con':true,'createdAt':true},
       "where":{
-        "did":window.localStorage.getItem("userId")
+        "did":window.localStorage.getItem("userId"),
+        "info": {'inq': ["1","2"]},
       },
       "order": "createdAt DESC",
       "skip":start,
       "limit":that.pageSize,
-      "include":"bridPointer",
-      "includefilter":{"my_user":{"fields":['id','Tx',]}}
+      // "include":"bridPointer",
+      // "includefilter":{"my_user":{"fields":['id','Tx',]}}
     };
     that.ajax({
-      url: "fankui?filter="+encodeURIComponent(JSON.stringify(filter)),
+      url: "dakalist?filter="+encodeURIComponent(JSON.stringify(filter)),
       method: "get",
       success: function(data) {
        console.log(data)
@@ -168,6 +195,7 @@ methods: {
 
           },
           mounted(){
+            this.tieziArr = [];
             this.getMy_user()
           },
           activated() {
