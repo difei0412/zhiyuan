@@ -70,7 +70,7 @@
         </div>
       </li>
 
-      <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="tieziArr.length == 0">
+      <li class="aui-list-item aui-list-item-middle" style="border-bottom:0px solid #eee" v-show="dakatieziArr.length == 0">
         <img src="static/image/no.png" style="width:80%;margin:0.5rem auto">
       </li>
 
@@ -215,7 +215,7 @@ export default {
                         that.dakatieziArr.push(data[i]);
                       }
                     }
-                  // console.log(that.dakatieziArr)
+                  // console.log(data)
                   sessionStorage.removeItem("hz_list");
                   var tempDic = {};
                   tempDic['data'] = that.dakatieziArr;

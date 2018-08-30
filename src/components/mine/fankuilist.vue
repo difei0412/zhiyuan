@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: white; min-height: 100%;">
-    <myHeader :title="'反馈清单'"></myHeader>
+    <myHeader :title="'心理咨询'"></myHeader>
     <scroller :on-refresh="refresh" :on-infinite="infinite1" style="padding-top:2.5rem;height:auto !important" ref="myscroller"> 
       <ul class="aui-list aui-media-list">
 

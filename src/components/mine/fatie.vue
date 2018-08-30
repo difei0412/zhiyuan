@@ -44,7 +44,7 @@
         data() {
             return {
               ttopic: '',
-               content: '请输入帖子内容',
+               content: '',
                toast: null,
                tsid: '0',
                bankuaiarr: [],

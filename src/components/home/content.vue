@@ -71,9 +71,9 @@
           </div>
         </div>
         <div class="aui-media-list-item-inner doctor-box">
-          <div class="aui-list-item-media">
-            <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round">
-          </div>
+          <!-- <div class="aui-list-item-media"> -->
+            <img :src="(item.tuid && item.tuid.tx)?item.tuid.tx:'static/image/user.png'" class="aui-img-round" style="width:2rem;height:2rem">
+          <!-- </div> -->
           <div class="aui-list-item-inner">
             <div class="aui-list-item-text doctor">
               <div class="aui-list-item-title" v-text="(item.tType==3?'知源医院':((item.tuid && item.tuid.name)?item.tuid.name:item.tuid.mobile))+' '+(item.tuid && item.tuid.holder?item.tuid.holder:'')"> </div>

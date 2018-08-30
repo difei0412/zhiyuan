@@ -90,7 +90,8 @@ export default {
 			sleep:'',
 			other:'',
 			fkcont:'',
-			yp:[]
+			yp:[],
+			toast: null,
 
 		}
 	},
@@ -124,12 +125,20 @@ export default {
         	"include":"cash",
         	"includefilter":{"bingli":{"fields":['id','bl_con','bl_img']}}
         };
-        that.ajax({
-        	url: "my_user?filter="+encodeURIComponent(JSON.stringify(filter)),
+        that.toast.loading({
+        	title:"加载中",
+        	duration:2000
+        },function(ret){
+
+        });
+        setTimeout(function(){
+        	that.ajax({
+        		url: "my_user?filter="+encodeURIComponent(JSON.stringify(filter)),
           // url: "my_user/5b615a25f5f5bbad6b43a3a3/cash",
           method: "get",
           success: function(data) {
           	console.log(data)
+          	that.toast.hide();
           	if (data) {
           		that.realname = data[0].realname?data[0].realname:'';
           		that.sex = data[0].sex?data[0].sex:'';
@@ -149,6 +158,7 @@ export default {
 
       }
   });
+        },30)
     },
     get_dakailist(){
     	var that = this ;
@@ -221,7 +231,7 @@ export default {
     },
 },
 mounted(){
-
+	this.toast = new auiToast();
       // this.get_dakailist()
   },
   activated() {

@@ -189,32 +189,34 @@ dealImage(path, obj, callback){
      },function(ret){
      });
       //console.log(url)
-      that.ajax({url,method,params,
-        success:function(res){
-          that.toast.hide();
-          if(JSON.stringify(res)!='{}'){
-            setTimeout(function(){
-              that.$router.back();
-            }, 2000);
-            that.toast.success({
-              title:"提交成功",
-              duration:2000
-            });
-          }else{
+      setTimeout(function(){
+        that.ajax({url,method,params,
+          success:function(res){
+            that.toast.hide();
+            if(JSON.stringify(res)!='{}'){
+              setTimeout(function(){
+                that.$router.back();
+              }, 2000);
+              that.toast.success({
+                title:"提交成功",
+                duration:2000
+              });
+            }else{
+              that.toast.fail({
+                title:"提交失败",
+                duration:2000
+              });
+            }
+          },
+          error:function() {
+            that.toast.hide();
             that.toast.fail({
               title:"提交失败",
               duration:2000
             });
           }
-        },
-        error:function() {
-          that.toast.hide();
-          that.toast.fail({
-            title:"提交失败",
-            duration:2000
-          });
-        }
-      })
+        })
+      },70);
     },
           // 删除图片
           delpic(obj) {

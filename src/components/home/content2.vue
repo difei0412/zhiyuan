@@ -34,9 +34,9 @@
                   </div>
                 </div>
                 <div class="aui-media-list-item-inner doctor-box">
-                  <div class="aui-list-item-media">
-                    <img :src="item.user_face" class="aui-img-round">
-                  </div>
+                  <!-- <div class="aui-list-item-media"> -->
+                    <img :src="item.user_face" class="aui-img-round" style="width:2rem;height:2rem">
+                  <!-- </div> -->
                   <div class="aui-list-item-inner">
                     <div class="aui-list-item-text doctor">
                       <div class="aui-list-item-title" v-text="item.user_text"> </div>

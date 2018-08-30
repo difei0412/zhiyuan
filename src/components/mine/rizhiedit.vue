@@ -2,7 +2,7 @@
   <div style="background-color: white; min-height: 100%;">
     <myHeader :title="'编写住院日志'"></myHeader>
 
-    <div class="date-box">
+    <div class="date-box" style="width:100%">
       <date-picker v-model="time1" type="datetime" :confirm="confirm" confirm-text="确认" :editable="editable" :format="format"></date-picker>
     </div>
 
@@ -133,6 +133,7 @@ export default {
       time2: '',
       time3: '',
       brid:'',
+      toast: null,
       shortcuts: [
       {
         text: '今天',
@@ -232,7 +233,7 @@ export default {
                 }})
               },
               touchend(yname,yjiliang,ydanwei,e){
-                
+
                 this.yaoming.push(yname+' '+yjiliang+ydanwei)
                 this.conntr = ''
                 $(".yyseach").hide()
@@ -312,14 +313,26 @@ export default {
                     // "brname":
                   }
                 }
+                that.toast.loading({
+                 title:"加载中",
+                 duration:2000
+               },function(ret){
+
+               });
                 var url = 'dakalist'
-                that.ajax({url,method:'post',params,success:function(data){
-                  if(JSON.stringify(data)!='{}'){
-                    that.pushMsg(data.id);
+                setTimeout(function(){
+                  that.ajax({url,method:'post',params,success:function(data){
+                    that.toast.hide();
+                    if(JSON.stringify(data)!='{}'){
+                      that.pushMsg(data.id);
+                    }
+                    that.$router.push({path:'/jianhu'})
+                    Toast('反馈成功！');
+                  },error:function(data){
+                    that.toast.hide();
                   }
-                  that.$router.push({path:'/jianhu'})
-                  Toast('反馈成功！');
-                }})
+                })
+                },30)
               },
                 //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
                 dateFormat:function(time) {
@@ -340,6 +353,10 @@ export default {
     this.yaoming.splice(index,1)
     console.log(this.yaoming)
   },
+},
+mounted(){
+  this.toast = new auiToast();
+
 },
 activated() {
   var id = this.$route.params.id
