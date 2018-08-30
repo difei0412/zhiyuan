@@ -86,7 +86,7 @@
 				<div class="other_img my-middle" style="margin-left:11px">
 					<img src="static/image/fankui@2x.png" class="icon_img">
 				</div>
-				<span>心理咨询室</span>
+				<span>反馈清单</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>

@@ -152,6 +152,7 @@ export default {
 
 },
 activated() {
+  this.zyarr = [];
   this.showList()
 },
 created() {

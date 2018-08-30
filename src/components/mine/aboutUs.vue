@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'打赏收益记录'"></myHeader>
+        <myHeader :title="'打赏记录'"></myHeader>
          <div class="price-total">
           <span v-text="'费用合计：￥'+total_price"></span>
         </div>
@@ -133,13 +133,15 @@
                 },
                 "limit": that.total_num
               };
+              var num = 0
               that.ajax({
                 url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
                 success: function(data) {
                   that.total_price = 0;
                   for(var i=0;i<data.length;i++){
-                    that.total_price += (data[i].price?parseFloat(data[i].price):0);
+                    num += (data[i].price?parseFloat(data[i].price):0);
+                    that.total_price = num.toFixed(2)
                   }
                 }
               });

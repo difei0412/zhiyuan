@@ -54,10 +54,10 @@ export default {
 					"where":{
 						"id":id
 					},
-					"include":["bridPointer"],
+					"include":["brid"],
 					"includefilter":{"my_user":{"fields":['id','sex','age']}}
 				};
-				var url = 'fankui?filter='+encodeURIComponent(JSON.stringify(filter))
+				var url = 'dakalist?filter='+encodeURIComponent(JSON.stringify(filter))
 				that.ajax({url,methods:'get',success:function(data){
 					console.log(data)
 					that.jztime = data[0].createdAt;

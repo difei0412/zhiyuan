@@ -320,6 +320,14 @@ export default {
 					that.$MessageBox.alert("请输入身份证号");
 					return
 				}
+				if(response.value.length < 15 ) {
+					that.$MessageBox.alert("输入的身份证号不正确");
+					return
+				}
+				if(response.value.length >18) {
+					that.$MessageBox.alert("输入的身份证号不正确");
+					return
+				}
 				that.updateInfo("IDCard",response.value)
 			}).catch(function(error){
 			});

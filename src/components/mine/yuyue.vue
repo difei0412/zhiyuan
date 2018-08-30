@@ -14,7 +14,7 @@
                     </div>
                     <div class="aui-list-item-inner aui-list-item-arrow">
                         <div class="aui-list-item-text" style="margin-left:11px">
-                            <div class="aui-list-item-title aui-font-size-14" v-text="'患者：'+(item.patientid.realname?item.patientid.realname:item.username)"></div>
+                            <div class="aui-list-item-title aui-font-size-14" v-text="'患者：'+item.fkr"></div>
                              <div class="aui-list-item-right" style="color:#34DBDA" v-text="'付款：￥'+item.price"></div>
                         </div>
                         <div class="aui-list-item-text yuding-time" style="margin-left:11px" v-text="'预约：'+(item.startdate+' - '+item.enddate)+(' '+(item.serviceid?item.serviceid.servicename:''))">
@@ -129,13 +129,15 @@
                 },
                 "limit": that.total_num
               };
+              var num=0
               that.ajax({
                 url: "appointment?filter="+encodeURIComponent(JSON.stringify(filter)),
                 method: "get",
                 success: function(data) {
                   that.total_price = 0;
                   for(var i=0;i<data.length;i++){
-                    that.total_price += (data[i].price?parseFloat(data[i].price):0);
+                    num += (data[i].price?parseFloat(data[i].price):0);
+                    that.total_price = num.toFixed(2)
                   }
                 }
               });
