@@ -12,7 +12,7 @@
         <li class="aui-list-item">
           <div class="aui-list-item-inner">
             <div class="aui-list-item-label-icon">
-              <img data-v-6d71e44c="" src="static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
+              <img src="static/image/mobileatByFoot.png" alt="" style="height:1.1rem">
             </div>
             <div class="aui-list-item-input">
               <input type="text" placeholder="请输入手机号" v-model="loginuser">
@@ -41,7 +41,6 @@
   </div>
 </div>
 
-</div>
 </div>
 </template>
 
@@ -135,7 +134,8 @@ export default {
                       }
                     });
                   }
-                  that.$router.push({name:"index"});
+                  //that.$router.push({name:"index"});
+                  that.$router.back();
                 }
               },error:function(data){
                 that.toast.hide();

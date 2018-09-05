@@ -37,7 +37,7 @@
                     <div class="aui-info aui-padded-l-10 aui-padded-r-10">
                         <div class="aui-info-item">
                             <img :src="item.face?item.face:'static/image/user.png'" class="aui-img-round" />
-                            <div class="user-nick" v-text="item.username"></div>
+                            <div class="user-nick" v-text="item.username?item.username:''"></div>
                         </div>
                         <div class="aui-info-item"> <span class="user-zan-num" v-text="dateFormat(item.createdAt)"></span></div>
                     </div>
@@ -77,6 +77,11 @@
                content: '',
                toast: null,
                isLoadFinish:false,
+               // 敏感词变量定义
+              words:"",
+              tblRoot:{},
+              //敏感词文件
+              file:"static/keyword/sensitiveWords.txt",
             }
         },
         methods: {
@@ -137,6 +142,7 @@
           pinglunData(id) {
             var that=this;
             var filter = {
+              "order":"createdAt DESC",
               "where": {
                 "rtid":id
               },
@@ -183,47 +189,7 @@
               });
               return;
             }
-            var params = {
-              "data":{
-                'rtid':that.showData.id,
-                'rsid':that.showData.tsid,
-                'rcontent':that.content,
-                'rtime':that.dateFormat(),
-                'ruid': that.userinfo.id,
-                'username': that.userinfo.name,
-                'face': that.userinfo.tx
-              }
-            }
-            that.toast.loading({
-                 title:"加载中",
-                 duration:2000
-             },function(ret){
-             });
-            setTimeout(function(){
-              that.ajax({
-                url:'gentie',
-                method:'post',
-                params,
-                success(data){
-                  that.toast.hide();
-                  if(JSON.stringify(data)!='{}') {
-                    that.changeIsreply();
-                    that.content = "";
-                    that.plnum++;
-                    that.pldata.push(data);
-                    that.toast.success({
-                        title:"评论成功",
-                        duration:2000
-                    });
-                  }else{
-                    that.toast.fail({
-                        title:"评论失败",
-                        duration:2000
-                    });
-                  }
-                }
-              });
-             }, 500);
+            this.handle(this.content);
           },
           // 改变主贴是否恢复isreply状态改变
           changeIsreply(){
@@ -296,19 +262,170 @@
             var newDay = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
             return newDay;
           },
+          // ------------------------- 敏感词检测  start---------------------------
+          //载入敏感词组
+          load (file,callback) {
+             file=file||this.file;
+             var objHttp;
+             if (window.ActiveXObject) {
+                 objHttp = new ActiveXObject("Microsoft.XMLHTTP");
+             }else {
+                 objHttp = new XMLHttpRequest();
+                 objHttp.overrideMimeType("text/xml");
+             }
+
+             objHttp.onreadystatechange = function () {
+                 if (objHttp.readyState != 4)
+                     return;
+                 this.words = objHttp.responseText;
+                 callback(objHttp.responseText);
+             };
+
+             objHttp.open("GET", file, true);
+             objHttp.send(null);
+          },
+          //将关键字生成一颗树
+          makeTree (callback) {
+              var that = this;
+              if(this.words==""){
+                  this.load(this.file,function (words) {
+                      var strKeys = words;
+                      var arrKeys = strKeys.split("");
+                      var tblCur = that.tblRoot = {};
+                      var key;
+
+                      for (var i = 0, n = arrKeys.length; i < n; i++) {
+                          key = arrKeys[i];
+                          //完成当前关键字
+                          if (key == ';'){
+                              tblCur.end = true;
+                              tblCur = that.tblRoot;
+                              continue;
+                          }
+                          //生成子节点
+                          if (key in tblCur)
+                              tblCur = tblCur[key];
+                          else
+                              tblCur = tblCur[key] = {};
+                      }
+
+                      //最后一个关键字没有分割符
+                      tblCur.end = true;
+                      callback(that.tblRoot);
+                  });
+              }else{
+                  callback(that.tblRoot);
+              }
+          },
+          //标记出内容中敏感词的位置
+          searchWords (content,root) {
+              var tblCur,p, v,i = 0,arrMatch = [];
+              var n = content.length;
+              while (i < n) {
+                  tblCur = root;
+                  p = i;
+                  v = 0;
+
+                  for (; ;) {
+                      if (!(tblCur = tblCur[content.charAt(p++)])) {
+                          i++;
+                          break;
+                      }
+                      //找到匹配敏感字
+                      if (tblCur.end)
+                          v = p;
+                  }
+                  //最大匹配
+                  if (v){
+                      arrMatch.push(i - 1, v);
+                      i = v;
+                  }
+              }
+              return arrMatch;
+          },
+          //标记敏感字
+           handle (strContent) {
+               var that = this;
+               var mid,arrMatch,strHTML,arrHTML = [],p = 0;
+               this.makeTree(function (data) {
+                   arrMatch = that.searchWords(strContent,data);
+                   // for (var i = 0, n = arrMatch.length; i < n; i += 2) {
+                   //     mid = arrMatch[i];
+                   //     arrHTML.push(strContent.substring(p, mid),
+                   //         "[",
+                   //         strContent.substring(mid, p = arrMatch[i + 1]),
+                   //         "]");
+                   // }
+                   arrHTML.push(strContent.substring(p));
+                   strHTML = arrHTML.join("").replace(/\n/g, "<br>");
+                   that.content = strHTML;
+                   if(arrMatch.length>0){
+                      that.toast.fail({
+                            title:"内容禁止含有敏感词",
+                            duration:2000
+                      });
+                   }else{
+                      // 无敏感词，保存帖子
+                      var params = {
+                        "data":{
+                          'rtid':that.showData.id,
+                          'rsid':that.showData.tsid,
+                          'rcontent':that.content,
+                          'rtime':that.dateFormat(),
+                          'ruid': that.userinfo.id,
+                          'username': that.userinfo.name,
+                          'face': that.userinfo.tx
+                        }
+                      }
+                      that.toast.loading({
+                           title:"加载中",
+                           duration:2000
+                       },function(ret){
+                       });
+                      setTimeout(function(){
+                        that.ajax({
+                          url:'gentie',
+                          method:'post',
+                          params,
+                          success(data){
+                            that.toast.hide();
+                            if(JSON.stringify(data)!='{}') {
+                              that.changeIsreply();
+                              that.content = "";
+                              that.plnum++;
+                              that.pldata.unshift(data);
+                              that.toast.success({
+                                  title:"评论成功",
+                                  duration:2000
+                              });
+                            }else{
+                              that.toast.fail({
+                                  title:"评论失败",
+                                  duration:2000
+                              });
+                            }
+                          }
+                        });
+                       }, 500);
+                   }
+               });
+           },
+           // ------------------------- 敏感词检测  end---------------------------
         },
          mounted () {
-            var that = this;
-            var id = that.$route.params.id;
-            that.toast = new auiToast();
-            that.findData(id);
-            that.pinglunnum(id);
-            that.pinglunData(id);
-            that.userFind();
-            //that.toast.hide();
-            that.isLoadFinish = true;
+           var that = this;
            this.$nextTick(() => {
-            $(document).scrollTop(0);
+              setTimeout(function(){
+                $(document).scrollTop(0);
+                var id = that.$route.params.id;
+                that.toast = new auiToast();
+                that.findData(id);
+                that.pinglunnum(id);
+                that.pinglunData(id);
+                that.userFind();
+                //that.toast.hide();
+                that.isLoadFinish = true;
+              },0);
            })
          },
         deactivated(){

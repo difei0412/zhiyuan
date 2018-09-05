@@ -1,7 +1,7 @@
 <template style="background: #ffffff;">
   <!-- <transition :name="transitionName"> -->
     <keep-alive>
-      <router-view style="min-height: 100%;" v-transition="true"></router-view>
+      <router-view style="min-height: 100%;"></router-view>
     </keep-alive>
     <!-- </transition> -->
   </template>
@@ -18,29 +18,6 @@
       }
     },
     methods: {
-
-      // keyback() {
-      //   var that = this
-      //   try {
-      //     that.api = api
-      //     if (that.$route.path == '/') { // 安卓退出
-      //       that.api.sendEvent({
-      //         name: 'changerouter',
-      //       });
-      //     } else { //安卓返回
-      //       that.api.sendEvent({
-      //         name: 'changerouter1',
-      //       });
-      //       that.api.addEventListener({
-      //         name: 'keyback1'
-      //       }, function(ret, err) {
-      //         that.$router.back();
-      //       });
-      //     }
-      //   }
-      //   catch(error) {
-      //   }
-      // },
 
       // 查询推送消息
       findData(id){
@@ -72,6 +49,13 @@
        var that = this;
        setTimeout(function(){
           if (api) {
+            // 关闭启动页
+            api.removeLaunchView({
+                animation: {
+                    type: 'fade',
+                    duration: 500
+                }
+            });
             //设置监听
             var push = api.require('push');
             push.setListener(function(ret,err){
@@ -101,23 +85,8 @@
               that.$router.push({path:'/tongzhidetail/'+ret.value})
             });
           }
-      }, 600);
+      }, 100);
     },
-  watch: {
-      // 如果路由有变化，会再次执行该方法
-      '$route'(to, from) {
-        // var isBack = this.$router.isBack  // 监听路由变化时的状态为前进还是后退
-        // if (isBack == "1") {
-        //   this.transitionName = 'slide-right'
-        // } else if (isBack == "2") {
-        //   this.transitionName = 'slide-left'
-        // } else if (isBack == "0") {
-        //   this.transitionName = ''
-        // }
-        // this.$router.isBack = "0"
-        // this.keyback();
-      }
-    }
   }
   </script>
 

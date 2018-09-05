@@ -131,6 +131,7 @@
             $('.search-type .two').slideUp();
             that.currentPage = 1;
             that.tieziArr = [];
+            that.$refs.myscroller.finishInfinite(0);
             that.isLoadFinish = false;
             this.showList();
           },

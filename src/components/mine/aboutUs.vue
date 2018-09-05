@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: white; min-height: 100%;">
-        <myHeader :title="'打赏记录'"></myHeader>
+        <myHeader :title="'赞赏记录'"></myHeader>
          <div class="price-total">
           <span v-text="'费用合计：￥'+total_price"></span>
         </div>

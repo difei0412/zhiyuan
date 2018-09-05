@@ -121,7 +121,7 @@
 
 			<div class="list" @click="openSign">
 				<span class="title">成就简介</span>
-				<span class="title color right-text flex">{{userInfo.timelist?userInfo.timelist.substr(0,10)+'...':'未设置'}}</span>
+				<span class="title color right-text flex">{{userInfo.timelist?delHtmlTag(userInfo.timelist).substr(0,10)+'...':'未设置'}}</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -636,7 +636,18 @@ export default {
 					that.yiyuan = that.userInfo.hospital?that.userInfo.hospital:'';
 				}
 			})
-		}
+		},
+		// 字符串去除HTML标签
+       delHtmlTag(str){
+        var msg  = str;
+        msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+        msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+        msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+        msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+        msg = msg.replace(/\s+/g," ");//去掉回车换行
+        return msg;
+      },
 	},
 	mounted() {
 		this.speciality();

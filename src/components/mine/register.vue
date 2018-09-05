@@ -115,73 +115,83 @@ export default {
 					return
 				}else{
 					if (that.password == that.passwordZ) {
-						var url = 'expert?filter={"where":{"mobile":' + that.mobile + '}}';
-						that.ajax({url:url,method:'GET',
-							success:function(data){
-								if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
-									Toast("该账号已注册！")
-								}else{
-									var url1 = 'verycode?filter={"where":{"mobile":"' + that.mobile + '","code":"'+that.code+'"}}';
-									console.log(url1)
-									var params = {
-										data:{
-											"mobile":that.mobile,
-											"password":'zhiyuan_'+that.password,
-											"status":'0'
-										}
+						that.toast.loading({
+					       title:"加载中",
+					       duration:2000
+					     },function(ret){
 
-									};
-									that.ajax({url:url1,method:'GET',
-										success:function(data){
-											if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
-												that.codeid = data[0].id
+					     });
+						setTimeout(function(){
+							var url = 'expert?filter={"where":{"mobile":' + that.mobile + '}}';
+							that.ajax({url:url,method:'GET',
+								success:function(data){
+									if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
+										that.toast.hide();
+										Toast("该账号已注册！")
+									}else{
+										var url1 = 'verycode?filter={"where":{"mobile":"' + that.mobile + '","code":"'+that.code+'"}}';
+										var params = {
+											data:{
+												"mobile":that.mobile,
+												"password":'zhiyuan_'+that.password,
+												"status":'0'
+											}
 
+										};
+										that.ajax({url:url1,method:'GET',
+											success:function(data){
 												if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
-													var url2 = 'expert';
-													that.ajax({url:url2,method:'post',params,success:function(data){
-														var params = {
-															data:{
-																status: "1",
-																_method: "PUT"
+													that.codeid = data[0].id
+
+													if (data!=''&&data !=[]&&data!=undefined&&data!=null) {
+														var url2 = 'expert';
+														that.ajax({url:url2,method:'post',params,success:function(data){
+															var params = {
+																data:{
+																	status: "1",
+																	_method: "PUT"
+																}
 															}
+															var url3 = 'verycode/'+that.codeid;
+															that.ajax({url:url3,method:'post',params,success:function(data){
+																if (data) {
+																	that.toast.hide();
+																	Toast("注册成功！")
+																	setTimeout(function(){
+																		that.$Indicator.close();
+																		that.$router.back();
+																	},2000);
+																}else{
+																	that.toast.hide();
+																	Toast("注册失败！")
+																}
+															}})
+
 														}
-														var url3 = 'verycode/'+that.codeid;
-														console.log(url3)
-														that.ajax({url:url3,method:'post',params,success:function(data){
-															if (data) {
-																Toast("注册成功！")
-																that.$router.push({name:"login"});
-															}else{
-																Toast("注册失败！")
-															}
-														}})
 
+													})
+													}else{
+														that.toast.hide();
+														Toast("验证码无效，请重新输入！")
 													}
-
-												})
 												}else{
+													that.toast.hide();
 													Toast("验证码无效，请重新输入！")
 												}
-											}else{
-												Toast("验证码无效，请重新输入！")
+												
+
+
 											}
-											
+										})
+									}
 
 
-										}
-									})
 								}
-
-
-							}
-						})
-
-
-
-						
+							})
+						},70);
 
 					}else{
-						Toast('密码不一致，请重新输入！');
+						Toast('两次密码输入不一致！');
 
 					}
 				}
@@ -238,7 +248,6 @@ export default {
 											// data: {mobile: that.mobile},
 										})
 								.done(function(data) {
-									console.log(data[0].code);
 									if (data[0].code == '0000') {
 										Toast(data[0].msg)
 									}else if(data[0].code == '0001'){
@@ -334,82 +343,6 @@ export default {
 					success:function(response){
 					},
 					error:function(data){}
-				})
-			},
-			register_btn() {
-				if(!/^1[34578]\d{9}$/.test(this.mobile)) {
-					this.$MessageBox.alert('请输入正确的手机号');
-					return
-				}
-				if(!this.code) {
-					this.$MessageBox.alert('请输入验证码');
-					return
-				}
-				if(!this.password) {
-					this.$MessageBox.alert('请输入密码');
-					return
-				}
-				var that = this;
-				that.toast.loading({
-			       title:"加载中",
-			       duration:2000
-			     },function(ret){
-
-			     });
-				setTimeout(function(){
-					that.registerAjax();
-				}, 70);
-			},
-			registerAjax() {
-				var that = this;
-				that.$Indicator.open();
-				//查表得到验证码
-				var url = 'code?filter={"where":{"mobile":'+ that.mobile +'}}';
-				var method = "GET";
-				that.ajax({url,method,
-					success:function(response){
-						if(response.length>0){
-							that.toast.hide();
-							var code = response[0].code;
-							var time = new Date(response[0].updatedAt);
-							time = time.getTime();
-							var now = new Date().getTime();
-							var shix = now-time;
-							if(code==that.code&&shix<600000){
-								//注册（增）
-								var url2 = "f_user?filter[fields][password]=false";
-								var params = {
-									"data": {
-										"User_name": that.mobile,
-										"password": that.password,
-										"Name": that.mobile,
-										"Tx": "../../../static/image/user.png",
-										"info": 1
-									}
-								}
-								that.ajax({url:url2,method:'POST',params,
-									success:function(data){
-										if(data){
-											that.$Indicator.close();
-											window.localStorage.setItem('userMobile',data.User_name);
-											window.localStorage.setItem('userId',data.id);
-											that.getSubscribe(data.id);
-										}
-									}
-								})
-							} else {
-								that.toast.hide();
-								that.$Indicator.close();
-								that.$MessageBox.alert("验证码验证失败或者过期！");
-							}
-						} else {
-							that.$Indicator.close();
-							that.$MessageBox.alert("验证码验证失败或者过期！");
-						}
-					},
-					error:function(data){
-						that.toast.hide();
-					}
 				})
 			},
 			//查表获取默认订阅

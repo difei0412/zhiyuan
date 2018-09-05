@@ -65,8 +65,8 @@ import tongzhidetail from './components/mine/tongzhidetail' // 通知详情
 import yindao from './components/home/yindao' // 引导页
 
 // vueg
-import vueg from 'vueg'
-import 'vueg/css/transition-min.css'
+// import vueg from 'vueg'
+// import 'vueg/css/transition-min.css'
 
 Vue.use(vuePicturePreview)
 Vue.use(vueEventCalendar, {locale: 'en'})
@@ -262,22 +262,22 @@ let router = new VueRouter({
 		]
 	})
 
-Vue.use(vueg,router);
+//Vue.use(vueg,router);
 
 
-// window.apiready=function(){
-// 	var vue1=new Vue({
-// 		el: '#app',
-// 		router,
-// 		template: '<layout/>',
-// 		components: { layout }
-// 	})
-// }
+window.apiready=function(){
+	var vue1=new Vue({
+		el: '#app',
+		router,
+		template: '<layout/>',
+		components: { layout }
+	})
+}
 
 
-new Vue({
-	el: '#app',
-	router,
-	template: '<layout/>',
-	components: { layout }
-})
+// new Vue({
+// 	el: '#app',
+// 	router,
+// 	template: '<layout/>',
+// 	components: { layout }
+// })

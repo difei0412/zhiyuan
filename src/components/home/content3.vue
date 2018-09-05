@@ -11,7 +11,7 @@
 						<li class="nick" v-text="userInfo.name?userInfo.name:userInfo.mobile"></li>
 						<li>
 							<span v-if="!userInfo.timelist || userInfo.timelist == ''" class="label">没有任何信息！</span>
-							<span v-else class="label" v-text="'成就简介：'+userInfo.timelist.substr(0,30)"></span>
+							<span v-else class="label" v-text="'成就简介：'+delHtmlTag(userInfo.timelist).substr(0,30)"></span>
 						</li>
 					</ul>
 				</div>
@@ -56,7 +56,7 @@
 				<div class="other_img my-middle" style="margin-left:11px">
 					<img src="static/image/dashang@2x.png" class="icon_img">
 				</div>
-				<span>打赏记录</span>
+				<span>赞赏记录</span>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -205,7 +205,18 @@
 					that.menuindex = 1;
 					that.$router.push({"path":"/login"});
 				})
-			}
+			},
+			// 字符串去除HTML标签
+	       delHtmlTag(str){
+	        var msg  = str;
+	        msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+	        msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+	        msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+	        msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+	        msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+	        msg = msg.replace(/\s+/g," ");//去掉回车换行
+	        return msg;
+	      },
 		},
 		mounted() {
 			

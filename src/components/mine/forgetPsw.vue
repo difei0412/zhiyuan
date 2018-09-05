@@ -241,7 +241,7 @@ register_btn1(){
 							that.ajax({url:url3,method:'post',params,success:function(data){
 								if (data) {
 									Toast("密码修改成功！")
-									that.$router.push({name:"login"});
+									that.$router.back();
 								}else{
 									Toast("密码修改失败！")
 								}

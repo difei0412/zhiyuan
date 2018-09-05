@@ -54,7 +54,12 @@
                   forwardAnim: 'fadeInUp',
                   duration: '.3',
                   backAnim: 'fadeInUp'
-              }
+              },
+              // 敏感词变量定义
+              words:"",
+              tblRoot:{},
+              //敏感词文件
+              file:"static/keyword/sensitiveWords.txt",
             }
         },
         methods: {
@@ -81,7 +86,6 @@
             });
           },
           saveData() {
-            var id = this.$route.params.id;
             var that = this;
             if(this.ttopic==''){
               that.toast.fail({
@@ -104,57 +108,7 @@
               });
               return;
             }
-            var params = {
-              "data":{
-                "ttopic":this.ttopic,
-                "tsid": this.tsid,
-                "tcontents":this.content,
-                "_method":"PUT"
-              }
-            }
-            that.toast.loading({
-                 title:"加载中",
-                 duration:2000
-            },function(ret){
-            });
-            setTimeout(function(){
-                that.ajax({
-                  url:'tiezi/'+id,
-                  method:"post",
-                  params,
-                  success: function(res){
-                    that.toast.hide();
-                    if(JSON.stringify(res)!='{}'){
-                      // 刷新列表缓存
-                      if(sessionStorage.getItem("managertiezi_list")){
-                        var tmp = JSON.parse(sessionStorage.getItem("managertiezi_list"));
-                        for(var i=0;i<tmp['data'].length;i++){
-                          if(tmp['data'][i].id == id){
-                            tmp['data'][i].ttopic = that.ttopic;
-                            tmp['data'][i].tcontents = that.content.substr(0,45);
-                          }
-                        }
-                        sessionStorage.setItem("managertiezi_list", JSON.stringify(tmp));
-                      }
-
-                      setTimeout(function(){
-                        that.ttopic = "";
-                        that.content = "请输入帖子内容";
-                        that.$router.back();
-                      }, 2000);
-                      that.toast.success({
-                          title:"修改成功",
-                          duration:2000
-                      });
-                    }else{
-                      that.toast.fail({
-                          title:"修改失败",
-                          duration:2000
-                      });
-                    }
-                  }
-                })
-             }, 500);
+            this.handle(this.content);
           },
           // 时间格式转换,不传参获取当前时间日期
           dateFormat(date) {
@@ -202,13 +156,178 @@
               }
             })
           },
+          // ------------------------- 敏感词检测  start---------------------------
+          //载入敏感词组
+          load (file,callback) {
+             file=file||this.file;
+             var objHttp;
+             if (window.ActiveXObject) {
+                 objHttp = new ActiveXObject("Microsoft.XMLHTTP");
+             }else {
+                 objHttp = new XMLHttpRequest();
+                 objHttp.overrideMimeType("text/xml");
+             }
+
+             objHttp.onreadystatechange = function () {
+                 if (objHttp.readyState != 4)
+                     return;
+                 this.words = objHttp.responseText;
+                 callback(objHttp.responseText);
+             };
+
+             objHttp.open("GET", file, true);
+             objHttp.send(null);
+          },
+          //将关键字生成一颗树
+          makeTree (callback) {
+              var that = this;
+              if(this.words==""){
+                  this.load(this.file,function (words) {
+                      var strKeys = words;
+                      var arrKeys = strKeys.split("");
+                      var tblCur = that.tblRoot = {};
+                      var key;
+
+                      for (var i = 0, n = arrKeys.length; i < n; i++) {
+                          key = arrKeys[i];
+                          //完成当前关键字
+                          if (key == ';'){
+                              tblCur.end = true;
+                              tblCur = that.tblRoot;
+                              continue;
+                          }
+                          //生成子节点
+                          if (key in tblCur)
+                              tblCur = tblCur[key];
+                          else
+                              tblCur = tblCur[key] = {};
+                      }
+
+                      //最后一个关键字没有分割符
+                      tblCur.end = true;
+                      callback(that.tblRoot);
+                  });
+              }else{
+                  callback(that.tblRoot);
+              }
+          },
+          //标记出内容中敏感词的位置
+          searchWords (content,root) {
+              var tblCur,p, v,i = 0,arrMatch = [];
+              var n = content.length;
+              while (i < n) {
+                  tblCur = root;
+                  p = i;
+                  v = 0;
+
+                  for (; ;) {
+                      if (!(tblCur = tblCur[content.charAt(p++)])) {
+                          i++;
+                          break;
+                      }
+                      //找到匹配敏感字
+                      if (tblCur.end)
+                          v = p;
+                  }
+                  //最大匹配
+                  if (v){
+                      arrMatch.push(i - 1, v);
+                      i = v;
+                  }
+              }
+              return arrMatch;
+          },
+          //标记敏感字
+           handle (strContent) {
+               var that = this;
+               var mid,arrMatch,strHTML,arrHTML = [],p = 0;
+               this.makeTree(function (data) {
+                   arrMatch = that.searchWords(strContent,data);
+                   for (var i = 0, n = arrMatch.length; i < n; i += 2) {
+                       mid = arrMatch[i];
+                       arrHTML.push(strContent.substring(p, mid),
+                           "<span style='color:red'>",
+                           strContent.substring(mid, p = arrMatch[i + 1]),
+                           "</span>");
+                   }
+                   arrHTML.push(strContent.substring(p));
+                   strHTML = arrHTML.join("").replace(/\n/g, "<br>");
+                   that.content = strHTML;
+                   if(arrMatch.length>0){
+                      that.toast.fail({
+                            title:"内容禁止含有敏感词",
+                            duration:2000
+                      });
+                   }else{
+                      // 无敏感词，保存帖子
+                      var id = that.$route.params.id;
+                      var params = {
+                        "data":{
+                          "ttopic":that.ttopic,
+                          "tsid": that.tsid,
+                          "tcontents":that.content,
+                          "_method":"PUT"
+                        }
+                      }
+                      that.toast.loading({
+                           title:"加载中",
+                           duration:2000
+                      },function(ret){
+                      });
+                      setTimeout(function(){
+                          that.ajax({
+                            url:'tiezi/'+id,
+                            method:"post",
+                            params,
+                            success: function(res){
+                              that.toast.hide();
+                              if(JSON.stringify(res)!='{}'){
+                                // 刷新列表缓存
+                                if(sessionStorage.getItem("managertiezi_list")){
+                                  var tmp = JSON.parse(sessionStorage.getItem("managertiezi_list"));
+                                  for(var i=0;i<tmp['data'].length;i++){
+                                    if(tmp['data'][i].id == id){
+                                      tmp['data'][i].ttopic = that.ttopic;
+                                      tmp['data'][i].tcontents = that.delHtmlTag(that.content).substr(0,50);
+                                    }
+                                  }
+                                  sessionStorage.setItem("managertiezi_list", JSON.stringify(tmp));
+                                }
+
+                                setTimeout(function(){
+                                  that.ttopic = "";
+                                  that.content = "";
+                                  that.$router.back();
+                                }, 2000);
+                                that.toast.success({
+                                    title:"修改成功",
+                                    duration:2000
+                                });
+                              }else{
+                                that.toast.fail({
+                                    title:"修改失败",
+                                    duration:2000
+                                });
+                              }
+                            }
+                          })
+                       }, 500);
+                   }
+               });
+           },
+           // ------------------------- 敏感词检测  end---------------------------
+           // 字符串去除HTML标签
+           delHtmlTag(str){
+              var msg  = str;
+              msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+              msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+              msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
+              msg = msg.replace(/&amp;nbsp;/ig, ' '); //去掉npsp
+              msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
+              msg = msg.replace(/\s+/g," ");//去掉回车换行
+              return msg;
+            },
         },
-        activated() {
-          
-        },
-       created() {
-   
-       },
        mounted() {
           this.toast = new auiToast();
           this.bankuai_list();

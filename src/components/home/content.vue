@@ -113,7 +113,7 @@ export default {
       sessionName: 'scrollForHome',
         tieziArr: [], // 帖子数据展示
         toast: null,
-        isTips: true,
+        isTips: false,
       }
     },
     methods:{
@@ -366,15 +366,20 @@ export default {
     });
     },
     activated() {
-      this.yaoqing();
+      var that = this;
+      this.$nextTick(() => {
+        setTimeout(function(){
+          that.yaoqing();
+        },0);
+      })
     },
-    watch: {
+    /*watch: {
       '$route'(to, from) {
         if (from.name == "mylable") {
           this.chooseData();
         }
       }
-    }
+    }*/
   }
   </script>
 

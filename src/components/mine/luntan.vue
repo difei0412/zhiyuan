@@ -131,6 +131,7 @@
             that.currentPage = 1;
             that.tieziArr = [];
             that.isLoadFinish = false;
+            that.$refs.myscroller.finishInfinite(0);
             this.showList();
           },
           hideMenu() {
