@@ -25,7 +25,7 @@
        <i class="aui-iconfont aui-icon-plus" style="font-size:30px;color:#666"></i>
 
      </div>
-     <span style="float:left;font-size:12px;margin-left:0.5rem;margin-top:44px">医生的资格证学历证以及身份证可上传9张</span>
+     <span style="float:left;font-size:12px;margin-left:0.5rem;margin-top:44px">医生的资格证学历证以及身份证可上传3张</span>
    </div>
    <button class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" style="background-color: #34DBDA;bottom:0px;position:fixed;border:none;border-radius:0rem;"  @click="opennext()">确认提交</button>
    <lg-preview></lg-preview>
@@ -74,8 +74,8 @@ methods: {
   //出发file
   shangchuan(){
 
-    if ($("#photo").children().length >= 9) {
-      this.$MessageBox.alert('最多只能上传9张照片')
+    if ($("#photo").children().length >= 3) {
+      this.$MessageBox.alert('最多只能上传3张照片')
       return
     }
     $("#file").click()

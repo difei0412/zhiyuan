@@ -207,6 +207,7 @@ export default {
                       if(data.length>0){
                         for(var i=0;i<data.length;i++){
                           that.dakatieziArr.push(data[i]);
+                          console.log(that.dakatieziArr)
                         }
                       }
                       that.isLoadFinish = true;
