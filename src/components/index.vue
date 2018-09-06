@@ -18,30 +18,30 @@
         <content2 ref="content2" v-if="menuindex==1 && yindao==false"></content2>
         <content3 v-if="menuindex==2 && yindao==false"></content3>
       </keep-alive>
-    <!-- </transition> -->
+      <!-- </transition> -->
 
-    <footer class="aui-bar aui-bar-tab foot-nav" v-show="yindao==false">
-      <div class="aui-bar-tab-item aui-active" @click="openmenu(0)">
-        <center>
-          <i class="aui-iconfont aui-icon-home"></i>
-        </center>
-        <div class="aui-bar-tab-label">诊疗中心</div>
-      </div>
-      <div class="aui-bar-tab-item" @click="openmenu(1)">
-        <center>
-          <i class="aui-iconfont aui-icon-comment"></i>
-        </center>
-        <div class="aui-bar-tab-label">病患沟通</div>
-      </div>
-      <div class="aui-bar-tab-item" @click="openmenu(2)">
-        <center>
-          <i class="aui-iconfont aui-icon-my"></i>
-        </center>
-        <div class="aui-bar-tab-label">个人中心</div>
-      </div>
-    </footer>
+      <footer class="aui-bar aui-bar-tab foot-nav" v-show="yindao==false">
+        <div class="aui-bar-tab-item aui-active" @click="openmenu(0)">
+          <center>
+            <i class="aui-iconfont aui-icon-home"></i>
+          </center>
+          <div class="aui-bar-tab-label">诊疗中心</div>
+        </div>
+        <div class="aui-bar-tab-item" @click="openmenu(1)">
+          <center>
+            <i class="aui-iconfont aui-icon-comment"></i>
+          </center>
+          <div class="aui-bar-tab-label">病患沟通</div>
+        </div>
+        <div class="aui-bar-tab-item" @click="openmenu(2)">
+          <center>
+            <i class="aui-iconfont aui-icon-my"></i>
+          </center>
+          <div class="aui-bar-tab-label">个人中心</div>
+        </div>
+      </footer>
 
-    <!-- 引导页 -->
+      <!-- 引导页 -->
    <!--  <div  class="swiper-container" style="width:100%;height:100%" v-show="yindao==true">
       <div class="swiper-wrapper" style="width:100%;height:100%">
         <div class="swiper-slide"  style="display:flex;justify-content:center;align-items:center;">
@@ -91,6 +91,32 @@ export default {
     content3
   },
   methods: {
+    login(){
+      var that = this;
+      if(window.localStorage.getItem('userId')){
+        var userId = window.localStorage.getItem('userId');
+        var filter = {
+          fields: {"id":true,"if_delete":true},
+          where:{
+            "id":userId,
+            "if_delete": "0"
+          },
+          limit:1
+        };
+        var url = 'expert?filter='+encodeURIComponent(JSON.stringify(filter));
+        var method = "GET";
+        that.ajax({
+          url:url,
+          method:method,
+          success(res){
+            if(res.length>0){
+              window.localStorage.removeItem('userId');
+            }
+          }
+        });
+      }
+       
+    },
     tiaozhuan(){
       this.yindao = false;
       localStorage.yindao = 1;
@@ -134,15 +160,15 @@ export default {
 
   },
   // 是否存在未读消息
-   readMsg() {
+  readMsg() {
     var that = this;
     var filter = {
       "order": "createdAt DESC",
       "where": {
         "or":[
-              {"user_id": {"like":window.localStorage.getItem('userId')},"if_read": {'inq':[0,null]}},
-              {"user_id": '[]',"if_read": {'inq':[0,null]}}
-         ]
+        {"user_id": {"like":window.localStorage.getItem('userId')},"if_read": {'inq':[0,null]}},
+        {"user_id": '[]',"if_read": {'inq':[0,null]}}
+        ]
       }
     };
     that.ajax({
@@ -183,22 +209,25 @@ activated() {
   var that = this;
   this.$nextTick(() => {
     setTimeout(function(){
+      // 是否登录
+      that.login();
       that.readMsg();
+      
     },0);
   })
 }, 
 beforeRouteEnter(to,from,next){
  next(vm => {
-     if(!window.localStorage.getItem('userId') && (vm.menuindex==2)){
-      vm.menuindex = 0;
-      var footeritem = document.getElementsByClassName("aui-bar-tab-item")
-      var iconcls = document.getElementsByClassName("iconcls")
-      for (var i = 0; i < footeritem.length; i++) {
-        footeritem[i].className = 'aui-bar-tab-item'
-      }
-      footeritem[vm.menuindex].className = 'aui-bar-tab-item aui-active'
+   if(!window.localStorage.getItem('userId') && (vm.menuindex==2)){
+    vm.menuindex = 0;
+    var footeritem = document.getElementsByClassName("aui-bar-tab-item")
+    var iconcls = document.getElementsByClassName("iconcls")
+    for (var i = 0; i < footeritem.length; i++) {
+      footeritem[i].className = 'aui-bar-tab-item'
     }
-  })    
+    footeritem[vm.menuindex].className = 'aui-bar-tab-item aui-active'
+  }
+})    
 }
 }
 </script>

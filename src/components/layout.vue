@@ -18,7 +18,20 @@
       }
     },
     methods: {
-
+      // 监听推送数据
+      jiating(){
+        var socketManager = api.require('socketManager');
+        socketManager.createSocket({
+          host: '192.168.1.100',
+          port: 8282
+        }, function(ret, err) {
+          if (ret) {
+            alert(JSON.stringify(ret));
+          } else {
+            alert(JSON.stringify(err));
+          }
+        });
+      },
       // 查询推送消息
       findData(id){
         var that = this;
@@ -33,7 +46,7 @@
         });
       },
       // 字符串去除HTML标签
-       delHtmlTag(str){
+      delHtmlTag(str){
         var msg  = str;
         msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
         msg = msg.replace(/[|]*\n/, '') //去除行尾空格
@@ -44,17 +57,20 @@
         return msg;
       },
     },
+    activated(){
+      this.jianting();
+    },
     mounted(){
        // this.$router.push({path:'/tongzhidetail/5b7ce580159c52774d73693e'})
        var that = this;
        setTimeout(function(){
-          if (api) {
+        if (api) {
             // 关闭启动页
             api.removeLaunchView({
-                animation: {
-                    type: 'fade',
-                    duration: 500
-                }
+              animation: {
+                type: 'fade',
+                duration: 500
+              }
             });
             //设置监听
             var push = api.require('push');
@@ -85,14 +101,14 @@
               that.$router.push({path:'/tongzhidetail/'+ret.value})
             });
           }
-      }, 100);
-    },
-  }
-  </script>
+        }, 100);
+     },
+   }
+   </script>
 
-  <style>
-  @import '../../static/css/aui.css';
-  #vueg-background {
+   <style>
+   @import '../../static/css/aui.css';
+   #vueg-background {
     position: fixed !important;
     background: #eee !important;
   }

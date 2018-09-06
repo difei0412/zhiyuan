@@ -265,19 +265,19 @@ let router = new VueRouter({
 //Vue.use(vueg,router);
 
 
-window.apiready=function(){
-	var vue1=new Vue({
-		el: '#app',
-		router,
-		template: '<layout/>',
-		components: { layout }
-	})
-}
+// window.apiready=function(){
+// 	var vue1=new Vue({
+// 		el: '#app',
+// 		router,
+// 		template: '<layout/>',
+// 		components: { layout }
+// 	})
+// }
 
 
-// new Vue({
-// 	el: '#app',
-// 	router,
-// 	template: '<layout/>',
-// 	components: { layout }
-// })
+new Vue({
+	el: '#app',
+	router,
+	template: '<layout/>',
+	components: { layout }
+})

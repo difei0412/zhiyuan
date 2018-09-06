@@ -91,23 +91,25 @@ export default {
     },
     loginAjax:function() {
       var that = this;
+      var filter = {
+          fields: {"id":true,"if_delete":true,"password":true,"mobile":true,"tx":true,"username":true,"name":true,"timelist":true},
+          where:{
+            "mobile":that.loginuser
+          },
+          limit:1
+        };
 				//查询账号是否存在
-				var url1 = 'expert/count?filter={"where":{"mobile":' + that.loginuser + '}}';
+				var url1 = 'expert?filter='+encodeURIComponent(JSON.stringify(filter));
 				var method = 'get';
 				that.ajax({url:url1,method,
 					success:function(data) {
+            that.toast.hide();
             //账号存在进入登录接口（查）
-            if (data.count!==0) {
-              var url2 = "expert?filter[where][mobile]=" + that.loginuser;
-              url2 += '&filter[where][password]=' + ('zhiyuan_'+that.password);
-              // url2 += '&filter[where][info]=1';
-              url2 += '&filter[fields][password]=false'
-              that.ajax({url:url2, method,
-                success:function(data) {
-                  that.toast.hide();
-                  if (JSON.stringify(data) == '[]') {
-                    that.$MessageBox.alert('账号或者密码错误');
-                  } else {
+            if (data.length>0) {
+              if(data[0].if_delete==0){
+                that.$MessageBox.alert('该账号已被禁用');
+              }else{
+                if(data[0].password == ('zhiyuan_'+that.password)){
                     window.localStorage.setItem('userMobile',data[0].mobile);
                     window.localStorage.setItem('userId',data[0].id);
                     window.localStorage.setItem('userName',data[0].name);
@@ -136,14 +138,13 @@ export default {
                   }
                   //that.$router.push({name:"index"});
                   that.$router.back();
+                }else{
+                  that.$MessageBox.alert('密码错误');
                 }
-              },error:function(data){
-                that.toast.hide();
               }
-            });
 						} else { //账号不存在
-							that.$MessageBox.alert('该账号未注册');
               that.toast.hide();
+							that.$MessageBox.alert('该账号未注册');
             }
           }
         })

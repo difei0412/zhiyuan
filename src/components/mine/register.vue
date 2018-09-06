@@ -134,7 +134,8 @@ export default {
 											data:{
 												"mobile":that.mobile,
 												"password":'zhiyuan_'+that.password,
-												"status":'0'
+												"status":'0',
+												"if_delete":'1'
 											}
 
 										};
