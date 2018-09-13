@@ -4,21 +4,21 @@
 
 		<div>
 			<simple-cropper :initParam="uploadParam" :successCallback="uploadHandle" ref="cropper">
-			<form action="http://d.apicloud.com/mcm/api/file" id="imagform0" method="post" enctyp="multipart/form-data">
-				<label class="list" for="file" @click="upload">
-					<span class="title flex">头像</span>
-					<div class="my-middle">
-						<img class="headImage" :src="userInfo.tx?userInfo.tx:'static/image/user.png'">
-					</div>
-					<div class="my-middle">
-						<img class="right" src="static/image/in@3x.png">
-					</div>
-				</label>
+				<form action="http://d.apicloud.com/mcm/api/file" id="imagform0" method="post" enctyp="multipart/form-data">
+					<label class="list" for="file" @click="upload">
+						<span class="title flex">头像</span>
+						<div class="my-middle">
+							<img class="headImage" :src="userInfo.tx?userInfo.tx:'static/image/user.png'">
+						</div>
+						<div class="my-middle">
+							<img class="right" src="static/image/in@3x.png">
+						</div>
+					</label>
 				<!-- <input type="file"  class="uploadFile" name="file" id="file" @change="setImagePreview" />
 				<input type="hidden" height="50px" width="90px" id="type">
 				<input type="hidden" height="50px" width="90px" id="filename"> -->
 			</form>
-			</simple-cropper> 
+		</simple-cropper> 
 			<!-- <div class="list" @click="openNickUsername">
 				<span class="title flex">用户名</span>
 				<span class="title color">{{userInfo.username?userInfo.username:'未设置'}}</span>
@@ -70,11 +70,11 @@
 			<div class="list">
 				<span class="title flex">就职医院</span>
 				<div class="aui-list-item-input">
-                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="yiyuan" @change="save_yiyuan">
-                        <option value="" disabled="disabled">未设置</option>
-                        <option v-if="yiyuanarr" v-for="item in yiyuanarr" v-text="item.hospital" :value="item.id"></option>
-                    </select>
-                </div>
+					<select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="yiyuan" @change="save_yiyuan">
+						<option value="" disabled="disabled">未设置</option>
+						<option v-if="yiyuanarr" v-for="item in yiyuanarr" v-text="item.hospital" :value="item.id"></option>
+					</select>
+				</div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -82,11 +82,11 @@
 			<div class="list">
 				<span class="title flex">职级</span>
 				<div class="aui-list-item-input">
-                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="zhiji" @change="save_zhiji">
-                        <option value="" disabled="disabled">未设置</option>
-                        <option v-if="zhijiarr" v-for="item in zhijiarr" v-text="item.zhicheng" :value="item.id"></option>
-                    </select>
-                </div>
+					<select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="zhiji" @change="save_zhiji">
+						<option value="" disabled="disabled">未设置</option>
+						<option v-if="zhijiarr" v-for="item in zhijiarr" v-text="item.zhicheng" :value="item.id"></option>
+					</select>
+				</div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -95,11 +95,11 @@
 			<div class="list">
 				<span class="title flex">科室</span>
 				<div class="aui-list-item-input">
-                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="keshi" @change="save_keshi">
-                        <option value="" disabled="disabled">未设置</option>
-                        <option v-if="keshiarr" v-for="item in keshiarr" v-text="item.keshi" :value="item.id"></option>
-                    </select>
-                </div>
+					<select style="color:#a2a8ae;font-size:0.65rem;direction:rtl" v-model="keshi" id="keshitype" @change="save_keshi">
+						<option value="" disabled="disabled">未设置</option>
+						<option v-if="keshiarr" v-for="item in keshiarr" v-text="item.keshi" :value="item.id"></option>
+					</select>
+				</div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -109,11 +109,11 @@
 				<span class="title flex">主治</span>
 				<span class="title color" style="position:relative;right:-8rem;z-index:2">{{(zhuzhi.length>0)?(zhuzhi.length==1?zhuzhi.join(',').substr(0,8):zhuzhi.join(',').substr(0,8)+'...'):'未设置'}}</span>
 				<div class="aui-list-item-input" style="background-color:rgba(0,0,0,0);position:relative;z-index:3">
-                    <select style="color:#a2a8ae;font-size:0.65rem;direction:rtl;width:8rem;background:transparent;height:100%;color:rgba(0,0,0,0)" v-model="zhuzhi" @change="save_speciality" multiple="true" id="select-btn">
-                        <option value="" disabled="disabled">未设置</option>
-                        <option v-if="zhuzhiarr" v-for="item in zhuzhiarr" v-text="item.keyword" :value="item.keyword"></option>
-                    </select>
-                </div>
+					<select style="color:#a2a8ae;font-size:0.65rem;direction:rtl;width:8rem;background:transparent;height:100%;color:rgba(0,0,0,0)" v-model="zhuzhi" @change="save_speciality" multiple="true" id="select-btn">
+						<option value="" disabled="disabled">未设置</option>
+						<option v-if="zhuzhiarr" v-for="item in zhuzhiarr" v-text="item.keyword" :value="item.keyword"></option>
+					</select>
+				</div>
 				<div class="my-middle">
 					<img class="right" src="static/image/in@3x.png">
 				</div>
@@ -208,11 +208,11 @@ export default {
 		}, 
 		// 上传头像成功回调 
 		uploadHandle (data) { 
-		  	if (data.url) { 
-		   		window.sessionStorage.removeItem('userinfo_obj');
-		   		this.$set(this.userInfo,'tx',data.url);
+			if (data.url) { 
+				window.sessionStorage.removeItem('userinfo_obj');
+				this.$set(this.userInfo,'tx',data.url);
 				this.updateTx(data.url);
-		  	}
+			}
 		},
 		//将图片上传到数据库file表
 		setImagePreview() {
@@ -567,14 +567,27 @@ export default {
 		//更改科室
 		save_keshi() {
 			var that = this;
-			var url = "expert/" + that.userId;
-			var method = "POST";
-			var params = {
-				"data":{
-					"office":that.keshi,
-					"_method":"PUT"
+			
+			if ($("#keshitype option:selected").text().indexOf("心理") == 0) {
+				var params = {
+					"data":{
+						"office":that.keshi,
+						"keshi":'0',
+						"_method":"PUT"
+					}
+				}
+			}else{
+				var params = {
+					"data":{
+						"office":that.keshi,
+						"keshi":'1',
+						"_method":"PUT"
+					}
 				}
 			}
+			var url = "expert/" + that.userId;
+			var method = "POST";
+			
 			
 			that.ajax({url,method,params,
 				success:function(data){
@@ -638,8 +651,8 @@ export default {
 			})
 		},
 		// 字符串去除HTML标签
-       delHtmlTag(str){
-        var msg  = str;
+		delHtmlTag(str){
+			var msg  = str;
         msg = msg.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
         msg = msg.replace(/[|]*\n/, '') //去除行尾空格
         msg = msg.replace(/&nbsp;/ig, ' '); //去掉npsp
@@ -647,20 +660,20 @@ export default {
         msg = msg.replace(/[\r\n]/g," ");//去掉回车换行
         msg = msg.replace(/\s+/g," ");//去掉回车换行
         return msg;
-      },
-	},
-	mounted() {
-		this.speciality();
-		this.keshi_list();
-		this.zhiji_list();
-		this.yiyuan_list();
-	},
-	activated() {
-		this.getUserInfo();
-	},
-	components: { 
-	 	SimpleCropper 
-	}
+    },
+},
+mounted() {
+	this.speciality();
+	this.keshi_list();
+	this.zhiji_list();
+	this.yiyuan_list();
+},
+activated() {
+	this.getUserInfo();
+},
+components: { 
+	SimpleCropper 
+}
 }
 </script>
 
@@ -738,11 +751,11 @@ input::-webkit-input-placeholder {
 }
 #select-btn>option{
 	color: rgba(0,0,0,0) !important;
-    background: rgba(0,0,0,0) !important;
+	background: rgba(0,0,0,0) !important;
 }
 #select-btn>option:checked {
 	color: rgba(0,0,0,0) !important;
-    background: rgba(0,0,0,0) !important;	
+	background: rgba(0,0,0,0) !important;	
 }
 .right-text{
 	text-align: right !important;
